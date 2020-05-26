@@ -1,0 +1,35 @@
+#! /bin/sh
+
+sxhkd &
+xsetroot -cursor_name left_ptr &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc config border_width			0
+bspc config window_gap				8
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a firefox desktop='^1' follow=on
+bspc rule -a URxvt desktop='^2' follow=on
+bspc rule -a Thunar desktop='^3' follow=on
+bspc rule -a Mousepad desktop='^4' follow=on
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a mpv state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+bspc config normal_border_color '#282828'
+bspc config focused_border_color '#282828'
+bspc config presel_feedback_color '#282828'
+
+$HOME/.config/polybar/launch.sh
+feh --bg-fill $HOME/img/wallpapers/greenfog.jpg
+dunst &
+picom &
+$HOME/.config/polybar/launch.sh
+numlockx on
+xautolock -time 3 -detectsleep -locker $HOME/.local/lock/fortune
