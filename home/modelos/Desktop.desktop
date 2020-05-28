@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=jMemorize
+Name[pt_BR]=Desktop
+Comment=Flash card based learning tool
+StartupWMClass=Jmemorise
+Path=/opt/jmemorise
+Exec=jmemorize
+Icon=jmemorize
+Terminal=false
+Categories=Education;Languages;Java;AudioVideo;Audio;Video;Player;TV;
+

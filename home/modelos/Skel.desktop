@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Meu App
+Comment=Um comentário sobre o app
+Exec=$HOME/MyApp
+Icon=$HOME/Icons/MyIcon.png
+Terminal=false

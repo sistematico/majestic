@@ -1,0 +1,8 @@
+[Unit]
+Description=HDD Automount
+
+[Automount]
+Where=/mnt/hdd
+
+[Install]
+WantedBy=multi-user.target

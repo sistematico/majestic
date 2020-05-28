@@ -1,0 +1,11 @@
+[Unit]
+Description=Descrição da Unidade
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/programa -c /etc/programa/config
+ExecReload=/usr/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+{
+	"JavaScript Arrow Function": {
+		"scope": "javascript",
+		"prefix": "arrowfunction",
+		"body": [
+			"let ${1:nome} = (${2:parametro}) => {",
+            "\t${3://algum código...}",
+            "}"
+		],
+		"description": "Cria uma arrow function"
+	}
+}
