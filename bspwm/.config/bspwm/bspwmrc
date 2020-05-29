@@ -5,6 +5,7 @@ xsetroot -cursor_name left_ptr &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
+bspc config focus_follows_pointer true
 bspc config border_width			0
 bspc config window_gap				8
 
@@ -16,8 +17,12 @@ bspc rule -a firefox desktop='^1' follow=on
 bspc rule -a URxvt desktop='^2' follow=on
 bspc rule -a Thunar desktop='^3' follow=on
 bspc rule -a Mousepad desktop='^4' follow=on
+bspc rule -a Code desktop='^5' follow=on
+bspc rule -a Seahorse desktop='^6' follow=on
+bspc rule -a Thunderbird desktop='^7' follow=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a mpv state=floating
+bspc rule -a File-roller state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
