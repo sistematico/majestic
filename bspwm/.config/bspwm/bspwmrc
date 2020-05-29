@@ -21,6 +21,7 @@ bspc rule -a Code desktop='^5' follow=on
 bspc rule -a Seahorse desktop='^6' follow=on
 bspc rule -a Thunderbird desktop='^7' follow=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a TelegramDesktop desktop='^0' follow=on
 bspc rule -a mpv state=floating
 bspc rule -a File-roller state=floating
 bspc rule -a Pavucontrol state=floating
