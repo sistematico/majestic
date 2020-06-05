@@ -73,28 +73,7 @@
             </div>
         </div>
     </div>
-
     <script>
-        // Get current time and format
-        function getTime() {
-            let date = new Date(),
-                min = date.getMinutes(),
-                //sec = date.getSeconds(),
-                hour = date.getHours();
-            return "" +
-                (hour < 10 ? ("0" + hour) : hour) + ":" +
-                (min < 10 ? ("0" + min) : min);// + ":" + 
-            //(sec < 10 ? ("0" + sec) : sec);
-        }
-        function getDate() {
-            let date = new Date(),
-                months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                cmonth = months[date.getMonth()],
-                days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                cday = days[date.getDay()],
-                cnum = date.getDate();
-            return "" + cday + " " + cnum + " " + cmonth;
-        }
         window.onload = () => {
             let xhr = new XMLHttpRequest();
             // Request to open weather map
@@ -124,42 +103,8 @@
                 }
             }
             xhr.send();
-            // Set up the clock and date
-            //document.getElementById("clock").innerHTML = getTime();
-            //document.getElementById("date").innerHTML = getDate();
-            // Set clock interval to tick clock
-            //setInterval(() => {
-            //    document.getElementById("clock").innerHTML = getTime();
-            //}, 100);
-            //setInterval(() => {
-            //    document.getElementById("date").innerHTML = getDate();
-            //}, 100000);
-
-            /* Unsplash photo get
-            //Global Width and Height Variables
-            var w = Math.ceil(window.screen.width * window.devicePixelRatio * 0.896);
-            var h = Math.ceil(window.screen.height * window.devicePixelRatio * 0.896);
-            //w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-            //h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            document.body.style.backgroundImage = 'url("https://source.unsplash.com/' + w + 'x' + h + '/?wallpapers")';
-            console.log('https://source.unsplash.com/' + w + 'x' + h + '/?wallpapers');
-            */
-            //document.body.style.backgroundImage = 'url(./backgrounds/' + (Math.floor(Math.random() * 23)+1) + '.jpg)';
         }
 
-        /*function onResize() {
-            var newW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-            var newH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            if (newW>w || newH>h) {
-                w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-                h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-                document.body.style.backgroundImage = 'url("https://source.unsplash.com/random/' + w + 'x' + h + '/")';
-            }
-        }
-        
-        window.addEventListener('resize', onResize);*/
-
-        // Search on enter key event
         function search(e) {
             if (e.keyCode == 13) {
                 var val = document.getElementById("search-field").value;
