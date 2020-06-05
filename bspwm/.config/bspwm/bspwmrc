@@ -38,8 +38,5 @@ $HOME/.config/polybar/launch.sh
 feh --bg-fill $HOME/img/wallpapers/greenfog.jpg
 dunst &
 picom &
-$HOME/.config/polybar/launch.sh
 numlockx on
 xautolock -time 3 -detectsleep -locker $HOME/.local/lock/fortune
-#$HOME/bin/bg.sh $HOME/video/pubg.mp4 > /dev/null 2> /dev/null &
-#$HOME/bin/bg.sh $HOME/video/pubg.mp4
