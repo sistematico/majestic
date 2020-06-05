@@ -36,7 +36,7 @@ h1.hello, h1.timing {
     height: 12vh;
     /*background-color: rgba(59, 66, 82, 1);*/
     background: center;
-    display: none;
+    /* display: none; */
     position: center;
     box-sizing: border-box;
     flex-direction: column;
