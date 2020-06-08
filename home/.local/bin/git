@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#
+# github - Script para enviar automaticamente mudanças ao Github
+# LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!
+#
+# Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
+#
+# Sugestão de crontab:
+# */15 * * * * sh -c "~/.local/bin/github" > /dev/null 2>&1
+#
+# Criado em: 20/12/2017 19:27:31
+# Última Atualização: 06/05/2019 12:51:21
+
+dir="$HOME/github"
+#agressive  agro  feriados  hash  json  meme  mvc  mvc-old  php-mvc-lite  player  pushstate  reconta  senha  single  spamsentrybot  stream-player-min  xhr
+REPOS=('spamsentrybot' 'pushstate' 'php-rest-api')
+ACCOUNTS=('git@github.com:sistematico' 'git@gitlab.com:sistematico')
+
+[ ! -d $dir ] && mkdir -p $dir
+
+atualiza() {
+	cd $dir
+	if [ -d $1 ]; then
+		cd $1
+		status=$(git add . -n)
+
+		if [ ! -z "$status" ]; then
+			c=$(echo $(git add . -n | tr '\r\n' ' '))
+			m="Autocommit por ${nome}: alterações: $c"
+			git add .
+			git commit -m "$m"
+			git push
+			if [ "$?" == 0 ]; then
+				[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
+			else
+				if [ ! -f /tmp/git-cron.error ]; then
+					touch /tmp/git-cron.error
+				fi
+			fi
+		fi
+	else
+		for a in "${ACCOUNTS[@]}";
+		do
+			git ls-remote $a/$(basename $1) -q 2> /dev/null
+			if [ $? == 0 ] && [ ! -d "$dir/$(basename $1)" ]; then
+				git clone $a/$(basename $1).git
+			fi
+		done
+	fi
+}
+
+if [ ! $1 ] || [ "$1" == "-a" ]; then
+	for r in "${REPOS[@]}";	do
+		caminho="${dir}/${r}"
+		atualiza "$caminho"
+	done
+elif [ ! $2 ]; then
+	atualiza "$1"
+else
+	for r in "$@";	do
+		caminho="${dir}/${r}"
+		atualiza "$caminho"
+	done
+fi
