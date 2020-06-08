@@ -6,18 +6,15 @@
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Sugestão de crontab:
-# */15 * * * * /usr/bin/bash -c "$HOME/.local/bin/github" 2>&1
+# */15 * * * * /usr/bin/bash -c "$HOME/.local/bin/gitlab" 2>&1
 #
 # Criado em: 20/12/2017 19:27:31
 # Última Atualização: 06/05/2019 12:51:21
 
-nome="GitHub.sh"
-dir="${HOME}/github"
-#repos=('arroba' 'magico' 'majestic' 'sistematico.github.io' 'oc-cli' 'cabron-bot' 'pollen' 'agressive' 'spamsentrybot')
-repos=('dotfiles' 'hefesto' 'sistematico.github.io')
-remoto="nginx@hera"
-dotfiles=1
-icone="${HOME}/.local/share/icons/elementary/github.svg"
+nome="GitLab"
+dir="${HOME}/gitlab"
+repos=('pushstate' 'stream-player' 'stream-player-min')
+icone="${HOME}/.local/share/icons/elementary/gitlab.svg"
 som="complete"
 
 detectax() {
@@ -62,9 +59,6 @@ if [ ! $1 ] || [ "$1" == "-a" ]; then
 		caminho="${dir}/${r}"
 		atualiza "$caminho"
 	done
-
-	[ $dotfiles == 1 ] && atualiza "${HOME}/majestic"
-	[ "$1" == "-a" ] && ssh $remoto "/usr/local/scripts/github"
 elif [ ! $2 ]; then
 	atualiza "$1"
 else
