@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+    portainer:
+        container_name: portainer
+        image: portainer/portainer
+        command: --no-auth -H tcp://localhost:2375
+        ports:
+            - "8080:9000"
+        volumes:
+            # Linux
+            - /opt/portainer/data:/data
+            # Windows
+            #- C:\ProgramData\Portainer:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+    portainer_data:

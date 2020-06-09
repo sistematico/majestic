@@ -1,0 +1,7 @@
+FROM php:fpm
+RUN apt-get update && apt-get install curl libonig-dev libpng-dev libzip-dev sed -y
+RUN rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-install mbstring pdo pdo_mysql gd zip
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:1000:/' /etc/passwd
+RUN sed -i 's/9090/9000/' /usr/local/etc/php-fpm.d/zz-docker.conf
