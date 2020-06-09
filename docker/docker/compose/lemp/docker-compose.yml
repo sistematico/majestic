@@ -91,3 +91,10 @@ services:
         environment:
             - PMA_HOST=mysql
         restart: unless-stopped
+
+    adminer:
+        container_name: adminer
+        image: adminer:latest
+        ports:
+            - 8090:8080
+        restart: unless-stopped
