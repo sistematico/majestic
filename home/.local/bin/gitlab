@@ -13,7 +13,7 @@
 
 nome="GitLab"
 dir="${HOME}/gitlab"
-repos=('pushstate' 'stream-player' 'stream-player-min')
+repos=('pushstate' 'stream-player' 'stream-player-min' 'feriados')
 icone="${HOME}/.local/share/icons/elementary/gitlab.svg"
 som="complete"
 
