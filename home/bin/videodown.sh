@@ -22,7 +22,7 @@ NOME="Video Down"
 SECONDS=0
 comeco=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo erro.log
-aria=0
+aria=1
 ts=$(date +"%s")
 dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
 icone="${HOME}/.local/share/icons/elementary/video-display.png"
