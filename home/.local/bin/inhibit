@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+STATUS=$(pacmd list-sink-inputs | awk -F': ' '/state/{print $2}')
+
+if [ "$STATUS" == "RUNNING" ]; then
+	echo "<img>$HOME/.local/share/icons/elementary/camera-photo.png</img>"
+else
+	echo "<img>$HOME/.local/share/icons/elementary/clock.png</img>"
+fi
