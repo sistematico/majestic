@@ -1,10 +1,10 @@
-<?xml encoding="UTF-8" version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
 	<icon>utilities-terminal</icon>
 	<name>Abrir terminal aqui</name>
-	<unique-id>1542203492810748-1</unique-id>
-	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<unique-id>1590353499994617-1</unique-id>
+	<command>xfce4-terminal --default-working-directory=%f</command>
 	<description>Exemplo de uma ação personalizada</description>
 	<patterns>*</patterns>
 	<startup-notify/>
@@ -13,7 +13,7 @@
 <action>
 	<icon>catfish</icon>
 	<name>Pesquisar</name>
-	<unique-id>1542407563971765-1</unique-id>
+	<unique-id>1590954587955997-1</unique-id>
 	<command>catfish --path=%f</command>
 	<description></description>
 	<patterns>*</patterns>
@@ -32,7 +32,7 @@
 	<icon>viewnior</icon>
 	<name>Imagens</name>
 	<unique-id>1542629194348820-1</unique-id>
-	<command>~/bin/viewnior.sh %f</command>
+	<command>viewnior.sh %f</command>
 	<description></description>
 	<patterns>*</patterns>
 	<directories/>
