@@ -43,20 +43,29 @@ if pgrep -x "ffmpeg" > /dev/null
 then
     [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
     if [ ! $1 ]; then
-        killall ffmpeg
-        notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
-		#$(ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext} > /dev/null 2>&1 < /dev/null) ;
-		notify-send -i $icone "ScreenCast" "Vídeo recodificado"
-		if [ $? == 0 ]; then
-	        notify-send -i $icone "ScreenCast" "Vídeo recodificado"
+		if [ -f /tmp/screencast.pid ] && [ -f /tmp/screencast.file ]; then
+        	kill -9 $(cat /tmp/screencast.pid) && sleep 1 && kill -9 $(cat /tmp/screencast.pid)
+        	notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
+			#$(ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext} > /dev/null 2>&1 < /dev/null) ;
+			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext}
+			notify-send -i $icone "ScreenCast" "Vídeo recodificado"
+			if [ $? == 0 ]; then
+				rm -f /tmp/screencast.file ; rm -f /tmp/screencast.pid
+	        	notify-send -i $icone "ScreenCast" "Vídeo recodificado"
+			fi
+		else
+			notify-send -i $icone "ScreenCast" "Arquivo de pid e/ou filepath não encontrado, abortando..."
+			killall ffmpeg
 		fi
         exit 0
     fi
 else
     [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
     if [ ! "$1" ]; then
-        notify-send -i $icone "ScreenCast" "Iniciado"
-        ffmpeg -async 1 -f x11grab -s $resolucao -i :0 -f pulse -ac 2 -i default -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental -b:a 128k -movflags faststart ${arquivo}.tmp.${ext} && \
+        echo "${arquivo}" > /tmp/screencast.file
+		notify-send -i $icone "ScreenCast" "Iniciado"
+        ffmpeg -async 1 -f x11grab -s $resolucao -i :0 -f pulse -ac 2 -i default -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental -b:a 128k -movflags faststart ${arquivo}.tmp.${ext} &
+		echo $! > /tmp/screencast.pid
 		ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext}
 		#ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext} > /dev/null 2>&1 < /dev/null
 
