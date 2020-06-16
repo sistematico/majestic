@@ -32,7 +32,9 @@ else
 fi
 
 if [ ! $1 ]; then
-    data=$(date +%Y-%m-%d_%H-%M-%S)
+    #data=$(date +%Y-%m-%d_%H-%M-%S)
+    data=$(date +%H-%M-%S)
+	caminho="${caminho}/$(date +%Y)/$(date +%m)/$(date +%d)"
     arquivo="${caminho}/screencast-${data}"
     [ ! -d $caminho ] && mkdir -p $caminho
 fi
@@ -42,15 +44,18 @@ then
     [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
     if [ ! $1 ]; then
         killall ffmpeg
-        notify-send -i $icone "ScreenCast" "ScreenCast terminado"
-		#ffmpeg -i ${arquivo}.${ext} -ss 2 -vcodec copy -acodec copy $arquivo.${ext}
+        notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
+		ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext} 1> /dev/null 2> /dev/null
+		if [ $? == 0 ]; then
+	        notify-send -i $icone "ScreenCast" "Vídeo recodificado"
+		fi
         exit 0
     fi
 else
     [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
     if [ ! "$1" ]; then
-        notify-send -i $icone "ScreenCast" "ScreenCast iniciado"
-        ffmpeg -async 1 -f x11grab -s $resolucao -i :0 -f pulse -ac 2 -i default -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental -b:a 128k -movflags faststart ${arquivo}.${ext}
+        notify-send -i $icone "ScreenCast" "Iniciado"
+        ffmpeg -async 1 -f x11grab -s $resolucao -i :0 -f pulse -ac 2 -i default -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental -b:a 128k -movflags faststart ${arquivo}.tmp.${ext}
     elif [ "$1" == "clear" ]; then
         icone="${HOME}/.local/share/icons/elementary/user-trash.png"
         if ls ${caminho}* 2> /dev/null; then
