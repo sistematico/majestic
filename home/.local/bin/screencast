@@ -45,7 +45,7 @@ then
     if [ ! $1 ]; then
         killall ffmpeg
         notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
-		ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext} > /dev/null 2>&1 < /dev/null &&
+		$(ffmpeg -ss 2 -i ${arquivo}.tmp.${ext} -vcodec copy -acodec copy ${arquivo}.${ext} > /dev/null 2>&1 < /dev/null) ;
 		notify-send -i $icone "ScreenCast" "Vídeo recodificado"
 		if [ $? == 0 ]; then
 	        notify-send -i $icone "ScreenCast" "Vídeo recodificado"
