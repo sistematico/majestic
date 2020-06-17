@@ -46,7 +46,7 @@ atualiza() {
 						icone="${HOME}/.local/share/icons/elementary/network-error.png"
 						som="dialog-warning"
 						detectax $nome "Erro ao atualizar <b>$(basename $1)</b>."
-						touch /tmp/git-cron.error
+						touch /tmp/gitlab.error
 					fi
 				fi
 			fi
