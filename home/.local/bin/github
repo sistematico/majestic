@@ -20,16 +20,6 @@ dotfiles=1
 icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
 
-detectax() {
-	if xset q &>/dev/null; then
-		#$HOME/bin/notify.sh "$1" "$2"
-		notify-send -i $icone "$1" "$2"
-	else
-		echo "${1}: $2"
-	fi
-}
-
-
 atualiza() {
 	if [ -d $1 ]; then
 		if [ ! -f $1/.noup ]; then
