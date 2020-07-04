@@ -39,6 +39,9 @@ tar xzf /tmp/${NAME}.tar.gz -C /tmp
 
 if [ ! -z $CSS ] && [ -f /tmp/$OLDNAME/$CSS ]
 then
+    if [ "$1" == "fontawesome" ]; then
+        cp -r /tmp/$OLDNAME/webfonts .
+    fi
     cp /tmp/$OLDNAME/$CSS css/$CSSDEST
 fi
 if [ ! -z $JS ] && [ -f /tmp/$OLDNAME/$JS ]
