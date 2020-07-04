@@ -68,7 +68,9 @@ else
         -b:a 128k -movflags faststart ${arquivo}.tmp.${ext} > /dev/null &
         
         notify-send -i $icone "ScreenCast" "$!"
-        echo $! > /tmp/screencast.pid
+        PID=$( ps -ef | grep -E '[ ]logstash[ ]' | grep -v "grep" | head -1 | awk '{print $2}')
+        #echo $! > /tmp/screencast.pid
+        echo $PID > /tmp/screencast.pid
     elif [ "$1" == "clear" ]; then
         icone="${HOME}/.local/share/icons/elementary/user-trash.png"
         if ls ${caminho}* 2> /dev/null; then
