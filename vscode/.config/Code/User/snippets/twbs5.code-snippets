@@ -1,6 +1,6 @@
 {
 	"HTML": {
-		"prefix": "html5",
+		"prefix": "twbs5",
 		"body": [
 			"<!doctype html>",
 			"<html lang=\"pt-br\">",
@@ -26,6 +26,6 @@
 			"</body>",
 			"</html>"
 		],
-		"description": "Basic HTML Skel"
+		"description": "Basic Twitter Bootstrap v5 Skel"
 	}
 }
