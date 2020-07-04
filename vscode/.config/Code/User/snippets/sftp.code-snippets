@@ -1,0 +1,34 @@
+{
+	"VSCode SFTP Config File": {
+		"prefix": "sftp",
+		"body": [
+			"{",
+			"\t\"name\": \"Lucas Brum\",",
+			"\t\"host\": \"hera\",",
+			"\t\"protocol\": \"sftp\",",
+			"\t\"port\": 22,",
+			"\t\"username\": \"nginx\",",
+			"\t\"privateKeyPath\": \"/home/lucas/.ssh/id_rsa\",",
+			"\t\"remotePath\": \"/var/www/lucasbrum.net\",",
+			"\t\"uploadOnSave\": true,",
+			"\t\"ignore\": [",
+			"\t\t\".vscode\",",
+			"\t\t\".DS_Store\",",
+			"\t\t\".well-known\",",
+			"\t\t\"db\",",
+			"\t\t\"vendor\",",
+			"\t\t\"node_modules\",",
+			"\t\t\".git\",",
+			"\t\t\"phpmyadmin\"",
+			"\t]",
+			"}"
+		],
+		"description": "Create a basic SFTP config file"
+	}
+}
+
+
+
+
+
+

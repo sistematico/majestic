@@ -1,0 +1,11 @@
+{
+	 "Undefined": {
+	 	"prefix": "undefined",
+	 	"body": [
+	 		"if (typeof variable === 'undefined') {",
+            "\t// Code...",
+            "}"
+	 	],
+	 	"description": "If variable is undefined."
+	}
+}
