@@ -1,0 +1,97 @@
+@import url("logo.css");
+
+/* MAIN */
+body {
+  background-color: #282a36;
+}
+
+main {
+  margin: 1.2rem 0 1.2rem 0;
+}
+
+a:active, a:focus {
+	outline: 0;
+	border: none;
+  -moz-outline-style: none;
+  outline-style: none;
+}
+
+#frases {
+  font-style: italic;
+}
+
+/* COVER */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+.cover-container {
+  /* max-width: 42em; */
+  max-width: 46em;
+}
+
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .5);
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.nav-masthead .active:nth-child(1) {
+    border-bottom-color: #50fa7b;
+}
+
+.nav-masthead .active:nth-child(2) {
+    border-bottom-color: #ffb86c;
+}
+
+.nav-masthead .active:nth-child(3) {
+  border-bottom-color: #f1fa8c;
+}
+
+.nav-masthead .active:nth-child(4) {
+    border-bottom-color: #bd93f9;
+}
+/* END COVER */
+
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+  .cover-container {
+    max-width: 42em;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .cover-container {
+    max-width: 42em;
+  }
+
+  small {
+    font-size: 0.7rem;
+  }
+
+  #frases {
+    font-size: 0.64rem;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {} 

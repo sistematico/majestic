@@ -1,0 +1,92 @@
+.logo-container {
+    position: relative;
+}
+  
+.logo-container img:nth-child(1) {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+  
+.logo-container img:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.eye {
+    position: absolute;
+    top: 216px;
+    left: 225px;
+
+    background: #1d1e1fff;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    transform-origin: 50%;
+    -webkit-transform-origin: 50%;
+    animation: blink 4s infinite;
+    -webkit-animation: blink 4s infinite;
+
+    z-index: 1;
+}
+
+.rotate {
+    animation: spin 20s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+@-webkit-keyframes blink {
+    0%, 100% { transform: scale(1, .05); }
+    5%,
+    95% { transform: scale(1, 1); }
+}
+
+@keyframes blink {
+    0%, 100% { transform: scale(1, .05); }
+    5%, 95% { transform: scale(1, 1); }
+}
+
+
+/* @media (max-width: 576px) {
+    .logo-container img {
+      width: 200px;
+    }
+  
+    .eye {
+      width: 6px;
+      height: 6px;
+      top: 82px;
+      left: 84px;
+    }
+  } */
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+    .logo-container img {
+        width: 220px;
+    }
+    
+    .eye {
+        width: 7px;
+        height: 7px;
+        top: 91px;
+        left: 93px;
+    }
+}
+  
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .cover-container {
+        max-width: 42em;
+    }
+}
+  
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {}
+  
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {} 
