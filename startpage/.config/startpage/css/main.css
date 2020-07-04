@@ -163,13 +163,13 @@ a:hover { color: #BD3CD3; }
 	width: 52px;
 	height: 52px;
 	/* background:  none; */
-	border-radius: 0px 3px 3px 0px;
+	/* border-radius: 0px 3px 3px 0px; */
 	padding-top: 3px;
 	padding-bottom: 1px;
 	padding-left: 2px;
 	padding-right: 2px;
 	position: absolute;
-	border: none;
+	/* border: none; */
 	transition-duration: .8s;
 	filter: saturate(50%) brightness(65%) !important;
 }
