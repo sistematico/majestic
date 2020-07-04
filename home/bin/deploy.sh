@@ -15,7 +15,7 @@ case $1 in
         URL='https://api.github.com/repos/jquery/jquery/releases/latest'
     ;;
     fontawesome)
-        JS='dist/jquery.min.js'
+        #JS='dist/jquery.min.js'
         URL='https://api.github.com/repos/FortAwesome/Font-Awesome/releases/latest'
     ;;
     *)
