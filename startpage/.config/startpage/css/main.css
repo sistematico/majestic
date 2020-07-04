@@ -159,6 +159,7 @@ a:hover { color: #BD3CD3; }
 }
 
 .submit_button {
+	background-color: none;
 	background-image: url('../img/icons/search.svg');
 	width: 52px;
 	height: 52px;
@@ -171,11 +172,11 @@ a:hover { color: #BD3CD3; }
 	position: absolute;
 	border: none;
 	transition-duration: .8s;
-	/* filter: saturate(50%) brightness(65%) !important; */
+	filter: saturate(50%) brightness(65%) !important;
 }
 
-.button:hover{
-	/* filter: saturate(160%) brightness(140%)!important; */
+.submit_button:hover{
+	filter: saturate(160%) brightness(140%)!important;
 }
 
 .search_box {
