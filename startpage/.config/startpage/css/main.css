@@ -80,10 +80,10 @@ a:hover { color: #BD3CD3; }
 	border: #191C1E;
 	border-radius: 3px;
 	box-shadow: 0px 4px 5px #171D20;
-	padding: 18px;
+	padding: 15px;
 	background: #222D32;
-	line-height: 30px;
-	height: 30px;
+	line-height: 15px;
+	/* height: 30px;  */
 }
 
 .data {
