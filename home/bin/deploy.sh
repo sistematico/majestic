@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CSSDEST=''
+
 case $1 in
     bulma)
         CSS='css/bulma.min.css'
@@ -15,7 +17,8 @@ case $1 in
         URL='https://api.github.com/repos/jquery/jquery/releases/latest'
     ;;
     fontawesome)
-        #JS='dist/jquery.min.js'
+        CSSDEST='fontawesome.min.css'
+        CSS='css/all.min.css'
         URL='https://api.github.com/repos/FortAwesome/Font-Awesome/releases/latest'
     ;;
     *)
@@ -36,7 +39,7 @@ tar xzf /tmp/${NAME}.tar.gz -C /tmp
 
 if [ ! -z $CSS ] && [ -f /tmp/$OLDNAME/$CSS ]
 then
-    cp /tmp/$OLDNAME/$CSS css/
+    cp /tmp/$OLDNAME/$CSS css/$CSSDEST
 fi
 if [ ! -z $JS ] && [ -f /tmp/$OLDNAME/$JS ]
 then
