@@ -14,7 +14,7 @@
 nome="GitHub.sh"
 dir="${HOME}/github"
 #repos=('arroba' 'magico' 'majestic' 'sistematico.github.io' 'oc-cli' 'cabron-bot' 'pollen' 'agressive' 'spamsentrybot')
-repos=('dotfiles' 'hefesto' 'sistematico.github.io' 'php-rest-api' 'php-mvc' 'php-mvc-ajax' 'php-mvc-lite' 'php-mvc-users' 'mudancaonline' 'mudancaonlineapp' 'startpage')
+repos=('dotfiles' 'hefesto' 'sistematico.github.io' 'php-rest-api' 'php-mvc' 'php-mvc-ajax' 'php-mvc-lite' 'php-mvc-users' 'mudancaonline' 'mudancaonlineapp' 'startpage' 'clima')
 remoto="nginx@hera"
 dotfiles=1
 icone="${HOME}/.local/share/icons/elementary/github.svg"
