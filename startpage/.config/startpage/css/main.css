@@ -46,7 +46,6 @@ main {
 footer {
 	height: 60px;
 	line-height: 60px;
-	background: rgba(0, 0, 255, 0.5);
 }
 
 :focus { outline: 0; }
