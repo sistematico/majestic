@@ -47,8 +47,8 @@ then
         	#kill -9 $(cat /tmp/screencast.pid)
             kill -9 $(cat /tmp/screencast.pid)
         	notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
-			#ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext} > /dev/null 2>&1 < /dev/null
-			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext}
+			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext} > /dev/null 2>&1 < /dev/null
+			#ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext}
             notify-send -i $icone "ScreenCast" "Vídeo recodificado"
 		else
 			notify-send -i $icone "ScreenCast" "Arquivo de pid e/ou filepath não encontrado, abortando..."
@@ -66,9 +66,9 @@ else
         -i :0 -f pulse -ac 2 -i default -c:v libx264 \
         -crf 23 -profile:v baseline -level 3.0 \
         -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental \
-        -b:a 128k -movflags faststart ${arquivo}.tmp.${ext} 1> /dev/null 2> /dev/null
+        -b:a 128k -movflags faststart ${arquivo}.tmp.${ext} 1> /dev/null
         
-        notify-send -i $icone "ScreenCast" "$!"
+        #notify-send -i $icone "ScreenCast" "$!"
         PID=$( ps -ef | grep -E '[ ]ffmpeg[ ]' | grep -v "grep" | head -1 | awk '{print $2}')
         #echo $! > /tmp/screencast.pid
         echo $PID > /tmp/screencast.pid
