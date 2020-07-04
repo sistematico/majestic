@@ -14,5 +14,12 @@ let interval = setInterval(function() {
     + ('0' + currentdate.getHours()).slice(-2) + ":"  
     + ('0' + currentdate.getMinutes()).slice(-2) + ":" 
     + ('0' + currentdate.getSeconds()).slice(-2);
-    document.querySelector('.data').innerHTML = datetime;
+
+    if (currentdate.getHours() > 5 && currentdate.getHours() < 19) {
+        let icone ' <i class="fas fa-sun"></i>';
+    } else {
+        let icone ' <i class="fas fa-moon"></i>';
+    }
+
+    document.querySelector('.data').innerHTML = datetime + icone;
 },1000);
