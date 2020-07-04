@@ -5,7 +5,7 @@
 //                 + currentdate.getHours() + ":"  
 //                 + currentdate.getMinutes() + ":" 
 //                 + currentdate.getSeconds();
-let icone;
+let icone, greet;
 
 let interval = setInterval(function() {
     var currentdate = new Date(); 
@@ -22,5 +22,15 @@ let interval = setInterval(function() {
         icone = ' <i class="fas fa-moon"></i>';
     }
 
-    document.querySelector('.data').innerHTML = datetime + icone;
+    if (currentdate.getHours() > 18) {
+        greet = 'Boa tarde Lucas!';
+    } else if (currentdate.getHours() > 18) {
+        greet = 'Boa tarde Lucas!';
+    } else if (currentdate.getHours() > 18) {
+        greet = 'Boa tarde Lucas!';
+    } else if (currentdate.getHours() > 18) {
+        greet = 'Boa tarde Lucas!';
+    }
+
+    document.querySelector('.data').innerHTML = greet + datetime + icone;
 },1000);
