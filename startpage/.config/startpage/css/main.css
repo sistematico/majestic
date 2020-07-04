@@ -160,6 +160,8 @@ a:hover { color: #BD3CD3; }
 
 .submit_button {
 	background-image: url('../img/icons/search.svg');
+	width: 52px;
+	height: 52px;
 	/* background:  none; */
 	border-radius: 0px 3px 3px 0px;
 	padding-top: 3px;
