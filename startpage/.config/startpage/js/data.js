@@ -5,6 +5,7 @@
 //                 + currentdate.getHours() + ":"  
 //                 + currentdate.getMinutes() + ":" 
 //                 + currentdate.getSeconds();
+let icone;
 
 let interval = setInterval(function() {
     var currentdate = new Date(); 
@@ -16,9 +17,9 @@ let interval = setInterval(function() {
     + ('0' + currentdate.getSeconds()).slice(-2);
 
     if (currentdate.getHours() > 5 && currentdate.getHours() < 19) {
-        let icone ' <i class="fas fa-sun"></i>';
+        icone = ' <i class="fas fa-sun"></i>';
     } else {
-        let icone ' <i class="fas fa-moon"></i>';
+        icone = ' <i class="fas fa-moon"></i>';
     }
 
     document.querySelector('.data').innerHTML = datetime + icone;
