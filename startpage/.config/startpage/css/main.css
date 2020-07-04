@@ -158,8 +158,9 @@ a:hover { color: #BD3CD3; }
 	border-radius: 3px 0px 0px 3px;
 }
 
-.button {
-	background:  none;
+.submit_button {
+	background-image: url('../img/icons/search.svg');
+	/* background:  none; */
 	border-radius: 0px 3px 3px 0px;
 	padding-top: 3px;
 	padding-bottom: 1px;
