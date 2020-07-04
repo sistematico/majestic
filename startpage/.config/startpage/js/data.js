@@ -15,4 +15,5 @@ var datetime = "Last Sync: " + currentdate.getDate() + "/"
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
 
-document.getElementById("data").innerHTML = datetime;
+//document.getElementById("data").innerHTML = datetime;
+document.querySelector('.data').innerHTML = datetime;
