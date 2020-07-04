@@ -46,6 +46,7 @@ then
 		if [ -f /tmp/screencast.pid ] && [ -f /tmp/screencast.file ]; then
         	#kill -9 $(cat /tmp/screencast.pid)
             kill -15 $(cat /tmp/screencast.pid)
+            sleep 5
         	notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
 			#ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext} > /dev/null 2>&1 < /dev/null
 			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext}
