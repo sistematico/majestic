@@ -159,13 +159,13 @@ a:hover { color: #BD3CD3; }
 }
 
 .submit_button {
-	background-color: none;
+	background-color: transparent;
 	background-image: url('../img/icons/search.svg');
 	width: 52px;
 	height: 52px;
 	/* background:  none; */
 	/* border-radius: 0px 3px 3px 0px; */
-	padding-top: 3px;
+	padding-top: 5px;
 	padding-bottom: 1px;
 	padding-left: 2px;
 	padding-right: 2px;
