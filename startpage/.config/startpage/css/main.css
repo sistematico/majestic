@@ -83,7 +83,7 @@ a:hover { color: #BD3CD3; }
 	padding: 15px;
 	background: #222D32;
 	line-height: 15px;
-	/* height: 30px;  */
+	height: 15px; 
 }
 
 .data {
