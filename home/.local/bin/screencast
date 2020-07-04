@@ -47,8 +47,8 @@ then
         	#kill -9 $(cat /tmp/screencast.pid)
             kill -15 $(cat /tmp/screencast.pid)
         	notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
-			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext} > /dev/null 2>&1 < /dev/null
-			#ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext}
+			#ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext} > /dev/null 2>&1 < /dev/null
+			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext}
             notify-send -i $icone "ScreenCast" "Vídeo recodificado"
 		else
 			notify-send -i $icone "ScreenCast" "Arquivo de pid e/ou filepath não encontrado, abortando..."
