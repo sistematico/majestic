@@ -15,6 +15,11 @@
 #################################################################################
 
 command -v dialog >/dev/null 2>&1 || { echo "Programa dialog não encontrado. Abortando..." ; exit 1; }
+pacman -Qq libcanberra 1> /dev/null 2> /dev/null || { echo "Pacote libcanberra não encontrado. Abortando..." ; exit 1; }
+pacman -Qq libcanberra-pulse 1> /dev/null 2> /dev/null || { echo "Pacote libcanberra-pulse não encontrado. Abortando..." ; exit 1; }
+
+
+
 
 #xfconf-query -c xsettings -p /Net/EnableEventSounds -s true
 #xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s true
