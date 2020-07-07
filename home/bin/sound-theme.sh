@@ -31,7 +31,6 @@ for t in *; do
         i=$((i+1))
     fi
 done
-
 options="${options} $i nenhum"
 
 tema=$(dialog --stdout --title 'Tema' --menu 'Escolha um tema' 0 0 0 $options 2>&1)
