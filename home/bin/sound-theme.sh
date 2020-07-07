@@ -20,6 +20,10 @@ command -v dialog >/dev/null 2>&1 || { echo "Programa dialog não encontrado. Ab
 #xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s true
 #xfconf-query -c xsettings -p /Net/SoundThemeName -s "Borealis"
 
+old=$(pwd)
+
+cd /usr/share/sounds
+
 on="on"
 for t in *; do
   options="${options} ${t} ${t} ${on}"
