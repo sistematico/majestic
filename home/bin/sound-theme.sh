@@ -25,12 +25,13 @@ old=$(pwd)
 cd /usr/share/sounds
 
 on="on"
+
 for t in *; do
   options="${options} ${t} ${t} ${on}"
   on="off"
 done
 
-iniciante 'até 1 ano' on
+options="${options} nenhum 'Nenhum' off"
 
 tema=$(dialog --stdout --title 'Tema' --radiolist 'Escolha um tema' 0 0 0 $options 2>&1)
 
