@@ -29,6 +29,10 @@ fi
 [ $1 ] && url="$1" || url="$(xclip -o)"
 cd $DIR
 
+# Case-Insensitive
+#email=${email,,}
+#email=${email%%@example.com}
+
 # suffix=" (Clipe Oficial)"
 #titulo=${titulo%"$suffix"}
 
