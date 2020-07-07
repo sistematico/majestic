@@ -27,11 +27,13 @@ cd /usr/share/sounds
 on="on"
 
 for t in *; do
-  options="${options} ${t} ${t} ${on}"
-  on="off"
+    if [ "$t" != "alsa" ]; then
+        options="${options} ${t} ${t} ${on}"
+    fi
+    on="off"
 done
 
-options="${options} nenhum 'Nenhum' off"
+options="${options} nenhum \"Nenhum\" off"
 
 tema=$(dialog --stdout --title 'Tema' --radiolist 'Escolha um tema' 0 0 0 $options 2>&1)
 
