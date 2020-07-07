@@ -20,12 +20,6 @@ command -v dialog >/dev/null 2>&1 || { echo "Programa dialog não encontrado. Ab
 #xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s true
 #xfconf-query -c xsettings -p /Net/SoundThemeName -s "Borealis"
 
-tema=$(dialog                                           \
-   --title 'Pergunta'                            \
-   --radiolist 'Há quanto tempo você usa o Vi?'  \
-   0 0 0                                         \
-   iniciante  'até 1 ano'      on                \
-   experiente 'mais de 1 ano'  off               \
-   guru       'mais de 3 anos' off)
+tema=$(dialog --stdout --title 'Tema' --radiolist 'Escolha um tema' 0 0 0 iniciante  'até 1 ano' on experiente 'mais de 1 ano' off guru 'mais de 3 anos' off 2>&1)
 
 echo $tema
