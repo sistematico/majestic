@@ -17,7 +17,7 @@
         }
     },
     {
-        "key": "ctrl+shift+~",
+        "key": "ctrl+~",
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus",
         "args": {
