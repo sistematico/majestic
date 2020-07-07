@@ -14,13 +14,11 @@
 #                                                                               #
 #################################################################################
 
-command -v bc >/dev/null 2>&1 || { echo "bc não encontrado." ; exit 1; }
+command -v dialog >/dev/null 2>&1 || { echo "Programa dialog não encontrado. Abortando..." ; exit 1; }
 
 #xfconf-query -c xsettings -p /Net/EnableEventSounds -s true
 #xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s true
 #xfconf-query -c xsettings -p /Net/SoundThemeName -s "Borealis"
-
-
 
 dialog                                           \
    --title 'Pergunta'                            \
