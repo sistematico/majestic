@@ -5,7 +5,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus",
         "args": {
-            "snippet": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND"
+            "snippet": "$CURRENT_DATE-$CURRENT_MONTH-$CURRENT_YEAR"
         }
     },
     {
@@ -13,7 +13,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus",
         "args": {
-            "snippet": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND"
+            "snippet": "$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND"
         }
     }
 ]
