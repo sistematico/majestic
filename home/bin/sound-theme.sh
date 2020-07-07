@@ -35,4 +35,15 @@ options="${options} $i nenhum"
 
 tema=$(dialog --stdout --title 'Tema' --menu 'Escolha um tema' 0 0 0 $options 2>&1)
 
-echo $tema
+if [ "$tema" == "nenhum" ]; then
+    xfconf-query -c xsettings -p /Net/EnableEventSounds -s false
+    xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s false
+else
+    xfconf-query -c xsettings -p /Net/EnableEventSounds -s true
+    xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s true
+    xfconf-query -c xsettings -p /Net/SoundThemeName -s "$tema"
+fi
+
+cd "$old"
+
+exit 0
