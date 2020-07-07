@@ -21,7 +21,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus",
         "args": {
-            "snippet": "$TM_FILENAME_BASE"
+            "snippet": "$TM_FILENAME_BASE $TM_FILENAME"
         }
     }
 ]
