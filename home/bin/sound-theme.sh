@@ -28,12 +28,12 @@ on="on"
 
 for t in *; do
     if [ "$t" != "alsa" ]; then
-        options="${options} ${t} "" ${on}"
+        options="${options} ${t} ' ' ${on}"
     fi
     on="off"
 done
 
-options="${options} nenhum \"\" off"
+options="${options} nenhum ' ' off"
 
 tema=$(dialog --stdout --title 'Tema' --radiolist 'Escolha um tema' 0 0 0 $options 2>&1)
 
