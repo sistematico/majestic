@@ -45,7 +45,7 @@ if [[ ! ${url} =~ $padrao ]]; then
     exit
 else
     #titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
-    titulo="$(youtube-dl -s -f mp4 -o '%(id)s.%(ext)s' --print-json --no-warnings "$url" | jq -r '.title')"
+    titulo="$(youtube-dl -s -f mp4 -o '%(id)s.%(ext)s' --print-json --no-warnings ${url} | jq -r '.title')"
 
     if [ ${#titulo} -gt 250 ]; then
         diff=$((${#titulo}-250))
