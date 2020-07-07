@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
-################################################################################
-#                                                                              #
-# videodown.sh                                                                 #
-#                                                                              #
-# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
-#                                                                              #
-# Criado em: 30-04-2019 01:55:09 pm                                             #
-# Modificado em: 05-12-2019 4:31:28 pm                                         #
-#                                                                              #
-# Este trabalho está licenciado com uma Licença Creative Commons               #
-# Atribuição 4.0 Internacional                                                 #
-# http://creativecommons.org/licenses/by/4.0/                                  #
-#                                                                              #
-################################################################################
+#################################################################################
+#                                                                               #
+# videodown.sh                                                                  #
+#                                                                               #
+# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>          #
+#                                                                               #
+# Criado em: 07-07-2020 07:21:15                                                #
+# Modificado em: 07-07-2020 07:21:26                                            #
+#                                                                               #
+# Este trabalho está licenciado com uma Licença Creative Commons                #
+# Atribuição 4.0 Internacional                                                  #
+# http://creativecommons.org/licenses/by/4.0/                                   #
+#                                                                               #
+#################################################################################
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
