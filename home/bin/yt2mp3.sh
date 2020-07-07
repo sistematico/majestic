@@ -17,7 +17,8 @@
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
 NOME="MP3 Down"
-DIR="${HOME:-${XDG_MUSIC_DIR}}"
+#DIR="${HOME:-${XDG_MUSIC_DIR}}"
+DIR="${HOME}/desk"
 ICONE="${HOME}/.local/share/icons/elementary/video-display.png"
 
 if [ ! -d "$DIR" ]; then
@@ -27,6 +28,9 @@ fi
 
 [ $1 ] && url="$1" || url="$(xclip -o)"
 cd $DIR
+
+# suffix=" (Clipe Oficial)"
+#titulo=${titulo%"$suffix"}
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
