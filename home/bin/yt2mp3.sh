@@ -31,10 +31,10 @@ logs="${dir}/status.log"
 proc=$(pgrep -fc "bash $0")
 
 if [ ! -d "$dir" ]; then
-	dir="${HOME}/desk"
-	if [ ! -d $dir ]; then
-		mkdir -p $dir
-	fi
+    dir="${HOME}/desk"
+    if [ ! -d $dir ]; then
+        mkdir -p $dir
+    fi
 fi
 
 [ ! -d $tmp ] && mkdir -p $tmp
@@ -43,18 +43,18 @@ cd $tmp
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	#notify-send -i $icone "Video Downloader" "O link é inválido!"
-	$HOME/bin/notify.sh "Video Down" "Video Downloader" "O link é inválido!"
+    #notify-send -i $icone "Video Downloader" "O link é inválido!"
+    $HOME/bin/notify.sh "Video Down" "Video Downloader" "O link é inválido!"
     exit
 else
-	#titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | iconv -f utf8 -t ascii//TRANSLIT | sed 's/[^[:alnum:]]\+/ /g')"
-	titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
+    #titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | iconv -f utf8 -t ascii//TRANSLIT | sed 's/[^[:alnum:]]\+/ /g')"
+    titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
 
-	if [ ${#titulo} -gt 250 ]; then
-		diff=$((${#titulo}-250))
-		trim=$((${#titulo}-$diff))
-		titulo=${titulo::-$trim}
-	fi
+    if [ ${#titulo} -gt 250 ]; then
+        diff=$((${#titulo}-250))
+        trim=$((${#titulo}-$diff))
+        titulo=${titulo::-$trim}
+    fi
 fi
 
 if [[ $LOG -ne 0 ]]; then
@@ -125,8 +125,8 @@ if [[ $status -eq 0 ]]; then
         if ls "${dir}/${titulo}"* 1> /dev/null 2>&1; then
             $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nInstâncias: $proc" "$NOME" "$ICONE"
         else
-        	final=$SECONDS
-        	diff=$((final - comeco))
+            final=$SECONDS
+            diff=$((final - comeco))
             tamanho=$(stat --printf="%s" "${titulo}"*)
             tamanho="$((tamanho / 1024))"
 
