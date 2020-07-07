@@ -22,10 +22,10 @@ comeco=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo erro.log
 aria=1
 ts=$(date +"%s")
-dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
+dir="${HOME:-${XDG_MUSIC_DIR}}"
 icone="${HOME}/.local/share/icons/elementary/video-display.png"
-tmp="/tmp/videodown/$$"
-logs="${dir}/status.log"
+tmp="/tmp/yt2mp3/$$"
+logs="${tmp}/status.log"
 proc=$(pgrep -fc "bash $0")
 
 if [ ! -d "$dir" ]; then
@@ -93,7 +93,7 @@ if [[ $status -eq 0 ]]; then
         echo "Temp:         $tmp" >> "$logs"
         echo "Processos:    $proc" >> "$logs"
     fi
-    arquivos=$(ls "${titulo}"* | egrep -vi '.mp4|.avi|.mkv|.log')
+    arquivos=$(ls "${titulo}"* | egrep -vi '.mp3')
     for i in "${arquivos[@]}"
     do
         if [ -f "$i" ]; then
