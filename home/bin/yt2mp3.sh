@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #################################################################################
 #                                                                               #
-# videodown.sh                                                                  #
+# yt2mp3.sh                                                                     #
 #                                                                               #
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>          #
 #                                                                               #
 # Criado em: 07-07-2020 07:21:15                                                #
-# Modificado em: 07-07-2020 07:21:26                                            #
+# Modificado em: 07-07-2020 07:29:23                                            #
 #                                                                               #
 # Este trabalho está licenciado com uma Licença Creative Commons                #
 # Atribuição 4.0 Internacional                                                  #
@@ -16,9 +16,7 @@
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
-#xclip -out -selection primary | xclip -in -selection clipboard
-
-NOME="Video Down"
+NOME="MP3 Down"
 SECONDS=0
 comeco=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo erro.log
@@ -43,11 +41,9 @@ cd $tmp
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-    #notify-send -i $icone "Video Downloader" "O link é inválido!"
-    $HOME/bin/notify.sh "Video Down" "Video Downloader" "O link é inválido!"
+    notify-send -i $icone "$NOME" "O link é inválido!"
     exit
 else
-    #titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | iconv -f utf8 -t ascii//TRANSLIT | sed 's/[^[:alnum:]]\+/ /g')"
     titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
 
     if [ ${#titulo} -gt 250 ]; then
@@ -67,25 +63,12 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
-#notify-send -i $icone "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada."
-$HOME/bin/notify.sh "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada." "$NOME" "$ICONE"
+notify-send -i $icone "$NOME" "Transferencia de: \n\n<b>$titulo</b> iniciada."
 
-if [ $aria == 1 ]; then
-    # -j, --max-concurrent-downloads
-    # -x, --max-connection-per-server
-    # -m, --max-tries
-    # -k, --min-split-size
-    # -s, --split restricted by --max-connection-per-server
-    # -t, --timeout
+#youtube-dl -o "${titulo}.%(ext)s" "${url}"
+youtube-dl --extract-audio --audio-format mp3 -o "${titulo}.%(ext)s" "${url}"
 
-    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '$dir/aria.log' -t 10 -m 10 -c -j 2 -x 1 -s 2 -k 2M' "${url}"
-    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '$dir/aria.log' -t 10 -m 10 -c -j 4 -x 2 -s 2 -k 2M' "${url}"
-    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
-    status="$?"
-else
-    youtube-dl -o "${titulo}.%(ext)s" "${url}"
-    status="$?"
-fi
+status="$?"
 
 if [[ $status -ne 0 ]]; then
     echo "---------------------------------------------------------------" >> "$logs"
@@ -96,7 +79,7 @@ if [[ $status -ne 0 ]]; then
     echo "Temp:         $tmp" >> "$logs"
     echo "Processos:    $proc" >> "$logs"    
     echo "Código:       $status" >> "$logs"
-    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${titulo}*</b>.\n\nInstâncias: $proc" "$NOME" "$ICONE"
+    notify-send -i $icone "$NOME" "Erro na transferencia de:\n\n<b>${titulo}*</b>.\n\nInstâncias: $proc" "$NOME" "$ICONE"
     exit
 fi
 
@@ -123,7 +106,7 @@ if [[ $status -eq 0 ]]; then
 
     if ls "${titulo}"* 1> /dev/null 2>&1; then
         if ls "${dir}/${titulo}"* 1> /dev/null 2>&1; then
-            $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nInstâncias: $proc" "$NOME" "$ICONE"
+            notify-send -i $icone "$NOME" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nInstâncias: $proc" "$NOME" "$ICONE"
         else
             final=$SECONDS
             diff=$((final - comeco))
@@ -144,15 +127,15 @@ if [[ $status -eq 0 ]]; then
                 tamanho="${tamanho} KB"
             fi
 
-            $HOME/bin/notify.sh "Video Downloader" "Sucesso, vídeo salvo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" "$NOME" "$ICONE"
+            notify-send -i $icone "$NOME" "Sucesso, vídeo salvo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" "$NOME" "$ICONE"
             mv "${titulo}"* "$dir"
             cd "$dir"
             [ -d "$tmp" ] && rm -rf "$tmp"
         fi
     else
-        $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${tmp}/${titulo}*</b>.\n\nInstâncias: $proc" "$NOME" "$ICONE"
+        notify-send -i $icone "$NOME" "Erro na transferencia de:\n\n<b>${tmp}/${titulo}*</b>.\n\nInstâncias: $proc" "$NOME" "$ICONE"
     fi
 else
-    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>$titulo</b>\n\nInstâncias: $proc" "$NOME" "$ICONE"
+    notify-send -i $icone "$NOME" "Erro na transferencia de:\n\n<b>$titulo</b>\n\nInstâncias: $proc" "$NOME" "$ICONE"
 fi
 
