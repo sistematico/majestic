@@ -17,20 +17,20 @@
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
 NOME="MP3 Down"
-dir="${HOME:-${XDG_MUSIC_DIR}}"
-icone="${HOME}/.local/share/icons/elementary/video-display.png"
+DIR="${HOME:-${XDG_MUSIC_DIR}}"
+ICONE="${HOME}/.local/share/icons/elementary/video-display.png"
 
-if [ ! -d "$dir" ]; then
-    dir="${HOME}/desk"
-    [ ! -d $dir ] && mkdir -p $dir
+if [ ! -d "$DIR" ]; then
+    DIR="${HOME}/desk"
+    [ ! -d $DIR ] && mkdir -p $DIR
 fi
 
 [ $1 ] && url="$1" || url="$(xclip -o)"
-cd $dir
+cd $DIR
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-    notify-send -i $icone "$NOME" "O link é inválido!"
+    notify-send -i $ICONE "$NOME" "O link é inválido!"
     exit
 else
     titulo="$(youtube-dl -s -f mp4 -o '%(id)s.%(ext)s' --print-json --no-warnings ${url} | jq -r '.title')"
@@ -42,7 +42,7 @@ else
     fi
 fi
 
-notify-send -i $icone "$NOME" "Transferencia de: \n\n<b>$titulo</b> iniciada."
+notify-send -i $ICONE "$NOME" "Transferencia de: \n\n<b>$titulo</b> iniciada."
 youtube-dl --extract-audio --audio-format mp3 -o "${titulo}.%(ext)s" "${url}"
 
 
