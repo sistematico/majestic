@@ -25,16 +25,15 @@ old=$(pwd)
 cd /usr/share/sounds
 
 i=1
-
 for t in *; do
     if [ "$t" != "alsa" ]; then
         options="${options} ${i} ${t}"
+        i=$((i+1))
     fi
-    i=$((i+1))
 done
 
 options="${options} $i nenhum"
 
-tema=$(dialog --stdout --title 'Tema' --radiolist 'Escolha um tema' 0 0 0 $options 2>&1)
+tema=$(dialog --stdout --title 'Tema' --menu 'Escolha um tema' 0 0 0 $options 2>&1)
 
 echo $tema
