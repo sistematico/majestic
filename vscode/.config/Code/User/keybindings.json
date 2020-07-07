@@ -17,11 +17,11 @@
         }
     },
     {
-        "key": "ctrl+~",
+        "key": "ctrl+shift+ç",
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus",
         "args": {
-            "snippet": "$TM_FILENAME_BASE $TM_FILENAME"
+            "snippet": "SELECTION, TM_SELECTED_TEXT, TM_CURRENT_LINE, TM_CURRENT_WORD, TM_LINE_INDEX, TM_LINE_NUMBER, TM_FILENAME, TM_DIRECTORY, TM_FILEPATH"
         }
     }
 ]
