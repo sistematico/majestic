@@ -21,8 +21,13 @@ case $1 in
         CSS='css/all.min.css'
         URL='https://api.github.com/repos/FortAwesome/Font-Awesome/releases/latest'
     ;;
+    plyr)
+        JS='dist/plyr.min.js'
+        CSS='dist/plyr.css'
+        URL='https://api.github.com/repos/sampotts/plyr/releases/latest'
+    ;;
     *)
-        echo "Uso: $(basename $0) [bulma|jquery|bootstrap|fontawesome]"
+        echo "Uso: $(basename $0) [bulma|jquery|bootstrap|fontawesome|plyr]"
         exit
     ;;
 esac
