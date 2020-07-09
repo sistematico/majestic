@@ -1,5 +1,6 @@
 [colors]
-	background = "#282828"
+	#background = "#282828"
+	background = "#282A36"
 	foreground = "#a89984"
 
 [global]
