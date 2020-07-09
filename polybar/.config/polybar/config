@@ -1,6 +1,6 @@
 [colors]
-;background = ${xrdb:color0:#222}
-background = #44475a
+background = ${xrdb:background:#44475a}
+;background = #44475a
 foreground = ${xrdb:color7:#222}
 highlight = ${xrdb:color15:#222}
 vermelho = #ff5555
