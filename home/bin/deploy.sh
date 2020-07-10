@@ -47,6 +47,11 @@ then
     if [ "$1" == "fontawesome" ]; then
         cp -r /tmp/$OLDNAME/webfonts .
     fi
+
+    if [ "$1" == "bulma" ]; then
+        curl -s -L -o 'js/navbar.js' 'https://gist.githubusercontent.com/sistematico/42298a16909a40e7f735d1f91103d99a/raw/6117587f5cb62eac3c87aa6368e6aaadc579bd2c/navbar.js'
+    fi
+
     cp /tmp/$OLDNAME/$CSS css/$CSSDEST
 fi
 if [ ! -z $JS ] && [ -f /tmp/$OLDNAME/$JS ]
