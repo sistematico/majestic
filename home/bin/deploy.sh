@@ -26,8 +26,18 @@ case $1 in
         CSS='dist/plyr.css'
         URL='https://api.github.com/repos/sampotts/plyr/releases/latest'
     ;;
+    sbadmin)
+        #JS='dist/plyr.min.js'
+        #CSS='dist/plyr.css'
+        URL='https://api.github.com/repos/StartBootstrap/startbootstrap-sb-admin/releases/latest'
+    ;;
+    sbadmin2)
+        #JS='dist/plyr.min.js'
+        #CSS='dist/plyr.css'
+        URL='https://api.github.com/repos/StartBootstrap/startbootstrap-sb-admin-2/releases/latest'
+    ;;
     *)
-        echo "Uso: $(basename $0) [bulma|jquery|bootstrap|fontawesome|plyr]"
+        echo "Uso: $(basename $0) [bulma|jquery|bootstrap|fontawesome|plyr|sbadmin|sbadmin2]"
         exit
     ;;
 esac
