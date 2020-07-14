@@ -10,7 +10,7 @@ homedir="${HOME}/.local/share/applications"
 sysdir="/usr/share/applications"
 apps=("yad-icon-browser" "gvim" "assistant" "designer" "linguist" "Thunar-bulk-rename" "qdbusviewer" "cmake" "xfce4-about" \
 	"caja." "gnome" "cinnamon" "qt4" "mate" "zenmap" "mpv" "links" "avahi-discover" "bssh" "bvnc" "-floaters" "elementary" \
-	"munch" "cosmos" "thunar-settings" "qv4l2")
+	"munch" "cosmos" "thunar-settings" "qv4l2" "accerciser" "Builder" "electron" "gvim" "compton" "picom" "ranger" "rxvt")
 nd='NoDisplay'
 
 if [[ ! -d ${homedir} ]]; then
