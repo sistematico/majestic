@@ -43,7 +43,7 @@ if pgrep -x "ffmpeg" > /dev/null
 then
     [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
     if [ ! $1 ]; then
-		if [ $PID ] && [ -f /tmp/screencast.file ]; then
+		if [ -z $PID ] && [ -f /tmp/screencast.file ]; then
         	kill -9 $PID && sleep 1 && kill -9 $PID && sleep 1
         	notify-send -i $icone "ScreenCast" "Terminado, recodificando..."
 			ffmpeg -ss 2 -i $(cat /tmp/screencast.file).tmp.${ext} -vcodec copy -acodec copy $(cat /tmp/screencast.file).${ext} > /dev/null 2>&1 < /dev/null
