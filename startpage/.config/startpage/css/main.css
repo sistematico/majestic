@@ -114,7 +114,7 @@ a:hover { color: #BD3CD3; }
 .category:nth-child(3) a:hover { color: #FF492F; }
 .category:nth-child(4) a:hover { color: #00B8FF; }
 .category:nth-child(5) a:hover { color: #FF62CE; }
-
+.category:nth-child(5) a:hover { color: #ff5555; }
 
 .bookmark {
     display: flex;
