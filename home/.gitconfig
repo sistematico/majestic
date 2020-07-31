@@ -1,0 +1,17 @@
+[user]
+    name = Lucas Saliés Brum
+    email = lucas@archlinux.com.br
+[url "https://git.archlinux.org/svntogit/packages.git --single-branch -b "]
+    insteadOf = "pkg:"
+[url "ssh://aur@aur.archlinux.org/"]
+    insteadOf = "aur:"
+[url "git@github.com:sistematico/"]
+    insteadOf = "gh:"
+[url "git@gitlab.com:sistematico/"]
+    insteadOf = "gl:"
+[alias]
+    cl = clone
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
