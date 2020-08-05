@@ -1,0 +1,3 @@
+KEY			COMMAND
++			pactl set-sink-volume @DEFAULT_SINK@ +10%
+-			pactl set-sink-volume @DEFAULT_SINK@ -10%
