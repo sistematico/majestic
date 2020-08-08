@@ -7,3 +7,4 @@ Dotfiles do Arch Linux
  - `cd ~/.dotfiles`
  - `stow bspwm`
  - `stow sxhkd`
+ - `sudo stow -t /etc etc`
