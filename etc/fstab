@@ -1,0 +1,18 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/mapper/nyx-arch--root
+UUID=f9127a67-51e5-4f65-b354-5f78620da564	/         	ext4      	rw,relatime	0 1
+
+# /dev/mapper/nyx-arch--home
+UUID=83604e7d-f05b-49c5-b3f2-551a9141e610	/home     	ext4      	rw,relatime	0 2
+
+# /dev/mapper/nyx-arch--swap
+UUID=491d56cf-6e6e-4b16-8ccb-6f066df632a7	none      	swap      	defaults  	0 0
+
+# Hera
+root@hera:/ /home/lucas/sshfs/hera  fuse.sshfs noauto,x-systemd.automount,_netdev,users,idmap=user,IdentityFile=/home/lucas/.ssh/id_rsa,allow_other,reconnect 0 0
+
+# Artemis
+root@artemis:/ /home/lucas/sshfs/artemis  fuse.sshfs noauto,x-systemd.automount,_netdev,users,idmap=user,IdentityFile=/home/lucas/.ssh/id_rsa,allow_other,reconnect 0 0
