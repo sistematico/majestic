@@ -9,9 +9,9 @@
 # */15 * * * * /usr/bin/bash -c "$HOME/.local/bin/github" 2>&1
 #
 # Criado em: 20/12/2017 19:27:31
-# Última Atualização: 06/05/2019 12:51:21
+# Última Atualização: 17-08-2020 12:22:20
 
-nome="GitHub.sh"
+nome="GitHub"
 dir="${HOME}/github"
 repos=('dotfiles' 'hefesto' 'sistematico.github.io' 'php-template-engine' 'php-rest-api' 'php-rest-front' 'php-mvc' 'php-mvc-ajax' 'php-mvc-users' 'php-mvc-lite' 'mudancaonline' 'mudancaonlineapp' 'startpage' 'clima' 'conversero' 'zen' 'somdomato')
 remoto="nginx@hera"
