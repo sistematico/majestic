@@ -9,7 +9,7 @@
 # */15 * * * * /usr/bin/bash -c "$HOME/.local/bin/github" 2>&1
 #
 # Criado em: 20/12/2017 19:27:31
-# Última Atualização: 17-08-2020 12:22:20
+# Última Atualização: 17/08/2020 12:22:20
 
 nome="GitHub"
 dir="${HOME}/github"

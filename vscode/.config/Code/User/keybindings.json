@@ -5,7 +5,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus",
         "args": {
-            "snippet": "$CURRENT_DATE-$CURRENT_MONTH-$CURRENT_YEAR"
+            "snippet": "$CURRENT_DATE/$CURRENT_MONTH/$CURRENT_YEAR"
         }
     },
     {
