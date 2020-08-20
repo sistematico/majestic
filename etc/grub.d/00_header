@@ -99,7 +99,6 @@ function savedefault {
     save_env saved_entry
   fi
 }
-EOF
 
     if [ "$quick_boot" = 1 ]; then
     cat <<EOF
