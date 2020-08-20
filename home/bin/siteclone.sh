@@ -24,4 +24,5 @@ wget --wait=2 \
 	--adjust-extension \
 	--no-clobber \
 	-e robots=off \
+	--continue \
 	"$1"
