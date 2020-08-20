@@ -44,7 +44,7 @@ cd $tmp
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
 	#notify-send -i $icone "Video Downloader" "O link é inválido!"
-	$HOME/bin/notify.sh "Video Down" "Video Downloader" "O link é inválido!"
+	$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
     exit
 else
 	#titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | iconv -f utf8 -t ascii//TRANSLIT | sed 's/[^[:alnum:]]\+/ /g')"
@@ -68,7 +68,7 @@ if [[ $LOG -ne 0 ]]; then
 fi
 
 #notify-send -i $icone "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada."
-$HOME/bin/notify.sh "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada." "$NOME" "$ICONE"
+$HOME/bin/notify.sh "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
 
 if [ $aria == 1 ]; then
     # -j, --max-concurrent-downloads
@@ -123,7 +123,7 @@ if [[ $status -eq 0 ]]; then
 
     if ls "${titulo}"* 1> /dev/null 2>&1; then
         if ls "${dir}/${titulo}"* 1> /dev/null 2>&1; then
-            $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nInstâncias: $proc" "$nome" "$icone"
+            $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir" "$nome" "$icone"
         else
         	final=$SECONDS
         	diff=$((final - comeco))
@@ -150,9 +150,9 @@ if [[ $status -eq 0 ]]; then
             [ -d "$tmp" ] && rm -rf "$tmp"
         fi
     else
-        $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${tmp}/${titulo}*</b>.\n\nInstâncias: $proc" "$NOME" "$ICONE"
+        $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${tmp}/${titulo}*</b>.\n\nInstâncias: $proc" "$nome" "$icone"
     fi
 else
-    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>$titulo</b>\n\nInstâncias: $proc" "$NOME" "$ICONE"
+    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>$titulo</b>\n\nInstâncias: $proc" "$nome" "$icone"
 fi
 
