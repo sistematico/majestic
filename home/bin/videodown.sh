@@ -18,7 +18,7 @@
 
 #xclip -out -selection primary | xclip -in -selection clipboard
 
-NOME="Video Down"
+nome="Video Down"
 SECONDS=0
 comeco=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo erro.log
@@ -96,7 +96,7 @@ if [[ $status -ne 0 ]]; then
     echo "Temp:         $tmp" >> "$logs"
     echo "Processos:    $proc" >> "$logs"    
     echo "Código:       $status" >> "$logs"
-    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${titulo}*</b>.\n\nInstâncias: $proc" "$NOME" "$ICONE"
+    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${titulo}*</b>" "$nome" "$icone"
     exit
 fi
 
@@ -123,7 +123,7 @@ if [[ $status -eq 0 ]]; then
 
     if ls "${titulo}"* 1> /dev/null 2>&1; then
         if ls "${dir}/${titulo}"* 1> /dev/null 2>&1; then
-            $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nInstâncias: $proc" "$NOME" "$ICONE"
+            $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nInstâncias: $proc" "$nome" "$icone"
         else
         	final=$SECONDS
         	diff=$((final - comeco))
