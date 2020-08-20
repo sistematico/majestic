@@ -1,0 +1,10 @@
+[Unit]
+Description=Dados
+
+[Mount]
+What=/dev/disk/by-label/dados
+Where=/mnt/dados
+Type=ext4
+
+[Install]
+WantedBy=multi-user.target

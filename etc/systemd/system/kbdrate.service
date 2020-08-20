@@ -1,0 +1,12 @@
+[Unit]
+Description=Keyboard repeat rate in tty.
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+StandardInput=tty
+StandardOutput=tty
+ExecStart=/usr/bin/kbdrate -s -d 200 -r 75
+ 
+[Install]
+WantedBy=multi-user.target

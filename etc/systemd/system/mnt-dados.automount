@@ -1,0 +1,8 @@
+[Unit]
+Description=Dados Automount
+
+[Automount]
+Where=/mnt/dados
+
+[Install]
+WantedBy=multi-user.target

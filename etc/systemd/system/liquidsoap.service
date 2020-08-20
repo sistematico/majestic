@@ -1,0 +1,12 @@
+[Unit]
+Description=LiquidSoap
+After=network.target icecast.service
+
+[Service]
+Type=simple
+User=liquidsoap
+ExecStart=/usr/bin/liquidsoap /etc/liquidsoap/radio.liq
+ExecReload=/usr/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
