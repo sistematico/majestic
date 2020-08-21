@@ -144,7 +144,7 @@ if [[ $status -eq 0 ]]; then
                 tamanho="${tamanho} KB"
             fi
 
-            $HOME/bin/notify.sh "Video Downloader" "Sucesso, vídeo salvo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" "$NOME" "$ICONE"
+            $HOME/bin/notify.sh "Video Downloader" "Sucesso, vídeo salvo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" "$nome" "$icone"
             mv "${titulo}"* "$dir"
             cd "$dir"
             [ -d "$tmp" ] && rm -rf "$tmp"
