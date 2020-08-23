@@ -1,11 +1,11 @@
 {
-	"jQuery On Ready": {
-		"prefix": "onready",
+	"jQuery On Ready Shortcut": {
+		"prefix": "onreadyshort",
 		"body": [
-			"$( document ).ready(function() {",
+			"$(function() {",
 			"\t${1:// Código...}",
 			"});"
 		],
-		"description": "jQuery On Ready Event"
+		"description": "jQuery On Ready Event Short Version"
 	}
 }
