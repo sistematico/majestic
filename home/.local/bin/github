@@ -13,7 +13,7 @@
 
 nome="GitHub"
 dir="${HOME}/github"
-repos=('dotfiles' 'hefesto' 'sistematico.github.io' 'php-template-engine' 'php-rest-api' 'php-rest-front' 'php-mvc' 'php-mvc-ajax' 'php-mvc-users' 'php-mvc-lite' 'mudancaonline' 'mudancaonlineapp' 'startpage' 'clima' 'conversero' 'zen' 'somdomato')
+repos=('php-text-counter' 'dotfiles' 'hefesto' 'sistematico.github.io' 'php-template-engine' 'php-rest-api' 'php-rest-front' 'php-mvc' 'php-mvc-ajax' 'php-mvc-users' 'php-mvc-lite' 'mudancaonline' 'mudancaonlineapp' 'startpage' 'clima' 'conversero' 'zen' 'somdomato')
 remoto="nginx@hera"
 dotfiles=1
 icone="${HOME}/.local/share/icons/elementary/github.svg"
