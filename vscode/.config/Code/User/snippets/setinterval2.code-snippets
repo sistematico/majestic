@@ -1,9 +1,15 @@
 {
-	"setInterval": {
-		"prefix": "setinterval",
+	"setInterval2": {
+		"prefix": "setintervaladv",
 		"body": [
-			"let interval = setInterval(${1:funcao},${2:1000});"
+            "let intervalID = window.setInterval(myCallback, 500, 'Parameter 1', 'Parameter 2');",
+            "",
+            "function myCallback(a, b)",
+            "{",
+            "\nconsole.log(a);",
+            "\nconsole.log(b);",
+            "}"
 		],
-		"description": "Set a interval"
+		"description": "Set a interval (advanced version)"
 	}
 }
