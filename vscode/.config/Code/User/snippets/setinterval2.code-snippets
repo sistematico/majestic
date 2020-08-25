@@ -4,10 +4,9 @@
 		"body": [
             "let intervalID = window.setInterval(myCallback, 500, 'Parameter 1', 'Parameter 2');",
             "",
-            "function myCallback(a, b)",
-            "{",
-            "\nconsole.log(a);",
-            "\nconsole.log(b);",
+            "const myCallback = (a, b) => {",
+            "\tconsole.log(a);",
+            "\tconsole.log(b);",
             "}"
 		],
 		"description": "Set a interval (advanced version)"
