@@ -11,3 +11,4 @@ fi
 
 echo "---"
 echo "🎉️ Download | terminal=false bash='${HOME}/bin/videodown.sh'"
+echo "✍️ Aria2 | bash='gedit $HOME/.aria2/aria2.conf' terminal=false"
