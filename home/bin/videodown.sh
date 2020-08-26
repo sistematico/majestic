@@ -43,7 +43,7 @@ cd $tmp
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	#notify-send -i $icone "Video Downloader" "O link é inválido!"
+	#/usr/bin/notify-send -i $icone "Video Downloader" "O link é inválido!"
 	$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
     exit
 else
@@ -67,7 +67,7 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
-#notify-send -i $icone "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada."
+#/usr/bin/notify-send -i $icone "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada."
 $HOME/bin/notify.sh "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
 
 if [ $aria == 1 ]; then

@@ -31,14 +31,14 @@ atualiza() {
 				git commit -m "$m"
 				git push
 				if [ "$?" == 0 ]; then
-					notify-send -i $icone "$nome" "Repo <b>$(basename $1)</b> atualizado."
+					/usr/bin/notify-send -i $icone "$nome" "Repo <b>$(basename $1)</b> atualizado."
 					#detectax $nome "Repo <b>$(basename $1)</b> atualizado."
 					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
 				else
 					if [ ! -f /tmp/git-cron.error ]; then
 						icone="${HOME}/.local/share/icons/elementary/network-error.png"
 						som="dialog-warning"
-						notify-send -i $icone "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
+						/usr/bin/notify-send -i $icone "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
 						#detectax $nome "Erro ao atualizar <b>$(basename $1)</b>."
 						touch /tmp/git-cron.error
 					fi
