@@ -80,7 +80,7 @@ if [ $aria == 1 ]; then
 
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 2 -x 1 -s 2 -k 2M' "${url}"
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 4 -x 2 -s 2 -k 2M' "${url}"
-    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
+    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-d '$dir'' "${url}"
     status="$?"
 else
     youtube-dl -o "${titulo}.%(ext)s" "${url}"
