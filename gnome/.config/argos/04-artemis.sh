@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-icone="🌐️"
-
-echo "🌐️"
+echo "👾️"
 echo "---"
-echo "💣️ Reiniciar | terminal=false bash='sudo systemctl restart nginx php'"
-echo "✍️ Editar | bash='sudo gedit /etc/nginx/nginx.conf' terminal=false"
+echo "💣️ Reiniciar | terminal=false bash='/home/lucas/.local/bin/restart artemis'"
+echo "✍️ Editar | bash='gedit /home/lucas/sshfs/artemis/etc/nginx/nginx.conf' terminal=false"
 

@@ -2,6 +2,6 @@
 
 echo "👾️"
 echo "---"
-echo "💣️ Reiniciar | terminal=false bash='/home/lucas/.local/bin/restart artemis'"
+echo "💣️ Reiniciar | terminal=false bash='/home/lucas/.local/bin/restart hera'"
 echo "✍️ Editar | bash='gedit /home/lucas/sshfs/artemis/etc/nginx/nginx.conf' terminal=false"
 
