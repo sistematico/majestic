@@ -39,7 +39,7 @@ fi
 
 [ ! -d $tmp ] && mkdir -p $tmp
 [ $1 ] && url="$1" || url="$(xclip -o)"
-cd $tmp
+#cd $tmp
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
@@ -80,7 +80,7 @@ if [ $aria == 1 ]; then
 
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 2 -x 1 -s 2 -k 2M' "${url}"
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 4 -x 2 -s 2 -k 2M' "${url}"
-    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-d ${dir}' "${url}"
+    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args "-d ${dir}" "${url}"
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
