@@ -37,14 +37,12 @@ if [ ! -d "$dir" ]; then
 	fi
 fi
 
-#[ ! -d $tmp ] && mkdir -p $tmp
+[ ! -d $tmp ] && mkdir -p $tmp
 [ $1 ] && url="$1" || url="$(xclip -o)"
-#cd $tmp
 cd $dir
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	#/usr/bin/notify-send -i $icone "Video Downloader" "O link é inválido!"
 	$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
     exit
 else
@@ -68,8 +66,7 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
-#/usr/bin/notify-send -i $icone "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada."
-$HOME/bin/notify.sh "Video Downloader" "Transferencia de: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
+$HOME/bin/notify.sh "$nome" "Início: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
 
 if [ $aria == 1 ]; then
     # -j, --max-concurrent-downloads
@@ -82,7 +79,7 @@ if [ $aria == 1 ]; then
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 2 -x 1 -s 2 -k 2M' "${url}"
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 4 -x 2 -s 2 -k 2M' "${url}"
     #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args "-d ${dir}/${titulo}" "${url}"
-    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
+    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
     youtube-dl -o "${titulo}.%(ext)s" "${url}"
@@ -90,71 +87,10 @@ else
 fi
 
 if [[ $status -ne 0 ]]; then
-    echo "---------------------------------------------------------------" >> "$logs"
-    echo "Status:       ERRO" >> "$logs"
-    echo "Título:       $titulo" >> "$logs"
-    echo "URL:          $url" >> "$logs"
-    echo "Path:         $dir" >> "$logs"
-    echo "Temp:         $tmp" >> "$logs"
-    echo "Processos:    $proc" >> "$logs"    
-    echo "Código:       $status" >> "$logs"
-    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${titulo}*</b>" "$nome" "$icone"
+    $HOME/bin/notify.sh "$nome" "Erro: <b>$titulo</b>" "$nome" "$icone"
     exit
 fi
 
-if [[ $status -eq 0 ]]; then
-    if [[ $LOG -ne 0 ]]; then
-        echo "---------------------------------------------------------------" >> "$logs"
-        echo "Status:       SUCESSO" >> "$logs"
-        echo "Título:       $titulo" >> "$logs"
-        echo "URL:          $url" >> "$logs"
-        echo "Path:         $dir" >> "$logs"
-        echo "Temp:         $tmp" >> "$logs"
-        echo "Processos:    $proc" >> "$logs"
-    fi
-    arquivos=$(ls "${titulo}"* | egrep -vi '.mp4|.avi|.mkv|.log')
-    for i in "${arquivos[@]}"
-    do
-        if [ -f "$i" ]; then
-            mod=$(stat -c "%Y" "$i")
-            if [[ $mod > $ts ]]; then
-                rm -f "$i"
-            fi
-        fi
-    done
-
-    if ls "${titulo}"* 1> /dev/null 2>&1; then
-        if ls "${dir}/${titulo}"* 1> /dev/null 2>&1; then
-            $HOME/bin/notify.sh "Video Downloader" "Já existe um arquivo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir" "$nome" "$icone"
-        else
-        	final=$SECONDS
-        	diff=$((final - comeco))
-            tamanho=$(stat --printf="%s" "${titulo}"*)
-            tamanho="$((tamanho / 1024))"
-
-            hora=$(printf "%02d" $((diff / 3600)))
-            minuto=$(printf "%02d" $((diff / 60)))
-            segundo=$(printf "%02d" $((diff % 60)))
-
-            tempo=$((tamanho / diff))
-
-            if [ $tamanho -gt 1024 ]; then
-                tamanho="$((tamanho / 1024)) MB"
-            elif [ $tamanho -gt 1048576 ]; then
-                tamanho="$((tamanho / 1024 / 1024)) GB"
-            else 
-                tamanho="${tamanho} KB"
-            fi
-
-            $HOME/bin/notify.sh "Video Downloader" "Sucesso, vídeo salvo:\n\n<b>$titulo</b>\n\nEm:\n\n$dir\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" "$nome" "$icone"
-            mv "${titulo}"* "$dir"
-            cd "$dir"
-            [ -d "$tmp" ] && rm -rf "$tmp"
-        fi
-    else
-        $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>${tmp}/${titulo}*</b>.\n\nInstâncias: $proc" "$nome" "$icone"
-    fi
-else
-    $HOME/bin/notify.sh "Video Downloader" "Erro na transferencia de:\n\n<b>$titulo</b>\n\nInstâncias: $proc" "$nome" "$icone"
-fi
+$HOME/bin/notify.sh "$nome" "Sucesso: <b>$titulo</b>" "$nome" "$icone"
+exit
 
