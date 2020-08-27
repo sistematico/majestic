@@ -87,6 +87,12 @@ else
 fi
 
 if [[ $status -ne 0 ]]; then
+    echo "---------------------------------------------------------------" >> "$logs"
+    echo "Status:       ERRO" >> "$logs"
+    echo "Título:       $titulo" >> "$logs"
+    echo "URL:          $url" >>"$logs"
+    echo "Path:         $dir" >> "$logs"
+
     $HOME/bin/notify.sh "$nome" "Erro: <b>$titulo</b>" "$nome" "$icone"
     exit
 fi
