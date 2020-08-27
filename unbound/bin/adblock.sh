@@ -23,6 +23,7 @@ cat /tmp/ads.raw | grep '^0\.0\.0\.0' | awk '{print "local-zone: \""$2"\" redire
 
 rm /tmp/ads.raw
 
-grep -qxF 'include: /var/unbound/ads.conf' /var/unbound/unbound.conf || echo 'include: /var/unbound/ads.conf' >> /var/unbound/unbound.conf
+#grep -qxF 'include: /var/unbound/ads.conf' /var/unbound/unbound.conf || echo 'include: /var/unbound/ads.conf' >> /var/unbound/unbound.conf
+grep -qxF 'include: /var/unbound/ads.conf' /var/unbound/unbound.conf || sed '/^anothervalue=.*/a include: /var/unbound/ads.conf' test.txt
 
 unbound-control -c /var/unbound/unbound.conf reload
