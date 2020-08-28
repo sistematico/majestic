@@ -19,9 +19,9 @@ services:
         image: php:fpm
         ports:
             - "9000:9000"
+        build:
+            context: ../../dockerfile/
+            dockerfile: php
         volumes:
             - ~/github:/code
-            #- ~/podman/confs/php/phplog.conf:/usr/local/etc/php-fpm.d/log.conf
-            #- ~/podman/confs/php/php.conf:/usr/local/etc/php-fpm.d/php.conf
-            #- ~/podman/confs/php/php.ini:/usr/local/etc/php/conf.d/php.ini
         restart: unless-stopped
