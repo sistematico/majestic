@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ~/github:/code
+            - ~/podman/confs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            #- ~/podman/confs/nginx/snippets:/etc/nginx/snippets
+            - ~/podman/certs:/etc/ssl/nginx
+        restart: unless-stopped
+
+    php:
+        container_name: php
+        image: php:fpm
+        ports:
+            - "9000:9000"
+        volumes:
+            - ~/github:/code
+            #- ~/podman/confs/php/phplog.conf:/usr/local/etc/php-fpm.d/log.conf
+            #- ~/podman/confs/php/php.conf:/usr/local/etc/php-fpm.d/php.conf
+            #- ~/podman/confs/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+        restart: unless-stopped
