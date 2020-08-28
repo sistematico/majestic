@@ -1,0 +1,31 @@
+{
+	"HTML": {
+		"prefix": "html5",
+		"body": [
+			"<!doctype html>",
+			"<html lang=\"pt-br\">",
+			"<head>",
+			"\t<meta charset=\"utf-8\">",
+			"\t<meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">",
+			"\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+			"\t<meta name=\"description\" content=\"Descrição\">",
+			"\t<meta name=\"author\" content=\"Autor do site\">",
+			"\t<title>${1:titulo}</title>",
+			"\t<meta property=\"og:title\" content=\"${2:titulo}\" />",
+			"\t<meta property=\"og:description\" content=\"${3:descrição}\" />",
+			"\t<meta property=\"og:type\" content=\"${4:website}\" />",
+			"\t<meta property=\"og:url\" content=\"${5:https://site.com}\" />",
+			"\t<meta property=\"og:image\" content=\"${6:https://site.com/img/logo.png}\" />",
+			"\t<link rel=\"stylesheet\" href=\"css/main.css\">",
+			"\t<link rel=\"shortcut icon\" href=\"img/favicon.ico\">",
+			"</head>",
+			"<body>",
+			"\t${7:corpo}",
+			"\t<script src=\"https://code.jquery.com/jquery-3.4.1.min.js\"></script>",
+			"\t<script src=\"js/scripts.js\"></script>",
+			"</body>",
+			"</html>"
+		],
+		"description": "Basic HTML Skel"
+	}
+}

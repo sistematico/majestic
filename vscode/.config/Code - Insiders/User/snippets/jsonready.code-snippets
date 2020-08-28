@@ -1,0 +1,11 @@
+{
+	"JavaScript On Ready": {
+		"prefix": "jsonready",
+		"body": [
+			"(function() {",
+			"\t${1:// Código...}",
+			"})();"
+		],
+		"description": "JavaScript On Ready Event"
+	}
+}

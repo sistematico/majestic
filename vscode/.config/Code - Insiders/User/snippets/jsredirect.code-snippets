@@ -1,0 +1,10 @@
+{
+	"JavaScript Redirect": {
+		"scope": "javascript",
+		"prefix": "jsredirect",
+		"body": [
+			"window.location = \"http://${1:site.com}\";"
+		],
+		"description": "Redireciona usando JavaScript"
+	}
+}

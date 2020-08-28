@@ -1,0 +1,14 @@
+{
+	"setInterval2": {
+		"prefix": "setintervaladv",
+		"body": [
+            "let intervalID = window.setInterval(myCallback, 500, 'Parameter 1', 'Parameter 2');",
+            "",
+            "const myCallback = (a, b) => {",
+            "\tconsole.log(a);",
+            "\tconsole.log(b);",
+            "}"
+		],
+		"description": "Set a interval (advanced version)"
+	}
+}
