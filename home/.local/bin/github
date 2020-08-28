@@ -13,7 +13,27 @@
 
 nome="GitHub"
 dir="${HOME}/github"
-repos=('beats' 'php-text-counter' 'dotfiles' 'hefesto' 'sistematico.github.io' 'php-template-engine' 'php-rest-api' 'php-rest-front' 'php-mvc' 'php-mvc-ajax' 'php-mvc-users' 'php-mvc-lite' 'mudancaonline' 'mudancaonlineapp' 'startpage' 'clima' 'conversero' 'zen' 'somdomato')
+repos=(
+    'beats'
+    'php-text-counter'
+    'dotfiles'
+    'sistematico.github.io'
+    'php-template-engine'
+    'php-rest-api'
+    'php-rest-front'
+    'php-mvc'
+    'php-mvc-ajax'
+    'php-mvc-users'
+    'php-mvc-lite'
+    'mudancaonline'
+    'mudancaonlineapp'
+    'startpage'
+    'clima'
+    'conversero'
+    'zen'
+    'somdomato'
+    'lucasbrum'
+)
 remoto="nginx@hera"
 dotfiles=1
 icone="${HOME}/.local/share/icons/elementary/github.svg"
@@ -31,17 +51,13 @@ atualiza() {
 				git commit -m "$m"
 				git push
 				if [ "$?" == 0 ]; then
-					#$HOME/bin/notify.sh -i $icone "$nome" "Repo <b>$(basename $1)</b> atualizado."
-					$HOME/bin/notify.sh "$nome" "Repo <b>$(basename $1)</b> atualizado." "$nome" "$icone"
-					#detectax $nome "Repo <b>$(basename $1)</b> atualizado."
+					DISPLAY=:0 $HOME/bin/notify.sh "$nome" "Repo <b>$(basename $1)</b> atualizado." "$nome" "$icone"
 					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
 				else
 					if [ ! -f /tmp/git-cron.error ]; then
 						icone="${HOME}/.local/share/icons/elementary/network-error.png"
 						som="dialog-warning"
-						#$HOME/bin/notify.sh -i $icone "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
-						$HOME/bin/notify.sh "$nome" "Erro ao atualizar <b>$(basename $1)</b>." "$nome" "$icone"
-						#detectax $nome "Erro ao atualizar <b>$(basename $1)</b>."
+						DISPLAY=:0 $HOME/bin/notify.sh "$nome" "Erro ao atualizar <b>$(basename $1)</b>." "$nome" "$icone"
 						touch /tmp/git-cron.error
 					fi
 				fi
