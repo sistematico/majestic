@@ -4,7 +4,7 @@ icone="🌐️"
 
 echo "🌐️"
 echo "---"
-echo "💾️ www | bash='nautilus /var/www/html' terminal=false"
-echo "💣️ Reiniciar | terminal=false bash='sudo systemctl restart nginx php-fpm'"
-echo "✍️ Editar | bash='sudo gedit /etc/nginx/nginx.conf' terminal=false"
+echo "💾️ www | bash='nautilus /home/lucas/github' terminal=false"
+echo "💣️ Reiniciar | terminal=false bash='podman pod restart nginx-php'"
+echo "✍️ Editar | bash='gedit /home/lucas/podman/confs/nginx/nginx.conf' terminal=false"
 
