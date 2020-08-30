@@ -1,0 +1,11 @@
+[Unit]
+Description=The PHP FastCGI Process Manager
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/podman start -a php
+ExecStop=/usr/bin/podman stop -t 10 php
+
+[Install]
+WantedBy=multi-user.target
