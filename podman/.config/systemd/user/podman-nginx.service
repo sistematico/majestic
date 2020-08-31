@@ -1,0 +1,11 @@
+[Unit]
+Description=A high performance web server and a reverse proxy server
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/podman start -a nginx
+ExecStop=/usr/bin/podman stop -t 10 nginx
+
+[Install]
+WantedBy=multi-user.target
