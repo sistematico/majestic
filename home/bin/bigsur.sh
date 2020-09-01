@@ -42,14 +42,14 @@ OLDPWD="$(pwd)"
 wallpapers=(
     "https://www.dropbox.com/s/arz30b4dqdbyk11/macOS-Big-Sur-Daylight-2.jpg?dl=1"
     "https://www.dropbox.com/s/qvenoxkdjr27mmg/macOS-Big-Sur-Daylight-3.jpg?dl=1"
-    "https://i.imgur.com/I9l5neF.jpg"
-    "https://i.imgur.com/LW3ieVP.jpg"
-    "https://i.imgur.com/FilQLU8.jpg"
-    "https://i.imgur.com/vRisKbd.jpg"
-    "https://i.imgur.com/viASiOi.jpg"
-    "https://i.imgur.com/3MswHfK.jpg"
-    "https://i.imgur.com/uwJYbFF.jpg"
-    "https://i.imgur.com/K36MOW7.jpg"
+    "https://www.dropbox.com/s/ns2y9wlwjpxm5hr/macOS-Big-Sur-Daylight-4.jpg?dl=1"
+    "https://www.dropbox.com/s/3jcptkndxlvtif4/macOS-Big-Sur-Daylight-5.jpg?dl=1"
+    "https://www.dropbox.com/s/8yq2apejb8xhanq/macOS-Big-Sur-Daylight-6.jpg?dl=1"
+    "https://www.dropbox.com/s/kccg04gfgkuzy0y/macOS-Big-Sur-Daylight-7.jpg?dl=1"
+    "https://www.dropbox.com/s/megixou6n28e12s/macOS-Big-Sur-Daylight-8.jpg?dl=1"
+    "https://www.dropbox.com/s/e7eswv7h25oaemd/macOS-Big-Sur-Daylight.jpg?dl=1"
+    "https://www.dropbox.com/s/z49u8969dbhfzpc/macOS-Big-Sur-Vector-Wave-Dark.jpg?dl=1"
+    "https://www.dropbox.com/s/1ez177urj6wse7s/macOS-Big-Sur-Vector-Wave.jpg?dl=1"
 )
 
 [ ! -f /tmp/${TEMA}.cfg ] && curl -s -L -o /tmp/${TEMA}.cfg https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/${TEMA}.cfg
