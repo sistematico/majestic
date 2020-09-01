@@ -41,7 +41,7 @@ OLDPWD="$(pwd)"
 
 wallpapers=(
     "https://www.dropbox.com/s/arz30b4dqdbyk11/macOS-Big-Sur-Daylight-2.jpg?dl=1"
-    "https://i.imgur.com/mEiH3Jp.jpg"
+    "https://www.dropbox.com/s/qvenoxkdjr27mmg/macOS-Big-Sur-Daylight-3.jpg?dl=1"
     "https://i.imgur.com/I9l5neF.jpg"
     "https://i.imgur.com/LW3ieVP.jpg"
     "https://i.imgur.com/FilQLU8.jpg"
