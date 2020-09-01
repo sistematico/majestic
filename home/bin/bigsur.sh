@@ -24,6 +24,20 @@ done
 
 certeza= ; resposta=
 
+OLDPWD="$(pwd)"
+
+wallpapers=(
+    "https://i.imgur.com/M4Q0Cg1.jpg"
+    "https://i.imgur.com/mEiH3Jp.jpg"
+    "https://i.imgur.com/I9l5neF.jpg"
+    "https://i.imgur.com/LW3ieVP.jpg"
+    "https://i.imgur.com/FilQLU8.jpg"
+    "https://i.imgur.com/vRisKbd.jpg"
+    "https://i.imgur.com/viASiOi.jpg"
+    "https://i.imgur.com/3MswHfK.jpg"
+    "https://i.imgur.com/uwJYbFF.jpg"
+    "https://i.imgur.com/K36MOW7.jpg"
+)
 #[ ! -f /tmp/green.cfg ] && curl -s -L -o /tmp/green.cfg https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/green.cfg
 #export DIALOGRC=/tmp/green.cfg
 
@@ -56,6 +70,11 @@ download() {
             [ ! -f /tmp/bigsur.tar.xz ] && curl -s -L -o $ZIP "$ZIP_URL"
             [ ! -d /tmp/bigsur ] && mkdir /tmp/bigsur
             [ ! -d /tmp/bigsur/wallpapers ] && tar xJf /tmp/bigsur-wallpapers.tar.xz -C /tmp/bigsur
+            
+            for wallpaper in "${wallpapers[@]}"
+            do
+	            (cd /tmp/bigsur/wallpapers && curl -O "$wallpaper")
+            done
         ;;
     esac
 }
