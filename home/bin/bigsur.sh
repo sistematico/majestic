@@ -173,18 +173,11 @@ dialog_wallpapers() {
         let indice=$indice+1
         arquivos+=($indice "$linha")
     done < <( ls -1 $HOME/.local/share/wallpapers/BigSur/ )
-
     arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
-    #dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3
-
-    echo ${arquivos[$arquivo]}
-
-    exit
 
     [ $? -ne 0 ] || [ $arquivo -eq 0 ] && break
     
-    gsettings set org.gnome.desktop.background picture-uri "file://$arquivo"
-
+    gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.local/share/wallpapers/BigSur/${arquivos[$arquivo]}"
 }
 
 instalar() {
@@ -333,5 +326,4 @@ principal() {
     clear
 }
 
-#principal
-dialog_wallpapers
+principal
