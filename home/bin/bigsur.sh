@@ -67,9 +67,7 @@ download() {
             [ ! -d /tmp/bigsur ] && tar xJf /tmp/bigsur.tar.xz -C /tmp/
         ;;
         'wallpapers')
-            [ ! -f /tmp/bigsur.tar.xz ] && curl -s -L -o $ZIP "$ZIP_URL"
-            [ ! -d /tmp/bigsur ] && mkdir /tmp/bigsur
-            [ ! -d /tmp/bigsur/wallpapers ] && tar xJf /tmp/bigsur-wallpapers.tar.xz -C /tmp/bigsur
+            [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers
             
             for wallpaper in "${wallpapers[@]}"
             do
