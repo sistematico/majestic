@@ -333,4 +333,5 @@ principal() {
     clear
 }
 
-principal
+dialog_wallpapers
+#principal
