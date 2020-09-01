@@ -151,10 +151,14 @@ dialog_wallpapers() {
 
     arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
 
-    case "$arquivo" in
-        1)  gsettings set org.gnome.desktop.background picture-uri "file://$arquivo" && break ;;
-        0) break ;;
-    esac
+    [ $? -ne 0 ] || [ $arquivo -eq 0 ] && break
+    
+    gsettings set org.gnome.desktop.background picture-uri "file://$arquivo" && break
+
+    #case "$arquivo" in
+    #    1) gsettings set org.gnome.desktop.background picture-uri "file://$arquivo" && break ;;
+    #    0) break ;;
+    #esac
 
 }
 
@@ -189,7 +193,8 @@ instalar() {
             [ ! -d $HOME/.local/share/wallpapers ] && mkdir -p $HOME/.local/share/wallpapers
             cp -r /tmp/bigsur/wallpapers $HOME/.local/share/wallpapers/BigSur
             gsettings set org.gnome.desktop.background picture-options 'zoom'
-            gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.local/share/wallpapers/BigSur/BigSur.jpg"
+            #gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.local/share/wallpapers/BigSur/BigSur.jpg"
+            dialog_wallpapers
         ;;
     esac
 }
