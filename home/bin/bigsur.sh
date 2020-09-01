@@ -68,11 +68,17 @@ download() {
         ;;
         'wallpapers')
             [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers && cd /tmp/bigsur/wallpapers
-            
-            for wallpaper in "${wallpapers[@]}"
+            let i=0
+            let total=${#wallpapers[@]}
+
+            (
+                for wallpaper in "${wallpapers[@]}"
             do
-	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper" | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
+                let i = $i+1
+	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
+                echo $(( total*i/100 ))
             done
+            ) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
 
             cd "$OLDPWD"
         ;;
