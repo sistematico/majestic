@@ -71,7 +71,7 @@ download() {
             
             for wallpaper in "${wallpapers[@]}"
             do
-	            (cd /tmp/bigsur/wallpapers && curl -O "$wallpaper")
+	            (cd /tmp/bigsur/wallpapers && curl -s -L -O "$wallpaper")
             done
         ;;
     esac
