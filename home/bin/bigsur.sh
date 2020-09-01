@@ -78,11 +78,11 @@ download() {
             do
                 #let i=$((i+1))
                 ((i=i+1))
-	            let "perc=((total*i/100))"
+	            #let "perc=((total*i/100))"
                 [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
                 
                 #echo $(( total*i/100 ))
-                echo $perc
+                echo $total
             done
             #) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
 
