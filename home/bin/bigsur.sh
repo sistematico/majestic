@@ -71,14 +71,14 @@ download() {
             let i=0
             let total=${#wallpapers[@]}
 
-            (
+            #(
                 for wallpaper in "${wallpapers[@]}"
             do
                 i=$((i+1))
 	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
                 echo $(( total*i/100 ))
             done
-            ) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
+            #) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
 
             cd "$OLDPWD"
         ;;
@@ -317,4 +317,5 @@ principal() {
     clear
 }
 
-principal
+#principal
+download "wallpapers"
