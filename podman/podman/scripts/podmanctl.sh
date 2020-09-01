@@ -39,8 +39,8 @@ if [ "$1" == "podrm" ]; then
     if [[ "$resp" == [sS]* ]]; then
         if [[ "$(podman pod list -q)" ]]; then
             podman ps -q | xargs podman stop
-            if [[ "$(podman ps -q -a)" ]]; then
-                podman ps -a -q | xargs podman rm -v
+            if [[ "$(podman pod list -q)" ]]; then
+                podman pod list -q | xargs podman pod rm -v
             fi
         fi
     fi
