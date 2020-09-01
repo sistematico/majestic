@@ -74,7 +74,7 @@ download() {
             (
                 for wallpaper in "${wallpapers[@]}"
             do
-                let i = $i+1
+                i=$((i+1))
 	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
                 echo $(( total*i/100 ))
             done
