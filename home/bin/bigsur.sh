@@ -89,28 +89,15 @@ download() {
             perc=0
             total=${#wallpapers[@]}
 
-            #(
+            (
                 for wallpaper in "${wallpapers[@]}"
             do
                 ((i=i+1))
                 arquivo=$(basename ${wallpaper::${#wallpaper}-5})
-                #[ ! -f /tmp/bigsur/wallpapers/$arquivo ] && curl -s -L -J -O "$wallpaper"
-                #echo $((total*i))
-                ls -l /tmp/bigsur/wallpapers/$arquivo
+                [ ! -f /tmp/bigsur/wallpapers/$arquivo ] && curl -s -L -J -O "$wallpaper"
+                echo $((total*i))
             done
-            
-            
-            
-            
-            
-            exit
-
-
-
-
-
-
-            #) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 0 0 0
+            ) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 0 0 0
 
             cd "$OLDPWD"
         ;;
