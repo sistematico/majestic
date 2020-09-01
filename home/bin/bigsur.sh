@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+#
+# Arquivo: dockerctl.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 01/09/2020 00:23:51
+# Última alteração: 01/09/2020 00:23:55
+#
+# Uso: bash $(curl -s -L https://git.io/JUmcc)
 
 TEMA="default" # default, green, red
 

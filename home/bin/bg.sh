@@ -1,4 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Arquivo: bg.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 28/11/2019 23:50:39
+# Última alteração: 01/09/2020 00:23:34
 
 PIDFILE="/var/run/user/$UID/bg.pid"
 
