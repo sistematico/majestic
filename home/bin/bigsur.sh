@@ -169,18 +169,20 @@ dialog_icons() {
 dialog_wallpapers() {
     while : ; do
         let indice=0
-        arquivos=() # define working array
+        arquivos=()
+        arq=()
         while read -r linha; do # process file by file
             let indice=$indice+1
             arquivos+=($indice "$linha")
+            arq+=("file://${HOME}/.local/share/wallpapers/BigSur/${linha}")
         done < <( ls -1 $HOME/.local/share/wallpapers/BigSur/ )
         arquivos+=(0 "Voltar")
         arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
 
         [ $? -ne 0 ] || [ $arquivo -eq 0 ] && break
         
-        escolha="file://${HOME}/.local/share/wallpapers/BigSur/${arquivos[$arquivo]}"
-        gsettings set org.gnome.desktop.background picture-uri "$escolha"
+        gsettings set org.gnome.desktop.background picture-uri "${arq[$arquivo]}"
+        break
     done
 }
 
