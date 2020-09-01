@@ -83,7 +83,8 @@ download() {
             [ ! -d /tmp/bigsur ] && tar xJf /tmp/bigsur.tar.xz -C /tmp/
         ;;
         'wallpapers')
-            [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers && cd /tmp/bigsur/wallpapers
+            [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers
+            cd /tmp/bigsur/wallpapers
             i=0
             perc=0
             total=${#wallpapers[@]}
@@ -95,7 +96,7 @@ download() {
                 arquivo=$(basename ${wallpaper::${#wallpaper}-5})
                 #[ ! -f /tmp/bigsur/wallpapers/$arquivo ] && curl -s -L -J -O "$wallpaper"
                 #echo $((total*i))
-                echo $arquivo
+                ls -l /tmp/bigsur/wallpapers/$arquivo
             done
             
             
