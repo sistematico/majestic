@@ -334,5 +334,4 @@ principal() {
     clear
 }
 
-#principal
-download "wallpapers"
+principal
