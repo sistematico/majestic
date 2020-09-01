@@ -171,7 +171,7 @@ dialog_wallpapers() {
     arquivos=() # define working array
     while read -r linha; do # process file by file
         let indice=$indice+1
-        arquivos+=($indice "$linha")
+        arquivos+=($indice "$linha" arquivo="$linha")
     done < <( ls -1 $HOME/.local/share/wallpapers/BigSur/ )
 
     #arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
