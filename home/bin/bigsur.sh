@@ -182,8 +182,8 @@ dialog_wallpapers() {
     [ $arquivo -eq 0 ] && break
     
     escolha="file://${HOME}/.local/share/wallpapers/BigSur/${arquivos[$arquivo]}"
-    #gsettings set org.gnome.desktop.background picture-uri "$escolha"
-    echo $escolha
+    gsettings set org.gnome.desktop.background picture-uri "$escolha"
+    #echo $escolha
     exit
 }
 
