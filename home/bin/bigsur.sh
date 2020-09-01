@@ -174,7 +174,8 @@ dialog_wallpapers() {
         arquivos+=($indice "$linha")
     done < <( ls -1 $HOME/.local/share/wallpapers/BigSur/ )
 
-    arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
+    #arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
+    dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" && arquivo="${arquivos[@]}" 3>&2 2>&1 1>&3
 
     echo $arquivo
 
