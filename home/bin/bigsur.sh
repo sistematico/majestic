@@ -52,8 +52,8 @@ OLDPWD="$(pwd)"
 #     "https://i.imgur.com/K36MOW7.jpg"
 # )
 
-[ ! -f /tmp/default.cfg ] && curl -s -L -o /tmp/default.cfg https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/default.cfg
-export DIALOGRC=/tmp/default.cfg
+[ ! -f /tmp/${TEMA}.cfg ] && curl -s -L -o /tmp/${TEMA}.cfg https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/${TEMA}.cfg
+export DIALOGRC=/tmp/${TEMA}.cfg
 
 dialog                                            \
         --title 'Big Sur'                             \
