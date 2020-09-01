@@ -70,6 +70,7 @@ download() {
             clear
             [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers && cd /tmp/bigsur/wallpapers
             i=0
+            perc=0
             total=${#wallpapers[@]}
 
             #(
@@ -77,8 +78,11 @@ download() {
             do
                 #let i=$((i+1))
                 ((i=i+1))
-	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
-                eval echo $(( total*i/100 ))
+	            perc=$((total*i/100))
+                [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
+                
+                #echo $(( total*i/100 ))
+                echo $perc
             done
             #) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
 
