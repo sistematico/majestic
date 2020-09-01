@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 # 
-# dockerctl.sh
+# podmanctl.sh
 #
 # Criado em: 28-11-2019 23:50:39
 # Alterado em: 28-11-2019 23:50:45
 
 if [ "$1" == "stop" ]; then
-    if [[ "$(docker ps -q)" ]]; then
-	    docker ps -q | xargs docker stop
+    if [[ "$(podman ps -q)" ]]; then
+	    podman ps -q | xargs podman stop
     fi
 fi
 
 if [ "$1" == "start" ]; then
-    if [[ "$(docker ps -q -a)" ]]; then
-	    docker ps -a -q | xargs docker start
+    if [[ "$(podman ps -q -a)" ]]; then
+	    podman ps -a -q | xargs podman start
     fi
 fi
 
 if [ "$1" == "rm" ]; then
     read -p "Tem certeza que deseja remover TODOS os containers? [s/N] " resp
     if [[ "$resp" == [sS]* ]]; then
-        if [[ "$(docker ps -q)" ]]; then
-            docker ps -q | xargs docker stop
-            if [[ "$(docker ps -q -a)" ]]; then
-                docker ps -a -q | xargs docker rm -v
+        if [[ "$(podman ps -q)" ]]; then
+            podman ps -q | xargs podman stop
+            if [[ "$(podman ps -q -a)" ]]; then
+                podman ps -a -q | xargs podman rm -v
             fi
         fi
     fi
@@ -32,33 +32,33 @@ fi
 if [ "$1" == "rmi" ]; then
     read -p "Tem certeza que deseja remover TODAS as imagens? [s/N] " resp
     if [[ "$resp" == [sS]* ]]; then
-        if [[ "$(docker ps -q -a)" ]]; then
-            if [[ "$(docker ps -q)" ]]; then
-                docker ps -q | xargs docker stop
+        if [[ "$(podman ps -q -a)" ]]; then
+            if [[ "$(podman ps -q)" ]]; then
+                podman ps -q | xargs podman stop
             fi
-            docker ps -a -q | xargs docker rm -v
+            podman ps -a -q | xargs podman rm -v
         fi
-        if [[ "$(docker images -q)" ]]; then
-            docker images -q | xargs docker rmi
+        if [[ "$(podman images -q)" ]]; then
+            podman images -q | xargs podman rmi
         fi
     fi
 fi
 
 if [ "$1" == "upgrade" ]; then
-    if [[ "$(docker ps -q)" ]]; then
-        docker ps -q | xargs docker stop
+    if [[ "$(podman ps -q)" ]]; then
+        podman ps -q | xargs podman stop
     fi
-    if [[ "$(docker images -q)" ]]; then
-        docker images | grep -v REPOSITORY | awk '{print $1}' | xargs -L1 docker pull 
+    if [[ "$(podman images -q)" ]]; then
+        podman images | grep -v REPOSITORY | awk '{print $1}' | xargs -L1 podman pull 
     fi
-    if [[ "$(docker ps -a -q)" ]]; then
-        docker ps -a -q | xargs docker start
+    if [[ "$(podman ps -a -q)" ]]; then
+        podman ps -a -q | xargs podman start
     fi
 fi
 
 if [ "$1" == "rebuild" ] || [ "$1" == "build" ]; then
     if [ -f docker-compose.yml ]; then
-        docker-compose up -d --build
+        podman-compose up -d --build
     else
         echo "Não existe um arquivo docker-compose.yml no diretório atual."
     fi
