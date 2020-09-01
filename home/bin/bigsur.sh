@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Arquivo: dockerctl.sh
+# Arquivo: bigsur.sh
 #
 # Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 #
