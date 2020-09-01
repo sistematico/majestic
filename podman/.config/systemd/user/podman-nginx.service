@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Restart=always
+User=lucas
 ExecStart=/usr/bin/podman start -a nginx
 ExecStop=/usr/bin/podman stop -t 10 nginx
 
