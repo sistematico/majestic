@@ -176,6 +176,10 @@ dialog_wallpapers() {
 
     arquivo=$(dialog --stdout --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
 
+    echo $arquivo
+
+    exit
+
     [ $? -ne 0 ] || [ $arquivo -eq 0 ] && break
     
     gsettings set org.gnome.desktop.background picture-uri "file://$arquivo"
