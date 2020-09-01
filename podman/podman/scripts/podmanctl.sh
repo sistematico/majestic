@@ -40,7 +40,7 @@ if [ "$1" == "podrm" ]; then
         if [[ "$(podman pod list -q)" ]]; then
             podman ps -q | xargs podman stop
             if [[ "$(podman pod list -q)" ]]; then
-                podman pod list -q | xargs podman pod rm -v
+                podman pod list -q | xargs podman pod rm
             fi
         fi
     fi
