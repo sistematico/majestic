@@ -167,6 +167,7 @@ dialog_icons() {
 }
 
 dialog_wallpapers() {
+    while : ; do
     let indice=0
     arquivos=() # define working array
     while read -r linha; do # process file by file
@@ -183,6 +184,7 @@ dialog_wallpapers() {
     
     escolha="file://${HOME}/.local/share/wallpapers/BigSur/${arquivos[$arquivo]}"
     gsettings set org.gnome.desktop.background picture-uri "$escolha"
+    done
 }
 
 instalar() {
