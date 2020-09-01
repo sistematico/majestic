@@ -330,5 +330,4 @@ principal() {
     clear
 }
 
-dialog_wallpapers
-#principal
+principal
