@@ -216,8 +216,8 @@ instalar() {
         ;;
         'wallpapers') 
             download 'wallpapers'
-            [ ! -d $HOME/.local/share/wallpapers ] && mkdir -p $HOME/.local/share/wallpapers
-            cp -r /tmp/bigsur/wallpapers $HOME/.local/share/wallpapers/BigSur
+            [ ! -d $HOME/.local/share/wallpapers/BigSur ] && mkdir -p $HOME/.local/share/wallpapers/BigSur
+            cp -r /tmp/bigsur/wallpapers/* $HOME/.local/share/wallpapers/BigSur
             gsettings set org.gnome.desktop.background picture-options 'zoom'
             #gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.local/share/wallpapers/BigSur/BigSur.jpg"
             dialog_wallpapers
