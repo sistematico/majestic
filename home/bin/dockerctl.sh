@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# 
-# dockerctl.sh
 #
-# Criado em: 28-11-2019 23:50:39
-# Alterado em: 28-11-2019 23:50:45
+# Arquivo: dockerctl.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 28/11/2019 23:50:39
+# Última alteração: 01/09/2020 00:21:18
 
 if [ ! $1 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
 	echo "Uso: $(basename $0) [start|stop|rm|rmi|upgrade|rebuild]"
