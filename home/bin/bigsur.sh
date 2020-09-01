@@ -71,7 +71,7 @@ download() {
             
             for wallpaper in "${wallpapers[@]}"
             do
-	            (cd /tmp/bigsur/wallpapers && curl -s -L -O "$wallpaper")
+	            curl -s -L -O "$wallpaper" | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
             done
         ;;
     esac
