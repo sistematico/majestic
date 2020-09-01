@@ -7,6 +7,9 @@ services:
         ports:
             - "80:80"
             - "443:443"
+        build:
+            context: ../../dockerfile/
+            dockerfile: nginx
         volumes:
             - ~/github:/code
             - ~/podman/confs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
