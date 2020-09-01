@@ -67,12 +67,14 @@ download() {
             [ ! -d /tmp/bigsur ] && tar xJf /tmp/bigsur.tar.xz -C /tmp/
         ;;
         'wallpapers')
-            [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers
+            [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers && cd /tmp/bigsur/wallpapers
             
             for wallpaper in "${wallpapers[@]}"
             do
-	            curl -s -L -O "$wallpaper" | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
+	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper" | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
             done
+
+            cd "$OLDPWD"
         ;;
     esac
 }
