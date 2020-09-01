@@ -73,7 +73,7 @@ download() {
             perc=0
             total=${#wallpapers[@]}
 
-            #(
+            (
                 for wallpaper in "${wallpapers[@]}"
             do
                 #let i=$((i+1))
@@ -82,9 +82,9 @@ download() {
                 [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
                 
                 #echo $(( total*i/100 ))
-                echo $total
+                echo $((total*i))
             done
-            #) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
+            ) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
 
             cd "$OLDPWD"
         ;;
