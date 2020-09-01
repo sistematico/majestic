@@ -39,18 +39,18 @@ OLDPWD="$(pwd)"
 #     "https://i.imgur.com/K36MOW7.jpg"
 # )
 
-# wallpapers=(
-#     "https://i.imgur.com/M4Q0Cg1.jpg"
-#     "https://i.imgur.com/mEiH3Jp.jpg"
-#     "https://i.imgur.com/I9l5neF.jpg"
-#     "https://i.imgur.com/LW3ieVP.jpg"
-#     "https://i.imgur.com/FilQLU8.jpg"
-#     "https://i.imgur.com/vRisKbd.jpg"
-#     "https://i.imgur.com/viASiOi.jpg"
-#     "https://i.imgur.com/3MswHfK.jpg"
-#     "https://i.imgur.com/uwJYbFF.jpg"
-#     "https://i.imgur.com/K36MOW7.jpg"
-# )
+wallpapers=(
+    "https://www.dropbox.com/s/arz30b4dqdbyk11/macOS-Big-Sur-Daylight-2.jpg?dl=1"
+    "https://i.imgur.com/mEiH3Jp.jpg"
+    "https://i.imgur.com/I9l5neF.jpg"
+    "https://i.imgur.com/LW3ieVP.jpg"
+    "https://i.imgur.com/FilQLU8.jpg"
+    "https://i.imgur.com/vRisKbd.jpg"
+    "https://i.imgur.com/viASiOi.jpg"
+    "https://i.imgur.com/3MswHfK.jpg"
+    "https://i.imgur.com/uwJYbFF.jpg"
+    "https://i.imgur.com/K36MOW7.jpg"
+)
 
 [ ! -f /tmp/${TEMA}.cfg ] && curl -s -L -o /tmp/${TEMA}.cfg https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/${TEMA}.cfg
 export DIALOGRC=/tmp/${TEMA}.cfg
@@ -65,6 +65,8 @@ parabens() {
         --title 'Parabéns'                             \
         --msgbox 'Instalação finalizada com sucesso.'  \
         0 0
+    clear
+    break
 }
 
 certeza() {
@@ -81,7 +83,6 @@ download() {
             [ ! -d /tmp/bigsur ] && tar xJf /tmp/bigsur.tar.xz -C /tmp/
         ;;
         'wallpapers')
-            clear
             [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers && cd /tmp/bigsur/wallpapers
             i=0
             perc=0
@@ -90,15 +91,11 @@ download() {
             (
                 for wallpaper in "${wallpapers[@]}"
             do
-                #let i=$((i+1))
                 ((i=i+1))
-	            #let "perc=((total*i/100))"
-                [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
-                
-                #echo $(( total*i/100 ))
+                [ ! -f "$wallpaper" ] && curl -s -L -J -O "$wallpaper"
                 echo $((total*i))
             done
-            ) | dialog --title "Baixando..." --gauge "Por favor aguarde..." 10 70 0
+            ) | dialog --title "Baixando..." --gauge "Baixando: $wallpaper" 0 0 0
 
             cd "$OLDPWD"
         ;;
