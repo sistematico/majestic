@@ -183,7 +183,6 @@ dialog_wallpapers() {
     
     escolha="file://${HOME}/.local/share/wallpapers/BigSur/${arquivos[$arquivo]}"
     gsettings set org.gnome.desktop.background picture-uri "$escolha"
-    exit
 }
 
 instalar() {
