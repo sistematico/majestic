@@ -57,8 +57,8 @@ export DIALOGRC=/tmp/${TEMA}.cfg
 
 dialog                                            \
         --title 'Big Sur'                             \
-        --msgbox 'Bem vindo ao script de instalação do tema Big Sur para Linux!\n\nEste script foi criado por Lucas Saliés Brum a.k.a. sistematico'  \
-        0 0
+        --msgbox 'Bem vindo ao script de instalação do tema Big Sur para Linux!\n\npor Lucas Saliés Brum a.k.a. sistematico'  \
+        5 20
 
 parabens() {
     dialog                                            \
