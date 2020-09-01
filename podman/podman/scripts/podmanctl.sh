@@ -6,7 +6,7 @@
 # Alterado em: 28-11-2019 23:50:45
 
 if [ -z $1 ]; then
-	echo "Uso: $(basename $0) [start|stop|rm|rmi|upgrade|rebuild|podrm]"
+	echo "Uso: $(basename $0) [start|stop|rm|rmi|upgrade|rebuild|podrm|fix]"
 	exit
 fi
 
@@ -71,6 +71,13 @@ if [ "$1" == "upgrade" ]; then
     if [[ "$(podman ps -a -q)" ]]; then
         podman ps -a -q | xargs podman start
     fi
+fi
+
+if [ "$1" == "fix" ]; then
+    read -p 'Tem certeza que deseja remover ~/.local/share/containers e /run/user/$(id -u)/{libpod,runc,vfs-*}? [s/N] ' resp
+    if [[ "$resp" == [sS]* ]]; then
+		rm -rf ~/.local/share/containers /run/user/$(id -u)/{libpod,runc,vfs-*}
+	fi
 fi
 
 if [ "$1" == "rebuild" ] || [ "$1" == "build" ]; then
