@@ -52,6 +52,19 @@ wallpapers=(
     "https://www.dropbox.com/s/1ez177urj6wse7s/macOS-Big-Sur-Vector-Wave.jpg?dl=1"
 )
 
+nome_wallpapers=(
+    "macOS-Big-Sur-Daylight-2.jpg"
+    "macOS-Big-Sur-Daylight-3.jpg"
+    "macOS-Big-Sur-Daylight-4.jpg"
+    "macOS-Big-Sur-Daylight-5.jpg"
+    "macOS-Big-Sur-Daylight-6.jpg"
+    "macOS-Big-Sur-Daylight-7.jpg"
+    "macOS-Big-Sur-Daylight-8.jpg"
+    "macOS-Big-Sur-Daylight.jpg?dl=1"
+    "https://www.dropbox.com/s/z49u8969dbhfzpc/macOS-Big-Sur-Vector-Wave-Dark.jpg?dl=1"
+    "https://www.dropbox.com/s/1ez177urj6wse7s/macOS-Big-Sur-Vector-Wave.jpg?dl=1"
+)
+
 [ ! -f /tmp/${TEMA}.cfg ] && curl -s -L -o /tmp/${TEMA}.cfg https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/${TEMA}.cfg
 export DIALOGRC=/tmp/${TEMA}.cfg
 
@@ -92,7 +105,8 @@ download() {
                 for wallpaper in "${wallpapers[@]}"
             do
                 ((i=i+1))
-                [ ! -f "$wallpaper" ] && curl -s -L -J -O "$wallpaper"
+                arquivo=$(basename ${wallpaper::${#wallpaper}-5})
+                [ ! -f "/tmp/bigsur/wallpapers/$arquivo" ] && curl -s -L -J -O "$wallpaper"
                 echo $((total*i))
             done
             ) | dialog --title "Baixando..." --gauge "Baixando: $wallpaper" 0 0 0
@@ -174,7 +188,6 @@ dialog_wallpapers() {
 
     #arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
     arquivo=$(dialog --stdout --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
-
 
     [ $? -ne 0 ] || [ $arquivo -eq 0 ] && break
     
