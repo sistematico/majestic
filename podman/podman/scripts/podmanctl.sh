@@ -5,6 +5,11 @@
 # Criado em: 28-11-2019 23:50:39
 # Alterado em: 28-11-2019 23:50:45
 
+if [ -z $1 ]; then
+	echo "Uso: $(basename $0) [start|stop|rm|rmi|upgrade|rebuild|podrm]"
+	exit
+fi
+
 if [ "$1" == "stop" ]; then
     if [[ "$(podman ps -q)" ]]; then
 	    podman ps -q | xargs podman stop
@@ -21,6 +26,18 @@ if [ "$1" == "rm" ]; then
     read -p "Tem certeza que deseja remover TODOS os containers? [s/N] " resp
     if [[ "$resp" == [sS]* ]]; then
         if [[ "$(podman ps -q)" ]]; then
+            podman ps -q | xargs podman stop
+            if [[ "$(podman ps -q -a)" ]]; then
+                podman ps -a -q | xargs podman rm -v
+            fi
+        fi
+    fi
+fi
+
+if [ "$1" == "podrm" ]; then
+    read -p "Tem certeza que deseja remover TODOS os pods? [s/N] " resp
+    if [[ "$resp" == [sS]* ]]; then
+        if [[ "$(podman pod list -q)" ]]; then
             podman ps -q | xargs podman stop
             if [[ "$(podman ps -q -a)" ]]; then
                 podman ps -a -q | xargs podman rm -v
