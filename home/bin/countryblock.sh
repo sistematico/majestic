@@ -1,7 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Arquivo: countryblock.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+# Com base no trabalho de nixCraft <www.cyberciti.biz> under GPL v.2.0+
+#
+# Criado em: 28/11/2019 23:50:39
+# Última alteração: 01/09/2020 00:22:38
+#
 # Purpose: Block all traffic from AFGHANISTAN (af) and CHINA (CN). Use ISO code. #
 # See url for more info - http://www.cyberciti.biz/faq/?p=3402
-# Author: nixCraft <www.cyberciti.biz> under GPL v.2.0+
 # -------------------------------------------------------------------------------
 ISO="af za cn" 
  
