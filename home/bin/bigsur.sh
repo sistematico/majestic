@@ -141,6 +141,23 @@ dialog_icons() {
     done
 }
 
+dialog_wallpapers() {
+    let indice=0
+    arquivos=() # define working array
+    while read -r linha; do # process file by file
+        let indice=$indice+1
+        arquivos+=($indice "$linha")
+    done < <( ls -1 $HOME/.local/share/wallpapers/BigSur/ )
+
+    arquivo=$(dialog --title "Big Sur WallPapers" --menu "Escolha um wallpaper" 0 0 0 "${arquivos[@]}" 3>&2 2>&1 1>&3)
+
+    case "$arquivo" in
+        1)  && break ;;
+        0) break ;;
+    esac    
+
+}
+
 instalar() {
     case "$1" in
         'gtk')
