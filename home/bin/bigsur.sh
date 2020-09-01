@@ -70,12 +70,13 @@ download() {
             clear
             [ ! -d /tmp/bigsur/wallpapers ] && mkdir -p /tmp/bigsur/wallpapers && cd /tmp/bigsur/wallpapers
             let i=0
-            let total=${#wallpapers[@]}
+            let "total=${#wallpapers[@]}"
 
             #(
                 for wallpaper in "${wallpapers[@]}"
             do
-                let i=$((i+1))
+                #let i=$((i+1))
+                let "i=i+1"
 	            [ ! -f "$wallpaper" ] && curl -s -L -O "$wallpaper"
                 eval echo $(( total*i/100 ))
             done
