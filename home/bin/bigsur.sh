@@ -7,7 +7,7 @@
 # Criado em: 01/09/2020 00:23:51
 # Última alteração: 01/09/2020 00:23:55
 #
-# Uso: bash $(curl -s -L https://git.io/JUmcc)
+# Uso: curl -s -L https://git.io/JUmcc | bash
 
 TEMA="default" # default, green, red
 
