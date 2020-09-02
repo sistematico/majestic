@@ -35,7 +35,7 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 #if pgrep -x "ffmpeg" > /dev/null;
-if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid";
+if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid" && test -f "/tmp/screencast.step1.${EXT}";
 then
     [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
     [ -f /tmp/screencast.final.${EXT} ] && rm -f /tmp/screencast.final.${EXT}
@@ -57,7 +57,7 @@ then
     rm -f /tmp/videodown.pid
     exit 0
 else
-    if ! test -f "/tmp/videodown.pid";
+    if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/screencast.step1.${EXT}";
     then
         echo $$ > /tmp/videodown.pid
         notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
