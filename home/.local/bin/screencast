@@ -46,7 +46,7 @@ then
         notify-send -i $icone "ScreenCast" "ScreenCast terminado"
         
         # ????
-        killall ffmpeg
+        #killall ffmpeg
         kill -9 $SCREENCAST_PID
 
         notify-send -i $icone "ScreenCast" "Conversão para o WhatsApp"
