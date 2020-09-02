@@ -61,13 +61,7 @@ else
     if ! test -f "/tmp/videodown.pid";
     then
         echo $$ > /tmp/videodown.pid
-        echo "${STEP1}" > /tmp/videodown.step1.file
-        echo "${STEP2}" > /tmp/videodown.step2.file
-        echo "${FINAL}" > /tmp/videodown.final.file
-
         notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
-    
-        #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${ARQUIVO}.tmp.${EXT}
-        ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart "${STEP1}"
+        ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/screencast.step1.${EXT}
     fi
 fi
