@@ -45,7 +45,7 @@ then
     kill -9 $(cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
-    ffmpeg -i /tmp/${ARQUIVO_TEMP}.${EXT} -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/${ARQUIVO}.whats.${EXT}
+    ffmpeg -i "$(cat /tmp/videodown.file)" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/${ARQUIVO}.whats.${EXT}
     
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
     ffmpeg -i -ss 2 /tmp/${ARQUIVO}.whats.${EXT} ${CAMINHO}/${ARQUIVO}.${EXT}
