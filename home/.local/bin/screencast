@@ -38,7 +38,7 @@ ARQUIVO_TEMP="screencast-${DATA}.tmp"
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 #if pgrep -x "ffmpeg" > /dev/null;
-if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
+if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
 then
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
