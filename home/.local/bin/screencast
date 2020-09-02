@@ -35,7 +35,7 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 #if pgrep -x "ffmpeg" > /dev/null;
-if test -f "/tmp/videodown.pid";
+if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid";
 then
     [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
     [ -f /tmp/screencast.final.${EXT} ] && rm -f /tmp/screencast.final.${EXT}
