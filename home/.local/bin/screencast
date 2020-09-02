@@ -15,8 +15,6 @@ EXT="mp4"
 DATA=$(date +%H-%M-%S)
 ICONE="${HOME}/.local/share/icons/elementary/video-display.png"
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
-SCREENCAST_PID=$(cat /tmp/videodown.pid)
-SCREENCAST_FILE=$(cat /tmp/videodown.file)
 
 APPS=("ffmpeg" "xrandr" "pacmd")
 for APP in ${APPS[@]}
@@ -25,7 +23,7 @@ do
 done
 
 if [ -f ~/.config/user-dirs.dirs ]; then
-    source ~/.config/user-dirs.dirs
+    . ~/.config/user-dirs.dirs
     CAMINHO="${XDG_VIDEOS_DIR}/screencast"
 else
     CAMINHO="${HOME}/video/screencast"
@@ -50,8 +48,6 @@ then
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
     ffmpeg -ss 2 -i /tmp/${ARQUIVO}.whats.${EXT} ${CAMINHO}/${ARQUIVO}.${EXT}
 
-    rm /tmp/videodown.pid /tmp/videodown.file
-
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${ARQUIVO}.${EXT}" 
 else
     if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/videodown.file";
@@ -65,3 +61,5 @@ else
         ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/${ARQUIVO_TEMP}.${EXT}
     fi
 fi
+
+exit 0
