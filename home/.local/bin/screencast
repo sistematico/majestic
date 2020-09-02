@@ -49,6 +49,9 @@ then
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado, matando os processos: $(ps -s $(cat /tmp/videodown.pid) -o pid=)"
     kill -9 $(ps -s $(cat /tmp/videodown.pid) -o pid=)
 
+    kill --verbose --timeout 1000 TERM --timeout 1000 KILL --signal QUIT $(cat /tmp/videodown.pid)
+
+
     # [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
