@@ -30,8 +30,10 @@ else
 fi
 
 CAMINHO="${CAMINHO}/$(date +%Y)/$(date +%m)/$(date +%d)"
-ARQUIVO="screencast-${DATA}"
-ARQUIVO_TEMP="screencast-${DATA}.tmp"
+ARQUIVO="screencast-${DATA}.${EXT}"
+FINAL="/tmp/screencast-${DATA}.${EXT}"
+STEP1="/tmp/screencast-${DATA}.step1.${EXT}"
+STEP2="/tmp/screencast-${DATA}.step2.${EXT}"
 
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
@@ -43,23 +45,26 @@ then
     kill -9 $(cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
-    ffmpeg -i "$(cat /tmp/videodown.file)" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/${ARQUIVO}.whats.${EXT}
+    ffmpeg -i "$(cat /tmp/videodown.file)" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "${STEP2}"
     
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
-    ffmpeg -ss 2 -i /tmp/${ARQUIVO}.whats.${EXT} ${CAMINHO}/${ARQUIVO}.${EXT}
+    ffmpeg -ss 2 -i "${STEP2}" "${FINAL}"
 
-    notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${ARQUIVO}.${EXT}" 
+    mv "${FINAL}" "${CAMINHO}/${ARQUIVO}"
+
+    notify-send -i $ICONE "ScreenCast" "ScreenCast salvo ${ARQUIVO}" 
+    rm -f /tmp/videodown.pid /tmp/videodown.file "${STEP1}" "${STEP2}"
+    exit 0
 else
     if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/videodown.file";
     then
         echo $$ > /tmp/videodown.pid
-        echo "/tmp/${ARQUIVO_TEMP}.${EXT}" > /tmp/videodown.file
+        echo "${STEP1}" > /tmp/videodown.file
 
         notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
     
         #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${ARQUIVO}.tmp.${EXT}
-        ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/${ARQUIVO_TEMP}.${EXT}
+        ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart "${STEP1}"
     fi
+    exit 0
 fi
-
-exit 0
