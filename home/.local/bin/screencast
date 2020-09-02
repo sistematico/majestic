@@ -56,6 +56,8 @@ then
         ffmpeg -i -ss 2 ${arquivo}.whats.${ext} ${arquivo}.${ext}
 
         rm $SCREENCAST_PID $SCREENCAST_FILE
+
+        notify-send -i $icone "ScreenCast" "ScreenCast salvo em: ${arquivo}.${ext}" 
     fi
 
 else
