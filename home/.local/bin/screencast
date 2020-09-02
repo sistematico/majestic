@@ -50,7 +50,7 @@ then
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
     ffmpeg -i -ss 2 /tmp/${ARQUIVO}.whats.${EXT} ${CAMINHO}/${ARQUIVO}.${EXT}
 
-    rm $SCREENCAST_PID $SCREENCAST_FILE
+    rm /tmp/videodown.pid /tmp/videodown.file
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${ARQUIVO}.${EXT}" 
 else
