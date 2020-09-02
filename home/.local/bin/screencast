@@ -62,7 +62,7 @@ else
     echo $$ > /tmp/videodown.pid
     echo "${arquivo}.tmp.${ext}" > /tmp/videodown.file
 
-    notify-send -i $icone "ScreenCast" "ScreenCast iniciado\n\nPID: $SCREENCAST_PID"
+    notify-send -i $icone "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
     ffmpeg -async 1 -f x11grab -s $resolucao -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${ext}
     
     # WhatsApp
