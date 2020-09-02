@@ -34,12 +34,12 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
+[ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
+[ -f /tmp/screencast.final.${EXT} ] && rm -f /tmp/screencast.final.${EXT}
+
 #if pgrep -x "ffmpeg" > /dev/null;
 if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid" && test -f "/tmp/screencast.step1.${EXT}";
 then
-    [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
-    [ -f /tmp/screencast.final.${EXT} ] && rm -f /tmp/screencast.final.${EXT}
-
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado, recodificando..."
     kill -9 $(cat /tmp/videodown.pid)
 
@@ -54,12 +54,9 @@ then
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo ${ARQUIVO}" 
     rm -f /tmp/videodown.pid /tmp/screencast.step1.${EXT} /tmp/screencast.step2.${EXT}
 else
-    if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/screencast.step1.${EXT}";
-    then
-        echo $$ > /tmp/videodown.pid
-        notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
-        ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/screencast.step1.${EXT}
-    fi
+    echo $$ > /tmp/videodown.pid
+    notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
+    ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/screencast.step1.${EXT}
 fi
 
 exit 0
