@@ -40,6 +40,9 @@ STEP2="/tmp/screencast-${DATA}.step2.${EXT}"
 #if pgrep -x "ffmpeg" > /dev/null;
 if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
 then
+    [ -f "${STEP2}" ] && rm -f "${STEP2}"
+    [ -f "${FINAL}" ] && rm -f "${FINAL}"
+
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
     kill -9 $(cat /tmp/videodown.pid)
