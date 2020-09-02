@@ -40,24 +40,21 @@ STEP2="/tmp/screencast-${DATA}.step2.${EXT}"
 #if pgrep -x "ffmpeg" > /dev/null;
 if test -f "/tmp/videodown.pid";
 then
-    [ -f "$(cat /tmp/videodown.step2.file)" ] && rm -f "$(cat /tmp/videodown.step2.file)"
-    [ -f "$(cat /tmp/videodown.final.file)" ] && rm -f "$(cat /tmp/videodown.final.file)"
-    [ -f "${FINAL}" ] && rm -f "${FINAL}"
-
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
     kill -9 $(cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
-    ffmpeg -i "$(cat /tmp/videodown.file)" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "${STEP2}"
+    ffmpeg -i "$(cat /tmp/videodown.step1.file)" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$(cat /tmp/videodown.step2.file)"
     
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
-    ffmpeg -ss 2 -i "${STEP2}" "${FINAL}"
+    ffmpeg -ss 2 -i "$(cat /tmp/videodown.step2.file)" "$(cat /tmp/videodown.final.file)"
 
-    mv "${FINAL}" "${CAMINHO}/${ARQUIVO}"
+    mv "$(cat /tmp/videodown.final.file)" "${CAMINHO}/${ARQUIVO}"
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo ${ARQUIVO}" 
-    rm -f /tmp/videodown.pid /tmp/videodown.file "$(cat /tmp/videodown.step1.file)" "$(cat /tmp/videodown.step2.file)"
+    rm -f /tmp/videodown.pid "$(cat /tmp/videodown.step1.file)" "$(cat /tmp/videodown.step2.file)"
+    rm -f /tmp/videodown.pid /tmp/videodown.step1.file /tmp/videodown.step2.file /tmp/videodown.final.file
     exit 0
 else
     if ! test -f "/tmp/videodown.pid";
