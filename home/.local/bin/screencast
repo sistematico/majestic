@@ -55,7 +55,8 @@ then
     NEWPID=$(/bin/cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado, matando os processos: $(list_descendants $NEWPID)"
-    kill -9 $(list_descendants $NEWPID)
+    #kill -9 $(list_descendants $NEWPID)
+    kill -TERM $NEWPID
     sleep 2
    
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
