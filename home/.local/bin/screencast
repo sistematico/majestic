@@ -38,11 +38,10 @@ ARQUIVO_TEMP="screencast-${DATA}.tmp"
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 #if pgrep -x "ffmpeg" > /dev/null;
-if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
+if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
 then
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
-    kill ffmpeg
     kill -9 $(cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
@@ -55,11 +54,14 @@ then
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${ARQUIVO}.${EXT}" 
 else
-    echo $$ > /tmp/videodown.pid
-    echo "/tmp/${ARQUIVO_TEMP}.${EXT}" > /tmp/videodown.file
+    if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/videodown.file";
+    then
+        echo $$ > /tmp/videodown.pid
+        echo "/tmp/${ARQUIVO_TEMP}.${EXT}" > /tmp/videodown.file
 
-    notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
+        notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
     
-    #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${ARQUIVO}.tmp.${EXT}
-    ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/${ARQUIVO_TEMP}.${EXT}
+        #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${ARQUIVO}.tmp.${EXT}
+        ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/${ARQUIVO_TEMP}.${EXT}
+    fi
 fi
