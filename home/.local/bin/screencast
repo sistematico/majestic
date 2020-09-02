@@ -36,8 +36,10 @@ arquivo="${caminho}/screencast-${data}"
 
 if pgrep -x "ffmpeg" > /dev/null
 then
-    if [ -f /tmp/videodown.pid ] && [ -f /tmp/videodown.file ]
+
+    if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
     then
+
         SCREENCAST_PID=$(cat /tmp/videodown.pid)
         SCREENCAST_FILE=$(cat /tmp/videodown.file)
 
