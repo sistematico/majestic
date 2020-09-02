@@ -9,6 +9,18 @@
 # Criado em: 09/06/2017 23:26:41
 # Última Atualização: 31/10/2018 12:35:15
 
+list_descendants () {
+  local children=$(ps -o pid= --ppid "$1")
+
+  for pid in $children
+  do
+    list_descendants "$pid"
+  done
+
+  echo "$children"
+}
+
+
 # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 PRESET="ultrafast"
 EXT="mp4"
@@ -40,16 +52,20 @@ then
     [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
     [ -f /tmp/screencast.final.${EXT} ] && rm -f /tmp/screencast.final.${EXT}
 
+    NEWPID=$(/bin/cat /tmp/videodown.pid)
+
     # kill $(ps -s $$ -o pid=)
     # pkill -P $$
-    # kill -9 $(cat /tmp/videodown.pid)
+    # kill -9 $(/bin/cat /tmp/videodown.pid)
     
-    #pkill -P $(cat /tmp/videodown.pid)
+    #pkill -P $(/bin/cat /tmp/videodown.pid)
+
+    kill $(list_descendants $NEWPID)
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado, matando os processos: $(ps -s $(cat /tmp/videodown.pid) -o pid=)"
-    kill -9 $(ps -s $(cat /tmp/videodown.pid) -o pid=)
+    kill -9 $(ps -s $(/bin/cat /tmp/videodown.pid) -o pid=)
 
-    kill --verbose --timeout 1000 TERM --timeout 1000 KILL --signal QUIT $(cat /tmp/videodown.pid)
+    kill --verbose --timeout 1000 TERM --timeout 1000 KILL --signal QUIT $(/bin/cat /tmp/videodown.pid)
 
 
     # [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
@@ -67,7 +83,7 @@ then
 else
     [ -f /tmp/screencast.step1.${EXT} ] && rm -f /tmp/screencast.step1.${EXT}
     echo $$ > /tmp/videodown.pid
-    notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
+    notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(/bin/cat /tmp/videodown.pid)"
     ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/screencast.step1.${EXT}
 fi
 
