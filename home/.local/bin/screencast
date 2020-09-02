@@ -38,9 +38,10 @@ STEP2="/tmp/screencast-${DATA}.step2.${EXT}"
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 #if pgrep -x "ffmpeg" > /dev/null;
-if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
+if test -f "/tmp/videodown.pid";
 then
-    [ -f "${STEP2}" ] && rm -f "${STEP2}"
+    [ -f "$(cat /tmp/videodown.step2.file)" ] && rm -f "$(cat /tmp/videodown.step2.file)"
+    [ -f "$(cat /tmp/videodown.final.file)" ] && rm -f "$(cat /tmp/videodown.final.file)"
     [ -f "${FINAL}" ] && rm -f "${FINAL}"
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
@@ -56,18 +57,19 @@ then
     mv "${FINAL}" "${CAMINHO}/${ARQUIVO}"
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo ${ARQUIVO}" 
-    rm -f /tmp/videodown.pid /tmp/videodown.file "${STEP1}" "${STEP2}"
+    rm -f /tmp/videodown.pid /tmp/videodown.file "$(cat /tmp/videodown.step1.file)" "$(cat /tmp/videodown.step2.file)"
     exit 0
 else
-    if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/videodown.file";
+    if ! test -f "/tmp/videodown.pid";
     then
         echo $$ > /tmp/videodown.pid
-        echo "${STEP1}" > /tmp/videodown.file
+        echo "${STEP1}" > /tmp/videodown.step1.file
+        echo "${STEP2}" > /tmp/videodown.step2.file
+        echo "${FINAL}" > /tmp/videodown.final.file
 
         notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
     
         #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${ARQUIVO}.tmp.${EXT}
         ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart "${STEP1}"
     fi
-    exit 0
 fi
