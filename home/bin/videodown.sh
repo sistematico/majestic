@@ -5,8 +5,8 @@
 #                                                                              #
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
 #                                                                              #
-# Criado em: 30-04-2019 01:55:09 pm                                             #
-# Modificado em: 05-12-2019 4:31:28 pm                                         #
+# Criado em: 30-04-2019 13:55:09                                               #
+# Modificado em: 02/09/2020 18:24:49                                           #
 #                                                                              #
 # Este trabalho está licenciado com uma Licença Creative Commons               #
 # Atribuição 4.0 Internacional                                                 #
@@ -15,8 +15,6 @@
 ################################################################################
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
-
-#xclip -out -selection primary | xclip -in -selection clipboard
 
 nome="Video Down"
 SECONDS=0
@@ -46,7 +44,6 @@ if [[ ! ${url} =~ $padrao ]]; then
 	$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
     exit
 else
-	#titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | iconv -f utf8 -t ascii//TRANSLIT | sed 's/[^[:alnum:]]\+/ /g')"
 	titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
 
 	if [ ${#titulo} -gt 250 ]; then
@@ -69,16 +66,6 @@ fi
 $HOME/bin/notify.sh "$nome" "Início: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
 
 if [ $aria == 1 ]; then
-    # -j, --max-concurrent-downloads
-    # -x, --max-connection-per-server
-    # -m, --max-tries
-    # -k, --min-split-size
-    # -s, --split restricted by --max-connection-per-server
-    # -t, --timeout
-
-    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 2 -x 1 -s 2 -k 2M' "${url}"
-    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args '-l '/tmp/aria.log' -t 10 -m 10 -c -j 4 -x 2 -s 2 -k 2M' "${url}"
-    #youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --external-downloader-args "-d ${dir}/${titulo}" "${url}"
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
