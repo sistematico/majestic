@@ -42,6 +42,7 @@ if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid" && test -f "/tm
 then
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
+    kill ffmpeg
     kill -9 $(cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
