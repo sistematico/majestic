@@ -37,20 +37,23 @@ arquivo="${caminho}/screencast-${data}"
 if pgrep -x "ffmpeg"> /dev/null
 then
     if [ -f /tmp/videodown.pid ] && [ -f /tmp/videodown.file ]; then
-    SCREENCAST_PID=$(cat /tmp/videodown.pid)
-    SCREENCAST_FILE=$(cat /tmp/videodown.file)
+        SCREENCAST_PID=$(cat /tmp/videodown.pid)
+        SCREENCAST_FILE=$(cat /tmp/videodown.file)
 
-    notify-send -i $icone "ScreenCast" "ScreenCast terminado"
-	
-    # ????
-    killall ffmpeg
-    kill -9 $SCREENCAST_PID
+        notify-send -i $icone "ScreenCast" "ScreenCast terminado"
+        
+        # ????
+        killall ffmpeg
+        kill -9 $SCREENCAST_PID
 
-    notify-send -i $icone "ScreenCast" "Conversão para o WhatsApp"
-    ffmpeg -i $SCREENCAST_FILE -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p ${arquivo}.whats.${ext}
-    
-    notify-send -i $icone "ScreenCast" "Corte de 2 segundos" &&
-    ffmpeg -i -ss 2 ${arquivo}.whats.${ext} ${arquivo}.${ext}
+        notify-send -i $icone "ScreenCast" "Conversão para o WhatsApp"
+        ffmpeg -i $SCREENCAST_FILE -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p ${arquivo}.whats.${ext}
+        
+        notify-send -i $icone "ScreenCast" "Corte de 2 segundos" &&
+        ffmpeg -i -ss 2 ${arquivo}.whats.${ext} ${arquivo}.${ext}
+
+        rm $SCREENCAST_PID $SCREENCAST_FILE
+    fi
 
     exit 0
 else
