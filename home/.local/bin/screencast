@@ -10,16 +10,18 @@
 # Última Atualização: 31/10/2018 12:35:15
 
 # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
-preset="ultrafast"
-ext="mp4"
-apps=("ffmpeg" "xrandr" "pacmd")
-icone="${HOME}/.local/share/icons/elementary/video-display.png"
-resolucao=$(xrandr | grep '*' | awk 'NR==1{print $1}')
-audio=$(pacmd list-sinks | grep -A 1 'index: 0' | awk 'NR==2{print $2}' | awk '{print substr($0,2,length($0)-2)}') # list-sources, list-sinks
+PRESET="ultrafast"
+EXT="mp4"
+DATA=$(date +%H-%M-%S)
+ICONE="${HOME}/.local/share/icons/elementary/video-display.png"
+RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
+SCREENCAST_PID=$(cat /tmp/videodown.pid)
+SCREENCAST_FILE=$(cat /tmp/videodown.file)
 
-for app in ${apps[@]}
+APPS=("ffmpeg" "xrandr" "pacmd")
+for APP in ${APPS[@]}
 do
-    command -v $app >/dev/null 2>&1 || { echo >&2 "O aplicativo $app não está instalado. Abortando."; exit 1; }
+    command -v $APP >/dev/null 2>&1 || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
 done
 
 if [ -f ~/.config/user-dirs.dirs ]; then
@@ -29,44 +31,33 @@ else
     caminho="${HOME}/video/screencast"
 fi
 
-data=$(date +%H-%M-%S)
 caminho="${caminho}/$(date +%Y)/$(date +%m)/$(date +%d)"
-arquivo="${caminho}/screencast-${data}"
+arquivo="${caminho}/screencast-${DATA}"
+
 [ ! -d $caminho ] && mkdir -p $caminho
 
-if pgrep -x "ffmpeg" > /dev/null;
+#if pgrep -x "ffmpeg" > /dev/null;
+if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
 then
-
-    if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
-    then
-
-        SCREENCAST_PID=$(cat /tmp/videodown.pid)
-        SCREENCAST_FILE=$(cat /tmp/videodown.file)
-
-        notify-send -i $icone "ScreenCast" "ScreenCast terminado"
-        
-        # ????
-        #killall ffmpeg
-        kill -9 $SCREENCAST_PID
-
-        notify-send -i $icone "ScreenCast" "Conversão para o WhatsApp"
-        ffmpeg -i $SCREENCAST_FILE -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p ${arquivo}.whats.${ext}
-        
-        notify-send -i $icone "ScreenCast" "Corte de 2 segundos" 
-        ffmpeg -i -ss 2 ${arquivo}.whats.${ext} ${arquivo}.${ext}
-
-        rm $SCREENCAST_PID $SCREENCAST_FILE
-
-        notify-send -i $icone "ScreenCast" "ScreenCast salvo em: ${arquivo}.${ext}" 
-    fi
-
-else
-    echo $$ > /tmp/videodown.pid
-    echo "${arquivo}.tmp.${ext}" > /tmp/videodown.file
-
-    notify-send -i $icone "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
-    ffmpeg -async 1 -f x11grab -s $resolucao -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${ext}
+    notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
-    # WhatsApp
-    # ffmpeg -i broken.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p working.mp4
+    kill -9 $SCREENCAST_PID
+
+    notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
+    ffmpeg -i $SCREENCAST_FILE -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p ${arquivo}.whats.${EXT}
+    
+    notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
+    ffmpeg -i -ss 2 ${arquivo}.whats.${EXT} ${arquivo}.${EXT}
+
+    rm $SCREENCAST_PID $SCREENCAST_FILE
+
+    notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${arquivo}.${EXT}" 
+else
+    echo $$ > $SCREENCAST_PID
+    echo "${arquivo}.tmp.${EXT}" > $SCREENCAST_FILE
+
+    notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
+    
+    #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${EXT}
+    ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${EXT}
 fi
