@@ -34,7 +34,7 @@ caminho="${caminho}/$(date +%Y)/$(date +%m)/$(date +%d)"
 arquivo="${caminho}/screencast-${data}"
 [ ! -d $caminho ] && mkdir -p $caminho
 
-if pgrep -x "ffmpeg" > /dev/null
+if pgrep -x "ffmpeg" > /dev/null;
 then
 
     if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
@@ -57,12 +57,13 @@ then
 
         rm $SCREENCAST_PID $SCREENCAST_FILE
     fi
+
 else
     echo $$ > /tmp/videodown.pid
     echo "${arquivo}.tmp.${ext}" > /tmp/videodown.file
 
     notify-send -i $icone "ScreenCast" "ScreenCast iniciado\n\nPID: $SCREENCAST_PID"
-    ffmpeg -async 1 -f x11grab -s $resolucao -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${ext} &&
+    ffmpeg -async 1 -f x11grab -s $resolucao -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${ext}
     
     # WhatsApp
     # ffmpeg -i broken.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p working.mp4
