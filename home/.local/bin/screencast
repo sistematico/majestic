@@ -26,15 +26,16 @@ done
 
 if [ -f ~/.config/user-dirs.dirs ]; then
     source ~/.config/user-dirs.dirs
-    caminho="${XDG_VIDEOS_DIR}/screencast"
+    CAMINHO="${XDG_VIDEOS_DIR}/screencast"
 else
-    caminho="${HOME}/video/screencast"
+    CAMINHO="${HOME}/video/screencast"
 fi
 
-caminho="${caminho}/$(date +%Y)/$(date +%m)/$(date +%d)"
-arquivo="screencast-${DATA}"
+CAMINHO="${CAMINHO}/$(date +%Y)/$(date +%m)/$(date +%d)"
+ARQUIVO="screencast-${DATA}"
+ARQUIVO_TEMP="screencast-${DATA}.tmp"
 
-[ ! -d $caminho ] && mkdir -p $caminho
+[ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 #if pgrep -x "ffmpeg" > /dev/null;
 if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
@@ -44,20 +45,20 @@ then
     kill -9 $SCREENCAST_PID
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
-    ffmpeg -i $SCREENCAST_FILE -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p ${arquivo}.whats.${EXT}
+    ffmpeg -i /tmp/${ARQUIVO_TEMP}.${EXT} -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/${ARQUIVO}.whats.${EXT}
     
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
-    ffmpeg -i -ss 2 ${arquivo}.whats.${EXT} ${arquivo}.${EXT}
+    ffmpeg -i -ss 2 /tmp/${ARQUIVO}.whats.${EXT} ${CAMINHO}/${ARQUIVO}.${EXT}
 
     rm $SCREENCAST_PID $SCREENCAST_FILE
 
-    notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${arquivo}.${EXT}" 
+    notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${ARQUIVO}.${EXT}" 
 else
     echo $$ > $SCREENCAST_PID
-    echo "${arquivo}.tmp.${EXT}" > $SCREENCAST_FILE
+    echo "${ARQUIVO}.tmp.${EXT}" > $SCREENCAST_FILE
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
     
-    #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${EXT}
-    ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${arquivo}.tmp.${EXT}
+    #ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart ${ARQUIVO}.tmp.${EXT}
+    ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/${ARQUIVO_TEMP}.${EXT}
 fi
