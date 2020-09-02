@@ -45,17 +45,14 @@ then
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
     ffmpeg -i /tmp/screencast.step1.${EXT} -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/screencast.step2.${EXT}
-    rm -f 
     
     notify-send -i $ICONE "ScreenCast" "Corte de 2 segundos" 
     ffmpeg -ss 2 -i /tmp/screencast.step2.${EXT} /tmp/screencast.final.${EXT}
-    rm -f /tmp/screencast.step2.${EXT}
 
     mv /tmp/screencast.final.${EXT} "${CAMINHO}/${ARQUIVO}"
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo ${ARQUIVO}" 
     rm -f /tmp/videodown.pid /tmp/screencast.step1.${EXT} /tmp/screencast.step2.${EXT}
-    exit 0
 else
     if ! test -f "/tmp/videodown.pid" && ! test -f "/tmp/screencast.step1.${EXT}";
     then
@@ -64,3 +61,5 @@ else
         ffmpeg -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/screencast.step1.${EXT}
     fi
 fi
+
+exit 0
