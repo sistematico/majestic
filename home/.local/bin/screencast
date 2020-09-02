@@ -41,6 +41,7 @@ then
     exit 0
 else
     SCREENCAST_PID=$$
+    echo $SCREENCAST_PID > /tmp/videodown.pid
     notify-send -i $icone "ScreenCast" "ScreenCast iniciado\n\nPID: $SCREENCAST_PID"
     #ffmpeg -async 1 -f x11grab -s $resolucao \
     #-i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 \
