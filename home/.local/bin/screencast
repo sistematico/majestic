@@ -42,7 +42,7 @@ if test -f "/tmp/videodown.pid" && test -f "/tmp/videodown.file";
 then
     notify-send -i $ICONE "ScreenCast" "ScreenCast terminado"
     
-    kill -9 $SCREENCAST_PID
+    kill -9 $(cat /tmp/videodown.pid)
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
     ffmpeg -i /tmp/${ARQUIVO_TEMP}.${EXT} -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/${ARQUIVO}.whats.${EXT}
@@ -54,8 +54,8 @@ then
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast salvo em: ${ARQUIVO}.${EXT}" 
 else
-    echo $$ > $SCREENCAST_PID
-    echo "${ARQUIVO}.tmp.${EXT}" > $SCREENCAST_FILE
+    echo $$ > /tmp/videodown.pid
+    echo "/tmp/${ARQUIVO_TEMP}.${EXT}" > /tmp/videodown.file
 
     notify-send -i $ICONE "ScreenCast" "ScreenCast iniciado\n\nPID: $(cat /tmp/videodown.pid)"
     
