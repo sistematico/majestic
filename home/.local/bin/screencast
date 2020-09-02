@@ -32,7 +32,7 @@ else
 fi
 
 caminho="${caminho}/$(date +%Y)/$(date +%m)/$(date +%d)"
-arquivo="${caminho}/screencast-${DATA}"
+arquivo="screencast-${DATA}"
 
 [ ! -d $caminho ] && mkdir -p $caminho
 
