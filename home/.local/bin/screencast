@@ -44,7 +44,10 @@ then
     # kill $(ps -s $$ -o pid=)
     # pkill -P $$
     # kill -9 $(cat /tmp/videodown.pid)
-    pkill -P $(cat /tmp/videodown.pid)
+    
+    #pkill -P $(cat /tmp/videodown.pid)
+    kill -9 $(ps -s $(cat /tmp/videodown.pid) -o pid=)
+
     # [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
 
     notify-send -i $ICONE "ScreenCast" "Conversão para o WhatsApp"
