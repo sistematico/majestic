@@ -2,7 +2,11 @@
 	"strpos": {
 		"prefix": "strpos",
 		"body": [
-			"if (strpos($_SERVER['REQUEST_URI'], 'conta/cadastro') !== false) { ... }"
+			"$frase = 'Eu não sei PHP';",
+			"$pesquisa = 'sei PHP'",
+			"if (strpos($frase, $pesquisa) === true) {",
+			"\t// Código caso encontre...",
+			"}"
 		],
 		"description": "Check if string contains some word"
 	}
