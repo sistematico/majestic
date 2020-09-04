@@ -1,9 +1,9 @@
 {
-	"setInterval": {
-		"prefix": "setinterval",
+	"Window Location": {
+		"prefix": "location",
 		"body": [
-			"let interval = setInterval(${1:funcao},${2:1000});"
+			"window.location.href = 'https://www.google.com.br';"
 		],
-		"description": "Set a interval"
+		"description": "JavaScript Redirect to Another Page"
 	}
 }
