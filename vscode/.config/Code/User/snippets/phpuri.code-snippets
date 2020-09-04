@@ -1,21 +1,9 @@
 {
-	"jQuery AJAX": {
-		"prefix": "ajax",
+	"PHP Get URI": {
+		"prefix": "uri",
 		"body": [
-			"$.ajax({",
-            "\turl: 'page.php',",
-            "\tmethod: 'POST',",
-            "\tcontext: document.body,",
-            "\tdata: { id : menuId },",
-            "\tdataType: 'json'",
-            "}).done(function() {",
-            "\t$( this ).addClass('done');",
-            "}).fail(function() {",
-            "\talert('error');",
-            "}).always(function() {",
-            "\talert('complete');",
-            "});"
+			"$whatINeed = explode('/', $_SERVER['REQUEST_URI'])[1];"
 		],
-		"description": "jQuery AJAX Example"
+		"description": "Get current URI"
 	}
 }
