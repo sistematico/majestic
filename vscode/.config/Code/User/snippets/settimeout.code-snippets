@@ -1,11 +1,11 @@
 {
-	"setInterval (3)": {
-		"prefix": "setinterval",
+	"setTimeout": {
+		"prefix": "settimeout",
 		"body": [
-			"setInterval(_ => {",
+			"setTimeout(_ => {",
 			"\t${1:funcao}",
 			"},${2:1000});"
 		],
-		"description": "Set a interval"
+		"description": "Set a timeout"
 	}
 }

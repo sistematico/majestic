@@ -1,11 +1,11 @@
 {
 	"setInterval (3)": {
-		"prefix": "setinterval",
+		"prefix": "setinterval3",
 		"body": [
 			"setInterval(_ => {",
 			"\t${1:funcao}",
 			"},${2:1000});"
 		],
-		"description": "Set a interval"
+		"description": "Set a interval (3)"
 	}
 }

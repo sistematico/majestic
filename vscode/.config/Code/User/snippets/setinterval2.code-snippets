@@ -1,6 +1,6 @@
 {
 	"setInterval2": {
-		"prefix": "setintervaladv",
+		"prefix": "setinterval2",
 		"body": [
             "let intervalID = window.setInterval(myCallback, 500, 'Parameter 1', 'Parameter 2');",
             "",
