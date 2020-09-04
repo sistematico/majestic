@@ -1,13 +1,23 @@
 {
-	"strpos": {
-		"prefix": "strpos",
+	"JavaScript Timer": {
+		"prefix": "jstimer",
 		"body": [
-			"$frase = 'Eu não sei PHP';",
-			"$pesquisa = 'sei PHP'",
-			"if (strpos($frase, $pesquisa) === true) {",
-			"\t// Código caso encontre...",
-			"}"
+            "function startTimer(duration, display) {",
+            "\tvar timer = duration, seconds;",
+            "\tlet interval = setInterval(function () {",
+            "\tseconds = parseInt(timer % 60, 10);",
+            "\tdisplay.textContent = seconds;",
+            "\t\tif (--timer < 0) {",
+            "\t\t\tclearInterval(interval);",
+            "\t\t\twindow.location.href = \"<?php echo (isset($_SESSION['last']) ? $_SESSION['last'] : URL); ?>\";",
+            "\t\t}",
+            "\t}, 1000);",
+            "}",
+            "",
+            "window.onload = function () {",
+            "\tstartTimer(5, document.querySelector('#time'))",
+            "}"
 		],
-		"description": "Check if string contains some word"
+		"description": "Show regressive count on element"
 	}
 }
