@@ -48,7 +48,13 @@ progressbar_elapsed_color = "white"
 statusbar_color = "white"
 
 # Others
-execute_on_song_change = notify-send -h int:transient:1 -i "${HOME}/.local/share/icons/elementary/audio-speakers.png" "$(mpc current)"
+
+# Permanente
+execute_on_song_change = notify-send -i "${HOME}/.local/share/icons/elementary/audio-speakers.png" "$(mpc current)"
+
+# Temporária
+#execute_on_song_change = notify-send -h int:transient:1 -i "${HOME}/.local/share/icons/elementary/audio-speakers.png" "$(mpc current)"
+
 empty_tag_marker=" -- NENHUMA TAG -- "
 song_window_title_format = "ncmpcpp: %a - %t"
 search_engine_display_mode = "columns"
