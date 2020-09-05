@@ -1,21 +1,11 @@
 {
-	"jQuery AJAX": {
-		"prefix": "ajax",
+	"Tags META": {
+		"prefix": "metaname",
 		"body": [
-			"$.ajax({",
-            "\turl: 'page.php',",
-            "\tmethod: 'POST',",
-            "\tcontext: document.body,",
-            "\tdata: { id : menuId },",
-            "\tdataType: 'json'",
-            "}).done(function() {",
-            "\t$( this ).addClass('done');",
-            "}).fail(function() {",
-            "\talert('error');",
-            "}).always(function() {",
-            "\talert('complete');",
-            "});"
+			"<meta name=\"description\" content=\"Free Web tutorials\">",
+            "<meta name=\"keywords\" content=\"HTML, CSS, JavaScript\">",
+            "<meta name=\"author\" content=\"John Doe\">"
 		],
-		"description": "jQuery AJAX Example"
+		"description": "Tags Meta mais comuns"
 	}
 }
