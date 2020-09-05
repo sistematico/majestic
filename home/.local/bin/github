@@ -14,6 +14,7 @@
 nome="GitHub"
 dir="${HOME}/github"
 repos=(
+	'pagseguro'
     'beats'
     'php-text-counter'
     'dotfiles'
