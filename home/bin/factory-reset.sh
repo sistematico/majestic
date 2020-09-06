@@ -16,7 +16,7 @@ pacman -D --asdeps $(pacman -Qqe)
 
 # Mark specified packages as explicit
 #pacman -D --asexplicit base linux linux-firmware efibootmgr intel-ucode lvm2 dhcpcd xorg-server nvidia xorg-xinit bspwm sxhkd git
-pacman -D --asexplicit base linux linux-firmware efibootmgr intel-ucode lvm2 dhcpcd
+pacman -D --asexplicit base linux linux-firmware efibootmgr intel-ucode lvm2 nano dhcpcd grub grub-theme-vimix
 
 # Remove all except explicit packages
 # Note: The arguments -Qt list only true orphans. 
