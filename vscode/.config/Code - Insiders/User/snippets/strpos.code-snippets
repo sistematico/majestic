@@ -1,9 +1,0 @@
-{
-	"strpos": {
-		"prefix": "strpos",
-		"body": [
-			"if (strpos($_SERVER['REQUEST_URI'], 'conta/cadastro') !== false) { ... }"
-		],
-		"description": "Check if string contains some word"
-	}
-}

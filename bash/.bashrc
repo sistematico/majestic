@@ -89,6 +89,6 @@ if [ -f /usr/share/undistract-me/long-running.bash ]; then
     notify_when_long_running_commands_finish_install
 fi
 
-fortune chucknorris
-echo
+#fortune chucknorris
+#echo
 
