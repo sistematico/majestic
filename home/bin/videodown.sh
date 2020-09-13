@@ -41,7 +41,8 @@ cd $dir
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
+	#$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
+	notify-send -h int:transient:1 -i "$icone" "Video Down" "O link é inválido!"
     exit
 else
 	titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
@@ -63,7 +64,8 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
-$HOME/bin/notify.sh "$nome" "Início: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
+#$HOME/bin/notify.sh "$nome" "Início: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
+notify-send -h int:transient:1 -i "$icone" "Video Down" "Início: <b>$titulo</b>"
 
 if [ $aria == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
@@ -80,10 +82,12 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$logs"
     echo "Path:         $dir" >> "$logs"
 
-    $HOME/bin/notify.sh "$nome" "Erro: <b>$titulo</b>" "$nome" "$icone"
+    #$HOME/bin/notify.sh "$nome" "Erro: <b>$titulo</b>" "$nome" "$icone"
+	notify-send -h int:transient:1 -i "$icone" "Video Down" "Erro: <b>$titulo</b>"
     exit
 fi
 
-$HOME/bin/notify.sh "$nome" "Sucesso: <b>$titulo</b>" "$nome" "$icone"
+#$HOME/bin/notify.sh "$nome" "Sucesso: <b>$titulo</b>" "$nome" "$icone"
+notify-send -h int:transient:1 -i "$icone" "Video Down" "Sucesso: <b>$titulo</b>"
 exit
 
