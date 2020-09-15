@@ -11,7 +11,7 @@
 # Criado em: 20/12/2017 19:27:31
 # Última Atualização: 06/05/2019 12:51:21
 
-nome="GitLab"
+nome="GitLab.sh"
 dir="${HOME}/gitlab"
 repos=('pushstate' 'stream-player' 'stream-player-min' 'feriados' 'single')
 icone="${HOME}/.local/share/icons/elementary/gitlab.svg"
@@ -20,9 +20,10 @@ som="complete"
 detectax() {
 	if xset q &>/dev/null; then
 		#$HOME/bin/notify.sh "$1" "$2"
-		notify-send -i $icone "$1" "$2"
+		#notify-send -i $icone "$1" "$2"
+		notify-send -h int:transient:1 -i "$icone" "$nome" "$1"
 	else
-		echo "${1}: $2"
+		echo "${nome}: $2"
 	fi
 }
 
@@ -39,13 +40,13 @@ atualiza() {
 				git commit -m "$m"
 				git push
 				if [ "$?" == 0 ]; then
-					detectax $nome "Repo <b>$(basename $1)</b> atualizado."
+					detectax "Repo <b>$(basename $1)</b> atualizado."
 					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
 				else
 					if [ ! -f /tmp/git-cron.error ]; then
 						icone="${HOME}/.local/share/icons/elementary/network-error.png"
 						som="dialog-warning"
-						detectax $nome "Erro ao atualizar <b>$(basename $1)</b>."
+						detectax "Erro ao atualizar <b>$(basename $1)</b>."
 						touch /tmp/gitlab.error
 					fi
 				fi
