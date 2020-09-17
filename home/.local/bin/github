@@ -30,7 +30,7 @@ repos=(
     'php-mvc-lite'
     'mudancaonline'
     'mudancaonlineapp'
-    'startpage'
+    'startpages'
     'clima'
     'conversero'
     'zen'
