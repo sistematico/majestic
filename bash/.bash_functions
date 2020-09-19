@@ -31,6 +31,13 @@ function mma() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@"
 }
 
+# rsync
+function fullsync() {
+	[ ! -d $HOME/vps/$1 ] && mkdir -p $HOME/vps/$1
+	
+}
+
+
 # mp3
 bitrate () {
     echo `basename "$1"`: `file "$1" | sed 's/.*, \(.*\)kbps.*/\1/' | tr -d " " ` kbps
