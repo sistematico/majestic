@@ -1,6 +1,5 @@
 FROM php:fpm
-#RUN apt-get update && apt-get install curl libonig-dev libpng-dev libzip-dev sed -y
-RUN apt-get update && apt-get install curl libpng-dev libzip-dev sed -y
+RUN apt-get update && apt-get install curl libonig-dev libpng-dev libzip-dev sed -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install mbstring pdo pdo_mysql gd zip
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
