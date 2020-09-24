@@ -47,6 +47,7 @@
 #25 6 * * * DISPLAY=:0 canberra-gtk-play -i phone-incoming-call 2>&1
 
 # Git Cron (add, commit, push automático)
+#*/1 * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /home/lucas/.local/bin/github >/dev/null 2>&1
 #*/15 * * * * DISPLAY=:0 bash -c "~/.local/bin/github" > /dev/null 2>&1
 #*/5 * * * * DISPLAY=:0 bash -c "~/.local/bin/gitlab" > /dev/null 2>&1
 
