@@ -5,6 +5,9 @@
 ######################
 # GNOME              #
 ######################
+# Center new windows
+gsettings set org.gnome.mutter center-new-windows true
+
 # Numlock ON
 #gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
