@@ -41,6 +41,7 @@ remoto="nginx@hera"
 dotfiles=1
 icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
+#notifyargs="-h int:transient:1"
 
 atualiza() {
 	if [ -d $1 ]; then
@@ -55,12 +56,12 @@ atualiza() {
 				git push
 				if [ "$?" == 0 ]; then
 					#DISPLAY=:0 $HOME/bin/notify.sh "$nome" "Repo <b>$(basename $1)</b> atualizado." "$nome" "$icone"
-					notify-send -h int:transient:1 -i "$icone" "$nome" "Repo <b>$(basename $1)</b> atualizado."
+					notify-send $notifyargs -i "$icone" "$nome" "Repo <b>$(basename $1)</b> atualizado."
 					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
 				else
 					if [ ! -f /tmp/git-cron.error ]; then
 						icone="${HOME}/.local/share/icons/elementary/network-error.png"
-						notify-send -h int:transient:1 -i "$icone" "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
+						notify-send $notifyargs -i "$icone" "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
 						touch /tmp/git-cron.error
 					fi
 				fi
