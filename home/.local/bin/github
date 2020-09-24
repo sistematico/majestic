@@ -41,6 +41,8 @@ remoto="nginx@hera"
 dotfiles=1
 icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
+
+# Notificações temporárias
 #notifyargs="-h int:transient:1"
 
 atualiza() {
@@ -55,7 +57,6 @@ atualiza() {
 				git commit -m "$m"
 				git push
 				if [ "$?" == 0 ]; then
-					#DISPLAY=:0 $HOME/bin/notify.sh "$nome" "Repo <b>$(basename $1)</b> atualizado." "$nome" "$icone"
 					notify-send $notifyargs -i "$icone" "$nome" "Repo <b>$(basename $1)</b> atualizado."
 					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
 				else
