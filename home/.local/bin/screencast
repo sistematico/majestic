@@ -54,7 +54,7 @@ then
 
     NEWPID=$(/bin/cat /tmp/videodown.pid)
 
-    notify-send -i $ICONE "ScreenCast" "ScreenCast terminado, matando os processos: $(list_descendants $NEWPID)"
+    notify-send -h int:transient:1 -i $ICONE "ScreenCast" "ScreenCast terminado, matando os processos: $(list_descendants $NEWPID)"
     kill -QUIT $(list_descendants $NEWPID)
     #kill -TERM $NEWPID
     sleep 2

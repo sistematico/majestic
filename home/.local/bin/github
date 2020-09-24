@@ -61,7 +61,6 @@ atualiza() {
 					if [ ! -f /tmp/git-cron.error ]; then
 						icone="${HOME}/.local/share/icons/elementary/network-error.png"
 						notify-send -h int:transient:1 -i "$icone" "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
-						#DISPLAY=:0 $HOME/bin/notify.sh "$nome" "Erro ao atualizar <b>$(basename $1)</b>." "$nome" "$icone"
 						touch /tmp/git-cron.error
 					fi
 				fi
