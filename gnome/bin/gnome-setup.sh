@@ -18,6 +18,19 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize
 gsettings set org.gnome.mutter center-new-windows true
 
 ######################
+# Theme              #
+######################
+
+# GTK
+gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+
+# Icon
+# gsettings set org.gnome.desktop.interface icon-theme "Gnome"
+
+# Shell
+# gsettings set org.gnome.desktop.wm.preferences theme ""
+
+######################
 # Nautilus           #
 ######################
 # Always show text-entry location
