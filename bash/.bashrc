@@ -28,7 +28,8 @@ export HISTCONTROL=ignoredups:erasedups
 
 # Generate history for session
 #export PROMPT_COMMAND="history -a ; history -c ; history -r ; $PROMPT_COMMAND"
-export PROMPT_COMMAND="history -a && history -c && history -r && $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -a && history -c && history -r && $PROMPT_COMMAND"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Size
 export HISTSIZE=10000
