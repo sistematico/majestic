@@ -27,7 +27,7 @@ shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 
 # Generate history for session
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a ; history -c ; history -r ; $PROMPT_COMMAND"
 
 # Size
 export HISTSIZE=10000
