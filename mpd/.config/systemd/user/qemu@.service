@@ -1,0 +1,13 @@
+[Unit]
+Description=QEMU Virtual Machine
+
+[Service]
+Environment="haltcmd=kill -INT $MAINPID"
+EnvironmentFile=%h/.qemu/conf.d/%i
+#ExecStart=/usr/bin/qemu-system-x86_64 -name %i -enable-kvm -m 512 -nographic $args
+ExecStart=/usr/bin/qemu-system-x86_64 -name %i -enable-kvm -m 2G $args
+ExecStop=/usr/bin/bash -c ${haltcmd}
+ExecStop=/usr/bin/bash -c 'while nc localhost 7100; do sleep 1; done'
+
+[Install]
+WantedBy=multi-user.target
