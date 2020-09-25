@@ -62,7 +62,7 @@ twitch() {
  }
 
 # mpc
-mpcreload () {
+mpcr () {
 	if [ $1 ]; then
 		mpc rm $1
 		mpc save $1
@@ -70,6 +70,10 @@ mpcreload () {
 		mpc load $1
 		mpc play
 	fi
+}
+
+mpcl () {
+	$HOME/bin/mpc.sh
 }
 
 sudo() {
