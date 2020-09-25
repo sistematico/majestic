@@ -66,6 +66,9 @@ mpcreload () {
 	if [ $1 ]; then
 		mpc rm $1
 		mpc save $1
+		mpc clear
+		mpc load $1
+		mpc play
 	fi
 }
 
