@@ -17,6 +17,7 @@ src/
 mpd.pid
 mpd.state
 mpd.db
+mpd.log
 
 .vscode
 
