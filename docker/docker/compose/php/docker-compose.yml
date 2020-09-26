@@ -7,7 +7,7 @@ services:
         ports:
             - "9000:9000"
         build:
-            context: ../../dockerfile/single-lemp/
+            context: ../../dockerfile/
             dockerfile: php
         volumes:
             - ~/github:/code
