@@ -36,6 +36,7 @@ repos=(
     'zen'
     'somdomato'
     'lucasbrum'
+	'pushstate'
 )
 remoto="nginx@hera"
 dotfiles=1
