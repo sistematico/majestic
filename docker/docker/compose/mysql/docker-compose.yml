@@ -16,3 +16,16 @@ services:
             - MYSQL_ROOT_PASSWORD=senha
             - MYSQL_DATABASE=app
         restart: unless-stopped
+        
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        depends_on:
+            - mysql
+        ports:
+            - "8082:80"
+        volumes:
+            - ~/docker/confs/phpmyadmin/phpmyadmin.php:/etc/phpmyadmin/config.user.inc.php
+        environment:
+            - PMA_HOST=mysql
+        restart: unless-stopped
