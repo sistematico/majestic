@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
     portainer:
@@ -8,11 +8,7 @@ services:
         ports:
             - "8080:9000"
         volumes:
-            # Linux
             - /opt/portainer/data:/data
-            # Windows
-            #- C:\ProgramData\Portainer:/data
             - /var/run/docker.sock:/var/run/docker.sock
-
-volumes:
-    portainer_data:
+    volumes:
+        portainer_data:
