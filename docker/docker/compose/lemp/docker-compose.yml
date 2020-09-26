@@ -22,7 +22,7 @@ services:
         ports:
             - "9000:9000"
         build:
-            context: ../../dockerfile/lemp/
+            context: ../../dockerfile/
             dockerfile: php
         volumes:
             - ~/github:/code
@@ -39,7 +39,7 @@ services:
         ports:
             - "3306:3306"
         build:
-            context: ../../dockerfile/lemp/
+            context: ../../dockerfile/
             dockerfile: mysql
         volumes:
             - ~/docker/data/mysql:/var/lib/mysql
