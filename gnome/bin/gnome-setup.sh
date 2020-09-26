@@ -8,6 +8,9 @@
 # Center new windows
 gsettings set org.gnome.mutter center-new-windows true
 
+# Don't open folder on drag-n-drop
+gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false
+
 # Numlock ON
 #gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
