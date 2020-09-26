@@ -53,7 +53,7 @@ statusbar_color = "white"
 #execute_on_song_change = notify-send -i "${HOME}/.local/share/icons/elementary/audio-speakers.png" "$(mpc current)"
 
 # Temporária
-execute_on_song_change = notify-send -h int:transient:1 -i "${HOME}/.local/share/icons/elementary/audio-speakers.png" "$(mpc current)"
+execute_on_song_change = notify-send -h int:transient:1 -i "${HOME}/.local/share/icons/elementary/audio-speakers.png" "ncmpcpp" "$(mpc current)"
 
 empty_tag_marker=" -- NENHUMA TAG -- "
 song_window_title_format = "ncmpcpp: %a - %t"
