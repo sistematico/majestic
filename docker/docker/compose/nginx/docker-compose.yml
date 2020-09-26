@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ~/github:/code
+            - ~/docker/confs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
+            - ~/docker/certs:/etc/ssl/nginx
+        restart: unless-stopped
