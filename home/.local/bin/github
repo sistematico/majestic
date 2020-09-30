@@ -37,6 +37,7 @@ repos=(
     'somdomato'
     'lucasbrum'
 	'pushstate'
+	'php-pagination'
 )
 remoto="nginx@hera"
 dotfiles=1
