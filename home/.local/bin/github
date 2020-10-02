@@ -45,7 +45,7 @@ icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
 
 # Notificações temporárias
-#notifyargs="-h int:transient:1"
+notifyargs="-h int:transient:1"
 
 atualiza() {
 	if [ -d $1 ]; then
