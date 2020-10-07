@@ -12,6 +12,7 @@ services:
             dockerfile: mysql
         volumes:
             - ~/docker/data/mysql:/var/lib/mysql
+            - ~/docker/confs/mysql/conf.d:/etc/mysql/conf.d
         environment:
             - MYSQL_ROOT_PASSWORD=senha
             - MYSQL_DATABASE=app
