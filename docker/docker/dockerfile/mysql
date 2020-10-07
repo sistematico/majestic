@@ -1,2 +1,5 @@
 FROM mysql:latest
+
+COPY ../confs/mysql.sql /docker-entrypoint-initdb.d/
+
 RUN sed -ri 's/^mysql:x:999:999:/mysql:x:1000:1000:/' /etc/passwd
