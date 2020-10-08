@@ -14,6 +14,7 @@ services:
             - ~/docker/data/mysql:/var/lib/mysql
             - ~/docker/confs/mysql/conf.d:/etc/mysql/conf.d
         environment:
+            - DB_HOST=mysql
             - MYSQL_ROOT_PASSWORD=senha
             - MYSQL_DATABASE=app
         restart: unless-stopped
