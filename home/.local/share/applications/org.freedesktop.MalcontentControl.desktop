@@ -1,0 +1,39 @@
+[Desktop Entry]
+Name[ar]=أدوات الإشراف العائلي
+Name[es]=Controles parentales
+Name[fr]=Contrôles parentaux
+Name[hi]=पैरेंटल कंट्रोल 
+Name[id]=Pengawasan Orang Tua
+Name[pl]=Kontrola rodzicielska
+Name[pt_BR]=Controle parental
+Name[uk]=Батьківський контроль
+Name[zh_TW]=分級控制
+Name=Parental Controls
+Comment[ar]=قُم بضبط الإشراف العائلي ومراقبة الاستخدام بواسطة المستخدمين
+Comment[es]=Establezca controles parentales y supervise el uso por parte de los usuarios
+Comment[fr]=Configurer les contrôles parentaux et surveiller l'usage par les utilisateurs
+Comment[hi]=पैरेंटल नियंत्रण सेट करें और यूजर द्वारा प्रयोग को मॉनीटर करें
+Comment[id]=Tata kontrol orangtua dan pantau pemakaian oleh pengguna
+Comment[pl]=Kontrola rodzicielska i monitorowanie użycia
+Comment[pt_BR]=Defina o controle parental e monitore o uso por usuários
+Comment[uk]=Встановити батьківський контроль і стежити за користувачами
+Comment[zh_TW]=設定分級控制和監視使用者的使用情況
+Comment=Set parental controls and monitor usage by users
+Exec=malcontent-control
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=org.freedesktop.MalcontentControl
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;System;
+StartupNotify=true
+# Translators: Search terms to find this application. Do NOT translate or localise the semicolons! The list MUST also end with a semicolon!
+Keywords[ar]=إعدادات التحكم الأبوي؛ الوقت الذي يقضى بمشاهدة الشاشة؛ القيود الخاصة بالتطبيقات؛ القيود الخاصة بمتصفحات الإنترنت؛ فتح خدمة تقارير مؤتمتة؛ الاستخدام؛ حدود الاستخدام؛ الطفل؛ الطفل؛    
+Keywords[es]=controles parentales;tiempo ante pantalla;restricciones de las aplicaciones;restricciones del navegador web;oars;uso;límite de uso;niño;hijo;infantil;
+Keywords[fr]=contrôles parentaux;temps d'écran;restrictions d'application;restrictions de navigateur web;oars;usage;limite d'usage;enfant;enfant
+Keywords[hi]=अभिभावक नियंत्रण; स्क्रीन समय; ऐप प्रतिबंध; वेब ब्राउज़र पर प्रतिबंध; ऑर्स; उपयोग; उपयोग की सीमा; बच्चा;
+Keywords[id]=kontrol orang tua;waktu layar;pembatasan aplikasi;pembatasan peramban web;oars;penggunaan;batas penggunaan;anak;
+Keywords[pl]=kontrola rodzicielska;ograniczanie;restrykcje;ograniczenia programów;ograniczenia aplikacji;ograniczenia przeglądarki internetowej;www;oars;użycie;użytek;czas korzystania;limit korzystania;dziecko;dzieciak;dzieci;children;kids;
+Keywords[pt_BR]=controle parental;controle dos pais;parental controls;tempo de tela;screen time;restrições de aplicativos;app restrictions;restrições de navegador web;web browser restrictions;oars;uso;usage;limite de uso;usage limit;criança;kid;filho;filha;child;
+Keywords[uk]=parental controls;screen time;app restrictions;web browser restrictions;oars;usage;usage limit;kid;child;батьківський контроль;час за комп'ютером;обмеження програм;обмеження інтернету;користування;використання;обмеження користування;дитина;дитячий;
+Keywords[zh_TW]=分級控制;電腦使用時間;應用程式限制;網頁瀏覽器限制;oars;使用;使用限制;小孩;兒童;
+Keywords=parental controls;screen time;app restrictions;web browser restrictions;oars;usage;usage limit;kid;child;
