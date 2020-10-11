@@ -24,6 +24,12 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize
 gsettings set org.gnome.mutter center-new-windows true
 
 ######################
+# Evolution          #
+######################
+#dconf write /org/gnome/evolution/mail/composer-no-signature-delim false
+gsettings set org.gnome.evolution.mail composer-no-signature-delim false
+
+######################
 # Theme              #
 ######################
 
