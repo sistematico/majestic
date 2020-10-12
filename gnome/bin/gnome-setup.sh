@@ -26,8 +26,7 @@ gsettings set org.gnome.mutter center-new-windows true
 ######################
 # Evolution          #
 ######################
-#dconf write /org/gnome/evolution/mail/composer-no-signature-delim false
-gsettings set org.gnome.evolution.mail composer-no-signature-delim false
+gsettings set org.gnome.evolution.mail composer-no-signature-delim true
 
 ######################
 # Theme              #
