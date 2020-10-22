@@ -42,12 +42,11 @@ query_string=(${url_real//[=&]/ })
 
 for x in "${!query_string[@]}"; 
 do 
-	#echo $x
-	nome="${query_string[$x]}"
-
-	if [[ "$nome" == "ixid" ]]; then
+	
+	if [[ "${query_string[$x]}" == "ixid" ]]; then
+		id=$((x+1))
 		#echo ${query_string[$x+1]}
-		echo ${query_string[$x]}
+		echo ${query_string[$id]}
 		#printf "[%s]=%s\n" "$x" "${query_string[$x]}"
 	fi
 done
