@@ -53,16 +53,10 @@ if [ ! -z "$id" ] || [ ! -z $id ]; then
 	arquivo="${dir}/unsplash-${id}.jpg"
 fi
 
-echo $id
-
 if [ "$1" == "-d" ]; then
-	#wget -q -p "$dir" -O - "$url" 2>&1 | grep "Content-Disposition:" | tail -1 | awk -F"filename=" '{print $2}'
-	wget -q -p "$dir" "$url"
-
 	ls -t1 "$dir" | head -n 1
-	#curl -L -s "$url" > $arquivo
-	#curl -O -J -L $url
-	#echo $arquivo > ~/.unsplash
+	curl -L -s "$url_real" > $arquivo
+	echo $arquivo > ~/.unsplash
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
 	[ -f $arquivo ] && echo $arquivo > ~/.unsplash
