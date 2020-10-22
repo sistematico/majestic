@@ -28,6 +28,19 @@ clean=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
+function setWallpaper() {
+	if [ -f "$1" ]; then
+		if [ "$DESKTOP_SESSION" == "mate" ]; then 
+			gsettings set org.mate.background picture-filename "$arquivo"
+		elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
+			wallpaper="file://${arquivo}"
+			gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
+		else
+			which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
+		fi  
+	fi
+}
+
 if [ "$1" != "--flush" ] && [ $clean == 1 ]; then
     if [ $(ls -1 $dir | wc -l) -gt $max ]; then
 	    echo "Mais que $max"
@@ -65,19 +78,4 @@ elif [ "$1" == "--random" ]; then
 	[ -f "$arquivo" ] && echo "$arquivo" > ${HOME}/.unsplash
 elif [ "$1" == "--flush" ]; then
 	rm -f $dir/*
-fi
-
-if [ -f ~/.unsplash ]; then
-	arquivo=$(cat ~/.unsplash)
-fi
-
-if [ -f "$arquivo" ]; then
-	if [ "$DESKTOP_SESSION" == "mate" ]; then 
-   		gsettings set org.mate.background picture-filename "$arquivo"
-	elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
-		wallpaper="file://${arquivo}"
-        gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
-	else
-   		which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
-    fi  
 fi
