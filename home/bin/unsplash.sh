@@ -41,8 +41,7 @@ url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
 query_string=(${url_real//[=&]/ })
 
 for x in "${!query_string[@]}"; 
-do 
-	
+do 	
 	if [[ "${query_string[$x]}" == "ixid" ]]; then
 		x=$((x+1))
 		id=${query_string[$id]}
@@ -50,25 +49,14 @@ do
 	fi
 done
 
-	#for ((i=0; i<${#query_string[@]}; i+=2))
-	#do
-	#	next=$((i+1))
-	#	echo $query_string[i]
-		#if [ $query_string[i] == 'ixid' ]; then
-    	#	declare var_${query_string[i]}=${query_string[$next]}
-		#fi
+if [ -z "$id" ] || [ -z $id ]; then
+	echo "ID não encontrado, abortando."
+	exit 1
+fi
 
-	#done
-
-
-#echo $var_ixid
+echo $id
 
 if [ "$1" == "-d" ]; then
-	for ((i=0; i<${#query_string[@]}; i+=2))
-	do
-    	declare var_${query_string[i]}=${query_string[i+1]}
-	done
-
 	#wget -q -p "$dir" -O - "$url" 2>&1 | grep "Content-Disposition:" | tail -1 | awk -F"filename=" '{print $2}'
 	wget -q -p "$dir" "$url"
 
