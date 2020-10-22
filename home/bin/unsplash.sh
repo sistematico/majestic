@@ -42,9 +42,11 @@ query_string=(${url_real//[=&]/ })
 
 for x in "${!query_string[@]}"; 
 do 
-	if [ $x == 'ixid' ]; then
+	echo $x
+	echo ${query_string[$x]}
+	#if [ $x == 'ixid' ]; then
 		printf "[%s]=%s\n" "$x" "${query_string[$x]}"
-	fi
+	#fi
 done
 
 	#for ((i=0; i<${#query_string[@]}; i+=2))
@@ -58,7 +60,7 @@ done
 	#done
 
 
-echo $var_ixid
+#echo $var_ixid
 
 if [ "$1" == "-d" ]; then
 	for ((i=0; i<${#query_string[@]}; i+=2))
