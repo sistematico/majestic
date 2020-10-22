@@ -83,9 +83,14 @@ if [ "$1" == "--download" ]; then
 	fi
 
 	curl -L -s "$url_real" > $arquivo
+
+	setWallpaper "$arquivo"
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
-	[ -f "$arquivo" ] && echo "$arquivo" > ${HOME}/.unsplash
-elif [ "$1" == "--flush" ]; then
-	rm -f $dir/*
+	
+	write "$arquivo"
+
+	setWallpaper "$arquivo"
+#elif [ "$1" == "--flush" ]; then
+	#rm -f $dir/*
 fi
