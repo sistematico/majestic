@@ -37,7 +37,7 @@ if [ "$1" == "-d" ]; then
 	#wget -q -p "$dir" -O - "$url" 2>&1 | grep "Content-Disposition:" | tail -1 | awk -F"filename=" '{print $2}'
 	wget -q -p "$dir" -O - "$url"
 
-	ls -t1 $dir | head -n 1
+	ls -t1 "$dir" | head -n 1
 	#curl -L -s "$url" > $arquivo
 	#curl -O -J -L $url
 	#echo $arquivo > ~/.unsplash
