@@ -47,6 +47,7 @@ do
 	declare var_${query_string[i]}=${query_string[i+1]}
 done
 
+
 echo $var_ixid
 
 if [ "$1" == "-d" ]; then
