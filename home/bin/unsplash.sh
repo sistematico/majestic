@@ -6,6 +6,10 @@
 #
 # Criado em: 20/12/2017 19:27:31 
 # Última Atualização: 03/05/2018 17:36:08
+#
+# Créditos:
+# - https://unix.stackexchange.com/a/366655
+# - https://stackoverflow.com/a/3077316
 
 which wget >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
@@ -40,6 +44,8 @@ if [ "$1" == "-d" ]; then
 	do
     	declare var_${query_string[i]}=${query_string[i+1]}
 	done
+
+	https://unix.stackexchange.com/a/366655
 
 	#wget -q -p "$dir" -O - "$url" 2>&1 | grep "Content-Disposition:" | tail -1 | awk -F"filename=" '{print $2}'
 	wget -q -p "$dir" "$url"
