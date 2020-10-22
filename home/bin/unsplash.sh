@@ -10,6 +10,8 @@
 # Créditos:
 # - https://unix.stackexchange.com/a/366655
 # - https://stackoverflow.com/a/3077316
+# - https://stackoverflow.com/a/3919908
+# - https://stackoverflow.com/a/27671738
 
 which wget >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
@@ -38,14 +40,14 @@ url="https://source.unsplash.com/${x}x${y}/?nature,water"
 url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
 query_string=(${url_real//[=&]/ })
 
+for x in "${!array[@]}"; do printf "[%s]=%s\n" "$x" "${array[$x]}" ; done
+
 
 if [ "$1" == "-d" ]; then
 	for ((i=0; i<${#query_string[@]}; i+=2))
 	do
     	declare var_${query_string[i]}=${query_string[i+1]}
 	done
-
-	https://unix.stackexchange.com/a/366655
 
 	#wget -q -p "$dir" -O - "$url" 2>&1 | grep "Content-Disposition:" | tail -1 | awk -F"filename=" '{print $2}'
 	wget -q -p "$dir" "$url"
