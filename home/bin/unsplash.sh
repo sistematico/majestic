@@ -44,10 +44,9 @@ for x in "${!query_string[@]}";
 do 
 	
 	if [[ "${query_string[$x]}" == "ixid" ]]; then
-		id=$((x+1))
-		#echo ${query_string[$x+1]}
-		echo ${query_string[$id]}
-		#printf "[%s]=%s\n" "$x" "${query_string[$x]}"
+		x=$((x+1))
+		id=${query_string[$id]}
+		break
 	fi
 done
 
