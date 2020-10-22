@@ -28,7 +28,7 @@ clean=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
-function setWallpaper() {
+setWallpaper() {
 	if [ -f "$1" ]; then
 		if [ "$DESKTOP_SESSION" == "mate" ]; then 
 			gsettings set org.mate.background picture-filename "$1"
@@ -41,7 +41,15 @@ function setWallpaper() {
 	fi
 }
 
-function flush() {
+read() {
+	arquivo="$(cat ${HOME}/.unsplash)"
+}
+
+write() {
+	echo "$1" > ${HOME}/.unsplash
+}
+
+flush() {
 	if [ $(ls -1 $dir | wc -l) -gt $max ]; then
 		echo "Mais que $max"
 		echo "Apagando o último: $(ls -Lt1 $dir | tail -1)"
@@ -74,9 +82,7 @@ if [ "$1" == "--download" ]; then
 		exit 1
 	fi
 
-	#ls -t1 "$dir" | head -n 1
 	curl -L -s "$url_real" > $arquivo
-	echo $arquivo > ~/.unsplash
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
 	[ -f "$arquivo" ] && echo "$arquivo" > ${HOME}/.unsplash
