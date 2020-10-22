@@ -40,7 +40,7 @@ url="https://source.unsplash.com/${x}x${y}/?nature,water"
 url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
 query_string=(${url_real//[=&]/ })
 
-for x in "${!array[@]}"; do printf "[%s]=%s\n" "$x" "${array[$x]}" ; done
+for x in "${!query_string[@]}"; do printf "[%s]=%s\n" "$x" "${query_string[$x]}" ; done
 
 
 if [ "$1" == "-d" ]; then
