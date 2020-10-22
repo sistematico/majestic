@@ -43,12 +43,13 @@ query_string=(${url_real//[=&]/ })
 for x in "${!query_string[@]}"; 
 do 
 	#echo $x
-	nome=${query_string[$x]}
-	if [ "$nome" = "ixid" ]; then
+	nome="${query_string[$x]}"
+
+	if [[ "$nome" == "ixid" ]]; then
 		#echo ${query_string[$x+1]}
 		echo ${query_string[$x]}
 		#printf "[%s]=%s\n" "$x" "${query_string[$x]}"
-	#fi
+	fi
 done
 
 	#for ((i=0; i<${#query_string[@]}; i+=2))
