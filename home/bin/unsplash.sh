@@ -82,7 +82,9 @@ if [ "$1" == "--download" ]; then
 		exit 1
 	fi
 
-	curl -L -s "$url_real" > $arquivo
+	curl -L -s "$url_real" > "$arquivo"
+
+	write "$arquivo"
 
 	setWallpaper "$arquivo"
 elif [ "$1" == "--random" ]; then
