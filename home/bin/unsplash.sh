@@ -26,6 +26,11 @@ y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
 max=10
 clean=1
 
+# Unset
+url= 
+url_real= 
+query_string=
+
 [ ! -d $dir ] && mkdir -p $dir
 
 setWallpaper() {
