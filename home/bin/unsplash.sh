@@ -36,6 +36,21 @@ if [ "$1" != "--flush" ] && [ $clean == 1 ]; then
     fi
 fi
 
+if [ "$1" == "--download" ]; then
+	ls -t1 "$dir" | head -n 1
+	curl -L -s "$url_real" > $arquivo
+	echo $arquivo > ~/.unsplash
+elif [ "$1" == "--random" ]; then
+	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
+	[ -f $arquivo ] && echo $arquivo > ~/.unsplash
+elif [ "$1" == "--flush" ]; then
+	rm -f $dir/*
+else
+	if [ -f ~/.unsplash ]; then
+		arquivo=$(cat ~/.unsplash)
+	fi
+fi
+
 url="https://source.unsplash.com/${x}x${y}/?nature,water"
 url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
 query_string=(${url_real//[=&]/ })
@@ -68,7 +83,7 @@ else
 	fi
 fi
 
-if [ -f $arquivo ]; then
+if [ -f "$arquivo" ]; then
 	if [ "$DESKTOP_SESSION" == "mate" ]; then 
    		gsettings set org.mate.background picture-filename "$arquivo"
 	elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
