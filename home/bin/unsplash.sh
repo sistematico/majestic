@@ -26,11 +26,6 @@ y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
 max=10
 clean=1
 
-# Unset
-url= 
-url_real= 
-query_string=
-
 [ ! -d $dir ] && mkdir -p $dir
 
 setWallpaper() {
@@ -73,35 +68,11 @@ fi
 if [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
-	url="https://source.unsplash.com/${x}x${y}/?nature,water"
-	url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
-	query_string=(${url_real//[=&]/ })
-
-	for x in "${!query_string[@]}"; 
-	do 	
-		if [[ "${query_string[$x]}" == "ixid" ]]; then
-			x=$((x+1))
-			id=${query_string[$x]}
-			break
-		fi
-	done
-
-	if [ ! -z "$id" ] || [ ! -z $id ]; then
-		arquivo="${dir}/unsplash-${id}.jpg"
-	else
-		echo "Erro ao encontrar ID, abortando..."
-		exit 1
-	fi
-
 	curl -L -s "$url_real" > "$arquivo"
-
 	write "$arquivo"
-
 	setWallpaper "$arquivo"
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
-	
 	write "$arquivo"
-
 	setWallpaper "$arquivo"
 fi
