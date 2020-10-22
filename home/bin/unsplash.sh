@@ -23,7 +23,7 @@ dir="${HOME}/img/unsplash"
 arquivo="${dir}/${nome}.jpg"
 x=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $3}')
 y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
-max=100
+max=10
 clean=1
 
 [ ! -d $dir ] && mkdir -p $dir
@@ -31,22 +31,26 @@ clean=1
 function setWallpaper() {
 	if [ -f "$1" ]; then
 		if [ "$DESKTOP_SESSION" == "mate" ]; then 
-			gsettings set org.mate.background picture-filename "$arquivo"
+			gsettings set org.mate.background picture-filename "$1"
 		elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
-			wallpaper="file://${arquivo}"
+			wallpaper="file://${1}"
 			gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
 		else
-			which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
+			which feh >/dev/null 2>&1 && { feh --bg-fill "$1"; }
 		fi  
 	fi
 }
 
-if [ "$1" != "--flush" ] && [ $clean == 1 ]; then
-    if [ $(ls -1 $dir | wc -l) -gt $max ]; then
-	    echo "Mais que $max"
-	    echo "Apagando o último: $(ls -Lt1 $dir | tail -1)"
-	    rm "$dir/$(ls -Lt1 $dir | tail -1)"
-    fi
+function flush() {
+	if [ $(ls -1 $dir | wc -l) -gt $max ]; then
+		echo "Mais que $max"
+		echo "Apagando o último: $(ls -Lt1 $dir | tail -1)"
+		rm "$dir/$(ls -Lt1 $dir | tail -1)"
+	fi
+}
+
+if [ "$1" == "--flush" ] || [ $clean == 1 ]; then
+	flush
 fi
 
 if [ "$1" == "--download" ]; then
