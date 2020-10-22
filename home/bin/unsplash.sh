@@ -28,7 +28,7 @@ clean=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
-setWallpaper() {
+wall() {
 	if [ -f "$1" ]; then
 		if [ "$DESKTOP_SESSION" == "mate" ]; then 
 			gsettings set org.mate.background picture-filename "$1"
@@ -41,37 +41,22 @@ setWallpaper() {
 	fi
 }
 
-read() {
-	arquivo="$(cat ${HOME}/.unsplash)"
-}
-
-write() {
-	echo "$1" > ${HOME}/.unsplash
-}
-
 flush() {
 	if [ $(ls -1 $dir | wc -l) -gt $max ]; then
-		echo "Mais que $max"
-		echo "Apagando o último: $(ls -Lt1 $dir | tail -1)"
 		rm "$dir/$(ls -Lt1 $dir | tail -1)"
 	fi
 }
 
-clean() {
-	rm -f "${dir}/*.jpg"
-}
+clean() { rm -f "${dir}/*.jpg" }
 
-if [ $clean == 1 ]; then
-	flush
-fi
+[ $clean == 1 ] && flush
 
 if [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
 	curl -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
-	setWallpaper "$arquivo"
+	wall "$arquivo"
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
-	#write "$arquivo"
-	setWallpaper "$arquivo"
+	wall "$arquivo"
 fi
