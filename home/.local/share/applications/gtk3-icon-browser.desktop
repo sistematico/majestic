@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=GTK3 Icon Browser
+Exec=gtk3-icon-browser
+Icon=help-browser
+Type=Application
+Categories=GTK;GNOME;Utility;
