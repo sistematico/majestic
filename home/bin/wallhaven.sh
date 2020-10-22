@@ -28,7 +28,13 @@ PASS=""
 ###     Configuration Options     ###
 #####################################
 # Command which installs the wallpaper
-SET_WALLPAPER_COMMAND="nitrogen --set-zoom-fill $WALLPAPER_FILE"
+if [ "$DESKTOP_SESSION" == "mate" ]; then 
+    SET_WALLPAPER_COMMAND="gsettings set org.mate.background picture-filename $WALLPAPER_FILE"
+elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
+    SET_WALLPAPER_COMMAND="gsettings set org.gnome.desktop.background picture-uri $WALLPAPER_FILE"
+else
+    SET_WALLPAPER_COMMAND="nitrogen --set-zoom-fill $WALLPAPER_FILE"
+fi  
 # What page to start downloading at, default and minimum of 1.
 STARTPAGE=1
 # Number of pages to download, starting from $STARTPAGE
