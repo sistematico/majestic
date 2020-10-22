@@ -49,9 +49,8 @@ do
 	fi
 done
 
-if [ -z "$id" ] || [ -z $id ]; then
-	echo "ID não encontrado, abortando."
-	exit 1
+if [ ! -z "$id" ] || [ ! -z $id ]; then
+	arquivo="${dir}/unsplash-${id}.jpg"
 fi
 
 echo $id
