@@ -58,7 +58,7 @@ clean() {
 if [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
-	curl --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
+	curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
 	wall "$arquivo"
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
