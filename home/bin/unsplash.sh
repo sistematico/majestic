@@ -53,7 +53,7 @@ if [ ! -z "$id" ] || [ ! -z $id ]; then
 	arquivo="${dir}/unsplash-${id}.jpg"
 fi
 
-if [ "$1" == "-d" ]; then
+if [ "$1" == "--download" ]; then
 	ls -t1 "$dir" | head -n 1
 	curl -L -s "$url_real" > $arquivo
 	echo $arquivo > ~/.unsplash
