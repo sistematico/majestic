@@ -72,7 +72,8 @@ if [ -f $arquivo ]; then
 	if [ "$DESKTOP_SESSION" == "mate" ]; then 
    		gsettings set org.mate.background picture-filename "$arquivo"
 	elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
-        gsettings set org.gnome.desktop.background picture-uri file://${arquivo}
+		wallpaper="file://${arquivo}"
+        gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
 	else
    		which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
     fi  
