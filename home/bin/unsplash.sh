@@ -40,17 +40,20 @@ url="https://source.unsplash.com/${x}x${y}/?nature,water"
 url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
 query_string=(${url_real//[=&]/ })
 
-#for x in "${!query_string[@]}"; do printf "[%s]=%s\n" "$x" "${query_string[$x]}" ; done
+for x in "${!query_string[@]}"; 
+do 
+	printf "[%s]=%s\n" "$x" "${query_string[$x]}"
+done
 
-	for ((i=0; i<${#query_string[@]}; i+=2))
-	do
-		next=$((i+1))
-		echo $query_string[i]
+	#for ((i=0; i<${#query_string[@]}; i+=2))
+	#do
+	#	next=$((i+1))
+	#	echo $query_string[i]
 		#if [ $query_string[i] == 'ixid' ]; then
     	#	declare var_${query_string[i]}=${query_string[$next]}
 		#fi
 
-	done
+	#done
 
 
 echo $var_ixid
