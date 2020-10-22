@@ -44,9 +44,11 @@ query_string=(${url_real//[=&]/ })
 
 	for ((i=0; i<${#query_string[@]}; i+=2))
 	do
+		next=((i+1))
 		if [ $query_string[i] == 'ixid' ]; then
-    		declare var_${query_string[i]}=${query_string[i+1]}
+    		declare var_${query_string[i]}=${query_string[$next]}
 		fi
+
 	done
 
 
