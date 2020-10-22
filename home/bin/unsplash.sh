@@ -63,7 +63,7 @@ flush() {
 }
 
 clean() {
-	rm -f $dir/*
+	rm -f "${dir}/*.jpg"
 }
 
 if [ $clean == 1 ]; then
