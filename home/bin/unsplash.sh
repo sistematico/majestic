@@ -68,8 +68,7 @@ fi
 if [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
-	curl -L -s "$url_real" > "$arquivo"
-	#write "$arquivo"
+	curl -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
 	setWallpaper "$arquivo"
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
