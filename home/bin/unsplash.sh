@@ -23,8 +23,8 @@ dir="${HOME}/img/unsplash"
 arquivo="${dir}/${nome}.jpg"
 x=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $3}')
 y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
-max=10
-clean=1
+max=100
+flush=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
@@ -49,7 +49,7 @@ flush() {
 
 clean() { rm -f "${dir}/*.jpg" }
 
-[ $clean == 1 ] && flush
+[ $flush == 1 ] && flush
 
 if [ "$1" == "--clean" ]; then
 	clean
