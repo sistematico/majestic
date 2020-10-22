@@ -44,7 +44,7 @@ for x in "${!query_string[@]}";
 do 	
 	if [[ "${query_string[$x]}" == "ixid" ]]; then
 		x=$((x+1))
-		id=${query_string[$id]}
+		id=${query_string[$x]}
 		break
 	fi
 done
