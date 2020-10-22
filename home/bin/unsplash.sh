@@ -47,7 +47,9 @@ flush() {
 	fi
 }
 
-clean() { rm -f "${dir}/*.jpg" }
+clean() { 
+	rm -f "${dir}/*.jpg" 
+}
 
 [ $flush == 1 ] && flush
 
