@@ -65,10 +65,10 @@ elif [ "$1" == "--random" ]; then
 	[ -f "$arquivo" ] && echo "$arquivo" > ${HOME}/.unsplash
 elif [ "$1" == "--flush" ]; then
 	rm -f $dir/*
-else
-	if [ -f ~/.unsplash ]; then
-		arquivo=$(cat ~/.unsplash)
-	fi
+fi
+
+if [ -f ~/.unsplash ]; then
+	arquivo=$(cat ~/.unsplash)
 fi
 
 if [ -f "$arquivo" ]; then
