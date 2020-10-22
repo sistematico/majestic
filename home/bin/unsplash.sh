@@ -52,6 +52,9 @@ if [ "$1" == "--download" ]; then
 
 	if [ ! -z "$id" ] || [ ! -z $id ]; then
 		arquivo="${dir}/unsplash-${id}.jpg"
+	else
+		echo "Erro ao encontrar ID, abortando..."
+		exit 1
 	fi
 
 	#ls -t1 "$dir" | head -n 1
