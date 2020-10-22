@@ -69,10 +69,10 @@ if [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
 	curl -L -s "$url_real" > "$arquivo"
-	write "$arquivo"
+	#write "$arquivo"
 	setWallpaper "$arquivo"
 elif [ "$1" == "--random" ]; then
 	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
-	write "$arquivo"
+	#write "$arquivo"
 	setWallpaper "$arquivo"
 fi
