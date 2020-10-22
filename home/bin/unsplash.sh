@@ -42,14 +42,15 @@ query_string=(${url_real//[=&]/ })
 
 #for x in "${!query_string[@]}"; do printf "[%s]=%s\n" "$x" "${query_string[$x]}" ; done
 
-declare -A array
-for ((i=0; i<${#query_string[@]}; i+=2))
-do
-    array[${query_string[i]}]=${query_string[i+1]}
-done
+	for ((i=0; i<${#query_string[@]}; i+=2))
+	do
+		if [ $query_string[i] == 'ixid' ]; then
+    		declare var_${query_string[i]}=${query_string[i+1]}
+		fi
+	done
 
 
-echo array[ixid]
+echo $var_ixid
 
 if [ "$1" == "-d" ]; then
 	for ((i=0; i<${#query_string[@]}; i+=2))
