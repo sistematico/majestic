@@ -42,10 +42,10 @@ query_string=(${url_real//[=&]/ })
 
 for x in "${!query_string[@]}"; 
 do 
-	echo $x
+	#echo $x
 	echo ${query_string[$x]}
 	#if [ $x == 'ixid' ]; then
-		printf "[%s]=%s\n" "$x" "${query_string[$x]}"
+		#printf "[%s]=%s\n" "$x" "${query_string[$x]}"
 	#fi
 done
 
