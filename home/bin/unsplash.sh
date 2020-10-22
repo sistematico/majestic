@@ -49,7 +49,7 @@ do
 done
 
 
-echo $var_ixid
+echo array[ixid]
 
 if [ "$1" == "-d" ]; then
 	for ((i=0; i<${#query_string[@]}; i+=2))
