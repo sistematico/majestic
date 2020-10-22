@@ -45,7 +45,8 @@ do
 	#echo $x
 	echo ${query_string[$x]}
 	if [ "${query_string[$x]}" == "ixid" ]; then
-		echo ${query_string[x+1]}
+		#echo ${query_string[$x+1]}
+		echo ${query_string[$x]}
 		#printf "[%s]=%s\n" "$x" "${query_string[$x]}"
 	#fi
 done
