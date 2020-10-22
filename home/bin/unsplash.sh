@@ -42,9 +42,10 @@ query_string=(${url_real//[=&]/ })
 
 #for x in "${!query_string[@]}"; do printf "[%s]=%s\n" "$x" "${query_string[$x]}" ; done
 
+declare -A array
 for ((i=0; i<${#query_string[@]}; i+=2))
 do
-	declare var_${query_string[i]}=${query_string[i+1]}
+    array[${query_string[i]}]=${query_string[i+1]}
 done
 
 
