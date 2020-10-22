@@ -44,7 +44,8 @@ for x in "${!query_string[@]}";
 do 
 	#echo $x
 	echo ${query_string[$x]}
-	#if [ $x == 'ixid' ]; then
+	if [ "${query_string[$x]}" == "ixid" ]; then
+		echo ${query_string[x+1]}
 		#printf "[%s]=%s\n" "$x" "${query_string[$x]}"
 	#fi
 done
