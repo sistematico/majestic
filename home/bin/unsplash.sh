@@ -62,11 +62,17 @@ flush() {
 	fi
 }
 
-if [ "$1" == "--flush" ] || [ $clean == 1 ]; then
+clean() {
+	rm -f $dir/*
+}
+
+if [ $clean == 1 ]; then
 	flush
 fi
 
-if [ "$1" == "--download" ]; then
+if [ "$1" == "--clean" ]; then
+	clean
+elif [ "$1" == "--download" ]; then
 	url="https://source.unsplash.com/${x}x${y}/?nature,water"
 	url_real=$(curl -Ls -o /dev/null -w %{url_effective} "$url")
 	query_string=(${url_real//[=&]/ })
@@ -98,6 +104,4 @@ elif [ "$1" == "--random" ]; then
 	write "$arquivo"
 
 	setWallpaper "$arquivo"
-#elif [ "$1" == "--flush" ]; then
-	#rm -f $dir/*
 fi
