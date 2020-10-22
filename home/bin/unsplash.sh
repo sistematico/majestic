@@ -30,7 +30,9 @@ flush=1
 
 wall() {
 	if [ -f "$1" ]; then
-		if [ "$DESKTOP_SESSION" == "mate" ]; then 
+		if [ "$(file -b --mime-type $1)" != "image/jpeg" ]; then
+			rm -f "${1}"
+		elif [ "$DESKTOP_SESSION" == "mate" ]; then 
 			gsettings set org.mate.background picture-filename "$1"
 		elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
 			wallpaper="file://${1}"
