@@ -170,7 +170,7 @@ function downloadWallpapers {
     do
         imgURL=$(jq -r ".data[$i].path" tmp)
 
-        if (( "$page" >= "$(jq -r ".meta.last_page" tmp)" ))
+        if [[ $page -gt $(jq -r ".meta.last_page" tmp) ]];
         then
             downloadEndReached=true
         fi
