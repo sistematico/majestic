@@ -46,11 +46,11 @@ CATEGORIES=100
 # filter wallpapers before downloading, first number is for sfw content, second for sketchy content, third for nsfw content, 1 to enable, 0 to disable
 FILTER=110
 # Which Resolutions should be downloaded, leave empty for all (most common resolutions possible, for details see wallhaven site), separate multiple resolutions with , eg. 1920x1080,1920x1200
-RESOLUTION=
+RESOLUTION=1920x1080
 # Which aspectratios should be downloaded, leave empty for all (possible values: 4x3, 5x4, 16x9, 16x10, 32x9, 48x9), separate mutliple ratios with , eg. 4x3,16x9
-ASPECTRATIO=
+ASPECTRATIO=16x9
 # Which Type should be displayed (relevance, random, date_added, views, favorites)
-MODE=views
+MODE=random
 # How should the wallpapers be ordered (desc, asc)
 ORDER=desc
 # Searchterm, only used if TYPE = search
@@ -118,7 +118,7 @@ function downloadWallpaper {
 # displays help text (valid command line arguments)
 #
 function helpText {
-    APP="wallpaper-wallhaven-dl.sh"
+    APP="$(basename $0)"
     printf 'Download a random wallpaper from wallhaven.cc and set it using a custom command.\n\n'
     printf "$APP"' [OPTIONS]\n'
     printf 'If no options are specified, default values from within the script will be used\n\n'
@@ -200,8 +200,6 @@ while [[ $# -ge 1 ]]
 
 cd $WORKING_DIR
 
-
-
 # login only when it is required ( for example to download favourites or nsfw content... )
 if [ $FILTER == 001 ] || [ $FILTER == 011 ] || [ $FILTER == 111 ] || [ $TYPE == favorites ] ; then
    login $USER $PASS
@@ -260,7 +258,6 @@ echo "downloading wallpaper:" $WALLPAPER_URL
 downloadWallpaper $WALLPAPER_URL
 
 # display the downloaded wallpaper
-echo "setting wallpaper using: $SET_WALLPAPER_COMMAND"
 $SET_WALLPAPER_COMMAND
 
 # cleanup
