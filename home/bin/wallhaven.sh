@@ -76,7 +76,7 @@ COLLECTION="Default"
 # to get the tag id take a look at: https://wallhaven.cc/tags/
 # for example: to search for nature related wallpapers via the nature tag
 # instead of the keyword use QUERY="id:37"
-QUERY="nature"
+QUERY=""
 # Search images containing color
 # values are RGB (000000 = black, ffffff = white, ff0000 = red, ...)
 COLOR=""
