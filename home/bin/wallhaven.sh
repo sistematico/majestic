@@ -44,13 +44,13 @@ TYPE=standard
 # From which Categories should Wallpapers be downloaded, first number is for General, second for Anime, third for People, 1 to enable category, 0 to disable it
 CATEGORIES=100
 # filter wallpapers before downloading, first number is for sfw content, second for sketchy content, third for nsfw content, 1 to enable, 0 to disable
-FILTER=110
+FILTER=100
 # Which Resolutions should be downloaded, leave empty for all (most common resolutions possible, for details see wallhaven site), separate multiple resolutions with , eg. 1920x1080,1920x1200
 RESOLUTION=1920x1080
 # Which aspectratios should be downloaded, leave empty for all (possible values: 4x3, 5x4, 16x9, 16x10, 32x9, 48x9), separate mutliple ratios with , eg. 4x3,16x9
 ASPECTRATIO=16x9
 # Which Type should be displayed (relevance, random, date_added, views, favorites)
-MODE=random
+MODE=favorites
 # How should the wallpapers be ordered (desc, asc)
 ORDER=desc
 # Searchterm, only used if TYPE = search
