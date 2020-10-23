@@ -31,9 +31,7 @@ PASS=""
 if [ "$DESKTOP_SESSION" == "mate" ]; then 
     SET_WALLPAPER_COMMAND="gsettings set org.mate.background picture-filename $WALLPAPER_FILE"
 elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
-    wallpaper="file://${1}"
-    gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
-    SET_WALLPAPER_COMMAND="nitrogen --set-zoom-fill $WALLPAPER_FILE"
+    SET_WALLPAPER_COMMAND="gsettings set org.gnome.desktop.background picture-uri file://${WALLPAPER_FILE}"
 else
     SET_WALLPAPER_COMMAND="nitrogen --set-zoom-fill $WALLPAPER_FILE"
 fi  
