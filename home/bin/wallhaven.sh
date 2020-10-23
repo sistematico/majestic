@@ -22,7 +22,7 @@ APIKEY=""
 ###     Configuration Options     ###
 #####################################
 # Where should the Wallpapers be stored?
-LOCATION=/location/to/your/wallpaper/folder
+LOCATION=${HOME}/img/wallhaven
 # How many Wallpapers should be downloaded, should be multiples of the
 # value in the THUMBS Variable
 WPNUMBER=48
@@ -43,7 +43,7 @@ FILTER=110
 # Which Resolutions should be downloaded, leave empty for all (most common
 # resolutions possible, for details see wallhaven site), separate multiple
 # resolutions with , eg. 1920x1080,1920x1200
-RESOLUTION=
+RESOLUTION="1920x1080"
 # alternatively specify a minimum resolution, please note that specifying
 # both resolutions and a minimum resolution will result in the desired
 # resolutions being ignored, to avoid unwanted behavior only set one of the
@@ -52,7 +52,7 @@ ATLEAST=
 # Which aspectratios should be downloaded, leave empty for all (possible
 # values: 4x3, 5x4, 16x9, 16x10, 21x9, 32x9, 48x9, 9x16, 10x16), separate mutliple ratios
 # with , eg. 4x3,16x9
-ASPECTRATIO=
+ASPECTRATIO="16x9"
 # Which Type should be displayed (relevance, random, date_added, views,
 # favorites, toplist, toplist-beta)
 MODE=random
