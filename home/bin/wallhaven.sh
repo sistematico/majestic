@@ -49,8 +49,6 @@ randomWallpaper() {
         fi
         echo "$wallpaper" > $HOME/.wallhaven
     fi
-
-    exit 0
 }
 
 if [ "$1" == "--delete" ]; then
@@ -58,12 +56,12 @@ if [ "$1" == "--delete" ]; then
         rm -f $(cat $HOME/.wallhaven)
         randomWallpaper
     fi
-
     exit 0
 fi
 
 if [ "$1" == "--random" ]; then
     randomWallpaper
+    exit 0
 fi
 
 function getPage {
