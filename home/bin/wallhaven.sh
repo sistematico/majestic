@@ -107,32 +107,18 @@ function downloadWallpapers {
         fi
 
         filename=$(echo "$imgURL"| sed "s/.*\///" )
-        if grep -w "$filename" downloaded.txt >/dev/null
+        if grep -w "$filename" /var/tmp/downloaded.txt >/dev/null
         then
             printf "\\tWallpaper %s already downloaded!\\n" "$imgURL"
         else
-            # check if downloadWallpaper was successful
-            if downloadWallpaper "$imgURL"
+            if WGET "$imgURL"
             then
-                echo "$filename" >> downloaded.txt
+                echo "$filename" >> /var/tmp/downloaded.txt
             fi
         fi
     done
 }
 
-# downloads a single Wallpaper by guessing its extension, this eliminates
-# the need to download each wallpaper page, now only the thumbnail page
-# needs to be downloaded
-function downloadWallpaper {
-    if [[ "$1" != null ]]
-    then
-        WGET "$1"
-    else
-        return 1
-    fi
-} # /downloadWallpaper
-
-#
 # wrapper for wget with some default arguments
 # arg0: additional arguments for wget (optional)
 # arg1: file to download
@@ -152,9 +138,7 @@ fi
 # creates Location folder if it does not exist
 [ ! -d "$LOCATION" ] && mkdir -p "$LOCATION"
 cd "$LOCATION" || exit
-
-# creates downloaded.txt if it does not exist
-[ ! -f downloaded.txt ] && touch downloaded.txt
+[ ! -f /var/tmp/downloaded.txt ] && touch /var/tmp/downloaded.txt
 
 # set auth header only when it is required ( for example to download your
 # own collections or nsfw content... )
