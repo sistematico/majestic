@@ -1,20 +1,12 @@
 #!/bin/bash
 
 declare -a ARQUIVOS
-
 EPOCH=$(date +%s)
-
-# https://wallhaven.cc/settings/account
-APIKEY=""
-
-# Where should the Wallpapers be stored?
 LOCATION=${HOME}/img/wallhaven
 
 # How many Wallpapers should be downloaded, should be multiples of the
 # value in the THUMBS Variable
 WPNUMBER=48
-
-# What page to start downloading at, default and minimum of 1.
 STARTPAGE=1
 
 # Type standard (newest, oldest, random, hits, mostfav), search, collections
@@ -22,22 +14,17 @@ STARTPAGE=1
 # FILTER variable will change the outcome)
 TYPE=standard
 
-# From which Categories should Wallpapers be downloaded, first number is
-# for General, second for Anime, third for People, 1 to enable category,
-# 0 to disable it
+# General, Anime, People, 1 to enable, 0 to disable
 CATEGORIES=100
 
-# filter wallpapers before downloading, first number is for sfw content,
-# second for sketchy content, third for nsfw content, 1 to enable,
-# 0 to disable
+# sfw, sketchy, nsfw, 1 to enable 0 to disable
 FILTER=110
 
-# Which Resolutions should be downloaded, leave empty for all
-# separate multiple resolutions with , eg. 1920x1080,1920x1200
+# Empty for all, separate multiple resolutions with , eg. 1920x1080,1920x1200
 RESOLUTION="1920x1080"
 
 # alternatively specify a minimum resolution
-ATLEAST=
+#ATLEAST=
 
 # Which aspectratios should be downloaded, leave empty for all
 # (possible values: 4x3, 5x4, 16x9, 16x10, 21x9, 32x9, 48x9, 9x16, 10x16)
@@ -86,9 +73,7 @@ USR="AksumkA"
 # if set to 32 or 64 you need to provide an api key
 THUMBS=24
 
-# dependencies=(wget jq sed)
-
-if [ "$1" == "--random" ]; then
+randomWallpaper() {
     wallpaper=$(ls $LOCATION/*.jpg | shuf -n1)
 
     if [ "$(file -b --mime-type $wallpaper)" == "image/jpeg" ]; then
@@ -100,14 +85,20 @@ if [ "$1" == "--random" ]; then
             feh --bg-fill "${wallpaper}"
         fi
     fi
-
     exit 0
+}
+
+# dependencies=(wget jq sed)
+if [ "$1" == "--delete" ]; then
+    if [ -f $HOME/.wallhaven ] && [ -f $(cat $HOME/.wallhaven) ]; then
+        rm -f $(cat $HOME/.wallhaven)
+        randomWallpaper
+    fi
 fi
 
-# arg1: API key
-function setAPIkeyHeader {
-    httpHeader="X-API-Key: $APIKEY"
-}
+if [ "$1" == "--random" ]; then
+    randomWallpaper
+fi
 
 # downloads Page with Thumbnails
 function getPage {
@@ -117,16 +108,13 @@ function getPage {
 # downloads all the wallpaper from a wallpaperfile
 # arg1: the file containing the wallpapers
 function downloadWallpapers {
-    for ((i=0; i<THUMBS; i++))
-    do
+    for ((i=0; i<THUMBS; i++)); do
         imgURL=$(jq -r ".data[$i].path" /var/tmp/download.lst)
         [[ $page -gt $(jq -r ".meta.last_page" /var/tmp/download.lst) ]] && downloadEndReached=true
 
         filename=$(echo "$imgURL"| sed "s/.*\///" )
-        if ! grep -w "$filename" /var/tmp/downloaded.txt >/dev/null
-        then
-            if WGET "$imgURL"
-            then
+        if ! grep -w "$filename" /var/tmp/downloaded.txt >/dev/null; then
+            if WGET "$imgURL"; then
                 echo "$filename" >> /var/tmp/downloaded.txt
             fi
         fi
@@ -143,35 +131,24 @@ function WGET {
 # optionally create a separate subfolder for each search query
 # might download duplicates as each search query has its own list of
 # downloaded wallpapers
-if [ "$TYPE" == search ] && [ "$SUBFOLDER" == 1 ]
-then
+if [ "$TYPE" == search ] && [ "$SUBFOLDER" == 1 ]; then
     LOCATION+=/$(echo "$QUERY" | sed -e "s/ /_/g" -e "s/+/_/g" -e  "s/\\//_/g")
 fi
 
-# creates Location folder if it does not exist
 [ ! -d "$LOCATION" ] && mkdir -p "$LOCATION"
+
 cd "$LOCATION" || exit
+
 [ ! -f /var/tmp/downloaded.txt ] && touch /var/tmp/downloaded.txt
 
-# set auth header only when it is required ( for example to download your own collections or nsfw content...)
-if  [ "$FILTER" == 001 ] || [ "$FILTER" == 011 ] || [ "$FILTER" == 111 ] || [ "$TYPE" == collections ] || [ "$THUMBS" != 24 ]
-then
-    setAPIkeyHeader "$APIKEY"
-fi
 
 if [ "$TYPE" == standard ]
 then
     for (( count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
     do
-        #printf "Download Page %s\\n" "$page"
-        s1="search?page=$page&categories=$CATEGORIES&purity=$FILTER&"
-        s1+="atleast=$ATLEAST&resolutions=$RESOLUTION&ratios=$ASPECTRATIO"
-        s1+="&sorting=$MODE&order=$ORDER&topRange=$TOPRANGE&colors=$COLOR"
+        s1="search?page=$page&categories=$CATEGORIES&purity=$FILTER&resolutions=$RESOLUTION&ratios=$ASPECTRATIO&sorting=$MODE&order=$ORDER&topRange=$TOPRANGE&colors=$COLOR"
         getPage "$s1"
-        #printf "\\t- done!\\n"
-        #printf "Download Wallpapers from Page %s\\n" "$page"
         downloadWallpapers
-        #printf "\\t- done!\\n"
         [ "$downloadEndReached" = true ] && break
     done
 
@@ -179,69 +156,9 @@ elif [ "$TYPE" == search ] || [ "$TYPE" == useruploads ]
 then
     for (( count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
     do
-        #printf "Download Page %s\\n" "$page"
-        s1="search?page=$page&categories=$CATEGORIES&purity=$FILTER&"
-        s1+="atleast=$ATLEAST&resolutions=$RESOLUTION&ratios=$ASPECTRATIO"
-        s1+="&sorting=$MODE&order=desc&topRange=$TOPRANGE&colors=$COLOR"
-        if [ "$TYPE" == search ]
-        then
-            s1+="&q=$QUERY"
-        elif [ "$TYPE" == useruploads ]
-        then
-            s1+="&q=@$USR"
-        fi
-
-        getPage "$s1"
-        #printf "\\t- done!\\n"
-        #printf "Download Wallpapers from Page %s\\n" "$page"
+        getPage "search?page=$page&categories=$CATEGORIES&purity=$FILTER&resolutions=$RESOLUTION&ratios=$ASPECTRATIO&sorting=$MODE&order=desc&topRange=$TOPRANGE&colors=$COLOR&q=$QUERY"
         downloadWallpapers
-        #printf "\\t- done!\\n"
         [ "$downloadEndReached" = true ] && break
-    done
-
-elif [ "$TYPE" == collections ]
-then
-    if [ "$USR" == "" ]
-    then
-        printf "Please check the value specified for USR\\n"
-        printf "to download a Collection it is necessary to specify a User\\n\\n"
-        printf "Press any key to exit\\n"
-        read -r
-        exit
-    fi
-
-    getPage "collections/$USR"
-
-    i=0
-    while
-        label=$(jq -e -r ".data[$i].label" /var/tmp/download.lst)
-        id=$(jq -e -r ".data[$i].id" /var/tmp/download.lst)
-        collectionsize=$(jq -e -r ".data[$i].count" /var/tmp/download.lst)
-        [[ $label != "$COLLECTION" && $label != null ]]
-    do
-        (( i++ ))
-    done
-
-    if [ -z "$id" ]
-    then
-        printf "Please check the value specified for COLLECTION\\n"
-        printf "it seems that a collection with the name \"%s\" does not exist\\n\\n" \
-                "$COLLECTION"
-        printf "Press any key to exit\\n"
-        read -r
-        exit
-    fi
-
-    for ((  count=0, page="$STARTPAGE";
-            count< "$WPNUMBER" && count< "$collectionsize";
-            count=count+"$THUMBS", page=page+1 ));
-    do
-        printf "Download Page %s\\n" "$page"
-        getPage "collections/$USR/$id?page=$page"
-        printf "\\t- done!\\n"
-        printf "Download Wallpapers from Page %s\\n" "$page"
-        downloadWallpapers
-        printf "\\t- done!\\n"
     done
 else
     printf "error in TYPE please check Variable\\n"
