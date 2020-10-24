@@ -52,8 +52,8 @@ randomWallpaper() {
 }
 
 if [ "$1" == "--delete" ]; then
-    if [ -f $HOME/.wallhaven ] && [ -f $(cat $HOME/.wallhaven) ]; then
-        rm -f $(cat ${HOME}/.wallhaven)
+    if [ -f $HOME/.wallhaven ] && [ -f $(/usr/bin/cat $HOME/.wallhaven) ]; then
+        rm -f $(/usr/bin/cat ${HOME}/.wallhaven)
         randomWallpaper
     fi
     exit 0
