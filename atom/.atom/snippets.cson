@@ -14,7 +14,7 @@
 
   'Shell get epoch from file':
     'prefix': 'shellepochfile'
-    'body': 'stat --printf=%Y ${1:file}'
+    'body': 'stat --print=%Y ${1:file}'
 
   'Shell get epoch':
     'prefix': 'shellepoch'
