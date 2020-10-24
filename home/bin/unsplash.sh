@@ -4,7 +4,7 @@
 #
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
-# Criado em: 20/12/2017 19:27:31 
+# Criado em: 20/12/2017 19:27:31
 # Última Atualização: 03/05/2018 17:36:08
 #
 # Créditos:
@@ -28,18 +28,27 @@ flush=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
+delete() {
+	if [ -f ${HOME}/.unsplash ] && [ -f $(cat ${HOME}/.unsplash) ]; then
+        rm -f $(cat ${HOME}/.unsplash)
+        randomWallpaper
+    fi
+}
+
 wall() {
 	if [ -f "$1" ]; then
 		if [ "$(file -b --mime-type $1)" != "image/jpeg" ]; then
 			rm -f "${1}"
-		elif [ "$DESKTOP_SESSION" == "mate" ]; then 
+		elif [ "$DESKTOP_SESSION" == "mate" ]; then
 			gsettings set org.mate.background picture-filename "$1"
-		elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
+		elif [ "$DESKTOP_SESSION" == "gnome" ]; then
 			wallpaper="file://${1}"
 			gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
 		else
 			which feh >/dev/null 2>&1 && { feh --bg-fill "$1"; }
-		fi  
+		fi
+
+		echo "$1" > ${HOME}/.unsplash
 	fi
 }
 
@@ -49,13 +58,15 @@ flush() {
 	fi
 }
 
-clean() { 
-	rm -f "${dir}/*.jpg" 
+clean() {
+	rm -f "${dir}/*.jpg"
 }
 
 [ $flush == 1 ] && flush
 
-if [ "$1" == "--clean" ]; then
+if [ "$1" == "--remove" ]; then
+	delete
+elif [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
 	curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
