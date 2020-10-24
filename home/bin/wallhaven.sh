@@ -81,6 +81,7 @@ function downloadWallpapers {
         if ! grep -w "$filename" $DOWNLOADED >/dev/null; then
             if WGET "$imgURL"; then
                 echo "$filename" >> $DOWNLOADED
+                echo "$filename" > $HOME/.wallhaven
             fi
         fi
     done
