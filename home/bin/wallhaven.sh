@@ -233,34 +233,16 @@ else
     printf "error in TYPE please check Variable\\n"
 fi
 
-for f in $LOCATION/*.jpg;
-do
-    echo "Mod: $f $(stat --printf=%Y $f)"
-
-    if [ $(stat --print=%Y $f) -gt $EPOCH ]
-    then
-        ARQUIVOS+=("$f")
-    fi
-done
-
-echo "Epoch: $EPOCH"
-
-size=${#ARQUIVOS[@]}
-echo $size
-
-if [ $size -gt 1 ]
-then
-    index=$(($RANDOM % $size))
-
-    if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
-        if [ "$DESKTOP_SESSION" == "mate" ]; then
-            gsettings set org.mate.background picture-filename "${ARQUIVOS[$index]}"
-        elif [ "$DESKTOP_SESSION" == "gnome" ]; then
-            gsettings set org.gnome.desktop.background picture-uri "file://${ARQUIVOS[$index]}"
-        else
-            feh --bg-fill "${ARQUIVOS[$index]}"
-        fi
+wallpaper=$(ls -t1 $LOCATION/*.jpg | head -n3 | shuf -n1)
+if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
+    if [ "$DESKTOP_SESSION" == "mate" ]; then
+        gsettings set org.mate.background picture-filename "${wallpaper}"
+    elif [ "$DESKTOP_SESSION" == "gnome" ]; then
+        gsettings set org.gnome.desktop.background picture-uri "file://${wallpaper}"
+    else
+        feh --bg-fill "${wallpaper}"
     fi
 fi
+
 
 rm -f cookies.txt
