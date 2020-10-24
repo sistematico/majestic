@@ -2,6 +2,8 @@
 
 declare -a ARQUIVOS
 
+EPOCH=$(date +%s)
+
 # https://wallhaven.cc/settings/account
 APIKEY=""
 
@@ -246,7 +248,6 @@ do
 done
 
 size=${#ARQUIVOS[@]}
-
 echo $size
 
 if [ $size -gt 1 ]
