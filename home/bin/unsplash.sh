@@ -17,6 +17,7 @@ which wget >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instala
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
 
+downloaded="/var/tmp/unsplash.txt"
 mask=$(date +'%Y-%m-%d_%H%M%S')
 nome="unsplash-${mask}"
 dir="${HOME}/img/unsplash"
@@ -74,8 +75,10 @@ if [ "$1" == "--delete" ]; then
 elif [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
-	curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
-	wall "$arquivo"
+	if ! grep -w "$filename" $downloaded >/dev/null; then
+		curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
+		wall "$arquivo"
+	fi
 elif [ "$1" == "--random" ]; then
 	randomWallpaper
 fi
