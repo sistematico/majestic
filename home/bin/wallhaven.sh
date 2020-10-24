@@ -120,7 +120,6 @@ function downloadWallpapers {
 # wrapper for wget with some default arguments
 # arg0: additional arguments for wget (optional)
 # arg1: file to download
-#
 function WGET {
     wget -q --header="$httpHeader" --keep-session-cookies --save-cookies cookies.txt --load-cookies cookies.txt "$@"
 }
@@ -163,7 +162,7 @@ then
 
 elif [ "$TYPE" == search ] || [ "$TYPE" == useruploads ]
 then
-    for ((  count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
+    for (( count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
     do
         #printf "Download Page %s\\n" "$page"
         s1="search?page=$page&categories=$CATEGORIES&purity=$FILTER&"
@@ -234,6 +233,7 @@ else
 fi
 
 wallpaper=$(ls -t1 $LOCATION/*.jpg | head -n3 | shuf -n1)
+
 if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
     if [ "$DESKTOP_SESSION" == "mate" ]; then
         gsettings set org.mate.background picture-filename "${wallpaper}"
@@ -243,6 +243,5 @@ if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
         feh --bg-fill "${wallpaper}"
     fi
 fi
-
 
 rm -f cookies.txt
