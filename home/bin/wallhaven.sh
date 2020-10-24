@@ -83,15 +83,12 @@ COLOR=""
 # Should the search results be saved to a separate subfolder?
 # 0 for no separate folder, 1 for separate subfolder
 SUBFOLDER=0
+
 # User from which wallpapers should be downloaded
 # used for TYPE=useruploads and TYPE=collections
 # If you want to download your own Collection this has to be set to your username
 USR="AksumkA"
-# use gnu parallel to speed up the download (0, 1), if set to 1 make sure
-# you have gnuparallel installed, see normal.vs.parallel.txt for
-# speed improvements
-# using this option can lead to cloudflare blocking some of the downloads
-PARALLEL=0
+
 # custom thumbnails per page
 # changeable here: https://wallhaven.cc/settings/browsing
 # valid values: 24, 32, 64
@@ -101,70 +98,23 @@ THUMBS=24
 ###   End Configuration Options   ###
 #####################################
 
-function checkDependencies {
-    printf "Checking dependencies..."
-    dependencies=(wget jq sed)
-    [[ $PARALLEL == 1 ]] && dependencies+=(parallel)
+#function checkDependencies {
+# dependencies=(wget jq sed)
 
-    for name in "${dependencies[@]}"
-    do
-        [[ $(command -v "$name" 2>/dev/null) ]] ||
-        { printf "\n%s needs to be installed. Use your package manager to do so, e.g. 'sudo apt install %s'" "$name" "$name";deps=1; }
-    done
-
-    if [[ $deps -ne 1 ]]
-    then
-        printf "OK\n"
-    else
-        printf "\nInstall the above and rerun this script\n"
-        exit 1
-    fi
-} # /checkDependencies
-
-#
 # sets the authentication header/API key to give the user more functionality
 # requires 1 arguments:
 # arg1: API key
-#
 function setAPIkeyHeader {
-    # checking parameters -> if not ok print error and exit script
-    if [ $# -lt 1 ] || [ "$1" == '' ]
-    then
-        printf "Please make sure to enter a valid API key,\n"
-        printf "it is needed for NSFW Content and downloading \n"
-        printf "your Collections also make sure your Thumbnails per\n"
-        printf "Page Setting matches the THUMBS Variable\n\n"
-        printf "Press any key to exit\n"
-        read -r
-        exit
-    fi
-
-    # everythings ok --> set api key header
     httpHeader="X-API-Key: $APIKEY"
 } # /setAPIkeyHeader
 
-#
 # downloads Page with Thumbnails
-#
 function getPage {
-    # checking parameters -> if not ok print error and exit script
-    if [ $# -lt 1 ]
-    then
-        printf "getPage expects at least 1 argument\\n"
-        printf "arg1:\\tparameters for the wget -q command\\n\\n"
-        printf "press any key to exit\\n"
-        read -r
-        exit
-    fi
-
-    # parameters ok --> get page
     WGET -O tmp "https://wallhaven.cc/api/v1/$1"
-} # /getPage
+}
 
-#
 # downloads all the wallpaper from a wallpaperfile
 # arg1: the file containing the wallpapers
-#
 function downloadWallpapers {
     for ((i=0; i<THUMBS; i++))
     do
@@ -179,9 +129,6 @@ function downloadWallpapers {
         if grep -w "$filename" downloaded.txt >/dev/null
         then
             printf "\\tWallpaper %s already downloaded!\\n" "$imgURL"
-        elif [ $PARALLEL == 1 ]
-        then
-            echo "$imgURL" >> download.txt
         else
             # check if downloadWallpaper was successful
             if downloadWallpaper "$imgURL"
@@ -240,140 +187,6 @@ function WGET {
          --save-cookies cookies.txt --load-cookies cookies.txt "$@"
 } # /WGET
 
-#
-# displays help text (valid command line arguments)
-#
-function helpText {
-    printf "Usage: ./wallhaven.sh [OPTIONS]\\n"
-    printf "Download wallpapers from wallhaven.cc\\n\\n"
-    printf "If no options are specified, default values from within the "
-    printf "script will be used\\n\\n"
-    printf " -l, --location\\t\\tlocation where the wallpapers will be "
-    printf "stored\\n"
-    printf " -n, --number\\t\\tNumber of Wallpapers to download\\n"
-    printf " -s, --startpage\\tpage to start downloading from\\n"
-    printf " -t, --type\\t\\tType of download Operation: standard, search, "
-    printf "\\n\\t\\t\\tcollections, useruploads\\n"
-    printf " -c, --categories\\tcategories to download from, eg. 111 for "
-    printf "General,\\n\\t\\t\\tAnime and People, 1 to include, 0 to exclude\\n"
-    printf " -f, --filter\\t\\tfilter out content based on purity rating, "
-    printf "eg. 111 \\n\\t\\t\\tfor SFW, sketchy and NSFW content, 1 to "
-    printf "include, \\n\\t\\t\\t0 to exclude\\n"
-    printf " -r, --resolution\\tresolutions to download, separate mutliple"
-    printf " \\n\\t\\t\\tresolutions by ,\\n"
-    printf " -g, --atleast\\t\\tminimum resolution, show all images with a"
-    printf "\\n\\t\\t\\tresolution greater than the specified value"
-    printf "\\n\\t\\t\\tdo not use in combination with -r (--resolution)\\n"
-    printf " -a, --aspectratio\\tonly download wallpaper with given "
-    printf "aspectratios, \\n\\t\\t\\tseparate multiple aspectratios by ,\\n"
-    printf " -m, --mode\\t\\tsorting mode for wallpapers: relevance, random"
-    printf ",\\n\\t\\t\\tdate_added, views, favorites \\n"
-    printf " -o, --order\\t\\torder ascending (asc) or descending "
-    printf "(desc)\\n"
-    printf " -b, --favcollection\\tname of the favorite collections to download\\n"
-    printf " -q, --query\\t\\tsearch query, eg. 'mario', single "
-    printf "quotes needed,\\n\\t\\t\\tfor searching exact phrases use double "
-    printf "quotes \\n\\t\\t\\tinside single quotes, eg. '\"super mario\"'"
-    printf "\\n"
-    printf " -d, --dye, --color\\tsearch for wallpapers containing the "
-    printf "given color,\\n"
-    printf "\\t\\t\\tcolor values are RGB without a leading #\\n"
-    printf " -u, --user\\t\\tdownload wallpapers from given user\\n"
-    printf " -p, --parallel\\t\\tmake use of gnu parallel (1 to enable, 0 "
-    printf "to disable)\\n"
-    printf " -v, --version\\t\\tshow current version\\n"
-    printf " -h, --help\\t\\tshow this help text and exit\\n\\n"
-    printf "Examples:\\n"
-    printf "./wallhaven.sh\\t-l ~/wp/ -n 48 -s 1 -t standard -c 101 -f 111"
-    printf " -r 1920x1080 \\n\\t\\t-a 16x9 -m random -o desc -p 1\\n\\n"
-    printf "Download 48 random wallpapers with a resolution of 1920x1080 "
-    printf "and \\nan aspectratio of 16x9 to ~/wp/ starting with page 1 "
-    printf "from the \\ncategories general and people including SFW, sketchy"
-    printf " and NSWF Content\\nwhile utilizing gnu parallel\\n\\n"
-    printf "./wallhaven.sh\\t-l ~/wp/ -n 48 -s 1 -t search -c 111 -f 100 -r "
-    printf "1920x1080 -a 16x9\\n\\t\\t-m relevance -o desc -q "
-    printf "'\"super mario\"' -d cc0000 -p 1\\n\\n"
-    printf "Download 48 wallpapers related to the search query "
-    printf "\"super mario\" containing \\nthe color #cc0000 with a resolution"
-    printf " of 1920x1080 and an aspectratio of 16x9\\nto ~/wp/ starting "
-    printf "with page 1 from the categories general, anime and people,\\n"
-    printf "including SFW Content and excluding sketchy and NSWF Content "
-    printf "while utilizing\\ngnu parallel\\n\\n\\n"
-    printf "latest version available at: "
-    printf "<https://github.com/macearl/Wallhaven-Downloader>\\n"
-} # /helptext
-
-# Command line Arguments
-while [[ $# -ge 1 ]]
-    do
-    key="$1"
-
-    case $key in
-        -l|--location)
-            LOCATION="$2"
-            shift;;
-        -n|--number)
-            WPNUMBER="$2"
-            shift;;
-        -s|--startpage)
-            STARTPAGE="$2"
-            shift;;
-        -t|--type)
-            TYPE="$2"
-            shift;;
-        -c|--categories)
-            CATEGORIES="$2"
-            shift;;
-        -f|--filter)
-            FILTER="$2"
-            shift;;
-        -r|--resolution)
-            RESOLUTION="$2"
-            shift;;
-        -g|--atleast)
-            ATLEAST="$2"
-            shift;;
-        -a|--aspectratio)
-            ASPECTRATIO="$2"
-            shift;;
-        -m|--mode)
-            MODE="$2"
-            shift;;
-        -o|--order)
-            ORDER="$2"
-            shift;;
-        -b|--favcollection)
-            FAVCOLLECTION="$2"
-            shift;;
-        -q|--query)
-            QUERY=${2//\'/}
-            shift;;
-        -d|--dye|--color)
-            COLOR="$2"
-            shift;;
-        -u|--user)
-            USR="$2"
-            shift;;
-        -p|--parallel)
-            PARALLEL="$2"
-            shift;;
-        -h|--help)
-            helpText
-            exit
-            ;;
-        -v|--version)
-            printf "Wallhaven Downloader %s\\n" "$REVISION"
-            exit
-            ;;
-        *)
-            printf "unknown option: %s\\n" "$1"
-            helpText
-            exit
-            ;;
-    esac
-    shift # past argument or value
-    done
-
 checkDependencies
 
 # optionally create a separate subfolder for each search query
@@ -391,12 +204,6 @@ then
 fi
 
 cd "$LOCATION" || exit
-
-# creates downloaded.txt if it does not exist
-if [ ! -f ./downloaded.txt ]
-then
-    touch downloaded.txt
-fi
 
 # set auth header only when it is required ( for example to download your
 # own collections or nsfw content... )
@@ -468,7 +275,6 @@ then
     fi
 
     getPage "collections/$USR"
-
 
     i=0
     while
