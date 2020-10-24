@@ -241,11 +241,15 @@ fi
 
 for f in $LOCATION/*.jpg;
 do
+    echo "Mod: $f $(stat --printf=%Y $f)"
+
     if [ $(stat --printf=%Y $f) -gt $EPOCH ]
     then
         ARQUIVOS+=("$f")
     fi
 done
+
+echo "Epoch: $EPOCH"
 
 size=${#ARQUIVOS[@]}
 echo $size
