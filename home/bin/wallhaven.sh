@@ -165,40 +165,32 @@ fi
 
 # set auth header only when it is required ( for example to download your
 # own collections or nsfw content... )
-if  [ "$FILTER" == 001 ] || [ "$FILTER" == 011 ] || [ "$FILTER" == 111 ] \
-    || [ "$TYPE" == collections ] || [ "$THUMBS" != 24 ]
+if  [ "$FILTER" == 001 ] || [ "$FILTER" == 011 ] || [ "$FILTER" == 111 ] || [ "$TYPE" == collections ] || [ "$THUMBS" != 24 ]
 then
     setAPIkeyHeader "$APIKEY"
 fi
 
 if [ "$TYPE" == standard ]
 then
-    for ((  count=0, page="$STARTPAGE";
-            count< "$WPNUMBER";
-            count=count+"$THUMBS", page=page+1 ));
+    for (( count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
     do
-        printf "Download Page %s\\n" "$page"
+        #printf "Download Page %s\\n" "$page"
         s1="search?page=$page&categories=$CATEGORIES&purity=$FILTER&"
         s1+="atleast=$ATLEAST&resolutions=$RESOLUTION&ratios=$ASPECTRATIO"
         s1+="&sorting=$MODE&order=$ORDER&topRange=$TOPRANGE&colors=$COLOR"
         getPage "$s1"
-        printf "\\t- done!\\n"
-        printf "Download Wallpapers from Page %s\\n" "$page"
+        #printf "\\t- done!\\n"
+        #printf "Download Wallpapers from Page %s\\n" "$page"
         downloadWallpapers
-        printf "\\t- done!\\n"
-        if [ "$downloadEndReached" = true ]
-        then
-            break
-        fi
+        #printf "\\t- done!\\n"
+        [ "$downloadEndReached" = true ] && break
     done
 
 elif [ "$TYPE" == search ] || [ "$TYPE" == useruploads ]
 then
-    for ((  count=0, page="$STARTPAGE";
-            count< "$WPNUMBER";
-            count=count+"$THUMBS", page=page+1 ));
+    for ((  count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
     do
-        printf "Download Page %s\\n" "$page"
+        #printf "Download Page %s\\n" "$page"
         s1="search?page=$page&categories=$CATEGORIES&purity=$FILTER&"
         s1+="atleast=$ATLEAST&resolutions=$RESOLUTION&ratios=$ASPECTRATIO"
         s1+="&sorting=$MODE&order=desc&topRange=$TOPRANGE&colors=$COLOR"
@@ -211,14 +203,11 @@ then
         fi
 
         getPage "$s1"
-        printf "\\t- done!\\n"
-        printf "Download Wallpapers from Page %s\\n" "$page"
+        #printf "\\t- done!\\n"
+        #printf "Download Wallpapers from Page %s\\n" "$page"
         downloadWallpapers
-        printf "\\t- done!\\n"
-        if [ "$downloadEndReached" = true ]
-        then
-            break
-        fi
+        #printf "\\t- done!\\n"
+        [ "$downloadEndReached" = true ] && break
     done
 
 elif [ "$TYPE" == collections ]
