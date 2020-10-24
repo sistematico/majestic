@@ -34,6 +34,12 @@
 #* * * * * DISPLAY=:0 ; env DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus' /home/lucas/.local/bin/timed 2>&1
 #* * * * * DISPLAY=:0 /home/lucas/.local/bin/timed 2>&1
 
+# Wallpapers (Gnome)
+# Unsplash         
+#*/5 * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /home/lucas/bin/unsplash.sh --download 2>&1
+# Wallhaven
+#*/5 * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /home/lucas/bin/wallhaven.sh 2>&1
+
 # Backup
 #0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@artemis:/ /home/lucas/vps/artemis/
 #0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@hera:/ /home/lucas/vps/hera/
@@ -54,6 +60,8 @@
 */15 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/bash -c "$HOME/.local/bin/github" 2>&1
 */5 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/bash -c "$HOME/.local/bin/gitlab" 2>&1
 
+# AutoGIT (Gnome)
+*/1 * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /home/lucas/.local/bin/github >/dev/null 2>&1
 
 # Sites Sync
 #*/5 * * * * DISPLAY=:0 bash -c "~/.local/bin/sites" > /dev/null 2>&1
