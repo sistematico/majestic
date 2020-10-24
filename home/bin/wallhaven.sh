@@ -53,8 +53,12 @@ randomWallpaper() {
 
 if [ "$1" == "--delete" ]; then
     if [ -f $HOME/.wallhaven ] && [ -f $(/usr/bin/cat $HOME/.wallhaven) ]; then
-        rm -f $(/usr/bin/cat ${HOME}/.wallhaven)
-        randomWallpaper
+        atual=$(gsettings get org.gnome.desktop.background picture-uri | sed -e "s|^'||" -e "s|'$||" | sed 's/^.......//')
+        if [ "$atual" == "$(/usr/bin/cat ${HOME}/.wallhaven)" ]; then
+            echo casa
+            rm -f $(/usr/bin/cat ${HOME}/.wallhaven)
+            randomWallpaper
+        fi
     fi
     exit 0
 fi
