@@ -137,7 +137,7 @@ function downloadWallpapers {
 # arg0: additional arguments for wget (optional)
 # arg1: file to download
 function WGET {
-    wget -q --header="$httpHeader" --keep-session-cookies --save-cookies cookies.txt --load-cookies cookies.txt "$@"
+    wget -q --header="$httpHeader" --keep-session-cookies --save-cookies /var/tmp/cookies.txt --load-cookies /var/tmp/cookies.txt "$@"
 }
 
 # optionally create a separate subfolder for each search query
@@ -260,4 +260,4 @@ if [ "$(file -b --mime-type $wallpaper)" == "image/jpeg" ]; then
 fi
 
 rm -f $LOCATION/*.1
-rm -f cookies.txt
+rm -f /var/tmp/cookies.txt
