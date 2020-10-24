@@ -84,6 +84,8 @@ randomWallpaper() {
         else
             feh --bg-fill "${wallpaper}"
         fi
+
+        echo "$wallpaper" > $HOME/.wallhaven
     fi
     exit 0
 }
