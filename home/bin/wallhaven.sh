@@ -88,6 +88,22 @@ THUMBS=24
 
 # dependencies=(wget jq sed)
 
+if [ "$1" == "--random" ]; then
+    wallpaper=$(ls $LOCATION/*.jpg | shuf -n1)
+
+    if [ "$(file -b --mime-type $wallpaper)" == "image/jpeg" ]; then
+        if [ "$DESKTOP_SESSION" == "mate" ]; then
+            gsettings set org.mate.background picture-filename "${wallpaper}"
+        elif [ "$DESKTOP_SESSION" == "gnome" ]; then
+            gsettings set org.gnome.desktop.background picture-uri "file://${wallpaper}"
+        else
+            feh --bg-fill "${wallpaper}"
+        fi
+    fi
+
+    exit 0
+fi
+
 # arg1: API key
 function setAPIkeyHeader {
     httpHeader="X-API-Key: $APIKEY"
