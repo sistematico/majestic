@@ -104,7 +104,7 @@ then
 
 elif [ "$TYPE" == search ] || [ "$TYPE" == useruploads ]
 then
-    for (( count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ));
+    for (( count=0, page="$STARTPAGE"; count< "$WPNUMBER"; count=count+"$THUMBS", page=page+1 ))
     do
         getPage "search?page=$page&categories=$CATEGORIES&purity=$FILTER&resolutions=$RESOLUTION&ratios=$ASPECTRATIO&sorting=$MODE&order=desc&topRange=$TOPRANGE&colors=$COLOR&q=$QUERY"
         downloadWallpapers
