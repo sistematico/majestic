@@ -95,7 +95,7 @@ function setAPIkeyHeader {
 
 # downloads Page with Thumbnails
 function getPage {
-    WGET -O tmp "https://wallhaven.cc/api/v1/$1"
+    WGET -O /var/tmp/download.lst "https://wallhaven.cc/api/v1/$1"
 }
 
 # downloads all the wallpaper from a wallpaperfile
@@ -103,8 +103,8 @@ function getPage {
 function downloadWallpapers {
     for ((i=0; i<THUMBS; i++))
     do
-        imgURL=$(jq -r ".data[$i].path" tmp)
-        [[ $page -gt $(jq -r ".meta.last_page" tmp) ]] && downloadEndReached=true
+        imgURL=$(jq -r ".data[$i].path" /var/tmp/download.lst)
+        [[ $page -gt $(jq -r ".meta.last_page" /var/tmp/download.lst) ]] && downloadEndReached=true
 
         filename=$(echo "$imgURL"| sed "s/.*\///" )
         if ! grep -w "$filename" /var/tmp/downloaded.txt >/dev/null
@@ -200,9 +200,9 @@ then
 
     i=0
     while
-        label=$(jq -e -r ".data[$i].label" tmp)
-        id=$(jq -e -r ".data[$i].id" tmp)
-        collectionsize=$(jq -e -r ".data[$i].count" tmp)
+        label=$(jq -e -r ".data[$i].label" /var/tmp/download.lst)
+        id=$(jq -e -r ".data[$i].id" /var/tmp/download.lst)
+        collectionsize=$(jq -e -r ".data[$i].count" /var/tmp/download.lst)
         [[ $label != "$COLLECTION" && $label != null ]]
     do
         (( i++ ))
