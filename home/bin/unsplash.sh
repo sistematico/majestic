@@ -42,18 +42,18 @@ delete() {
 
 wall() {
 	if [ -f "$1" ]; then
-		if [ "$(file -b --mime-type $1)" != "image/jpeg" ]; then
-			rm -f "${1}"
-		elif [ "$DESKTOP_SESSION" == "mate" ]; then
-			gsettings set org.mate.background picture-filename "$1"
-		elif [ "$DESKTOP_SESSION" == "gnome" ]; then
-			wallpaper="file://${1}"
-			gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
-		else
-			which feh >/dev/null 2>&1 && { feh --bg-fill "$1"; }
-		fi
+		if [ "$(file -b --mime-type $1)" == "image/jpeg" ]; then
+			if [ "$DESKTOP_SESSION" == "mate" ]; then
+				gsettings set org.mate.background picture-filename "$1"
+			elif [ "$DESKTOP_SESSION" == "gnome" ]; then
+				wallpaper="file://${1}"
+				gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
+			else
+				which feh >/dev/null 2>&1 && { feh --bg-fill "$1"; }
+			fi
 
-		echo "$1" > ${HOME}/.unsplash
+			echo "$1" > ${HOME}/.unsplash
+		fi
 	fi
 }
 
@@ -77,6 +77,5 @@ elif [ "$1" == "--download" ]; then
 	curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
 	wall "$arquivo"
 elif [ "$1" == "--random" ]; then
-	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
-	wall "$arquivo"
+	randomWallpaper
 fi
