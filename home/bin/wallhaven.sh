@@ -55,7 +55,6 @@ if [ "$1" == "--delete" ]; then
     if [ -f $HOME/.wallhaven ] && [ -f $(/usr/bin/cat $HOME/.wallhaven) ]; then
         atual=$(gsettings get org.gnome.desktop.background picture-uri | sed -e "s|^'||" -e "s|'$||" | sed 's/^.......//')
         if [ "$atual" == "$(/usr/bin/cat ${HOME}/.wallhaven)" ]; then
-            echo casa
             rm -f $(/usr/bin/cat ${HOME}/.wallhaven)
             randomWallpaper
         fi
@@ -82,6 +81,8 @@ function downloadWallpapers {
             if WGET "$imgURL"; then
                 echo "$filename" >> $DOWNLOADED
             fi
+        else
+            echo "Já existe..."
         fi
     done
 }
