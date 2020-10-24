@@ -1,45 +1,28 @@
 #!/bin/bash
+# dependencies: wget jq sed
 
-declare -a ARQUIVOS
-EPOCH=$(date +%s)
 LOCATION=${HOME}/img/wallhaven
 
-# How many Wallpapers should be downloaded, should be multiples of the
-# value in the THUMBS Variable
+# How many Wallpapers should be downloaded, should be multiples of the value in the THUMBS Variable
 WPNUMBER=48
+
 STARTPAGE=1
 
 # Type standard (newest, oldest, random, hits, mostfav), search, collections
 # (for now only the default collection), useruploads (if selected, only
 # FILTER variable will change the outcome)
 TYPE=standard
-
-# General, Anime, People, 1 to enable, 0 to disable
-CATEGORIES=100
-
-# sfw, sketchy, nsfw, 1 to enable 0 to disable
-FILTER=110
-
-# Empty for all, separate multiple resolutions with , eg. 1920x1080,1920x1200
-RESOLUTION="1920x1080"
-
-# alternatively specify a minimum resolution
-#ATLEAST=
-
-# Which aspectratios should be downloaded, leave empty for all
-# (possible values: 4x3, 5x4, 16x9, 16x10, 21x9, 32x9, 48x9, 9x16, 10x16)
-ASPECTRATIO="16x9"
-
-# relevance, random, date_added, views, favorites, toplist, toplist-beta
-MODE=random
+CATEGORIES=100 # General, Anime, People, 1 to enable, 0 to disable
+FILTER=110 # sfw, sketchy, nsfw, 1 to enable 0 to disable
+RESOLUTION="1920x1080" # Empty for all, separate multiple resolutions with , eg. 1920x1080,1920x1200
+ASPECTRATIO="16x9" # Empty for all (possible values: 4x3, 5x4, 16x9, 16x10, 21x9, 32x9, 48x9, 9x16, 10x16)
+MODE=random # relevance, random, date_added, views, favorites, toplist, toplist-beta
 
 # if MODE is set to toplist show the toplist for the given timeframe
 # possible values: 1d (last day), 3d (last 3 days), 1w (last week),
 # 1M (last month), 3M (last 3 months), 6M (last 6 months), 1y (last year)
 TOPRANGE=
-
-# desc, asc
-ORDER=desc
+ORDER=desc # desc, asc
 
 # Collections, only used if TYPE = collections
 # specify the name of the collection you want to download
@@ -50,24 +33,10 @@ ORDER=desc
 # Please note that the only filter option applied to Collections is the Number
 # of Wallpapers to download, there is no filter for resolution, purity, ...
 COLLECTION="Default"
-
-# Searchterm, only used if TYPE = search
-# you can also search by tags, use id:TAGID
-# to get the tag id take a look at: https://wallhaven.cc/tags/
-# for example: to search for nature related wallpapers via the nature tag
-# instead of the keyword use QUERY="id:37"
-QUERY=""
-
-# values are RGB (000000 = black, ffffff = white, ff0000 = red, ...)
-COLOR=""
-
-# 0 for no separate folder, 1 for separate subfolder
+QUERY="" # Searchterm, only used if TYPE = search, you can also search by tags, use id:TAGID, to get the tag id take a look at: https://wallhaven.cc/tags/, for example: to search for nature related wallpapers via the nature tag, instead of the keyword use QUERY="id:37"
+COLOR="" # (000000 = black, ffffff = white, ff0000 = red, ...)
 SUBFOLDER=0
-
-# changeable here: https://wallhaven.cc/settings/browsing
-# valid values: 24, 32, 64
-# if set to 32 or 64 you need to provide an api key
-THUMBS=24
+THUMBS=24 # changeable here: https://wallhaven.cc/settings/browsing, valid values: 24, 32, 64, if set to 32 or 64 you need to provide an api key
 
 randomWallpaper() {
     wallpaper=$(ls $LOCATION/*.jpg | shuf -n1)
@@ -80,13 +49,11 @@ randomWallpaper() {
         else
             feh --bg-fill "${wallpaper}"
         fi
-
         echo "$wallpaper" > $HOME/.wallhaven
     fi
     exit 0
 }
 
-# dependencies=(wget jq sed)
 if [ "$1" == "--delete" ]; then
     if [ -f $HOME/.wallhaven ] && [ -f $(cat $HOME/.wallhaven) ]; then
         rm -f $(cat $HOME/.wallhaven)
