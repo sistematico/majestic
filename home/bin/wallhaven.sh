@@ -104,17 +104,11 @@ function downloadWallpapers {
     for ((i=0; i<THUMBS; i++))
     do
         imgURL=$(jq -r ".data[$i].path" tmp)
-
-        if [[ $page -gt $(jq -r ".meta.last_page" tmp) ]];
-        then
-            downloadEndReached=true
-        fi
+        [[ $page -gt $(jq -r ".meta.last_page" tmp) ]] && downloadEndReached=true
 
         filename=$(echo "$imgURL"| sed "s/.*\///" )
-        if grep -w "$filename" /var/tmp/downloaded.txt >/dev/null
+        if ! grep -w "$filename" /var/tmp/downloaded.txt >/dev/null
         then
-            printf "\\tWallpaper %s already downloaded!\\n" "$imgURL"
-        else
             if WGET "$imgURL"
             then
                 echo "$filename" >> /var/tmp/downloaded.txt
