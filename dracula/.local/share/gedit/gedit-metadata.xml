@@ -2,24 +2,56 @@
  <document uri="file:///home/lucas/desk/file.log" atime="1602843176276">
   <entry key="gedit-position" value="206"/>
  </document>
+ <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
+  <entry key="gedit-position" value="0"/>
+ </document>
+ <document uri="file:///home/lucas/.local/share/applications/linguist.desktop" atime="1603555549597">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="242"/>
+ </document>
  <document uri="file:///home/lucas/majestic/gnome/bin/gnome-setup.sh" atime="1602460950151">
   <entry key="gedit-encoding" value="UTF-8"/>
- </document>
- <document uri="file:///home/lucas/.local/share/applications/gtk3-icon-browser.desktop" atime="1603403049978">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="79"/>
- </document>
- <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603115818740">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="251"/>
  </document>
  <document uri="file:///home/lucas/aur/spotify/PKGBUILD" atime="1602194291763">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="2532"/>
  </document>
+ <document uri="file:///tmp/tmp.K4qq4zVxCi/urls" atime="1603412500497">
+  <entry key="gedit-position" value="0"/>
+ </document>
+ <document uri="file:///home/lucas/.local/share/applications/assistant.desktop" atime="1603555540256">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+ </document>
+ <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603115818740">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-position" value="251"/>
+ </document>
+ <document uri="file:///home/lucas/.local/share/applications/designer.desktop" atime="1603555544847">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="251"/>
+ </document>
  <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="128"/>
+ </document>
+ <document uri="file:///home/lucas/majestic/crontab.txt" atime="1603513341557">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+ </document>
+ <document uri="file:///home/lucas/.local/share/applications/gtk3-icon-browser.desktop" atime="1603403049978">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-position" value="79"/>
+ </document>
+ <document uri="file:///home/lucas/.local/share/applications/qdbusviewer.desktop" atime="1603555553413">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="213"/>
+ </document>
+ <document uri="file:///home/lucas/img/wallhaven/downloaded.txt" atime="1603413089864">
+  <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/github/lucasbrum/lucasbrum/.gitignore" atime="1603115813071">
   <entry key="gedit-encoding" value="UTF-8"/>
@@ -27,18 +59,5 @@
  <document uri="file:///home/lucas/majestic/gnome/.config/argos/07-wallpaper.sh" atime="1603404117254">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="21"/>
- </document>
- <document uri="file:///home/lucas/majestic/crontab.txt" atime="1603513341557">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-spell-language" value="pt_BR"/>
- </document>
- <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
-  <entry key="gedit-position" value="0"/>
- </document>
- <document uri="file:///tmp/tmp.K4qq4zVxCi/urls" atime="1603412500497">
-  <entry key="gedit-position" value="0"/>
- </document>
- <document uri="file:///home/lucas/img/wallhaven/downloaded.txt" atime="1603413089864">
-  <entry key="gedit-position" value="0"/>
  </document>
 </metadata>

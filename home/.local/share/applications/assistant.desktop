@@ -6,3 +6,4 @@ Icon=assistant
 Terminal=false
 Type=Application
 Categories=Qt;Development;Documentation;
+NoDisplay=true
