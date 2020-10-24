@@ -1,6 +1,6 @@
 '.source.shell':
   'Shell loop over files':
-    'prefix': 'shellloop'
+    'prefix': 'shellfileloop'
     'body': """
         for f in *.${1:ext};
         do
