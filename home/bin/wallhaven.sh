@@ -237,7 +237,7 @@ for f in $LOCATION/*.jpg;
 do
     echo "Mod: $f $(stat --printf=%Y $f)"
 
-    if [ $(stat --printf=%Y $f) -gt $EPOCH ]
+    if [ $(stat --print=%Y $f) -gt $EPOCH ]
     then
         ARQUIVOS+=("$f")
     fi
