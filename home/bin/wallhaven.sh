@@ -150,18 +150,11 @@ then
 fi
 
 # creates Location folder if it does not exist
-if [ ! -d "$LOCATION" ]
-then
-    mkdir -p "$LOCATION"
-fi
-
+[ ! -d "$LOCATION" ] && mkdir -p "$LOCATION"
 cd "$LOCATION" || exit
 
 # creates downloaded.txt if it does not exist
-if [ ! -f downloaded.txt ]
-then
-    touch downloaded.txt
-fi
+[ ! -f downloaded.txt ] && touch downloaded.txt
 
 # set auth header only when it is required ( for example to download your
 # own collections or nsfw content... )
