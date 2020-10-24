@@ -1,0 +1,21 @@
+'.source.shell':
+  'Shell loop over files':
+    'prefix': 'shellloop'
+    'body': """
+        for f in *.c;
+        do
+            echo "Processing $f file..";
+        done
+    """
+
+  'Shell random file':
+    'prefix': 'shellrand'
+    'body': 'ls | shuf -n1'
+
+  'Shell get epoch from file':
+    'prefix': 'shellepochfile'
+    'body': 'stat --printf=%Y file.jpg'
+
+  'Shell get epoch':
+    'prefix': 'shellepoch'
+    'body': 'date +%s'
