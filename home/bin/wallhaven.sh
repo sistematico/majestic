@@ -81,7 +81,6 @@ function downloadWallpapers {
         if ! grep -w "$filename" $DOWNLOADED >/dev/null; then
             if WGET "$imgURL"; then
                 echo "$filename" >> $DOWNLOADED
-                echo "$filename" > $HOME/.wallhaven
             fi
         fi
     done
@@ -128,6 +127,8 @@ if [ "$(file -b --mime-type $wallpaper)" == "image/jpeg" ]; then
     else
         feh --bg-fill "${wallpaper}"
     fi
+
+    echo "$wallpaper" > $HOME/.wallhaven
 fi
 
 rm -f $LOCATION/*.1
