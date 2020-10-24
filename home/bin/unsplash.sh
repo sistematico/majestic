@@ -28,6 +28,11 @@ flush=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
+randomWallpaper() {
+	arquivo=$dir/$(ls -1 "$dir" | shuf -n1)
+	wall "$arquivo"
+}
+
 delete() {
 	if [ -f ${HOME}/.unsplash ] && [ -f $(cat ${HOME}/.unsplash) ]; then
         rm -f $(cat ${HOME}/.unsplash)
@@ -64,7 +69,7 @@ clean() {
 
 [ $flush == 1 ] && flush
 
-if [ "$1" == "--remove" ]; then
+if [ "$1" == "--delete" ]; then
 	delete
 elif [ "$1" == "--clean" ]; then
 	clean
