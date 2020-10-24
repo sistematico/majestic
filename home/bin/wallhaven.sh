@@ -251,4 +251,17 @@ else
     printf "error in TYPE please check Variable\\n"
 fi
 
+
+# File Loop
+# for f in *.c; do echo "Processing $f file.."; done
+
+# Rand
+#ls | shuf -n 5
+
+# get epoch
+# stat --printf=%Y file.jpg
+
+# Get Epoch
+#date +%s
+
 rm -f cookies.txt
