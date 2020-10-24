@@ -1,5 +1,7 @@
 #!/bin/bash
 
+declare -a ARQUIVOS
+
 # https://wallhaven.cc/settings/account
 APIKEY=""
 
@@ -237,7 +239,29 @@ fi
 
 for f in $LOCATION/*.jpg;
 do
-    echo "$f";
+    if [ $(stat --printf=%Y $f) -gt $EPOCH ]
+    then
+        ARQUIVOS+=("$f")
+    fi
 done
+
+size=${#ARQUIVOS[@]}
+
+echo $size
+
+if [ $size -gt 1 ]
+then
+    index=$(($RANDOM % $size))
+
+    if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
+        if [ "$DESKTOP_SESSION" == "mate" ]; then
+            gsettings set org.mate.background picture-filename "${ARQUIVOS[$index]}"
+        elif [ "$DESKTOP_SESSION" == "gnome" ]; then
+            gsettings set org.gnome.desktop.background picture-uri "file://${ARQUIVOS[$index]}"
+        else
+            feh --bg-fill "${ARQUIVOS[$index]}"
+        fi
+    fi
+fi
 
 rm -f cookies.txt
