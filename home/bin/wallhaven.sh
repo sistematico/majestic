@@ -108,8 +108,6 @@ then
         downloadWallpapers
         [ "$downloadEndReached" = true ] && break
     done
-else
-    printf "error in TYPE please check Variable\\n"
 fi
 
 wallpaper=$(ls -t1 $LOCATION/*.jpg | head -n3 | shuf -n1)
