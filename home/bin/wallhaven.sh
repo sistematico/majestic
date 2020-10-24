@@ -137,8 +137,7 @@ fi
 cd "$LOCATION" || exit
 [ ! -f /var/tmp/downloaded.txt ] && touch /var/tmp/downloaded.txt
 
-# set auth header only when it is required ( for example to download your
-# own collections or nsfw content... )
+# set auth header only when it is required ( for example to download your own collections or nsfw content...)
 if  [ "$FILTER" == 001 ] || [ "$FILTER" == 011 ] || [ "$FILTER" == 111 ] || [ "$TYPE" == collections ] || [ "$THUMBS" != 24 ]
 then
     setAPIkeyHeader "$APIKEY"
@@ -234,7 +233,7 @@ fi
 
 wallpaper=$(ls -t1 $LOCATION/*.jpg | head -n3 | shuf -n1)
 
-if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
+if [ "$(file -b --mime-type $wallpaper)" == "image/jpeg" ]; then
     if [ "$DESKTOP_SESSION" == "mate" ]; then
         gsettings set org.mate.background picture-filename "${wallpaper}"
     elif [ "$DESKTOP_SESSION" == "gnome" ]; then
@@ -244,4 +243,5 @@ if [ "$(file -b --mime-type ${ARQUIVOS[$index]})" == "image/jpeg" ]; then
     fi
 fi
 
+rm -f $LOCATION/*.1
 rm -f cookies.txt
