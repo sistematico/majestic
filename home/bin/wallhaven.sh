@@ -1,6 +1,8 @@
 #!/bin/bash
 # dependencies: wget jq sed
 
+DOWNLOADED="/var/tmp/wallhaven.txt"
+
 LOCATION=${HOME}/img/wallhaven
 WPNUMBER=48 # How many Wallpapers should be downloaded, should be multiples of the value in the THUMBS Variable
 STARTPAGE=1
@@ -71,9 +73,9 @@ function downloadWallpapers {
         [[ $page -gt $(jq -r ".meta.last_page" /var/tmp/download.lst) ]] && downloadEndReached=true
 
         filename=$(echo "$imgURL"| sed "s/.*\///" )
-        if ! grep -w "$filename" /var/tmp/downloaded.txt >/dev/null; then
+        if ! grep -w "$filename" $DOWNLOADED >/dev/null; then
             if WGET "$imgURL"; then
-                echo "$filename" >> /var/tmp/downloaded.txt
+                echo "$filename" >> $DOWNLOADED
             fi
         fi
     done
