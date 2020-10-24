@@ -2,12 +2,8 @@
 # dependencies: wget jq sed
 
 LOCATION=${HOME}/img/wallhaven
-
-# How many Wallpapers should be downloaded, should be multiples of the value in the THUMBS Variable
-WPNUMBER=48
-
+WPNUMBER=48 # How many Wallpapers should be downloaded, should be multiples of the value in the THUMBS Variable
 STARTPAGE=1
-
 # Type standard (newest, oldest, random, hits, mostfav), search, collections
 # (for now only the default collection), useruploads (if selected, only
 # FILTER variable will change the outcome)
@@ -65,7 +61,6 @@ if [ "$1" == "--random" ]; then
     randomWallpaper
 fi
 
-# downloads Page with Thumbnails
 function getPage {
     WGET -O /var/tmp/download.lst "https://wallhaven.cc/api/v1/$1"
 }
@@ -94,7 +89,6 @@ fi
 
 [ ! -d "$LOCATION" ] && mkdir -p "$LOCATION"
 cd "$LOCATION" || exit
-[ ! -f /var/tmp/downloaded.txt ] && touch /var/tmp/downloaded.txt
 
 if [ "$TYPE" == standard ]
 then
