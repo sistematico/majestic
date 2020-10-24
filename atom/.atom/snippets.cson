@@ -2,9 +2,9 @@
   'Shell loop over files':
     'prefix': 'shellloop'
     'body': """
-        for f in *.c;
+        for f in *.${1:ext};
         do
-            echo "Processing $f file..";
+            echo "$f";
         done
     """
 
@@ -14,7 +14,7 @@
 
   'Shell get epoch from file':
     'prefix': 'shellepochfile'
-    'body': 'stat --printf=%Y file.jpg'
+    'body': 'stat --printf=%Y ${1:file}'
 
   'Shell get epoch':
     'prefix': 'shellepoch'
