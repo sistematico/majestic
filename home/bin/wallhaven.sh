@@ -64,10 +64,6 @@ COLOR=""
 # 0 for no separate folder, 1 for separate subfolder
 SUBFOLDER=0
 
-# used for TYPE=useruploads and TYPE=collections
-USR="AksumkA"
-
-# custom thumbnails per page
 # changeable here: https://wallhaven.cc/settings/browsing
 # valid values: 24, 32, 64
 # if set to 32 or 64 you need to provide an api key
@@ -107,8 +103,6 @@ function getPage {
     WGET -O /var/tmp/download.lst "https://wallhaven.cc/api/v1/$1"
 }
 
-# downloads all the wallpaper from a wallpaperfile
-# arg1: the file containing the wallpapers
 function downloadWallpapers {
     for ((i=0; i<THUMBS; i++)); do
         imgURL=$(jq -r ".data[$i].path" /var/tmp/download.lst)
@@ -123,26 +117,17 @@ function downloadWallpapers {
     done
 }
 
-# wrapper for wget with some default arguments
-# arg0: additional arguments for wget (optional)
-# arg1: file to download
 function WGET {
     wget -q --header="$httpHeader" --keep-session-cookies --save-cookies /var/tmp/cookies.txt --load-cookies /var/tmp/cookies.txt "$@"
 }
 
-# optionally create a separate subfolder for each search query
-# might download duplicates as each search query has its own list of
-# downloaded wallpapers
 if [ "$TYPE" == search ] && [ "$SUBFOLDER" == 1 ]; then
     LOCATION+=/$(echo "$QUERY" | sed -e "s/ /_/g" -e "s/+/_/g" -e  "s/\\//_/g")
 fi
 
 [ ! -d "$LOCATION" ] && mkdir -p "$LOCATION"
-
 cd "$LOCATION" || exit
-
 [ ! -f /var/tmp/downloaded.txt ] && touch /var/tmp/downloaded.txt
-
 
 if [ "$TYPE" == standard ]
 then
