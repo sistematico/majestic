@@ -37,3 +37,12 @@
         index=$(($RANDOM % $size))
         echo ${array[$index]}
     """
+
+  'Shell add item to array':
+    'prefix': 'shelladdarray'
+    'body': """
+        declare -a array
+
+        array+=("item1") # or
+        array=(${array[@]} "item2")
+    """
