@@ -29,32 +29,28 @@ flush=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
-randomWallpaper() {
-	arquivo=$dir/$(ls -1 "$dir" | shuf -n1)
-	wall "$arquivo"
-}
-
-delete() {
+delWall() {
 	if [ -f ${HOME}/.unsplash ] && [ -f $(cat ${HOME}/.unsplash) ]; then
         rm -f $(cat ${HOME}/.unsplash)
-        randomWallpaper
+        rdmWall
     fi
 }
 
-wall() {
-	if [ -f "$1" ]; then
-		if [ "$(file -b --mime-type $1)" == "image/jpeg" ]; then
-			if [ "$DESKTOP_SESSION" == "mate" ]; then
-				gsettings set org.mate.background picture-filename "$1"
-			elif [ "$DESKTOP_SESSION" == "gnome" ]; then
-				wallpaper="file://${1}"
-				gsettings set org.gnome.desktop.background picture-uri "$wallpaper"
-			else
-				which feh >/dev/null 2>&1 && { feh --bg-fill "$1"; }
-			fi
+rdmWall() {
+	arquivo=$dir/$(ls -1 "$dir" | shuf -n1)
+	setWall "$arquivo"
+}
 
-			echo "$1" > ${HOME}/.unsplash
+setWall() {
+	if [ "$(file -b --mime-type ${1})" == "image/jpeg" ]; then
+		if [ "$DESKTOP_SESSION" == "mate" ]; then
+			gsettings set org.mate.background picture-filename "${1}"
+		elif [ "$DESKTOP_SESSION" == "gnome" ]; then
+			gsettings set org.gnome.desktop.background picture-uri "file://${1}"
+		else
+			which feh >/dev/null 2>&1 && { feh --bg-fill "${1}"; }
 		fi
+		echo "${1}" > ${HOME}/.unsplash
 	fi
 }
 
@@ -71,7 +67,7 @@ clean() {
 [ $flush == 1 ] && flush
 
 if [ "$1" == "--delete" ]; then
-	delete
+	delWall
 elif [ "$1" == "--clean" ]; then
 	clean
 elif [ "$1" == "--download" ]; then
@@ -79,9 +75,9 @@ elif [ "$1" == "--download" ]; then
 	then
 		#if WGET "$imgURL"; then
 		curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
-		wall "$arquivo"
+		setWall "$arquivo"
 		echo "$arquivo" >> $downloaded
 	fi
 elif [ "$1" == "--random" ]; then
-	randomWallpaper
+	rdmWall
 fi
