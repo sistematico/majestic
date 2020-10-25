@@ -75,8 +75,12 @@ elif [ "$1" == "--download" ]; then
 	then
 		#if WGET "$imgURL"; then
 		curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
-		setWall "$arquivo"
-		echo "$arquivo" >> $downloaded
+		if [ "$(file -b --mime-type $arquivo)" != "image/jpeg" ]; then
+			rm -f "$arquivo"
+		else
+			setWall "$arquivo"
+			echo "$arquivo" >> $downloaded
+		fi
 	fi
 elif [ "$1" == "--random" ]; then
 	rdmWall
