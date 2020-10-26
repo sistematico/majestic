@@ -28,6 +28,9 @@
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="251"/>
  </document>
+ <document uri="file:///home/lucas/majestic/ngrok/home/lucas/.config/systemd/user/ngrok.service" atime="1603727106355">
+  <entry key="gedit-position" value="575"/>
+ </document>
  <document uri="file:///home/lucas/.local/share/applications/designer.desktop" atime="1603555544847">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
@@ -37,18 +40,18 @@
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="128"/>
  </document>
- <document uri="file:///home/lucas/majestic/crontab.txt" atime="1603513341557">
+ <document uri="file:///home/lucas/.local/share/applications/qdbusviewer.desktop" atime="1603555553413">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="213"/>
  </document>
  <document uri="file:///home/lucas/.local/share/applications/gtk3-icon-browser.desktop" atime="1603403049978">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="79"/>
  </document>
- <document uri="file:///home/lucas/.local/share/applications/qdbusviewer.desktop" atime="1603555553413">
+ <document uri="file:///home/lucas/majestic/crontab.txt" atime="1603513341557">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
-  <entry key="gedit-position" value="213"/>
  </document>
  <document uri="file:///home/lucas/img/wallhaven/downloaded.txt" atime="1603413089864">
   <entry key="gedit-position" value="0"/>
