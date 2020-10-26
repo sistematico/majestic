@@ -50,11 +50,11 @@ notifyargs="-h int:transient:1"
 atualiza() {
     if [ -d $1 ]; then
         if [ ! -f $1/.noup ]; then
-        cd $1
-        status=$(git add . -n)
-        if [ ! -z "$status" ]; then
-            c=$(echo $(git add . -n | tr '\r\n' ' '))
-        m="Autocommit por ${nome}: alterações: $c"
+            cd $1
+            status=$(git add . -n)
+            if [ ! -z "$status" ]; then
+                c=$(echo $(git add . -n | tr '\r\n' ' '))
+                m="Autocommit por ${nome}: alterações: $c"
                 git add .
                 git commit -m "$m"
                 git push
@@ -89,4 +89,3 @@ else
         atualiza "$caminho"
     done
 fi
-
