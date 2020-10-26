@@ -1,0 +1,22 @@
+[Unit]
+Description=Share local port(s) with ngrok
+After=syslog.target network.target
+
+[Service]
+PrivateTmp=true
+Type=simple
+Restart=always
+RestartSec=1min
+StandardOutput=null
+StandardError=null
+#ExecStart=/usr/bin/ngrok --log %h/.local/share/ngrok/ngrok.log --config %h/.config/ngrok2/ngrok.yml start %i
+#ExecStart=/usr/bin/ngrok --log %h/.local/share/ngrok/ngrok.log --config %h/.config/ngrok/ngrok.conf start %i
+#ExecStart=/usr/bin/ngrok -config %h/.ngrok2/ngrok.yml --all
+#ExecStart=/usr/bin/ngrok http 80
+#ExecStart=/usr/bin/ngrok --all
+#ExecStart=/usr/bin/ngrok start %i
+ExecStart=/usr/bin/ngrok start --all
+ExecStop=/usr/bin/killall ngrok
+
+[Install]
+WantedBy=multi-user.target
