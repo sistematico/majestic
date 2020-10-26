@@ -11,6 +11,8 @@
 # Criado em: 20/12/2017 19:27:31
 # Última Atualização: 28/08/2020 07:30:01
 
+# Qualquer alteração, é enviada automaticamente...
+
 nome="GitHub"
 dir="${HOME}/github"
 repos=(
