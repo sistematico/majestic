@@ -21,7 +21,7 @@ repos=(
     'dotfiles'
     'sistematico.github.io'
     'php-stars'
-	'php-template-engine'
+    'php-template-engine'
     'php-rest-api'
     'php-rest-front'
     'php-mvc'
@@ -50,43 +50,43 @@ notifyargs="-h int:transient:1"
 atualiza() {
     if [ -d $1 ]; then
         if [ ! -f $1/.noup ]; then
-	    cd $1
-	    status=$(git add . -n)
-	    if [ ! -z "$status" ]; then
-	        c=$(echo $(git add . -n | tr '\r\n' ' '))
-		m="Autocommit por ${nome}: alterações: $c"
-				git add .
-				git commit -m "$m"
-				git push
-				if [ "$?" == 0 ]; then
-					notify-send $notifyargs -i "$icone" "$nome" "Repo <b>$(basename $1)</b> atualizado."
-					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
-				else
-					if [ ! -f /tmp/git-cron.error ]; then
-						icone="${HOME}/.local/share/icons/elementary/network-error.png"
-						notify-send $notifyargs -i "$icone" "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
-						touch /tmp/git-cron.error
-					fi
-				fi
-			fi
+        cd $1
+        status=$(git add . -n)
+        if [ ! -z "$status" ]; then
+            c=$(echo $(git add . -n | tr '\r\n' ' '))
+        m="Autocommit por ${nome}: alterações: $c"
+                git add .
+                git commit -m "$m"
+                git push
+                if [ "$?" == 0 ]; then
+                    notify-send $notifyargs -i "$icone" "$nome" "Repo <b>$(basename $1)</b> atualizado."
+                    [ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
+                else
+                    if [ ! -f /tmp/git-cron.error ]; then
+                        icone="${HOME}/.local/share/icons/elementary/network-error.png"
+                        notify-send $notifyargs -i "$icone" "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
+                        touch /tmp/git-cron.error
+                    fi
+                fi
+            fi
         fi
     fi
 }
 
 if [ ! $1 ] || [ "$1" == "-a" ]; then
-	for r in "${repos[@]}";	do
-		caminho="${dir}/${r}"
-		atualiza "$caminho"
-	done
+    for r in "${repos[@]}";	do
+        caminho="${dir}/${r}"
+        atualiza "$caminho"
+    done
 
-	[ $dotfiles == 1 ] && atualiza "${HOME}/majestic"
-	[ "$1" == "-a" ] && ssh $remoto "/usr/local/scripts/github"
+    [ $dotfiles == 1 ] && atualiza "${HOME}/majestic"
+    [ "$1" == "-a" ] && ssh $remoto "/usr/local/scripts/github"
 elif [ ! $2 ]; then
-	atualiza "$1"
+    atualiza "$1"
 else
-	for r in "$@";	do
-		caminho="${dir}/${r}"
-		atualiza "$caminho"
-	done
+    for r in "$@";	do
+        caminho="${dir}/${r}"
+        atualiza "$caminho"
+    done
 fi
 
