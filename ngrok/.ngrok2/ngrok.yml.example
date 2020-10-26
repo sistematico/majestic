@@ -1,0 +1,12 @@
+authtoken: [TOKEN]
+tunnels:
+  http:
+    proto: http
+    addr: 80
+  vnc:
+    addr: 5900
+    proto: tcp
+  openssh:
+    addr: 2211
+    proto: tcp
+log: /home/lucas/.ngrok2/ngrok.log
