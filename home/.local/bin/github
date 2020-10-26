@@ -14,8 +14,8 @@
 nome="GitHub"
 dir="${HOME}/github"
 repos=(
-	'radiochat'
-	'pagseguro'
+    'radiochat'
+    'pagseguro'
     'beats'
     'php-text-counter'
     'dotfiles'
@@ -36,8 +36,8 @@ repos=(
     'zen'
     'somdomato'
     'lucasbrum'
-	'pushstate'
-	'php-pagination'
+    'pushstate'
+    'php-pagination'
 )
 remoto="nginx@hera"
 dotfiles=1
@@ -48,13 +48,13 @@ som="complete"
 notifyargs="-h int:transient:1"
 
 atualiza() {
-	if [ -d $1 ]; then
-		if [ ! -f $1/.noup ]; then
-			cd $1
-			status=$(git add . -n)
-			if [ ! -z "$status" ]; then
-				c=$(echo $(git add . -n | tr '\r\n' ' '))
-				m="Autocommit por ${nome}: alterações: $c"
+    if [ -d $1 ]; then
+        if [ ! -f $1/.noup ]; then
+	    cd $1
+	    status=$(git add . -n)
+	    if [ ! -z "$status" ]; then
+	        c=$(echo $(git add . -n | tr '\r\n' ' '))
+		m="Autocommit por ${nome}: alterações: $c"
 				git add .
 				git commit -m "$m"
 				git push
@@ -69,8 +69,8 @@ atualiza() {
 					fi
 				fi
 			fi
-		fi
-	fi
+        fi
+    fi
 }
 
 if [ ! $1 ] || [ "$1" == "-a" ]; then
