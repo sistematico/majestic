@@ -58,6 +58,7 @@ services:
             - "8082:80"
         volumes:
             - ~/docker/confs/phpmyadmin/phpmyadmin.php:/etc/phpmyadmin/config.user.inc.php
+            - ~/docker/certs:/etc/ssl/nginx
         environment:
             - PMA_HOST=mysql
         restart: unless-stopped
