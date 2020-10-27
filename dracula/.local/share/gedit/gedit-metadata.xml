@@ -2,13 +2,13 @@
  <document uri="file:///home/lucas/desk/file.log" atime="1602843176276">
   <entry key="gedit-position" value="206"/>
  </document>
- <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
-  <entry key="gedit-position" value="0"/>
- </document>
  <document uri="file:///home/lucas/.local/share/applications/linguist.desktop" atime="1603555549597">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="242"/>
+ </document>
+ <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
+  <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/majestic/gnome/bin/gnome-setup.sh" atime="1602460950151">
   <entry key="gedit-encoding" value="UTF-8"/>
@@ -23,6 +23,11 @@
  <document uri="file:///home/lucas/.local/share/applications/assistant.desktop" atime="1603555540256">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
+ </document>
+ <document uri="file:///home/lucas/sites/index.html" atime="1603839892503">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="221"/>
  </document>
  <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603811983041">
   <entry key="gedit-encoding" value="UTF-8"/>
