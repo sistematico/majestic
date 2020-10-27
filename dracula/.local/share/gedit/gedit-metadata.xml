@@ -24,9 +24,12 @@
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
  </document>
- <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603115818740">
+ <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603811983041">
   <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="251"/>
+  <entry key="gedit-position" value="224"/>
+ </document>
+ <document uri="file:///home/lucas/github/lucasbrum.static/.gitignore" atime="1603811982215">
+  <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/majestic/ngrok/home/lucas/.config/systemd/user/ngrok.service" atime="1603727106355">
   <entry key="gedit-position" value="575"/>
