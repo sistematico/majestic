@@ -24,5 +24,5 @@ export DOT=${HOME}/.dotfiles
 
 # Vars
 export TERMINAL=xfce4-terminal
-export BROWSER=firefox
+export BROWSER=google-chrome-stable
 export EDITOR=nano
