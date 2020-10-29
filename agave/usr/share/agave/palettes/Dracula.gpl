@@ -1,0 +1,16 @@
+GIMP Pallete
+Name: Dracula
+Columns: 0
+#
+40	42	54	Background
+68	71	90	Current Line
+68	71	90	Selection
+248	248	242	Foreground
+98	114	164	Comment
+139	233	253	Cyan
+80	250	123	Green
+255	184	108	Orange
+255	121	198	Pink
+189	147	249	Purple
+255	85	85	Red
+241	250	140	Yellow
