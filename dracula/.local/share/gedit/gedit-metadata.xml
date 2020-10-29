@@ -2,14 +2,11 @@
  <document uri="file:///home/lucas/desk/file.log" atime="1602843176276">
   <entry key="gedit-position" value="206"/>
  </document>
- <document uri="file:///home/lucas/github/moon-phases/README.md" atime="1603936365381">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-spell-language" value="pt_BR"/>
+ <document uri="file:///home/lucas/github/moon-phase/moon/README.md" atime="1603988299398">
+  <entry key="gedit-position" value="0"/>
  </document>
- <document uri="file:///home/lucas/.local/share/applications/linguist.desktop" atime="1603555549597">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-spell-language" value="pt_BR"/>
-  <entry key="gedit-position" value="242"/>
+ <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
+  <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/github/moon-phase/moon/.gitignore" atime="1603988185764">
   <entry key="gedit-position" value="0"/>
@@ -26,18 +23,23 @@
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="221"/>
  </document>
+ <document uri="file:///tmp/tmp.K4qq4zVxCi/urls" atime="1603412500497">
+  <entry key="gedit-position" value="0"/>
+ </document>
  <document uri="file:///home/lucas/.local/share/applications/assistant.desktop" atime="1603555540256">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
  </document>
- <document uri="file:///tmp/tmp.K4qq4zVxCi/urls" atime="1603412500497">
-  <entry key="gedit-position" value="0"/>
- </document>
  <document uri="file:///home/lucas/github/lucasbrum.static/.gitignore" atime="1603811982215">
   <entry key="gedit-position" value="0"/>
  </document>
- <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
-  <entry key="gedit-position" value="0"/>
+ <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603811983041">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-position" value="224"/>
+ </document>
+ <document uri="file:///home/lucas/github/moon-phases/README.md" atime="1603936365381">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
  </document>
  <document uri="file:///home/lucas/majestic/ngrok/home/lucas/.config/systemd/user/ngrok.service" atime="1603727106355">
   <entry key="gedit-position" value="575"/>
@@ -47,14 +49,19 @@
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="251"/>
  </document>
- <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="128"/>
- </document>
  <document uri="file:///home/lucas/.local/share/applications/qdbusviewer.desktop" atime="1603555553413">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="213"/>
+ </document>
+ <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-position" value="128"/>
+ </document>
+ <document uri="file:///home/lucas/.local/share/applications/linguist.desktop" atime="1603555549597">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="242"/>
  </document>
  <document uri="file:///home/lucas/.local/share/applications/gtk3-icon-browser.desktop" atime="1603403049978">
   <entry key="gedit-encoding" value="UTF-8"/>
@@ -64,23 +71,19 @@
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
  </document>
- <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603811983041">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="224"/>
+ <document uri="file:///home/lucas/img/wallhaven/downloaded.txt" atime="1603413089864">
+  <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/github/lucasbrum/lucasbrum/.gitignore" atime="1603115813071">
   <entry key="gedit-encoding" value="UTF-8"/>
  </document>
- <document uri="file:///home/lucas/img/wallhaven/downloaded.txt" atime="1603413089864">
-  <entry key="gedit-position" value="0"/>
+ <document uri="file:///home/lucas/github/moon-phase/README.md" atime="1603988312205">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="300"/>
  </document>
  <document uri="file:///home/lucas/majestic/gnome/.config/argos/07-wallpaper.sh" atime="1603404117254">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="21"/>
- </document>
- <document uri="file:///home/lucas/github/moon-phase/README.md" atime="1603988273545">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-spell-language" value="pt_BR"/>
-  <entry key="gedit-position" value="39"/>
  </document>
 </metadata>
