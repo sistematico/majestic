@@ -47,14 +47,14 @@
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="251"/>
  </document>
+ <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-position" value="128"/>
+ </document>
  <document uri="file:///home/lucas/.local/share/applications/qdbusviewer.desktop" atime="1603555553413">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="213"/>
- </document>
- <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="128"/>
  </document>
  <document uri="file:///home/lucas/.local/share/applications/gtk3-icon-browser.desktop" atime="1603403049978">
   <entry key="gedit-encoding" value="UTF-8"/>
@@ -78,9 +78,9 @@
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="21"/>
  </document>
- <document uri="file:///home/lucas/github/moon-phase/README.md" atime="1603936375498">
+ <document uri="file:///home/lucas/github/moon-phase/README.md" atime="1603988273545">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
-  <entry key="gedit-position" value="340"/>
+  <entry key="gedit-position" value="39"/>
  </document>
 </metadata>
