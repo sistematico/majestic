@@ -2,12 +2,16 @@
  <document uri="file:///home/lucas/desk/file.log" atime="1602843176276">
   <entry key="gedit-position" value="206"/>
  </document>
+ <document uri="file:///home/lucas/github/moon-phases/README.md" atime="1603936365381">
+  <entry key="gedit-encoding" value="UTF-8"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
+ </document>
  <document uri="file:///home/lucas/.local/share/applications/linguist.desktop" atime="1603555549597">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="242"/>
  </document>
- <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
+ <document uri="file:///home/lucas/github/moon-phase/moon/.gitignore" atime="1603988185764">
   <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/majestic/gnome/bin/gnome-setup.sh" atime="1602460950151">
@@ -32,9 +36,8 @@
  <document uri="file:///home/lucas/github/lucasbrum.static/.gitignore" atime="1603811982215">
   <entry key="gedit-position" value="0"/>
  </document>
- <document uri="file:///home/lucas/github/moon-phases/README.md" atime="1603936365381">
-  <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-spell-language" value="pt_BR"/>
+ <document uri="file:///tmp/tmp.K4qq4zVxCi/tmp" atime="1603412504550">
+  <entry key="gedit-position" value="0"/>
  </document>
  <document uri="file:///home/lucas/majestic/ngrok/home/lucas/.config/systemd/user/ngrok.service" atime="1603727106355">
   <entry key="gedit-position" value="575"/>
@@ -49,17 +52,17 @@
   <entry key="gedit-spell-language" value="pt_BR"/>
   <entry key="gedit-position" value="213"/>
  </document>
- <document uri="file:///home/lucas/majestic/crontab.txt" atime="1603513341557">
+ <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
   <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-spell-language" value="pt_BR"/>
+  <entry key="gedit-position" value="128"/>
  </document>
  <document uri="file:///home/lucas/.local/share/applications/gtk3-icon-browser.desktop" atime="1603403049978">
   <entry key="gedit-encoding" value="UTF-8"/>
   <entry key="gedit-position" value="79"/>
  </document>
- <document uri="file:///home/lucas/.config/argos/07-wallpaper.sh" atime="1603407106833">
+ <document uri="file:///home/lucas/majestic/crontab.txt" atime="1603513341557">
   <entry key="gedit-encoding" value="UTF-8"/>
-  <entry key="gedit-position" value="128"/>
+  <entry key="gedit-spell-language" value="pt_BR"/>
  </document>
  <document uri="file:///home/lucas/github/lucasbrum/.gitignore" atime="1603811983041">
   <entry key="gedit-encoding" value="UTF-8"/>
