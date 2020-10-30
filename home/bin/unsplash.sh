@@ -26,6 +26,7 @@ x=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $3}')
 y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
 max=100
 flush=1
+dconf=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
@@ -46,7 +47,11 @@ setWall() {
 		if [ "$DESKTOP_SESSION" == "mate" ]; then
 			gsettings set org.mate.background picture-filename "${1}"
 		elif [ "$DESKTOP_SESSION" == "gnome" ]; then
-			gsettings set org.gnome.desktop.background picture-uri "file://${1}"
+		    if [ $dconf == 0 ]; then
+    			gsettings set org.gnome.desktop.background picture-uri "file://${1}"
+			else
+                dconf write "/org/gnome/desktop/background/picture-uri" "'file://${1}'"			
+			fi
 		else
 			which feh >/dev/null 2>&1 && { feh --bg-fill "${1}"; }
 		fi
