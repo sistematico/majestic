@@ -47,10 +47,10 @@ setWall() {
 		if [ "$DESKTOP_SESSION" == "mate" ]; then
 			gsettings set org.mate.background picture-filename "${1}"
 		elif [ "$DESKTOP_SESSION" == "gnome" ]; then
-		    if [ $dconf == 0 ]; then
-    			gsettings set org.gnome.desktop.background picture-uri "file://${1}"
+		    if [ "$GSETTINGS_BACKEND" == "dconf" ]; then
+    			dconf write "/org/gnome/desktop/background/picture-uri" "'file://${1}'"
 			else
-                dconf write "/org/gnome/desktop/background/picture-uri" "'file://${1}'"			
+                gsettings set org.gnome.desktop.background picture-uri "file://${1}"
 			fi
 		else
 			which feh >/dev/null 2>&1 && { feh --bg-fill "${1}"; }
