@@ -1,215 +1,306 @@
 [colors]
-background = ${xrdb:background:#44475a}
-;background = #44475a
-foreground = ${xrdb:color7:#222}
-highlight = ${xrdb:color15:#222}
-vermelho = #ff5555
-azul = #6272a4
+background = #00000000
+background-alt = #444
+foreground = ${xrdb:foreground:#fff}
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
 
-[bar/base]
-enable-ipc = true
-font-0=Fantasque Sans Mono:style=Regular:pixelsize=10;2
-font-1=feather:pixelsize=9:antialias=true;2
-padding = 2
-border-size = 0
-border-color = ${colors.foreground}
+[bar/top]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
 
-height = 30
-;radius = 20
-;Works very well with a radius like this! Put it on every bar.
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-override-redirect=false
-offset-y = 10
 
-wm-restack = bspwm
+line-size = 3
+line-color = #f00
 
-[bar/left]
-inherit = bar/base
-width = 22.6%
-offset-x = 10
-line-size = 1
-modules-left = bspwm sep firefox thunar urxvt code
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
+padding-left = 0
+padding-right = 2
 
-[bar/center]
-inherit = bar/base
-enable-ipc = true
-width = 25%
-offset-x = 37.5%
-modules-center = mpd
+module-margin-left = 1
+module-margin-right = 2
 
-[bar/right]
-locale = pt_BR.UTF-8
-inherit = bar/base
-width = 17.7%
-offset-x = 81.8%
-module-margin-right = 1
-modules-left = lock clip grabc dl net pulse time power
-                                       
-[module/wsnumber]
-type = custom/script
-exec = bspc query -D -d focused --names
-tail = true
-interval = 0
-format = "<label>"
-scroll-up = bspc desktop -f next
-scroll-down = bspc desktop -f prev
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
+font-1 = icomoon:fontformat=truetype:size=8;2
 
-[module/dl]
-type = custom/script
-interval = 5
-click-left = ~/.config/polybar/scripts/downloads.sh x > /dev/null 2> /dev/null &
-click-middle = ~/.config/polybar/scripts/downloads.sh c > /dev/null 2> /dev/null &
-click-right = ~/.config/polybar/scripts/downloads.sh i > /dev/null 2> /dev/null &
-exec = ~/.config/polybar/scripts/downloads.sh
+modules-left = i3
+modules-center = xwindow
+modules-right = filesystem cpu memory eth temperature pulseaudio clip lock date powermenu
 
-[module/window]
-type = custom/script
-interval = 1
-format-prefix = " "
-label = %output:0:45:...%
-click-left = ~/.config/polybar/scripts/janela.sh -i
-click-middle = ~/.config/polybar/scripts/janela.sh -c
-click-right = ~/.config/polybar/scripts/janela.sh -w
-exec = ~/.config/polybar/scripts/janela.sh
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
 
-[module/bspwm]
-type = internal/bspwm
-reverse-scroll = false
+cursor-click = pointer
+cursor-scroll = ns-resize
 
-label-focused = %name%
-label-focused-underline = ${colors.highlight}
-label-focused-foreground = ${colors.highlight}
-label-focused-padding = 1
+[bar/bottom]
+width = 100%
+height = 27
 
-label-occupied = %name%
-label-occupied-foreground = ${colors.highlight}
-label-occupied-padding = 1
+fixed-center = true
 
-label-empty = %name%
-label-empty-padding = 1
+bottom = true
 
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-;format-online =  <toggle> <label-song>
-;format-online =  <icon-prev> <toggle> <icon-next> <label-song> <label-time>
-format-online =  <icon-prev> <toggle> <icon-next> <label-song> <bar-progress>
-format-online-margin = 2
+line-size = 3
+line-color = #f00
 
-format-offline = <label-offline>
-label-offline =  mpd
+padding-left = 0
+padding-right = 2
 
-format-offline-padding = 2
+module-margin-left = 1
+module-margin-right = 2
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
+font-1 = icomoon:fontformat=truetype:size=8;2
 
-; Only applies if <bar-progress> is used
-bar-progress-width = 15
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
+modules-left = 
+modules-center = ff sep12 thunar sep12 term sep12 code sep12 tlgr sep12 spot sep12 steam
+modules-right = 
 
-label-song-maxlen = 35
-label-song-ellipsis = true
+cursor-click = pointer
+cursor-scroll = ns-resize
 
-[module/time]
-type = internal/date
-interval = 10
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
 
-format-prefix = " "
-;format-prefix = " "
-;format-margin = 1
+ws-icon-default = 
 
-time = "%H:%M"
-date = "%d %b"
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
 
-;label = %date%, %time%
-label = %time%
+label-focused = 
+label-focused-padding = 2
 
-[module/pulse]
-type = internal/pulseaudio
+label-unfocused = %icon%
+label-unfocused-padding = 2
 
-format-volume-margin = 1
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage:3:3%%
-use-ui-max = false
-interval = 5
+label-visible = %icon%
+label-visible-padding = ${self.label-focused-padding}
 
-ramp-volume-0 = ""
-ramp-volume-1 = ""
-ramp-volume-2 = ""
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
-label-muted = ""   
-label-muted-padding = 2
+[module/xwindow]
+type = internal/xwindow
+label =  %{A1:xdotool getwindowfocus windowkill:}%title:0:30:...%%{A}
+;label =  %title:0:35:...%
 
-[module/lock]
-type = custom/script
-interval = 5
-;content = 
-click-left = $HOME/.config/polybar/scripts/lock -x &
-click-right = $HOME/.local/lock/fortune > /dev/null 2> /dev/null &
-exec = $HOME/.config/polybar/scripts/lock
+[module/filesystem]
+type = internal/fs
+interval = 25
 
-[module/net]
+mount-0 = /
+
+label-mounted =  %percentage_used%%
+label-unmounted =  %mountpoint% not mounted
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+label = %percentage_used%%
+
+[module/eth]
 type = internal/network
 interface = eno1
-label-connected =  %downspeed:8%
+interval = 3.0
 
-[module/power]
-type = custom/text
-content = 
-;content-foreground = #ff0312
-click-left = $HOME/.config/rofi/scripts/power
+format-connected-prefix = " "
+label-connected = %local_ip%
 
-[module/clip]
-type = custom/text
-content = 
-click-left = $HOME/.config/rofi/scripts/greenclip
-click-right = greenclip clear && notify-send "GreenClip" "Área de transferência limpa"
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
 
-[module/grabc]
-type = custom/text
-content = 
-click-left = $HOME/.config/polybar/scripts/grabc
+[module/pulseaudio]
+type = internal/pulseaudio
 
-[module/firefox]
+;format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
+
+label-volume =  %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = 
+label-muted-foreground = #666
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+label = %date% %time%
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-warn = <label-warn>
+
+label =  %temperature-c%
+label-warn =  %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancelar
+label-close-foreground = ${colors.secondary}
+label-separator = " | "
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = sair
+menu-0-0-exec = menu-open-1
+
+menu-0-1 = reiniciar
+menu-0-1-exec = menu-open-2
+
+menu-0-2 = desligar
+menu-0-2-exec = menu-open-3
+
+
+menu-1-0 = sair
+menu-1-0-exec = i3-msg exit
+
+menu-2-0 = reiniciar
+menu-2-0-exec = sudo reboot
+
+menu-3-0 = desligar
+menu-3-0-exec = sudo poweroff
+
+[module/ff]
 type = custom/text
-content = 
-content-margin = 1
-click-left = firefox &
+content = 
+;click-left = firefox & 
+click-left = pgrep -x firefox >/dev/null || /usr/bin/firefox &
 
 [module/thunar]
 type = custom/text
-content = 
-content-margin = 1
-click-left = thunar &
+content = 
+;click-left = thunar &
+click-left = pgrep -x thunar >/dev/null || /usr/bin/thunar &
 
-[module/urxvt]
+[module/term]
 type = custom/text
-content = 
-content-margin = 1
+content = 
 click-left = urxvt &
 
 [module/code]
 type = custom/text
-content = 
-content-margin = 1
-click-left = code &
+content = 
+click-left = pgrep -x code >/dev/null || /usr/bin/code &
+
+[module/tlgr]
+type = custom/text
+content = 
+;click-left = /usr/bin/telegram-desktop > /dev/null 2> /dev/null &
+click-left = pgrep -x telegram >/dev/null || /usr/bin/telegram-desktop > /dev/null 2> /dev/null &
+
+[module/spot]
+type = custom/text
+content = 
+;click-left = /usr/bin/spotify > /dev/null 2> /dev/null &
+click-left = pgrep -x spotify >/dev/null || /usr/bin/spotify &
+
+[module/steam]
+type = custom/text
+content = 
+;click-left = /usr/bin/steam > /dev/null 2> /dev/null &
+click-left = pgrep -x steam >/dev/null || /usr/bin/steam > /dev/null 2> /dev/null &
+
+[module/clip]
+type = custom/text
+content = 
+click-left = $HOME/.config/rofi/scripts/greenclip & 
+
+[module/lock]
+type = custom/text
+content = 
+click-left = $HOME/.local/lock/fortune &
+
+;   
 
 [module/sep]
 type = custom/text
-;content = "| "
-content = " "
+content = " "
+
+[module/sep2]
+type = custom/text
+content = "  "
+
+[module/sep3]
+type = custom/text
+content = "   "
+
+[module/sep4]
+type = custom/text
+content = "    "
+
+[module/sep5]
+type = custom/text
+content = "     "
+
+[module/sep6]
+type = custom/text
+content = "      "
+
+[module/sep7]
+type = custom/text
+content = "       "
+
+[module/sep8]
+type = custom/text
+content = "        "
+
+[module/sep9]
+type = custom/text
+content = "         "
+
+[module/sep10]
+type = custom/text
+content = "          "
+
+[module/sep11]
+type = custom/text
+content = "           "
+
+[module/sep12]
+type = custom/text
+content = "            "
 
 [settings]
 screenchange-reload = true
@@ -217,12 +308,8 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = true
+;pseudo-transparency = false
 
 [global/wm]
-margin-top = 0
-margin-bottom = 0
-
-; vim:ft=dosini
-                      
-
+margin-top = 5
+margin-bottom = 5

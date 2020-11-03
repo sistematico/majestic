@@ -7,7 +7,7 @@ gaps outer 0
 
 # Borders
 new_window pixel 0
-default_border pixel 2
+default_border pixel 3
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -25,32 +25,82 @@ client.placeholder      $bg     $bg     $bg     $bd     $bd
 
 client.background       $bg
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config
+####################################################################
+################ A T A L H O S #####################################
+####################################################################
+# Numpad
+set $KP_Add 86
+set $KP_Sub 82
+set $KP_Multi 63
+set $KP_1 87
+set $KP_2 88
+set $KP_3 89
+set $KP_4 83
+set $KP_5 84
+set $KP_6 85
+set $KP_7 79
+set $KP_8 80
+set $KP_9 81
+set $KP_0 90
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# Config
+bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc
 
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Center Windows
+bindsym $mod+Shift+c move position center
+
+# Rofi
+bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 0 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
+bindsym --release Mod1+g exec --no-startup-id exec $HOME/.config/rofi/scripts/git
+bindsym $mod+Shift+w exec --no-startup-id $HOME/.config/rofi/scripts/janelas
+bindsym Mod1+F2 exec --no-startup-id $HOME/.config/rofi/scripts/drun
+bindsym Control+F2 exec --no-startup-id $HOME/.config/rofi/scripts/exec
+#bindsym $mod+c exec --no-startup-id $HOME/.config/rofi/scripts/configs
+#bindsym $mod+a exec --no-startup-id $HOME/.config/rofi/scripts/apps
+bindsym $mod+Shift+e exec --no-startup-id $HOME/.config/rofi/scripts/power
+bindsym $mod+b exec --no-startup-id $HOME/.config/rofi/scripts/ebook
+
+# Lock
+bindsym $mod+Shift+x exec --no-startup-id $HOME/.local/lock/fortune
+
+# Screenshot
+bindsym Print exec --no-startup-id $HOME/.local/bin/screenshot
+bindsym Control+Print exec --no-startup-id $HOME/.local/bin/screenshot -w
+bindsym --release Mod1+Sys_Req\ exec --no-startup-id $HOME/.local/bin/screenshot -s
+bindsym $mod+Print exec --no-startup-id $HOME/.local/bin/screenshot -d
+bindsym $mod+Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot -e
+
+# ScreenCast
+bindsym --release Control+Mod1+Sys_Req exec --no-startup-id $HOME/.local/bin/screencast
+bindsym --release Control+Shift+Print exec --no-startup-id $HOME/.local/bin/screencast
+
+# NCSpot
+#bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+#bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+#bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+# Spotify
+bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+# Volume
+bindcode Mod2+$KP_Add exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindcode Mod2+$KP_Sub exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# Start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# kill focused window
+# Kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id $HOME/.config/rofi/scripts/run
+# bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -59,7 +109,7 @@ bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+ccedilla focus right
 
-# alternatively, you can use the cursor keys:
+# Alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -142,10 +192,16 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 #bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -175,14 +231,76 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ####################################################################
+################ R E G R A S #######################################
+####################################################################
+for_window [urgent="latest"] focus
+
+for_window [window_role="pop-up"] floating enable, move position center
+for_window [window_role="bubble"] floating enable, move position center
+for_window [window_role="task_dialog"] floating enable, move position center
+for_window [window_role="Preferences"] floating enable, move position center
+for_window [window_type="dialog"] floating enable, move position center
+for_window [window_type="menu"] floating enable, move position center
+
+for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD)"] move to workspace $ws5, floating enable, move position center
+for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
+for_window [class="^VirtualBox" title="*Executando*"] floating enable
+
+for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird|Video Cut|Video Resize|Biblioteca|Library|About|Amigos|Sobre o Mozilla Firefox|VideoCut|dagor2)"] floating enable, move position center
+for_window [class="(Agave|Engrampa|Galculator|Catfish|Viewnior|File-roller|Xarchiver)"] floating enable, move position center
+
+for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $ws10, floating enable, move position center, border pixel 2
+#for_window [class="dagor2"] move to workspace $ws10, move position center
+#for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $ws10, floating enable, move position center, border pixel 2
+#for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $ws10
+
+for_window [class="Termite" title="castnow"] move window to scratchpad
+#for_window [title="(screencast$|^DownThemAll|MEGAsync|DownThemAll|!$)"] move window to scratchpad
+for_window [title="(screencast$|^DownThemAll|MEGAsync)"] move window to scratchpad
+for_window [class="(MEGAsync)"] move window to scratchpad
+
+for_window [class="Termite" title="^ncmpcpp"] move to workspace $ws6, floating enable, move position center
+for_window [title="(^DeaDBeeF)"] move to workspace $ws6, floating enable, move position center
+#for_window [title="(^Friends List|^Lista de amigos)"] move to workspace $ws6, floating enable, move absolute position 1520 px 70 px
+for_window [title="(^Friends List|^Lista de amigos)"] floating enable, move absolute position 1520 px 70 px
+
+# Sticky
+for_window [class="mpv"] sticky enable, floating enable, move position center
+
+# NCSpot
+for_window [class="Termite" title="ncspot"] move window to scratchpad
+
+# Spotify
+for_window [class="Spotify"] move to workspace $ws6
+
+####################################################################
+################ A S S I G N #######################################
+####################################################################
+assign [class="^(Google-chrome|[Cc]hromium|[Qq]utebrowser|[Ee]piphany|[Ff]irefox|[Ff]irefox-developer)"] $ws1
+assign [class="(Termite|Tilix|st-256color|Xfce4-terminal|URxvt)"] $ws2
+assign [class="^(VSCodium|Code|Pluma|Sublime_text|Atom|L3afpad|Mousepad)"] $ws3
+assign [class="(Thunar|Pcmanfm)"] $ws4
+assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer|Dconf-editor|Filezilla|JDownloader|Gimp-2.10|Inkscape)"] $ws5
+assign [class="^(Deluge)"] $ws6
+assign [class="^(Steam|discord)"] $ws7
+assign [class="(whatsdesk|Whatsie|Whatsapp|whatsapp-desktop)"] $ws8
+assign [class="(^Telegram|^Hexchat)"] $ws9
+assign [class="(^Atril|dagor2|Postman|Thunderbird|dontstarve_steam)"] $ws10
+
+####################################################################
 ################ I N I T ###########################################
 ####################################################################
-exec_always --no-startup-id hsetroot -solid '#3B4252'
+#exec_always --no-startup-id hsetroot -solid '#3B4252'
+exec_always --no-startup-id feh --bg-fill $HOME/img/lucas/wallpaper-dark-02.jpg
 exec_always --no-startup-id xrdb -merge $HOME/.Xresources
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id dunst
 exec --no-startup-id numlockx on
-
-exec --no-startup-id xautolock -time 3 -detectsleep -locker $HOME/.local/lock/default
+exec --no-startup-id xautolock -time 3 -detectsleep -locker $HOME/.local/lock/fortune
 exec --no-startup-id thunar --daemon
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
