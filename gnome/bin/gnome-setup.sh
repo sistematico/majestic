@@ -46,3 +46,9 @@ gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 ######################
 # Always show text-entry location
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+
+######################
+# GTK                #
+######################
+# Sort directories first
+gsettings set org.gtk.Settings.FileChooser sort-directories-first true
