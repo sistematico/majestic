@@ -19,17 +19,13 @@ icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
 
 atualiza() {
-    if [ -f ${1}/.github.lock ]; then
+    if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ]; then
+        echo "$1 não é um diretório válido."
         return
     fi
 
     if ! grep -q $usuario "${1}/.git/config"; then
-        echo "$1 não é um repositório válido e/ou seu."
-        return
-    fi
-
-    if [ ! -d ${1} ]; then
-        echo "$1 não é um diretório válido."
+        echo "O repositório $1 não pertence ao seu usuário."
         return
     fi
     
@@ -42,31 +38,26 @@ atualiza() {
         git commit -m "${m}"
         git push
         if [ "$?" == 0 ]; then
-            notify-send "-h int:transient:1" -i "${icone}" "${nome}" "Repo <b>$(basename $1)</b> atualizado."
+            notify-send -h int:transient:1 -i "${icone}" "${nome}" "Repo <b>$(basename ${1})</b> atualizado."
             [ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
         else
             if [ ! -f /tmp/git-cron.error ]; then
                 icone="${HOME}/.local/share/icons/elementary/network-error.png"
-                notify-send "-h int:transient:1" -i "${icone}" "${nome}" "Erro ao atualizar <b>$(basename $1)</b>."
+                notify-send -h int:transient:1 -i "${icone}" "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
                 touch /tmp/git-cron.error
             fi
         fi
     fi
 }
 
-echo $#
-#if [ "$#" -ne 1 ] || ! [ -d "$1" ]; then
-
-if [ ! ${1} ] || [ "${1}" == "-a" ]; then
-    for r in "${repos[@]}";	do
-        #caminho="${dir}/${r}"
-        atualiza "${r}"
-    done
-elif [ ! $2 ]; then
+if [ "$#" -eq 1 ]; then
     atualiza "$1"
-else
+elif [ "$#" -gt 1 ]; then
     for r in "$@";	do
-        #caminho="${dir}/${r}"
-        atualiza "$caminho"
+        atualiza "$r"
+    done
+else
+    for r in "${repos[@]}";	do
+        atualiza "${r}"
     done
 fi
