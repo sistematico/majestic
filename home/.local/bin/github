@@ -24,9 +24,11 @@ atualiza() {
         return
     fi
 
-    if ! grep -q $usuario "${1}/.git/config"; then
-        echo "O repositório $1 não pertence ao seu usuário."
-        return
+    if grep -q "git@github.com" "${1}/.git/config"; then
+        if ! grep -q $usuario "${1}/.git/config"; then
+            echo "O repositório $1 não pertence ao seu usuário."
+            return
+        fi
     fi
     
     cd ${1}
