@@ -11,83 +11,62 @@
 # Criado em: 20/12/2017 19:27:31
 # Última Atualização: 28/08/2020 07:30:01
 
-# Qualquer alteração, é enviada automaticamente...
-
 nome="GitHub"
+usuario="sistematico"
 dir="${HOME}/github"
-repos=(
-    'radiochat'
-    'pagseguro'
-    'beats'
-    'php-text-counter'
-    'dotfiles'
-    'sistematico.github.io'
-    'php-stars'
-    'php-template-engine'
-    'php-rest-api'
-    'php-rest-front'
-    'php-mvc'
-    'php-mvc-ajax'
-    'php-mvc-users'
-    'php-mvc-lite'
-    'mudancaonline'
-    'mudancaonlineapp'
-    'startpages'
-    'clima'
-    'conversero'
-    'zen'
-    'somdomato'
-    'lucasbrum'
-    'pushstate'
-    'php-pagination'
-)
-remoto="nginx@hera"
-dotfiles=1
+repos=($(ls -d ${dir}/*))
 icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
 
-# Notificações temporárias
-notifyargs="-h int:transient:1"
-
 atualiza() {
-    if [ -d $1 ]; then
-        if [ ! -f $1/.github.lock ]; then
-            cd $1
-            status=$(git add . -n)
-            if [ ! -z "$status" ]; then
-                c=$(echo $(git add . -n | tr '\r\n' ' '))
-                m="Autocommit por ${nome}: alterações: $c"
-                git add .
-                git commit -m "$m"
-                git push
-                if [ "$?" == 0 ]; then
-                    notify-send $notifyargs -i "$icone" "$nome" "Repo <b>$(basename $1)</b> atualizado."
-                    [ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
-                else
-                    if [ ! -f /tmp/git-cron.error ]; then
-                        icone="${HOME}/.local/share/icons/elementary/network-error.png"
-                        notify-send $notifyargs -i "$icone" "$nome" "Erro ao atualizar <b>$(basename $1)</b>."
-                        touch /tmp/git-cron.error
-                    fi
-                fi
+    if [ -f ${1}/.github.lock ]; then
+        return
+    fi
+
+    if ! grep -q $usuario "${1}/.git/config"; then
+        echo "$1 não é um repositório válido e/ou seu."
+        return
+    fi
+
+    if [ ! -d ${1} ]; then
+        echo "$1 não é um diretório válido."
+        return
+    fi
+    
+    cd ${1}
+    status=$(git add . -n)
+    if [ ! -z "${status}" ]; then
+        c=$(echo $(git add . -n | tr '\r\n' ' '))
+        m="Autocommit por ${nome}: alterações: $c"
+        git add .
+        git commit -m "${m}"
+        git push
+        if [ "$?" == 0 ]; then
+            notify-send "-h int:transient:1" -i "${icone}" "${nome}" "Repo <b>$(basename $1)</b> atualizado."
+            [ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
+        else
+            if [ ! -f /tmp/git-cron.error ]; then
+                icone="${HOME}/.local/share/icons/elementary/network-error.png"
+                notify-send "-h int:transient:1" -i "${icone}" "${nome}" "Erro ao atualizar <b>$(basename $1)</b>."
+                touch /tmp/git-cron.error
             fi
         fi
     fi
 }
 
-if [ ! $1 ] || [ "$1" == "-a" ]; then
-    for r in "${repos[@]}";	do
-        caminho="${dir}/${r}"
-        atualiza "$caminho"
-    done
+echo $#
+#if [ "$#" -ne 1 ] || ! [ -d "$1" ]; then
 
-    [ $dotfiles == 1 ] && atualiza "${HOME}/majestic"
-    [ "$1" == "-a" ] && ssh $remoto "/usr/local/scripts/github"
+if [ ! ${1} ] || [ "${1}" == "-a" ]; then
+    for r in "${repos[@]}";	do
+        #caminho="${dir}/${r}"
+        atualiza "${r}"
+    done
 elif [ ! $2 ]; then
     atualiza "$1"
 else
     for r in "$@";	do
-        caminho="${dir}/${r}"
+        #caminho="${dir}/${r}"
         atualiza "$caminho"
     done
 fi
