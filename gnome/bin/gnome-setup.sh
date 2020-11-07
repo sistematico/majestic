@@ -20,9 +20,6 @@ gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 # Three Buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
-# Center New Windows
-gsettings set org.gnome.mutter center-new-windows true
-
 ######################
 # Evolution          #
 ######################
