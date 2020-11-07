@@ -13,7 +13,7 @@
 # - https://stackoverflow.com/a/3919908
 # - https://stackoverflow.com/a/27671738
 
-which wget >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
+which wget >/dev/null 2>&1 || { echo >&2 "O programa wget não está instalado. Abortando."; exit 1; }
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
 
