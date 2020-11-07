@@ -15,18 +15,17 @@ nome="GitHub"
 usuario="sistematico"
 dir="${HOME}/github"
 repos=($(ls -d ${dir}/*))
-icone="${HOME}/.local/share/icons/elementary/github.svg"
+icone_sucesso="${HOME}/.local/share/icons/elementary/github.svg"
+icone_erro="${HOME}/.local/share/icons/elementary/network-error.png"
 som="complete"
 
 atualiza() {
     if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ]; then
-        echo "$1 não é um diretório válido."
         return
     fi
 
     if grep -q "git@github.com" "${1}/.git/config"; then
         if ! grep -q $usuario "${1}/.git/config"; then
-            echo "O repositório $1 não pertence ao seu usuário."
             return
         fi
     fi
@@ -40,14 +39,9 @@ atualiza() {
         git commit -m "${m}"
         git push
         if [ "$?" == 0 ]; then
-            notify-send -h int:transient:1 -i "${icone}" "${nome}" "Repo <b>$(basename ${1})</b> atualizado."
-            [ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
+            notify-send -h int:transient:1 -i "${icone_sucesso}" "${nome}" "Repo <b>$(basename ${1})</b> atualizado."
         else
-            if [ ! -f /tmp/git-cron.error ]; then
-                icone="${HOME}/.local/share/icons/elementary/network-error.png"
-                notify-send -h int:transient:1 -i "${icone}" "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
-                touch /tmp/git-cron.error
-            fi
+            notify-send -h int:transient:1 -i "${icone_erro}" "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
         fi
     fi
 }
