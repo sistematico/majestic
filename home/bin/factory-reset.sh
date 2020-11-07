@@ -15,8 +15,7 @@ pacman -Q >> /var/tmp/packages-before.log
 pacman -D --asdeps $(pacman -Qqe)
 
 # Mark specified packages as explicit
-#pacman -D --asexplicit base linux linux-firmware efibootmgr intel-ucode lvm2 dhcpcd xorg-server nvidia xorg-xinit bspwm sxhkd git
-pacman -D --asexplicit base linux linux-firmware efibootmgr intel-ucode lvm2 dialog sudo nano dhcpcd grub os-prober ntfs-3g grub-theme-vimix
+pacman -D --asexplicit base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd os-prober nano sudo ntfs-3g
 
 # Remove all except explicit packages
 # Note: The arguments -Qt list only true orphans. 
