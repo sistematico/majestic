@@ -1,4 +1,4 @@
 KEY			COMMAND
 +			pactl set-sink-volume @DEFAULT_SINK@ +10%
 -			pactl set-sink-volume @DEFAULT_SINK@ -10%
-ctrl+alt+h  /bin/bash -c "xdotool key --clearmodifiers ctrl+v && /usr/bin/diodon"
+CTRL+ALT+h  /bin/bash -c "xdotool key --clearmodifiers ctrl+v && /usr/bin/diodon"
