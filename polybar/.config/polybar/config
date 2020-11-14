@@ -137,7 +137,7 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 
-[module/network]
+[module/netx]
 type = custom/ipc
 hook-0 = echo foobar
 hook-1 = date +%s
