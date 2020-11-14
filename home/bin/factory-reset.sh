@@ -20,9 +20,7 @@ fi
 
 read -p "* Deseja instalar uma interface gráfica? [s/N]: " INTERFACE
 if [[ $INTERFACE == *[sS]* ]]; then
-
     interfacepkgs="xorg-server nvidia"
-
     while :
     do    
 	    clear
@@ -34,8 +32,8 @@ if [[ $INTERFACE == *[sS]* ]]; then
 	    echo "3. xfce"
 	    echo "4. sair"
 	    echo "---------------------------------"
-	    read -r -p "Escolha uma opção [1-4] : " c
-        case $c in
+	    read -r -p "Escolha uma opção [1-4] : " pacotesinterface
+        case $pacotesinterface in
 		    1)
                 interfacepkgs="$interfacepkgs i3-gaps"
 		    ;;
@@ -52,19 +50,47 @@ if [[ $INTERFACE == *[sS]* ]]; then
 		        echo "Escolha de 1 a 4 apenas"
 	    esac
     done
-
 fi
 
-# Mark all as optional
-pacman -D --asdeps $(pacman -Qqe)
+read -p "* Deseja instalar mais algum pacote? [s/N]: " ADICIONAL
+if [[ $ADICIONAL == *[sS]* ]]; then
+    while :
+    do    
+	    read -r -p "Escolha uma opção [1-4] : " pacotesinterface
+        case $pacotesinterface in
+		    1)
+                interfacepkgs="$interfacepkgs i3-gaps"
+		    ;;
+		    2)
+		        interfacepkgs="$interfacepkgs gnome"
+		    ;;
+		    3)
+		        interfacepkgs="$interfacepkgs xfce4"		
+		    ;;
+		    4)
+		        break
+		    ;;
+		    *)
+		        echo "Escolha de 1 a 4 apenas"
+	    esac
+    done
+fi
 
-# Mark base packages as explicit
-pacman -D --asexplicit $basepkgs
+read -p "* Tem certeza que deseja continuar? [s/N]: " CONTINUAR
+if [[ $INTERFACE == *[sS]* ]]; then
+    # Mark all as optional
+    pacman -D --asdeps $(pacman -Qqe)
 
-# Remove all except explicit packages
-# Note: The arguments -Qt list only true orphans. 
-# To include packages which are optionally required by another package, pass the -t flag twice (i.e., -Qtt).
-pacman -Rns $(pacman -Qttdq)
+    # Mark base packages as explicit
+    pacman -D --asexplicit $basepkgs $interfacepkgs $optionalpkgs
 
-# Update all packages
-pacman -Syyu
+    # Remove all except explicit packages
+    # Note: The arguments -Qt list only true orphans. 
+    # To include packages which are optionally required by another package, pass the -t flag twice (i.e., -Qtt).
+    pacman -Rns $(pacman -Qttdq)
+
+    # Update all packages
+    pacman -Syyu
+else
+    echo "Programa abortado."
+fi
