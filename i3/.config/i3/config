@@ -179,10 +179,10 @@ set $ws10 "10"
 #set $feh exec --no-startup-id feh --bg-scale
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1 ; exec --no-startup-id hsetroot -solid '#282a36'
-bindsym $mod+2 workspace number $ws2 ; exec --no-startup-id hsetroot -solid '#44475a'
-bindsym $mod+3 workspace number $ws3 ; exec --no-startup-id hsetroot -solid '#6272a4'
-bindsym $mod+4 workspace number $ws4 ; exec --no-startup-id hsetroot -solid '#bf616a'
+bindsym $mod+1 workspace number $ws1 ; exec --no-startup-id hsetroot -solid '#5e81ac'
+bindsym $mod+2 workspace number $ws2 ; exec --no-startup-id hsetroot -solid '#81a1c1'
+bindsym $mod+3 workspace number $ws3 ; exec --no-startup-id hsetroot -solid '#88c0d0'
+bindsym $mod+4 workspace number $ws4 ; exec --no-startup-id hsetroot -solid '#8fbcbb'
 bindsym $mod+5 workspace number $ws5 ; exec --no-startup-id hsetroot -solid '#d08770'
 bindsym $mod+6 workspace number $ws6 ; exec --no-startup-id hsetroot -solid '#bf616a'
 bindsym $mod+7 workspace number $ws7 ; exec --no-startup-id hsetroot -solid '#d08770'
