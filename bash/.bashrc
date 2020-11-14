@@ -8,7 +8,7 @@
 ##################
 ##### Vars    ####
 ##################
-export AUTOSTART_XORG=0
+export AUTOSTART_XORG=1
 
 ##################
 ##### History  ###
