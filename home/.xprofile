@@ -23,17 +23,12 @@ dbus-update-activation-environment --systemd DISPLAY
 export SSH_AUTH_SOCK
 
 # Temas
-#GTK2_RC_FILES=/usr/share/themes/Canta-dark-compact/gtk-2.0/gtkrc
 export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 export GTK_THEME=Adwaita:dark
 
-# Dirs
-export GH=${HOME}/github
-export GL=${HOME}/gitlab
-export DOT=${HOME}/.dotfiles
 
 # Vars
-export TERMINAL=termite
+export TERMINAL=urxvt
 export BROWSER=firefox
 export EDITOR=nano
 
