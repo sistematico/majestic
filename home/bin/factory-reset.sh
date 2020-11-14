@@ -57,11 +57,11 @@ read -p "* Deseja instalar mais algum pacote? [s/N]: " ADICIONAL
 if [[ $ADICIONAL == *[sS]* ]]; then
     while :
     do    
-	    read -r -p "Digite o nome dos pacotes separados por espaços: " pacotesadicionais
+	    read -r -p "Digite o nome dos pacotes separados por espaços: " optionalpkgs
 
         echo "Os seguintes pacotes foram adicionados:"
         echo
-        echo "$pacotesadicionais"
+        echo "$optionalpkgs"
         echo
         
   	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionaisok
@@ -72,7 +72,7 @@ if [[ $ADICIONAL == *[sS]* ]]; then
 fi
 
 read -p "* Tem certeza que deseja continuar? [s/N]: " CONTINUAR
-if [[ $INTERFACE == *[sS]* ]]; then
+if [[ $CONTINUAR == *[sS]* ]]; then
     if [ "$dryrun" == "n" ]; then
         # Mark all as optional
         echo "Marcando todos os pacotes como opcionais"
