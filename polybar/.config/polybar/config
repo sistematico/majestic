@@ -250,10 +250,17 @@ content = 
 click-left = $HOME/.config/rofi/scripts/greenclip > /dev/null 2> /dev/null &
 click-right = /usr/bin/greenclip clear &
 
+;[module/lock]
+;type = custom/text
+;content = 
+;click-left = $HOME/.local/lock/fortune &
+
 [module/lock]
-type = custom/text
-content = 
-click-left = $HOME/.local/lock/fortune &
+type = custom/script
+interval = 5
+click-left = $HOME/.config/polybar/scripts/lock.sh -x &
+exec = $HOME/.config/polybar/scripts/lock.sh
+
 
 [module/launcher]
 type = custom/text
