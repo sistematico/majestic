@@ -270,7 +270,7 @@ exec = $HOME/.config/polybar/scripts/trash.sh
 
 [module/wall]
 type = custom/text
-content = 
+content = 
 scroll-up = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
 scroll-down = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
 
