@@ -303,7 +303,7 @@ assign [class="(^Atril|dagor2|Postman|Thunderbird|dontstarve_steam)"] $ws10
 ################ I N I T ###########################################
 ####################################################################
 #exec_always --no-startup-id feh --bg-fill $(ls ~/img/wallhaven/* | shuf -n1) # hsetroot -solid '#3B4252'
-exec_always --no-startup-id feh --bg-fill $HOME/github/majestic/dracula/img/arch.png
+#exec_always --no-startup-id feh --bg-fill $HOME/github/majestic/dracula/img/arch.png
 exec_always --no-startup-id xrdb -merge $HOME/.Xresources
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id dunst
