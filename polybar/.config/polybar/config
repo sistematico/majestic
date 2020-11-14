@@ -260,9 +260,14 @@ content = 
 click-left = $HOME/.local/lock/fortune &
 
 [module/trash]
-type = custom/text
-content = 
-click-left = $HOME/.local/lock/fortune &
+;content = 
+type = custom/script
+tail = true
+click-middle = ~/.config/polybar/scripts/trash.sh -o &
+click-right = ~/.config/polybar/scripts/trash.sh -x &
+exec = ~/.config/polybar/scripts/trash.sh
+
+
 
 [module/sep]
 type = custom/text
