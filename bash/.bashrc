@@ -78,4 +78,6 @@ fi
 # Com cor
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 
-
+# Vim
+bind -r '\C-s'
+stty -ixon
