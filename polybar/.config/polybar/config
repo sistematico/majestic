@@ -67,7 +67,7 @@ font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 font-1 = icomoon:size=10;2
 
 modules-left = dl
-modules-center = ff sep3 thunar sep3 term sep3 code sep3 tlgr sep3 spot sep3 steam
+modules-center = ff thunar term code tlgr spot steam
 modules-right = trash
 
 cursor-click = pointer
