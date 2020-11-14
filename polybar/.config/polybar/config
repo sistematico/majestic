@@ -254,7 +254,15 @@ type = custom/text
 content = 
 click-left = $HOME/.local/lock/fortune &
 
-;   
+[module/launcher]
+type = custom/text
+content = 
+click-left = $HOME/.local/lock/fortune &
+
+[module/trash]
+type = custom/text
+content = 
+click-left = $HOME/.local/lock/fortune &
 
 [module/sep]
 type = custom/text
