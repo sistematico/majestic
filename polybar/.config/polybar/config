@@ -235,7 +235,8 @@ click-left = pgrep -x telegram >/dev/null || /usr/bin/telegram-desktop > /dev/nu
 type = custom/text
 content = 
 ;click-left = /usr/bin/spotify > /dev/null 2> /dev/null &
-click-left = pgrep -x spotify >/dev/null || /usr/bin/spotify &
+;click-left = pgrep -x spotify > /dev/null || /usr/bin/spotify &
+click-left = pgrep -x spotify > /dev/null || /usr/bin/spotify > /dev/null 2> /dev/null &
 
 [module/steam]
 type = custom/text
