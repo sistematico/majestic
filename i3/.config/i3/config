@@ -184,11 +184,11 @@ bindsym $mod+2 workspace number $ws2 ; exec --no-startup-id hsetroot -solid '#44
 bindsym $mod+3 workspace number $ws3 ; exec --no-startup-id hsetroot -solid '#6272a4'
 bindsym $mod+4 workspace number $ws4 ; exec --no-startup-id hsetroot -solid '#bf616a'
 bindsym $mod+5 workspace number $ws5 ; exec --no-startup-id hsetroot -solid '#d08770'
-bindsym $mod+6 workspace number $ws6 ; exec --no-startup-id hsetroot -solid '#ebcb8b'
-bindsym $mod+7 workspace number $ws7 ; exec --no-startup-id hsetroot -solid '#ffb86c'
-bindsym $mod+8 workspace number $ws8 ; exec --no-startup-id hsetroot -solid '#ff79c6'
-bindsym $mod+9 workspace number $ws9 ; exec --no-startup-id hsetroot -solid '#bd93f9'
-bindsym $mod+0 workspace number $ws10 ; exec --no-startup-id hsetroot -solid '#ff5555'
+bindsym $mod+6 workspace number $ws6 ; exec --no-startup-id hsetroot -solid '#bf616a'
+bindsym $mod+7 workspace number $ws7 ; exec --no-startup-id hsetroot -solid '#d08770'
+bindsym $mod+8 workspace number $ws8 ; exec --no-startup-id hsetroot -solid '#ebcb8b'
+bindsym $mod+9 workspace number $ws9 ; exec --no-startup-id hsetroot -solid '#a3be8c'
+bindsym $mod+0 workspace number $ws10 ; exec --no-startup-id hsetroot -solid '#b48ead'
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
