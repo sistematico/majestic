@@ -1,3 +1,4 @@
+" Syntax Hightlight
 
 set termguicolors
 packadd! dracula
