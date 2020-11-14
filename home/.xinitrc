@@ -36,8 +36,8 @@ dbus-update-activation-environment --systemd DISPLAY
 
 # Temas
 #GTK2_RC_FILES=/usr/share/themes/Canta-dark-compact/gtk-2.0/gtkrc
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export GTK_THEME=Adwaita:dark
+#export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+#export GTK_THEME=Adwaita:dark
 
 # Vars
 #export DESKTOP_SESSION=gnome
@@ -47,4 +47,15 @@ export BROWSER=firefox
 export COMPOSER_HOME=${HOME}/.composer
 
 #ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
-#exec bspwm
+
+# iBus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -drx &
+
+# Autostart
+numlockx on &
+
+# DE/WM
+exec i3
