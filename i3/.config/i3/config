@@ -179,16 +179,16 @@ set $ws10 "10"
 #set $feh exec --no-startup-id feh --bg-scale
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1 ; hsetroot -solid '#f1fa8c'
-bindsym $mod+2 workspace number $ws2 ; hsetroot -solid '#44475a'
-bindsym $mod+3 workspace number $ws3 ; hsetroot -solid '#f8f8f2'
-bindsym $mod+4 workspace number $ws4 ; hsetroot -solid '#6272a4'
-bindsym $mod+5 workspace number $ws5 ; hsetroot -solid '#8be9fd'
-bindsym $mod+6 workspace number $ws6 ; hsetroot -solid '#50fa7b'
-bindsym $mod+7 workspace number $ws7 ; hsetroot -solid '#ffb86c'
-bindsym $mod+8 workspace number $ws8 ; hsetroot -solid '#ff79c6'
-bindsym $mod+9 workspace number $ws9 ; hsetroot -solid '#bd93f9'
-bindsym $mod+0 workspace number $ws10 ; hsetroot -solid '#ff5555'
+bindsym $mod+1 workspace number $ws1 ; exec --no-startup-id hsetroot -solid '#f1fa8c'
+bindsym $mod+2 workspace number $ws2 ; exec --no-startup-id hsetroot -solid '#44475a'
+bindsym $mod+3 workspace number $ws3 ; exec --no-startup-id hsetroot -solid '#f8f8f2'
+bindsym $mod+4 workspace number $ws4 ; exec --no-startup-id hsetroot -solid '#6272a4'
+bindsym $mod+5 workspace number $ws5 ; exec --no-startup-id hsetroot -solid '#8be9fd'
+bindsym $mod+6 workspace number $ws6 ; exec --no-startup-id hsetroot -solid '#50fa7b'
+bindsym $mod+7 workspace number $ws7 ; exec --no-startup-id hsetroot -solid '#ffb86c'
+bindsym $mod+8 workspace number $ws8 ; exec --no-startup-id hsetroot -solid '#ff79c6'
+bindsym $mod+9 workspace number $ws9 ; exec --no-startup-id hsetroot -solid '#bd93f9'
+bindsym $mod+0 workspace number $ws10 ; exec --no-startup-id hsetroot -solid '#ff5555'
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
