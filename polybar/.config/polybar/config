@@ -268,6 +268,12 @@ click-middle = $HOME/.config/polybar/scripts/trash.sh -o &
 click-right = $HOME/.config/polybar/scripts/trash.sh -x &
 exec = $HOME/.config/polybar/scripts/trash.sh
 
+[module/wall]
+type = custom/script
+content = 
+scroll-up = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
+scroll-down = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
+
 
 
 [module/sep]
