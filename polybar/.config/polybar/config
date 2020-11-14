@@ -61,7 +61,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
-font-1 = icomoon:fontformat=truetype:size=8;2
+font-1 = icomoon:fontformat=truetype:size=10;2
 
 modules-left = 
 modules-center = ff sep12 thunar sep12 term sep12 code sep12 tlgr sep12 spot sep12 steam
