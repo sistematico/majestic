@@ -9,6 +9,7 @@
 
 log=0
 basepkgs="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd nano terminus-font"
+dryrun="s"
 
 if [ $log -eq 1 ]; then
     echo "Packages: $(pacman -Q | wc -l)" > /var/tmp/packages-before.log
@@ -72,7 +73,7 @@ fi
 
 read -p "* Tem certeza que deseja continuar? [s/N]: " CONTINUAR
 if [[ $INTERFACE == *[sS]* ]]; then
-    if [ "$DRYRUN" == "N" ]; then
+    if [ "$dryrun" == "n" ]; then
         # Mark all as optional
         pacman -D --asdeps $(pacman -Qqe)
 
