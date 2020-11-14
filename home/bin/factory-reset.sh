@@ -56,23 +56,18 @@ read -p "* Deseja instalar mais algum pacote? [s/N]: " ADICIONAL
 if [[ $ADICIONAL == *[sS]* ]]; then
     while :
     do    
-	    read -r -p "Escolha uma opção [1-4] : " pacotesinterface
-        case $pacotesinterface in
-		    1)
-                interfacepkgs="$interfacepkgs i3-gaps"
-		    ;;
-		    2)
-		        interfacepkgs="$interfacepkgs gnome"
-		    ;;
-		    3)
-		        interfacepkgs="$interfacepkgs xfce4"		
-		    ;;
-		    4)
-		        break
-		    ;;
-		    *)
-		        echo "Escolha de 1 a 4 apenas"
-	    esac
+	    read -r -p "Digite o nome dos pacotes separados por espaços: " pacotesadicionais
+
+        echo "Os seguintes pacotes foram adicionados:"
+        echo
+        echo "$pacotesadicionais"
+        echo
+  	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionais
+
+        if [[ $pacotesadicionais == *[sS]* ]]; then
+            break
+        fi
+
     done
 fi
 
