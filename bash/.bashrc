@@ -6,6 +6,11 @@
 [[ $- != *i* ]] && return
 
 ##################
+##### Vars    ####
+##################
+export AUTOSTART_XORG=0
+
+##################
 ##### Opções  ####
 ##################
 # Ignora a caixa e alguns erros ao trocar de diretório
@@ -19,6 +24,31 @@ shopt -s autocd
 
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
+
+##################
+##### Funções ####
+##################
+if [[ -f ~/.bash_functions ]]; then
+    source ~/.bash_functions
+fi
+
+# rsync
+function fullsync() {
+	[ ! -d $HOME/vps/$1 ] && mkdir -p $HOME/vps/${1}
+	rsync -aAXvzz --exclude={"usr/lib/x86_64-linux-gnu/","usr/lib/gcc/x86_64-linux-gnu/","var/lib/snapd/void/","usr/libexec/openssh/ssh-keysign","var/cache/","usr/src/kernels/","var/lib/php/sessions/","var/log/journal/","var/cache/apt/","*.mp3",".local/share/Trash/",".local/share/Steam/",".cache/","var/spoll/anacron/","var/log/btmp","var/lib/systemd/random-seed","tmp/backup","usr/bin/ssh-agent","var/cache/yum","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel","/etc/shadow","/etc/shadow-","/etc/gshadow","/etc/gshadow-"} root@${1}:/ ${HOME}/vps/${1}/
+}
+
+function checkiso() {
+	if [ -f SHA512SUMS ]; then
+        sha512sum --ignore-missing -c SHA512SUMS
+        return
+	fi
+	
+	if [ -f SHA256SUMS ]; then
+        sha256sum --ignore-missing -c SHA256SUMS
+        return
+	fi
+}
 
 ##################
 ##### History  ###
@@ -59,27 +89,12 @@ if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
 fi
 
 ##################
-##### Funções ####
-##################
-if [[ -f ~/.bash_functions ]]; then
-    source ~/.bash_functions
-fi
-
-##################
 ##### Prompt #####
 ##################
 # Sem cor
-#PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]:\$ '
 
 # Com cor
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 
-
-#fortune chucknorris
-#echo
-
-# Generate history for session
-#export PROMPT_COMMAND="history -a ; history -c ; history -r ; $PROMPT_COMMAND"
-#export PROMPT_COMMAND="history -a && history -c && history -r && $PROMPT_COMMAND"
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
