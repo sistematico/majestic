@@ -1,7 +1,7 @@
 " Syntax Hightlight
 
 filetype plugin on
-set syntax on
+syntax on
 
 set termguicolors
 packadd! dracula
