@@ -66,7 +66,7 @@ font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 ;font-1 = icomoon:fontformat=truetype:antialias=false:size=10;2
 font-1 = icomoon:size=10;2
 
-modules-left = wall
+modules-left = dl
 modules-center = ff sep6 thunar sep6 term sep6 code sep6 tlgr sep6 spot sep6 steam
 modules-right = trash
 
@@ -221,6 +221,14 @@ menu-3-0-exec = systemctl suspend
 menu-4-0 = deseja mesmo desligar?
 menu-4-0-exec = systemctl poweroff
 
+[module/dl]
+type = custom/script
+interval = 5
+click-left = ~/.config/polybar/scripts/downloads.sh x > /dev/null 2> /dev/null &
+click-middle = ~/.config/polybar/scripts/downloads.sh c > /dev/null 2> /dev/null &
+click-right = ~/.config/polybar/scripts/downloads.sh i > /dev/null 2> /dev/null &
+exec = ~/.config/polybar/scripts/downloads.sh
+
 [module/ff]
 type = custom/text
 content = 
@@ -278,7 +286,6 @@ type = custom/script
 interval = 5
 click-left = $HOME/.config/polybar/scripts/lock.sh -x &
 exec = $HOME/.config/polybar/scripts/lock.sh
-
 
 [module/launcher]
 type = custom/text
