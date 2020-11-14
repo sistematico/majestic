@@ -62,30 +62,33 @@ if [[ $ADICIONAL == *[sS]* ]]; then
         echo
         echo "$pacotesadicionais"
         echo
+        
   	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionais
-
         if [[ $pacotesadicionais == *[sS]* ]]; then
             break
         fi
-
     done
 fi
 
 read -p "* Tem certeza que deseja continuar? [s/N]: " CONTINUAR
 if [[ $INTERFACE == *[sS]* ]]; then
-    # Mark all as optional
-    pacman -D --asdeps $(pacman -Qqe)
+    if [ "$DRYRUN" == "N" ]; then
+        # Mark all as optional
+        pacman -D --asdeps $(pacman -Qqe)
 
-    # Mark base packages as explicit
-    pacman -D --asexplicit $basepkgs $interfacepkgs $optionalpkgs
+        # Mark base packages as explicit
+        pacman -D --asexplicit $basepkgs $interfacepkgs $optionalpkgs
 
-    # Remove all except explicit packages
-    # Note: The arguments -Qt list only true orphans. 
-    # To include packages which are optionally required by another package, pass the -t flag twice (i.e., -Qtt).
-    pacman -Rns $(pacman -Qttdq)
+        # Remove all except explicit packages
+        # Note: The arguments -Qt list only true orphans. 
+        # To include packages which are optionally required by another package, pass the -t flag twice (i.e., -Qtt).
+        pacman -Rns $(pacman -Qttdq)
 
-    # Update all packages
-    pacman -Syyu
+        # Update all packages
+        pacman -Syyu
+    fi
+    
+    echo $basepkgs $interfacepkgs $optionalpkgs
 else
     echo "Programa abortado."
 fi
