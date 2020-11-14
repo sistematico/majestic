@@ -55,6 +55,12 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 ibus-daemon -drx &
 
+# Lang
+#unset LC_ALL
+#export LANG=pt_BR.UTF-8
+#export LC_MESSAGES=C
+#export LC_TIME=en_DK.UTF-8
+
 # Autostart
 numlockx on &
 
