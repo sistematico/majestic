@@ -124,7 +124,7 @@ interval = 2
 format-prefix = " "
 label = %percentage_used%%
 
-[module/eth]
+[module/network]
 type = internal/network
 interface = eno1
 interval = 3.0
