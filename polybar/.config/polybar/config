@@ -33,7 +33,7 @@ font-1 = icomoon:fontformat=truetype:size=8;2
 
 modules-left = i3
 modules-center = xwindow
-modules-right = filesystem cpu memory netx temperature pulseaudio clip lock date powermenu
+modules-right = filesystem cpu memory network temperature pulseaudio clip lock date powermenu
 
 ;tray-position = right
 ;tray-padding = 2
