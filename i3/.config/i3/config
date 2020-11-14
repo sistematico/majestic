@@ -50,7 +50,7 @@ bindsym Mod1+Tab workspace prev
 bindsym Mod1+Shift+Tab workspace next
 
 # Config
-bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc
+bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc $HOME/.config/picom/picom.conf
 
 # Video Down
 bindsym F5 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh x
