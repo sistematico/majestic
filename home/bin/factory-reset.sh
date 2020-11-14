@@ -21,28 +21,37 @@ fi
 read -p "* Deseja instalar uma interface gráfica? [s/N]: " INTERFACE
 if [[ $INTERFACE == *[sS]* ]]; then
 
-while :
-do    
-	clear
-	echo "---------------------------------"
-	echo "	     M A I N - M E N U"
-	echo "---------------------------------"
-	echo "1. i3-gaps"
-	echo "2. gnome"
-	echo "3. xfce"
-	echo "4. sair"
-	echo "---------------------------------"
-	read -r -p "Escolha uma opção [1-4] : " c
-    case $c in
-		1) pause "$(date)";;
-		2) w| less;;
-		3) echo '*** Top 10 Memory eating process:'; ps -auxf | sort -nr -k 4 | head -10; 
-		   echo; echo '*** Top 10 CPU eating process:';ps -auxf | sort -nr -k 3 | head -10; 
-		   echo;  pause;;
-		4) break;;
-		*) Pause "Select between 1 to 5 only"
-	esac
-done
+    interfacepkgs="xorg-server nvidia"
+
+    while :
+    do    
+	    clear
+	    echo "---------------------------------"
+	    echo "	     M A I N - M E N U"
+	    echo "---------------------------------"
+	    echo "1. i3-gaps"
+	    echo "2. gnome"
+	    echo "3. xfce"
+	    echo "4. sair"
+	    echo "---------------------------------"
+	    read -r -p "Escolha uma opção [1-4] : " c
+        case $c in
+		    1)
+                interfacepkgs="$interfacepkgs i3-gaps"
+		    ;;
+		    2)
+		        interfacepkgs="$interfacepkgs gnome"
+		    ;;
+		    3)
+		        interfacepkgs="$interfacepkgs xfce4"		
+		    ;;
+		    4)
+		        break
+		    ;;
+		    *)
+		        echo "Escolha de 1 a 4 apenas"
+	    esac
+    done
 
 fi
 
