@@ -33,6 +33,7 @@ fi
 [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services" ] && mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
 
 dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 
 # Temas
 #GTK2_RC_FILES=/usr/share/themes/Canta-dark-compact/gtk-2.0/gtkrc
