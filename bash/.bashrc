@@ -11,6 +11,16 @@
 export AUTOSTART_XORG=0
 
 ##################
+##### History  ###
+##################
+# Avoid duplicates
+export HISTCONTROL=ignoredups:erasedups
+
+# Size
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
+##################
 ##### Opções  ####
 ##################
 # Ignora a caixa e alguns erros ao trocar de diretório
@@ -31,17 +41,6 @@ shopt -s histappend
 if [[ -f ~/.bash_functions ]]; then
     source ~/.bash_functions
 fi
-
-##################
-##### History  ###
-##################
-# Avoid duplicates
-export HISTCONTROL=ignoredups:erasedups
-
-# Size
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-
 
 ##################
 ##### Aliases ####
