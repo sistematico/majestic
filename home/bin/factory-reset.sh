@@ -11,13 +11,12 @@ log=0
 basepkgs="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd nano terminus-font"
 dryrun="s"
 
-if [ $log -eq 1 ]; then
+read -p "* Gravar todas as alterações em log? [S/n]: " GRAVARLOG
+if [[ $GRAVARLOG != *[nN]* ]]; then
     echo "Packages: $(pacman -Q | wc -l)" > /var/tmp/packages-before.log
     echo "---" >> /var/tmp/packages-before.log
     pacman -Q >> /var/tmp/packages-before.log
 fi
-
-
 
 read -p "* Deseja instalar uma interface gráfica? [s/N]: " INTERFACE
 if [[ $INTERFACE == *[sS]* ]]; then
