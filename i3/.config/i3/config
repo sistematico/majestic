@@ -43,6 +43,12 @@ set $KP_8 80
 set $KP_9 81
 set $KP_0 90
 
+# Alt+Tab & Win+Tab
+bindsym $mod+Tab workspace prev
+bindsym $mod+Shift+Tab workspace next
+bindsym Mod1+Tab workspace prev
+bindsym Mod1+Shift+Tab workspace next
+
 # Config
 bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc
 
