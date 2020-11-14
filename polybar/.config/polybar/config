@@ -246,7 +246,7 @@ click-left = pgrep -x steam >/dev/null || /usr/bin/steam > /dev/null 2> /dev/nul
 [module/clip]
 type = custom/text
 content = 
-click-left = $HOME/.config/rofi/scripts/greenclip & 
+click-left = $HOME/.config/rofi/scripts/greenclip > /dev/null 2> /dev/null &
 
 [module/lock]
 type = custom/text
