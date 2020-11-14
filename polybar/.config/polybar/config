@@ -143,9 +143,9 @@ hook-0 = echo foobar
 hook-1 = date +%s
 hook-2 = whoami
 initial = 1
-click-left = polybar-msg -p %pid% hook demo 1
-click-right = polybar-msg -p %pid% hook demo 2
-double-click-left = polybar-msg -p %pid% hook demo 3
+click-left = polybar-msg -p %pid% hook network 1
+click-right = polybar-msg -p %pid% hook network 2
+double-click-left = polybar-msg -p %pid% hook network 3
 
 [module/pulseaudio]
 type = internal/pulseaudio
