@@ -27,7 +27,8 @@ alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 
 alias vim="vim -c 'startinsert'"
-alias showip='curl icanhazip.com'
+#alias showip='curl icanhazip.com'
+alias showip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias lostfiles='sudo lostfiles strict | egrep -vi "/etc/systemd/user/sockets.target.wants|/etc/systemd/user/default.target.wants|/usr/local/bin|/usr/share/(themes|icons|hplip|fonts|cinnamon|backgrounds|docky|mime|pixmaps|\.mono|nginx|agave)|/var/(default|cache)|/usr/lib/python3\.8|-disabled"'
 alias ue='systemctl list-unit-files | grep enabled'
 alias uue='systemctl --user list-unit-files | grep enabled'
