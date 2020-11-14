@@ -211,8 +211,8 @@ click-left = pgrep -x firefox >/dev/null || /usr/bin/firefox &
 [module/thunar]
 type = custom/text
 content = 
-;click-left = thunar &
-click-left = pgrep -x thunar >/dev/null || /usr/bin/thunar &
+;click-left = /usr/bin/thunar &
+click-left = pgrep -x thunar | egrep -v "grep|daemon" >/dev/null || /usr/bin/thunar &
 
 [module/term]
 type = custom/text
