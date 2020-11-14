@@ -4,7 +4,11 @@ let g:dracula_colorterm = 0
 colorscheme dracula
 
 filetype plugin indent on
+
 syntax on
+
+set whichwrap=b,s,<,>,[,]
+set mouse=a
 
 set tabstop=4 shiftwidth=4 expandtab
 
