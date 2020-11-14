@@ -1,1 +1,7 @@
-rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+#!/usr/bin/env bash
+
+if [ "$1" == "clear" ]; then
+    greenclip clear
+else
+    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+fi
