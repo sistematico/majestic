@@ -25,7 +25,8 @@
     idle_threshold = 120
 
     ### Text ###
-    font = Fantasque Sans 9
+    #font = Fantasque Sans 9
+    font = Noto Sans 10
     line_height = 0
 
     markup = full
