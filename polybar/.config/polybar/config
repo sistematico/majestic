@@ -64,7 +64,7 @@ font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 ;font-1 = icomoon:fontformat=truetype:antialias=false:size=10;2
 font-1 = icomoon:size=10;2
 
-modules-left = launcher
+modules-left = wall
 modules-center = ff sep12 thunar sep12 term sep12 code sep12 tlgr sep12 spot sep12 steam
 modules-right = trash
 
@@ -269,12 +269,10 @@ click-right = $HOME/.config/polybar/scripts/trash.sh -x &
 exec = $HOME/.config/polybar/scripts/trash.sh
 
 [module/wall]
-type = custom/script
+type = custom/text
 content = 
 scroll-up = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
 scroll-down = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
-
-
 
 [module/sep]
 type = custom/text
