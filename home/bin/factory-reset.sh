@@ -64,8 +64,8 @@ if [[ $ADICIONAL == *[sS]* ]]; then
         echo "$pacotesadicionais"
         echo
         
-  	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionais
-        if [[ $pacotesadicionais == *[sS]* ]]; then
+  	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionaisok
+        if [[ $pacotesadicionaisok == *[sS]* ]]; then
             break
         fi
     done
@@ -75,21 +75,27 @@ read -p "* Tem certeza que deseja continuar? [s/N]: " CONTINUAR
 if [[ $INTERFACE == *[sS]* ]]; then
     if [ "$dryrun" == "n" ]; then
         # Mark all as optional
+        echo "Marcando todos os pacotes como opcionais"
         pacman -D --asdeps $(pacman -Qqe)
 
         # Mark base packages as explicit
+        echo "Marcando como explícitos os pacotes: "
+        echo "$basepkgs $interfacepkgs $optionalpkgs"
         pacman -D --asexplicit $basepkgs $interfacepkgs $optionalpkgs
 
         # Remove all except explicit packages
         # Note: The arguments -Qt list only true orphans. 
         # To include packages which are optionally required by another package, pass the -t flag twice (i.e., -Qtt).
+        echo "Removendo todos os pacotes excetos os explícitos"
         pacman -Rns $(pacman -Qttdq)
 
         # Update all packages
+        echo "Atualizando todos os pacotes instalados"
         pacman -Syyu
     fi
     
-    echo $basepkgs $interfacepkgs $optionalpkgs
+    echo "Marcando como explícitos os pacotes: "
+    echo "$basepkgs $interfacepkgs $optionalpkgs"
 else
     echo "Programa abortado."
 fi
