@@ -2,6 +2,7 @@
 
 scr="/tmp/screenshot.png"
 fontsize=20
+textposition="+0+200"
 icon="$HOME/.local/share/i3lock/lucas.png"
 font="/usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf"
 
@@ -35,6 +36,6 @@ convert "$scr" -scale 10% -scale 1000% \
 	gradient:none-"$gradientColor" -composite -matte \
 	"$icon" -gravity center -composite -matte \
 	-gravity center -pointsize $fontsize \
-	-font $font -fill "#EAE4D1" -annotate +0+500 "$fortune" "$scr"
+	-font $font -fill "#EAE4D1" -annotate $textposition "$fortune" "$scr"
 
 i3lock -ui "$scr"
