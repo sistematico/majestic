@@ -14,7 +14,7 @@ set noshowmode
 set tabstop=4 shiftwidth=4 expandtab
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='dark-minimal'
+let g:airline_theme='minimalist'
 let g:airline_skip_empty_sections = 1
 
 inoremap <C-s> <esc>:w<cr>                 " save files
