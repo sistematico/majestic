@@ -73,16 +73,27 @@ fi
 ##### Prompt #####
 ##################
 # Sem cor
-# PS1='[\u@\h \W]:\$ '
+PS1='[\u@\h \W]:\$ '
 
 # Dracula
 #PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 
 #PS1='\[\e]2;new title\a\]prompt > '
 
-PS1="[\u@\h \W]\$ "
-PS1="\[\e]2;\u \W\a\]$PS1"
+#PS1="[\u@\h \W]\$ "
+#PS1="\[\e]2;\u \W\a\]$PS1"
 
 # Vim
 bind -r '\C-s'
 stty -ixon
+
+
+function settitle () {
+    export PREV_COMMAND=${PREV_COMMAND}${@}
+    printf "\033]0;%s\007" "${BASH_COMMAND//[^[:print:]]/}"
+    export PREV_COMMAND=${PREV_COMMAND}' | '
+}
+
+export PROMPT_COMMAND=${PROMPT_COMMAND}';export PREV_COMMAND=""'
+
+trap 'settitle "$BASH_COMMAND"' DEBUG
