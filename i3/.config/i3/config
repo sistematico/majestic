@@ -1,3 +1,6 @@
+####################################################################
+################ M A I N ###########################################
+####################################################################
 set $mod Mod4
 set $editor mousepad
 
@@ -162,6 +165,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+####################################################################
+################ W O R K S P A C E S ###############################
+####################################################################
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
