@@ -87,13 +87,4 @@ PS1='[\u@\h \W]:\$ '
 bind -r '\C-s'
 stty -ixon
 
-
-function settitle () {
-    export PREV_COMMAND=${PREV_COMMAND}${@}
-    printf "\033]0;%s\007" "${BASH_COMMAND//[^[:print:]]/}"
-    export PREV_COMMAND=${PREV_COMMAND}' | '
-}
-
-export PROMPT_COMMAND=${PROMPT_COMMAND}';export PREV_COMMAND=""'
-
-trap 'settitle "$BASH_COMMAND"' DEBUG
+trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
