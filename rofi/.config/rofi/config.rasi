@@ -8,3 +8,7 @@ configuration {
     hide-scrollbar: true;
     click-to-exit: true;
 }
+
+element-icon {
+    size: 2em;
+}
