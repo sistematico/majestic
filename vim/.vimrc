@@ -13,6 +13,8 @@ set mouse=a
 
 set tabstop=4 shiftwidth=4 expandtab
 
+let g:airline_powerline_fonts = 1
+
 inoremap <C-s> <esc>:w<cr>                 " save files
 nnoremap <C-s> :w<cr>
 
