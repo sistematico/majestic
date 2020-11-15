@@ -52,8 +52,8 @@ fi
 ##################
 ##### Sources ####
 ##################
-if [[ -f /etc/cores.inc ]]; then
-	source /etc/cores.inc
+if [ -f $HOME/.colors/dracula.bash ]; then
+	source $HOME/.colors/dracula.bash
 fi
 
 if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
@@ -73,10 +73,12 @@ fi
 ##### Prompt #####
 ##################
 # Sem cor
-#PS1='[\u@\h \W]:\$ '
+# PS1='[\u@\h \W]:\$ '
 
-# Com cor
+# Dracula
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+
+#PS1='\[\e]2;new title\a\]prompt > '
 
 # Vim
 bind -r '\C-s'
