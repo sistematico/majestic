@@ -10,4 +10,4 @@ if [[ $AUTOSTART_XORG -eq 1 && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
 
-alias ls='ls -GFh'
+#alias ls='ls -GFh'
