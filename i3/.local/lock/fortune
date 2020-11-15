@@ -31,10 +31,11 @@ maim "$scr"
 
 # get gradient dimensions directly from the screenshot
 #read width height <<<$(file $scr | cut -d, -f 2 | tr -d ' ' | tr 'x' ' ')
+#height=$((height / 4))
 
 width=$(identify -format %w $scr)
 height=$(identify -format %h $scr)
-height=$((height / 4))
+height=$((height + 300))
 
 convert "$scr" -scale 10% -scale 1000% \
 	-size "${width}x${height}" -gravity south-west \
