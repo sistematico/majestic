@@ -9,9 +9,11 @@ gaps inner 10
 gaps outer 0
 
 # Borders
-new_window pixel 0
-default_border pixel 0
+#new_window pixel 0
+#default_border pixel 3
 border_radius 6
+
+for_window [class="^.*"] border pixel 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
