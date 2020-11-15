@@ -2,8 +2,7 @@
 
 fontsize=20
 textposition="+0+200"
-#gradientcolor="#282a36"
-gradientcolor="#000000"
+gradientcolor="#282a36"
 
 icon="$HOME/.local/share/i3lock/lucas.png"
 font="/usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf"
