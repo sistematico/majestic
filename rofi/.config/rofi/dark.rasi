@@ -113,8 +113,8 @@
     text-color:       @alternate-active-foreground;
 }
 
-element-icon {
-    size:             4em ;
+#element.icon {
+    size: 4em;
 }
 
 #scrollbar {
