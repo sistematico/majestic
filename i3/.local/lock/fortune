@@ -37,7 +37,7 @@ convert "$scr" -scale 10% -scale 1000% \
 	-size "${width}x${height}" -gravity south-west \
 	gradient:none-"$gradientcolor" -composite -matte \
 	"$icon" -gravity center -composite -matte \
-	-gravity center -pointsize $fontsize \
+	-gravity center -size ${width}x30 -pointsize $fontsize \
 	-font $font -fill "#EAE4D1" -annotate $textposition "$fortune" "$scr"
 
 i3lock -ui "$scr"
