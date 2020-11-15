@@ -256,7 +256,8 @@ bindsym $mod+r mode "resize"
 ####################################################################
 ################ R E G R A S #######################################
 ####################################################################
-for_window [urgent="latest"] focus
+# Focus New Windows
+#for_window [urgent="latest"] focus
 
 for_window [window_role="pop-up"] floating enable, move position center
 for_window [window_role="bubble"] floating enable, move position center
@@ -265,7 +266,8 @@ for_window [window_role="Preferences"] floating enable, move position center
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
-for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD)"] move to workspace $ws5, floating enable, move position center
+#for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD|Gnome-font-viewer)"] move to workspace $ws5, floating enable, move position center
+for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD|Gnome-font-viewer)"] floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 
