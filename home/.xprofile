@@ -31,6 +31,7 @@ export GTK_THEME=Adwaita:dark
 export TERMINAL=urxvt
 export BROWSER=firefox
 export EDITOR=nano
+export RANGER_LOAD_DEFAULT_RC=false
 
 #export MOZ_DISABLE_CONTENT_SANDBOX=1
 #export MOZ_DISABLE_GMP_SANDBOX=1
