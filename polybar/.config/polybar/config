@@ -285,6 +285,8 @@ click-right = /usr/bin/greenclip clear &
 type = custom/script
 interval = 5
 click-left = $HOME/.config/polybar/scripts/lock.sh -x &
+click-middle = $HOME/.config/polybar/scripts/lock.sh lock  &
+click-right = $HOME/.config/polybar/scripts/lock.sh lock &
 exec = $HOME/.config/polybar/scripts/lock.sh
 
 [module/launcher]
@@ -313,46 +315,6 @@ content = " "
 [module/sep2]
 type = custom/text
 content = "  "
-
-[module/sep3]
-type = custom/text
-content = "   "
-
-[module/sep4]
-type = custom/text
-content = "    "
-
-[module/sep5]
-type = custom/text
-content = "     "
-
-[module/sep6]
-type = custom/text
-content = "      "
-
-[module/sep7]
-type = custom/text
-content = "       "
-
-[module/sep8]
-type = custom/text
-content = "        "
-
-[module/sep9]
-type = custom/text
-content = "         "
-
-[module/sep10]
-type = custom/text
-content = "          "
-
-[module/sep11]
-type = custom/text
-content = "           "
-
-[module/sep12]
-type = custom/text
-content = "            "
 
 [settings]
 screenchange-reload = true
