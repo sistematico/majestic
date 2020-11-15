@@ -66,7 +66,7 @@ font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 ;font-1 = icomoon:fontformat=truetype:antialias=false:size=10;2
 font-1 = icomoon:size=10;2
 
-modules-left = dl
+modules-left = wall dl
 modules-center = ff thunar term code tlgr spot steam
 modules-right = trash
 
