@@ -10,5 +10,5 @@ configuration {
 }
 
 element-icon {
-    size: 2em;
+    size: 1.5em;
 }
