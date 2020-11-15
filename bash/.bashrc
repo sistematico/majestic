@@ -52,8 +52,8 @@ fi
 ##################
 ##### Sources ####
 ##################
-if [ -f $HOME/.colors/dracula.bash ]; then
-	source $HOME/.colors/dracula.bash
+if [ -f $HOME/.bash_colors ]; then
+	source $HOME/.bash_colors
 fi
 
 if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
