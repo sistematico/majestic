@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-scr='/tmp/screenshot.png'
+scr="/tmp/screenshot.png"
 icon="$HOME/.local/share/i3lock/lucas.png"
-#font="$HOME/.local/share/fonts/opensans.ttf"
-#font="/usr/share/fonts/TTF/DejaVuSans.ttf"
 font="/usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf"
 
 [ ! -d $HOME/.local/share/fonts ] && mkdir -p $HOME/.local/share/fonts
