@@ -76,9 +76,12 @@ fi
 # PS1='[\u@\h \W]:\$ '
 
 # Dracula
-PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+#PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 
 #PS1='\[\e]2;new title\a\]prompt > '
+
+PS1="[\u@\h \W]\$ "
+PS1="\[\e]2;\u \W\a\]$PS1"
 
 # Vim
 bind -r '\C-s'
