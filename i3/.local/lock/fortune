@@ -30,8 +30,11 @@ fortune=$(expand -t 2 <(fortune -s chucknorris))
 maim "$scr"
 
 # get gradient dimensions directly from the screenshot
-read width height <<<$(file $scr | cut -d, -f 2 | tr -d ' ' | tr 'x' ' ')
-height=$((height / 2))
+#read width height <<<$(file $scr | cut -d, -f 2 | tr -d ' ' | tr 'x' ' ')
+#height=$((height / 2))
+
+width=$(identify -format %w $scr)
+height=$(identify -format %h $scr)
 
 convert "$scr" -scale 10% -scale 1000% \
 	-size "${width}x${height}" -gravity south-west \
