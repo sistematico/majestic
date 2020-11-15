@@ -9,6 +9,6 @@ configuration {
     click-to-exit: true;
 }
 
-element-icon {
+/* element-icon {
     size: 1.5em;
-}
+} */
