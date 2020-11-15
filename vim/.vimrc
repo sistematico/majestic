@@ -1,3 +1,5 @@
+set guifont=Ubuntu\ Mono:h15:cANSI
+
 packadd! dracula
 syntax enable
 let g:dracula_colorterm = 0
