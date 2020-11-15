@@ -2,6 +2,7 @@
 
 fontsize=20
 textposition="+0+200"
+#gradientcolor="#282a36"
 gradientcolor="#282a36"
 
 icon="$HOME/.local/share/i3lock/lucas.png"
@@ -35,7 +36,7 @@ maim "$scr"
 
 width=$(identify -format %w $scr)
 height=$(identify -format %h $scr)
-height=$((height + 300))
+height=$((height + 600))
 
 convert "$scr" -scale 10% -scale 1000% \
 	-size "${width}x${height}" -gravity south-west \
