@@ -9,7 +9,8 @@
 
 # Dracula
 PS1="${RED}[${GRN}\u@\h \W${RED}]:\$${DEF} " 
-#PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+
+test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
 
 if [[ $AUTOSTART_XORG -eq 1 && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
