@@ -36,7 +36,7 @@ maim "$scr"
 
 width=$(identify -format %w $scr)
 height=$(identify -format %h $scr)
-height=$((height + 600))
+#height=$((height + 1000))
 
 convert "$scr" -scale 10% -scale 1000% \
 	-size "${width}x${height}" -gravity south-west \
