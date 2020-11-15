@@ -80,3 +80,6 @@ bind -r '\C-s'
 stty -ixon
 
 trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+
+d=.dircolors
+test -r $d && eval "$(dircolors $d)"
