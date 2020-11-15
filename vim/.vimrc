@@ -11,6 +11,7 @@ syntax on
 set whichwrap=b,s,<,>,[,]
 set mouse=a
 set noshowmode
+set cmdheight=1
 set tabstop=4 shiftwidth=4 expandtab
 
 let g:airline_powerline_fonts = 1
