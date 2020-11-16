@@ -17,5 +17,5 @@ fi
 
 for img in "${imgs[@]}"
 do
-    file -m "$img"
+    file "$img"
 done
