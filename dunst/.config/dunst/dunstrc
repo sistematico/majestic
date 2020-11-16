@@ -80,9 +80,11 @@
     timeout = 10
 
 [urgency_normal]
+    frame_width = 3
     timeout = 10
 
 [urgency_critical]
+    frame_width = 3
     frame_color = "#fb4934"
     timeout = 0
 
