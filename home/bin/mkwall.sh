@@ -8,8 +8,12 @@ function mkWall() {
 }
 
 if [ $1 ]; then
-    for var in "$@"
-    do
-        echo "$var"
-    done
+    imgs=( "$@" )
+else
+    imgs=($(ls -d */*.{jpg,jpeg,png}))
 fi
+
+for img in "${imgs[@]}"
+do
+    echo "$img"
+done
