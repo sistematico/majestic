@@ -90,15 +90,20 @@ bindsym $mod+Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot -e
 bindsym --release Control+Mod1+Sys_Req exec --no-startup-id $HOME/.local/bin/screencast
 bindsym --release Control+Shift+Print exec --no-startup-id $HOME/.local/bin/screencast
 
+# MPD
+bindcode Mod2+$KP_6 exec --no-startup-id mpc next
+bindcode Mod2+$KP_4 exec --no-startup-id mpc prev
+bindcode Mod2+$KP_5 exec --no-startup-id mpc toggle
+
 # NCSpot
 #bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 #bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 #bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # Spotifyd
-bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+#bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+#bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # Spotify
 #bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
