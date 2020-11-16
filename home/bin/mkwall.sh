@@ -28,7 +28,10 @@ fi
 
 for img in "${imgs[@]}"
 do
-    file -b "$img"
+    if file -ib "$img" | awk -F'/' '{print $1}' 2> /dev/null == 'image';
+    then
+        file -b "$img"
+    fi
 done
 
 IFS="$OIFS"
