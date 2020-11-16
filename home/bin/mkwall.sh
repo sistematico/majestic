@@ -13,6 +13,8 @@ else
     imgs=($(ls -d $(pwd)/*.{jpg,jpeg,png} 2> /dev/null))
 fi
 
+[ -z "$imgs" ] && exit
+
 for img in "${imgs[@]}"
 do
     echo "$img"
