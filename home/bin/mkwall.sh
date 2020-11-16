@@ -12,6 +12,6 @@ dominant=$(convert $HOME/gitlab/lnxpcs/distro/arch/arch-linux-n1.png -scale 50x5
 
 #convert -size 100x100 xc:#990000 whatever.png
 
-convert "$scr" -scale 10% -scale 1000% -size "${width}x${height}" -gravity south-west	gradient:none-"$gradientcolor" -composite -matte "$icon" -gravity center -composite -matte -gravity center -size ${width}x30 -pointsize $fontsize	-font $font -fill "#EAE4D1" -annotate $textposition "$fortune" "$scr"
+#convert "$scr" -scale 10% -scale 1000% -size "${width}x${height}" -gravity south-west	gradient:none-"$gradientcolor" -composite -matte "$icon" -gravity center -composite -matte -gravity center -size ${width}x30 -pointsize $fontsize	-font $font -fill "#EAE4D1" -annotate $textposition "$fortune" "$scr"
 
-convert "/tmp/teste.png" -size "${dimensions}" -gravity south-west	gradient:none-"$gradientcolor" -composite -matte "$icon" -gravity center -composite -matte -gravity center -size ${width}x30 -pointsize $fontsize	-font $font -fill "#EAE4D1" -annotate $textposition "$fortune" "$scr"
+convert "/tmp/teste.png" -size "${dimensions}" xc:'#990000' -composite -matte "$HOME/gitlab/lnxpcs/distro/arch/arch-linux-n1.png" -gravity center "/tmp/teste.png"
