@@ -28,7 +28,7 @@ fi
 
 for img in "${imgs[@]}"
 do
-    file "$img"
+    file -b "$img"
 done
 
 IFS="$OIFS"
