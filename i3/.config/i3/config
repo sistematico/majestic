@@ -2,7 +2,7 @@
 ################ M A I N ###########################################
 ####################################################################
 set $mod Mod4
-set $editor mousepad
+set $editor atom
 
 # Gaps
 gaps inner 10
@@ -56,7 +56,7 @@ bindsym Mod1+Tab workspace prev
 bindsym Mod1+Shift+Tab workspace next
 
 # Config
-bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc $HOME/.config/picom/picom.conf $HOME/.config/rofi/config.rasi
+bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc $HOME/.config/picom/picom.conf $HOME/.config/rofi/config.rasi $HOME/.mozilla/firefox/o5jgo52c.default-release/chrome/userChrome.css
 
 # Video Down
 bindsym F5 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh x
