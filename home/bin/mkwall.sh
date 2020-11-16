@@ -28,8 +28,8 @@ fi
 
 for img in "${imgs[@]}"
 do
-    if file -ib "$img" | awk -F'/' '{print $1}' 2> /dev/null == 'image';
-    then
+    type="$(file -ib "$img" | awk -F'/' '{print $1}' 2> /dev/null)"
+    if [ "$type" == "image" ]; then
         file -b "$img"
     fi
 done
