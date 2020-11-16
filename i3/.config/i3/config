@@ -68,6 +68,7 @@ bindsym $mod+Shift+c move position center
 bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 0 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
 bindsym --release Mod1+g exec --no-startup-id exec $HOME/.config/rofi/scripts/git
 bindsym $mod+Shift+w exec --no-startup-id $HOME/.config/rofi/scripts/janelas
+bindsym F1 exec --no-startup-id $HOME/.config/rofi/scripts/drun
 bindsym Mod1+F2 exec --no-startup-id $HOME/.config/rofi/scripts/drun
 bindsym Control+F2 exec --no-startup-id $HOME/.config/rofi/scripts/exec
 #bindsym $mod+c exec --no-startup-id $HOME/.config/rofi/scripts/configs
