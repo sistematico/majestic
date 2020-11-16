@@ -10,7 +10,7 @@ function mkWall() {
 if [ $1 ]; then
     imgs=( "$@" )
 else
-    imgs=($(ls -d $(pwd)/*.{jpg,jpeg,png}))
+    imgs=($(ls -d $(pwd)/*.{jpg,jpeg,png} 2> /dev/null))
 fi
 
 for img in "${imgs[@]}"
