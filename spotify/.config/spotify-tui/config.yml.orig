@@ -2,12 +2,12 @@
 
 # The theme colours can be an rgb string of the form "255, 255, 255" or a string that references the colours from your terminal theme: Reset, Black, Red, Green, Yellow, Blue, Magenta, Cyan, Gray, DarkGray, LightRed, LightGreen, LightYellow, LightBlue, LightMagenta, LightCyan, White.
 theme:
-  active: Red # current playing song in list
-  banner: Cyan # the "spotify-tui" banner on launch
+  active: Cyan # current playing song in list
+  banner: LightCyan # the "spotify-tui" banner on launch
   error_border: Red # error dialog border
   error_text: LightRed # error message text (e.g. "Spotify API reported error 404")
-  hint: Cyan # hint text in errors
-  hovered: White # hovered pane border
+  hint: Yellow # hint text in errors
+  hovered: Magenta # hovered pane border
   inactive: Gray # borders of inactive panes
   playbar_background: Black # background of progress bar
   playbar_progress: LightCyan # filled-in part of the progress bar
