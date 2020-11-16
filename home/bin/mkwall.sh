@@ -7,6 +7,17 @@ function mkWall() {
 	convert "$1" -gravity center -resize "${dimensions}" -background "$dominant" -extent "${dimensions}" "$2"
 }
 
+OIFS="$IFS"
+IFS=$'\n'
+#for file in `find . -type f -name "*.csv"`
+#do
+#     echo "file = $file"
+#     diff "$file" "/some/other/path/$file"
+#     read line
+#done
+
+
+
 if [ $1 ]; then
     imgs=( "$@" )
 else
@@ -19,3 +30,5 @@ for img in "${imgs[@]}"
 do
     file "$img"
 done
+
+IFS="$OIFS"
