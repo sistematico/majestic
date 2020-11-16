@@ -1,8 +1,5 @@
 [colors]
-;background = #000000
-;background = #282a36
-background = #44475a
-;background = #6272a4
+background = #282a36
 ;background = ${xrdb:background:#6272a4}
 background-alt = #444
 foreground = ${xrdb:foreground:#fff}
@@ -162,7 +159,7 @@ type = custom/menu
 expand-right = true
 
 label-open = 
-label-open-foreground = ${colors.secondary}
+;label-open-foreground = ${colors.secondary}
 label-close = 
 label-close-foreground = ${colors.secondary}
 label-separator = " | "
@@ -204,7 +201,7 @@ exec = ~/.config/polybar/scripts/downloads.sh
 [module/ff]
 type = custom/text
 content = 
-;click-left = firefox & 
+;click-left = firefox &
 click-left = pgrep -x firefox >/dev/null || /usr/bin/firefox &
 
 [module/thunar]
