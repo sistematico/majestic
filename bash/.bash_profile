@@ -12,8 +12,6 @@ PS1="${RED}[${GRN}\u@\h \W${RED}]:\$${DEF} "
 
 test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
 
-if [[ $AUTOSTART_XORG -eq 1 && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
-
-#alias ls='ls -GFh'
+#if [[ $AUTOSTART_XORG -eq 1 && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#  exec startx
+#fi

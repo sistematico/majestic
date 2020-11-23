@@ -1,3 +1,4 @@
 #!/bin/bash
 
-rofi -show drun -theme-str 'element-icon { size: 1.3em;}' -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
+# rofi -show drun -theme-str 'element-icon { size: 1.3em;}' -opacity "80" -lines 8 -line-margin 0 -width 10 -padding 16
+rofi -show drun -theme-str 'element-icon { size: 1.3em;}' -lines 6

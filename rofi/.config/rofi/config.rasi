@@ -1,15 +1,10 @@
 configuration {
-	/* theme: "dark"; */
 	theme: "slate";
     modi: "window,drun,run,ssh";
     font: "Open Sans 11";
     show-icons: true;
-    drun-icon-theme: "Arc";
-    levenshtein-sort: true;
+    /* drun-icon-theme: "Arc"; */
+    /* levenshtein-sort: true; */
     hide-scrollbar: true;
     click-to-exit: true;
 }
-
-/* element-icon {
-    size: 1.5em;
-} */
