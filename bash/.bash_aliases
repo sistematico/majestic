@@ -37,6 +37,7 @@ alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias castnow="castnow --myip 192.168.0.1 --address 192.168.0.5 --device QuartoFazenda"
 alias git-cron='~/.local/bin/git-cron'
 alias tx='tmux a'
+alias tmux='tmux a'
 alias ranger='VISUAL=vim ranger'
 alias heic='mogrify -format jpg *.heic'
 alias id3='id3v2'
@@ -52,9 +53,6 @@ alias dst='docker start'
 alias dsp='docker stop'
 alias drs='docker restart'
 alias dps='docker ps -a'
-
-# ncmpcpp
-alias music='\tmux new-session "\tmux source-file ~/.config/ncmpcpp/tmux_session"' # Tmux session with ncmpcpp and cover art
 
 # pastebin
 alias tb="nc termbin.com 9999"
