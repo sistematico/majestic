@@ -5,3 +5,4 @@ export COMPOSER_HOME=${HOME}/.composer
 [ -d ${HOME}/.npm/bin ] && export PATH=${PATH}:${HOME}/.npm/bin
 [ -d ${COMPOSER_HOME}/vendor/bin ] && export PATH=${PATH}:${COMPOSER_HOME}/vendor/bin
 
+RANGER_LOAD_DEFAULT_RC=FALSE
