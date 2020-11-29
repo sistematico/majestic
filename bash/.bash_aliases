@@ -56,3 +56,7 @@ alias dps='docker ps -a'
 
 # pastebin
 alias tb="nc termbin.com 9999"
+
+# Grub
+alias setlinux='sudo grub-set-default 0'
+alias setwin='sudo grub-set-default 3'
