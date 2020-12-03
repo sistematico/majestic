@@ -19,7 +19,7 @@
 nome="Video Down"
 SECONDS=0
 comeco=$SECONDS
-LOG=0 # 0 = Sem log, 1 = Log no arquivo erro.log
+LOG=1 # 0 = Sem log, 1 = Log no arquivo
 aria=1
 ts=$(date +"%s")
 dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
@@ -41,7 +41,6 @@ cd $dir
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	#$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
 	notify-send -h int:transient:1 -i "$icone" "Video Down" "O link é inválido!"
     exit
 else
@@ -64,7 +63,6 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
-#$HOME/bin/notify.sh "$nome" "Início: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
 notify-send -h int:transient:1 -i "$icone" "Video Down" "Início: <b>$titulo</b>"
 
 if [ $aria == 1 ]; then
@@ -82,12 +80,43 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$logs"
     echo "Path:         $dir" >> "$logs"
 
-    #$HOME/bin/notify.sh "$nome" "Erro: <b>$titulo</b>" "$nome" "$icone"
 	notify-send -h int:transient:1 -i "$icone" "Video Down" "Erro: <b>$titulo</b>"
     exit
 fi
 
-#$HOME/bin/notify.sh "$nome" "Sucesso: <b>$titulo</b>" "$nome" "$icone"
-notify-send -h int:transient:1 -i "$icone" "Video Down" "Sucesso: <b>$titulo</b>"
+final=$SECONDS
+diff=$((final - comeco))
+tamanho=$(stat --printf="%s" "${titulo}"*)
+tamanho="$((tamanho / 1024))"
+
+hora=$(printf "%02d" $((diff / 3600)))
+minuto=$(printf "%02d" $((diff / 60)))
+segundo=$(printf "%02d" $((diff % 60)))
+
+tempo=$((tamanho / diff))
+
+if [ $tamanho -gt 1024 ]; then
+    tamanho="$((tamanho / 1024)) MB"
+elif [ $tamanho -gt 1048576 ]; then
+    tamanho="$((tamanho / 1024 / 1024)) GB"
+else 
+    tamanho="${tamanho} KB"
+fi
+
+if [[ $LOG -ne 0 ]]; then
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> "$logs"
+    echo "Status:       SUCESSO" >> "$logs"
+    echo "Título:       $titulo" >> "$logs"
+    echo "URL:          $url" >>"$logs"
+    echo "Path:         $dir" >> "$logs"
+    echo "Temp:         $tmp" >> "$logs"
+    echo "Processos:    $proc" >> "$logs"
+    echo >> "$logs"
+    echo "Tempo decorrido: ${hora}:${minuto}:${segundo}" >> "$logs"
+    echo "Tamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" >> "$logs"
+    echo "Velocidade média: ${tempo}KBps" >> "$logs"
+fi
+
+notify-send -h int:transient:1 -i "$icone" "Video Down" "Sucesso: <b>$titulo</b>\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps"
 exit
 

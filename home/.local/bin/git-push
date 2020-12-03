@@ -20,14 +20,14 @@ icone_erro="${HOME}/.local/share/icons/elementary/network-error.png"
 som="complete"
 
 atualiza() {
+    if pgrep git > /dev/null 2> /dev/null; then
+        return
+    fi
+
     if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ] || [ ! -f ${1}/.git/config ]; then
         return
     fi
 
-    #if ! grep -q 'git@github.com:sistematico' "${1}/.git/config" 2> /dev/null; then
-    #    return
-    #fi
-    
     cd ${1}
     status=$(git add . -n)
     if [ ! -z "${status}" ]; then
