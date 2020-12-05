@@ -16,11 +16,11 @@
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
-nome="Video Down"
+DISTRO="arch"
 SECONDS=0
 comeco=$SECONDS
-LOG=0 # 0 = Sem log, 1 = Log no arquivo erro.log
-aria=1
+LOG=0 # 0 = Sem log, 1 = Log no arquivo
+ARIA=1
 ts=$(date +"%s")
 dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
 icone="${HOME}/.local/share/icons/elementary/video-display.png"
@@ -35,14 +35,28 @@ if [ ! -d "$dir" ]; then
 	fi
 fi
 
+if [ -f /etc/os-release ]; then
+    source /etc/os-release
+    [ ! -z "$ID" ] && DISTRO="$ID"
+fi
+
+case $DISTRO in
+    debian)
+        notifycommand="$HOME/bin/notify.sh VideoDown ${icone}"
+        break
+    ;;
+    *)
+        notifycommand="notify-send -h int:transient:1 -i $icone"
+    ;;
+esac
+
 [ ! -d $tmp ] && mkdir -p $tmp
 [ $1 ] && url="$1" || url="$(xclip -o)"
 cd $dir
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	#$HOME/bin/notify.sh "Video Down" "O link é inválido!" "$nome" "$icone"
-	notify-send -h int:transient:1 -i "$icone" "Video Down" "O link é inválido!"
+	$notifycommand "Video Down" "O link é inválido!"
     exit
 else
 	titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
@@ -64,10 +78,9 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
-#$HOME/bin/notify.sh "$nome" "Início: \n\n<b>$titulo</b> iniciada." "$nome" "$icone"
-notify-send -h int:transient:1 -i "$icone" "Video Down" "Início: <b>$titulo</b>"
+$notifycommand "Video Down" "Início: <b>$titulo</b>"
 
-if [ $aria == 1 ]; then
+if [ $ARIA == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
@@ -82,12 +95,43 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$logs"
     echo "Path:         $dir" >> "$logs"
 
-    #$HOME/bin/notify.sh "$nome" "Erro: <b>$titulo</b>" "$nome" "$icone"
-	notify-send -h int:transient:1 -i "$icone" "Video Down" "Erro: <b>$titulo</b>"
+	$notifycommand "Video Down" "Erro: <b>$titulo</b>"
     exit
 fi
 
-#$HOME/bin/notify.sh "$nome" "Sucesso: <b>$titulo</b>" "$nome" "$icone"
-notify-send -h int:transient:1 -i "$icone" "Video Down" "Sucesso: <b>$titulo</b>"
+final=$SECONDS
+diff=$((final - comeco))
+tamanho=$(stat --printf="%s" "${titulo}"*)
+tamanho="$((tamanho / 1024))"
+
+hora=$(printf "%02d" $((diff / 3600)))
+minuto=$(printf "%02d" $((diff / 60)))
+segundo=$(printf "%02d" $((diff % 60)))
+
+tempo=$((tamanho / diff))
+
+if [ $tamanho -gt 1024 ]; then
+    tamanho="$((tamanho / 1024)) MB"
+elif [ $tamanho -gt 1048576 ]; then
+    tamanho="$((tamanho / 1024 / 1024)) GB"
+else 
+    tamanho="${tamanho} KB"
+fi
+
+if [[ $LOG -ne 0 ]]; then
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> "$logs"
+    echo "Status:       SUCESSO" >> "$logs"
+    echo "Título:       $titulo" >> "$logs"
+    echo "URL:          $url" >>"$logs"
+    echo "Path:         $dir" >> "$logs"
+    echo "Temp:         $tmp" >> "$logs"
+    echo "Processos:    $proc" >> "$logs"
+    echo >> "$logs"
+    echo "Tempo decorrido: ${hora}:${minuto}:${segundo}" >> "$logs"
+    echo "Tamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" >> "$logs"
+    echo "Velocidade média: ${tempo}KBps" >> "$logs"
+fi
+
+$notifycommand "Video Down" "Sucesso: <b>$titulo</b>\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps"
 exit
 

@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+#
+# github - Script para enviar automaticamente mudanças ao Github
+# LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!
+#
+# Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
+#
+# Sugestão de crontab:
+# */15 * * * * /usr/bin/bash -c "/usr/local/bin/git-push" 2>&1
+# * * * * * sh -c "/usr/local/bin/git-push" > /dev/null 2>&1
+#
+# Criado em: 20/12/2017 19:27:31
+# Última Atualização: 03/12/2020 01:23:07
+
+nome="GitHub"
+dir="${HOME}/github"
+repos=($(ls -d ${dir}/*))
+icone="${HOME}/.local/share/icons/elementary/github.svg"
+som="complete"
+distro="arch"
+
+if [ -f /etc/os-release ]; then
+    source /etc/os-release
+    [ ! -z "$ID" ] && distro="$ID"
+fi
+
+case $distro in
+    debian)
+        notifycommand="$HOME/bin/notify.sh VideoDown ${icone}"
+        break
+    ;;
+    *)
+        notifycommand="notify-send -h int:transient:1 -i ${icone}"
+    ;;
+esac
+
+atualiza() {
+    if pgrep git > /dev/null 2> /dev/null; then
+        return
+    fi
+
+    if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ] || [ ! -f ${1}/.git/config ]; then
+        return
+    fi
+
+    cd ${1}
+    status=$(git add . -n)
+    if [ ! -z "${status}" ]; then
+        c=$(echo $(git add . -n | tr '\r\n' ' '))
+        m="Autocommit por ${nome}: alterações: $c"
+        git add .
+        git commit -m "${m}"
+        git push
+        if [ "$?" == 0 ]; then
+            $notifycommand "${nome}" "Repoositório $(basename ${1}) atualizado."
+        else
+            $notifycommand "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
+        fi
+    fi
+}
+
+if [ "$#" -eq 1 ]; then
+    atualiza "$1"
+elif [ "$#" -gt 1 ]; then
+    for r in "$@";	do
+        atualiza "$r"
+    done
+else
+    for r in "${repos[@]}";	do
+        atualiza "${r}"
+    done
+fi
