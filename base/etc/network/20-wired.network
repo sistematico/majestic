@@ -1,0 +1,7 @@
+[Match]
+Name=eno1
+
+[Network]
+Address=10.0.0.1/8
+Gateway=10.0.0.254
+DNS=1.1.1.1 1.0.0.1

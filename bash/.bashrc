@@ -6,6 +6,21 @@
 [[ $- != *i* ]] && return
 
 ##################
+##### Vars    ####
+##################
+export AUTOSTART_XORG=1
+
+##################
+##### History  ###
+##################
+# Avoid duplicates
+export HISTCONTROL=ignoredups:erasedups
+
+# Size
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
+##################
 ##### Opções  ####
 ##################
 # Ignora a caixa e alguns erros ao trocar de diretório
@@ -21,15 +36,11 @@ shopt -s autocd
 shopt -s histappend
 
 ##################
-##### History  ###
+##### Funções ####
 ##################
-# Avoid duplicates
-export HISTCONTROL=ignoredups:erasedups
-
-# Size
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-
+if [[ -f ~/.bash_functions ]]; then
+    source ~/.bash_functions
+fi
 
 ##################
 ##### Aliases ####
@@ -41,8 +52,8 @@ fi
 ##################
 ##### Sources ####
 ##################
-if [[ -f /etc/cores.inc ]]; then
-	source /etc/cores.inc
+if [ -f $HOME/.bash_colors ]; then
+	source $HOME/.bash_colors
 fi
 
 if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
@@ -59,27 +70,16 @@ if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
 fi
 
 ##################
-##### Funções ####
-##################
-if [[ -f ~/.bash_functions ]]; then
-    source ~/.bash_functions
-fi
-
-##################
 ##### Prompt #####
 ##################
 # Sem cor
-#PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]:\$ '
 
-# Com cor
-PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+# Vim
+bind -r '\C-s'
+stty -ixon
 
+trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
-#fortune chucknorris
-#echo
-
-# Generate history for session
-#export PROMPT_COMMAND="history -a ; history -c ; history -r ; $PROMPT_COMMAND"
-#export PROMPT_COMMAND="history -a && history -c && history -r && $PROMPT_COMMAND"
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
-
+d=.dircolors
+test -r $d && eval "$(dircolors $d)"

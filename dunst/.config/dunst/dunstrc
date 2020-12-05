@@ -7,7 +7,7 @@
     ### Display ###
     follow = mouse
 
-    geometry = "440x10-10-38"
+    geometry = "440x10-10-14"
     indicate_hidden = yes
     shrink = yes
     transparency = 0
@@ -15,17 +15,21 @@
     separator_height = 2
     padding = 12
     horizontal_padding = 12
-    frame_width = 3
+    frame_width = 0
+
+    corner_radius = 13
 
     #frame_color = "#689d6a"
-    frame_color = "#D08770"
-    #separator_color = none
+    #frame_color = "#D08770"
+    frame_color = "#00000000"
+    separator_color = none
     #separator_color = "#689d6a"
     sort = yes
     idle_threshold = 120
 
     ### Text ###
-    font = Fantasque Sans 9
+    #font = Fantasque Sans 9
+    font = Noto Sans 11
     line_height = 0
 
     markup = full
@@ -77,9 +81,10 @@
     timeout = 10
 
 [urgency_normal]
+    frame_width = 3
     timeout = 10
 
 [urgency_critical]
+    frame_width = 3
     frame_color = "#fb4934"
     timeout = 0
-

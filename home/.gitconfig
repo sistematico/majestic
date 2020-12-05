@@ -1,6 +1,6 @@
 [user]
-    name = Lucas Saliés Brum
-    email = lucas@archlinux.com.br
+	name = Lucas Saliés Brum
+	email = lucas@archlinux.com.br
 #[url "https://git.archlinux.org/svntogit/packages.git --single-branch -b "]
 [url "git://git.archlinux.org/svntogit/packages.git --single-branch --branch packages/"]
     insteadOf = "pkg:"

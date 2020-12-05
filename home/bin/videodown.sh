@@ -19,8 +19,13 @@
 DISTRO="arch"
 SECONDS=0
 comeco=$SECONDS
+<<<<<<< HEAD
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
 ARIA=1
+=======
+LOG=1 # 0 = Sem log, 1 = Log no arquivo
+aria=1
+>>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
 ts=$(date +"%s")
 dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
 icone="${HOME}/.local/share/icons/elementary/video-display.png"
@@ -56,7 +61,11 @@ cd $dir
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
+<<<<<<< HEAD
 	$notifycommand "Video Down" "O link é inválido!"
+=======
+	notify-send -h int:transient:1 -i "$icone" "Video Down" "O link é inválido!"
+>>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
     exit
 else
 	titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
@@ -78,7 +87,11 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $proc" >> "$logs"
 fi
 
+<<<<<<< HEAD
 $notifycommand "Video Down" "Início: <b>$titulo</b>"
+=======
+notify-send -h int:transient:1 -i "$icone" "Video Down" "Início: <b>$titulo</b>"
+>>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
 
 if [ $ARIA == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
@@ -95,7 +108,11 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$logs"
     echo "Path:         $dir" >> "$logs"
 
+<<<<<<< HEAD
 	$notifycommand "Video Down" "Erro: <b>$titulo</b>"
+=======
+	notify-send -h int:transient:1 -i "$icone" "Video Down" "Erro: <b>$titulo</b>"
+>>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
     exit
 fi
 
@@ -132,6 +149,10 @@ if [[ $LOG -ne 0 ]]; then
     echo "Velocidade média: ${tempo}KBps" >> "$logs"
 fi
 
+<<<<<<< HEAD
 $notifycommand "Video Down" "Sucesso: <b>$titulo</b>\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps"
+=======
+notify-send -h int:transient:1 -i "$icone" "Video Down" "Sucesso: <b>$titulo</b>\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps"
+>>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
 exit
 

@@ -1,5 +1,10 @@
+####################################################################
+################ M A I N ###########################################
+####################################################################
+# Vars
 set $mod Mod4
-set $editor mousepad
+set $editor atom
+set $wallpaperDir $HOME/img/wallhaven
 
 # Gaps
 gaps inner 10
@@ -7,7 +12,10 @@ gaps outer 0
 
 # Borders
 new_window pixel 0
-default_border pixel 3
+default_border pixel 0
+border_radius 6
+
+for_window [class="^.*"] border pixel 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -43,8 +51,17 @@ set $KP_8 80
 set $KP_9 81
 set $KP_0 90
 
+# Alt+Tab & Win+Tab
+bindsym $mod+Tab workspace prev
+bindsym $mod+Shift+Tab workspace next
+bindsym Mod1+Tab workspace prev
+bindsym Mod1+Shift+Tab workspace next
+
 # Config
-bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc
+bindsym $mod+c exec --no-startup-id $editor $HOME/.config/i3/config $HOME/.config/polybar/config $HOME/.config/dunst/dunstrc $HOME/.config/picom/picom.conf $HOME/.config/rofi/config.rasi $HOME/.mozilla/firefox/o5jgo52c.default-release/chrome/userChrome.css
+
+# Video Down
+bindsym F5 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh x
 
 # Center Windows
 bindsym $mod+Shift+c move position center
@@ -53,6 +70,10 @@ bindsym $mod+Shift+c move position center
 bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 0 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
 bindsym --release Mod1+g exec --no-startup-id exec $HOME/.config/rofi/scripts/git
 bindsym $mod+Shift+w exec --no-startup-id $HOME/.config/rofi/scripts/janelas
+bindsym Control+Mod1+h exec --no-startup-id $HOME/.config/rofi/scripts/greenclip
+bindsym Control+Mod1+c exec --no-startup-id $HOME/.config/rofi/scripts/greenclip clear
+bindsym F1 exec --no-startup-id $HOME/.config/rofi/scripts/drun
+#bindsym F2 exec --no-startup-id $HOME/.config/rofi/scripts/exec
 bindsym Mod1+F2 exec --no-startup-id $HOME/.config/rofi/scripts/drun
 bindsym Control+F2 exec --no-startup-id $HOME/.config/rofi/scripts/exec
 #bindsym $mod+c exec --no-startup-id $HOME/.config/rofi/scripts/configs
@@ -66,7 +87,7 @@ bindsym $mod+Shift+x exec --no-startup-id $HOME/.local/lock/fortune
 # Screenshot
 bindsym Print exec --no-startup-id $HOME/.local/bin/screenshot
 bindsym Control+Print exec --no-startup-id $HOME/.local/bin/screenshot -w
-bindsym --release Mod1+Sys_Req\ exec --no-startup-id $HOME/.local/bin/screenshot -s
+bindsym --release Mod1+Sys_Req exec --no-startup-id $HOME/.local/bin/screenshot -s
 bindsym $mod+Print exec --no-startup-id $HOME/.local/bin/screenshot -d
 bindsym $mod+Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot -e
 
@@ -74,15 +95,25 @@ bindsym $mod+Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot -e
 bindsym --release Control+Mod1+Sys_Req exec --no-startup-id $HOME/.local/bin/screencast
 bindsym --release Control+Shift+Print exec --no-startup-id $HOME/.local/bin/screencast
 
+# MPD
+bindcode Mod2+$KP_6 exec --no-startup-id mpc next
+bindcode Mod2+$KP_4 exec --no-startup-id mpc prev
+bindcode Mod2+$KP_5 exec --no-startup-id mpc toggle
+
 # NCSpot
 #bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 #bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 #bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
+# Spotifyd
+#bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+#bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+#bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
 # Spotify
-bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest\=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+#bindcode Mod2+$KP_5 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+#bindcode Mod2+$KP_4 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # Volume
 bindcode Mod2+$KP_Add exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
@@ -153,6 +184,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+####################################################################
+################ W O R K S P A C E S ###############################
+####################################################################
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -233,6 +267,7 @@ bindsym $mod+r mode "resize"
 ####################################################################
 ################ R E G R A S #######################################
 ####################################################################
+# Focus New Windows
 for_window [urgent="latest"] focus
 
 for_window [window_role="pop-up"] floating enable, move position center
@@ -242,7 +277,8 @@ for_window [window_role="Preferences"] floating enable, move position center
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
-for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD)"] move to workspace $ws5, floating enable, move position center
+#for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD|Gnome-font-viewer)"] move to workspace $ws5, floating enable, move position center
+for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD|Gnome-font-viewer)"] floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 
@@ -290,17 +326,25 @@ assign [class="(^Atril|dagor2|Postman|Thunderbird|dontstarve_steam)"] $ws10
 ####################################################################
 ################ I N I T ###########################################
 ####################################################################
-#exec_always --no-startup-id hsetroot -solid '#3B4252'
-exec_always --no-startup-id feh --bg-fill $HOME/img/lucas/wallpaper-dark-02.jpg
-exec_always --no-startup-id xrdb -merge $HOME/.Xresources
+# Wallpaper
+#exec_always --no-startup-id feh --bg-fill "$(ls $wallpaperDir/* | shuf -n1)" # hsetroot -solid '#3B4252'
+exec_always --no-startup-id hsetroot -solid '#2e3440'
+
+# Effects
+# Normal
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
+# GrayScale
+#exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf --backend glx --glx-fshader-win "$(cat $HOME/.config/picom/grayscale-shader.glsl)"
+
+# Notifications
 exec --no-startup-id dunst
+
+# Misc
+exec_always --no-startup-id xrdb -merge $HOME/.Xresources
 exec --no-startup-id numlockx on
 exec --no-startup-id xautolock -time 3 -detectsleep -locker $HOME/.local/lock/fortune
 exec --no-startup-id thunar --daemon
-
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork

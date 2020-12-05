@@ -1,5 +1,3 @@
 #!/bin/bash
 
-tema="-theme ~/.config/rofi/themes/dark.rasi"
-
-rofi $tema -show run -width 20 -padding 16
+rofi -show run -theme-str 'element { padding: 8px;}' -lines 7

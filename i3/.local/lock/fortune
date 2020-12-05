@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+fontsize=20
+textposition="+0+200"
+gradientcolor="#282a36"
+
+icon="$HOME/.local/share/i3lock/lucas.png"
+font="/usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf"
+scr="/tmp/screenshot.png"
+
+[ ! -d $HOME/.local/share/fonts ] && mkdir -p $HOME/.local/share/fonts
+[ ! -f $font ] && curl -s -L 'https://www.dropbox.com/s/69ujvh8p7k8pah7/opensans.ttf?dl=1' > $font && fc-cache -v -f
+
+[ ! -d $HOME/.local/share/i3lock/ ] && mkdir -p $HOME/.local/share/i3lock/
+[ ! -f $icon ] && curl -s -L 'https://i.imgur.com/Kbn1bYe.png' > $icon
+
+# Blank After 15m
+if [ $1 ]; then
+	if [ "$1" == "off" ]; then
+		$(sleep 15m && xset dpms force off && sleep 1h && systemctl suspend) &
+	fi
+fi
+
+# Expand is used to convert the tabs to spaces which are handled better by imageMagick
+#fortune=$(expand -t 2 <(fortune -s chucknorris))
+fortune=$(expand <(fortune -s chucknorris))
+
+# take a screenshot
+maim "$scr"
+
+# get gradient dimensions directly from the screenshot
+#read width height <<<$(file $scr | cut -d, -f 2 | tr -d ' ' | tr 'x' ' ')
+#height=$((height / 2))
+
+width=$(identify -format %w $scr)
+height=$(identify -format %h $scr)
+
+convert "$scr" -scale 10% -scale 1000% \
+	-size "${width}x${height}" -gravity south-west \
+	gradient:none-"$gradientcolor" -composite -matte \
+	"$icon" -gravity center -composite -matte \
+	-gravity center -size ${width}x30 -pointsize $fontsize \
+	-font $font -fill "#EAE4D1" -annotate $textposition "$fortune" "$scr"
+
+i3lock -ui "$scr"

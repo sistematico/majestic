@@ -4,9 +4,14 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-COMPOSER_HOME=$HOME/.composer
-PATH=$PATH:$COMPOSER_HOME/vendor/bin
+# Sem cor
+#PS1='[\u@\h \W]:\$ 
 
-#if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+# Dracula
+PS1="${RED}[${GRN}\u@\h \W${RED}]:\$${DEF} " 
+
+test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
+
+#if [[ $AUTOSTART_XORG -eq 1 && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #  exec startx
 #fi

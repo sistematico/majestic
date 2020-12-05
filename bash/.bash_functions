@@ -16,25 +16,29 @@ function mm() {
 	params=\"$@\"
 	killall mpv 1> /dev/null 2> /dev/null
 	sleep 1
-    #(mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params") > /dev/null 2>&1 &
-	#(mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params") > /dev/null 2> /dev/null &
 	(mpv --really-quiet --profile=youtube-cache ytdl://ytsearch:"$params") > /dev/null 2> /dev/null &
-
-	#i3-msg '[class="mpv"] sticky enable' > /dev/null 2> /dev/null &
-
-    #mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params" > /dev/null 2>&1 &
-    #i3-msg '[class="mpv"] sticky enable' > /dev/null 2>&1
 }
 
 function mma() {
-    #mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
-    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@"
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@" # ytdl://ytsearch10:"$@"
 }
 
 # rsync
 function fullsync() {
 	[ ! -d $HOME/vps/$1 ] && mkdir -p $HOME/vps/${1}
-	rsync -aAXvzz --exclude={"var/lib/snapd/void","usr/libexec/openssh/ssh-keysign","var/cache/","usr/src/kernels/","var/lib/php/sessions/","var/log/journal/","var/cache/apt/","*.mp3",".local/share/Trash/",".local/share/Steam/",".cache/","var/spoll/anacron/","var/log/btmp","var/lib/systemd/random-seed","tmp/backup","usr/bin/ssh-agent","var/cache/yum","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel","/etc/shadow","/etc/shadow-","/etc/gshadow","/etc/gshadow-"} root@${1}:/ ${HOME}/vps/${1}/
+	rsync -aAXvzz --exclude={"usr/lib/x86_64-linux-gnu/","usr/lib/gcc/x86_64-linux-gnu/","var/lib/snapd/void/","usr/libexec/openssh/ssh-keysign","var/cache/","usr/src/kernels/","var/lib/php/sessions/","var/log/journal/","var/cache/apt/","*.mp3",".local/share/Trash/",".local/share/Steam/",".cache/","var/spoll/anacron/","var/log/btmp","var/lib/systemd/random-seed","tmp/backup","usr/bin/ssh-agent","var/cache/yum","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel","/etc/shadow","/etc/shadow-","/etc/gshadow","/etc/gshadow-"} root@${1}:/ ${HOME}/vps/${1}/
+}
+
+function checkiso() {
+	if [ -f SHA512SUMS ]; then
+        sha512sum --ignore-missing -c SHA512SUMS
+        return
+	fi
+	
+	if [ -f SHA256SUMS ]; then
+        sha256sum --ignore-missing -c SHA256SUMS
+        return
+	fi
 }
 
 # mp3
