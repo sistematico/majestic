@@ -15,7 +15,6 @@
 nome="GitHub"
 dir="${HOME}/github"
 repos=($(ls -d ${dir}/*))
-<<<<<<< HEAD
 icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
 distro="arch"
@@ -34,11 +33,6 @@ case $distro in
         notifycommand="notify-send -h int:transient:1 -i ${icone}"
     ;;
 esac
-=======
-icone_sucesso="${HOME}/.local/share/icons/elementary/github.svg"
-icone_erro="${HOME}/.local/share/icons/elementary/network-error.png"
-som="complete"
->>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
 
 atualiza() {
     if pgrep git > /dev/null 2> /dev/null; then
@@ -58,15 +52,9 @@ atualiza() {
         git commit -m "${m}"
         git push
         if [ "$?" == 0 ]; then
-<<<<<<< HEAD
             $notifycommand "${nome}" "Repoositório $(basename ${1}) atualizado."
         else
             $notifycommand "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
-=======
-            notify-send -h int:transient:1 -i "${icone_sucesso}" "${nome}" "Repo <b>$(basename ${1})</b> atualizado."
-        else
-            notify-send -h int:transient:1 -i "${icone_erro}" "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
->>>>>>> cb2eb936c3fb416f49d85a49c31cf7f97fd6c294
         fi
     fi
 }
