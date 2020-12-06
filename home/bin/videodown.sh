@@ -43,7 +43,6 @@ fi
 case $DISTRO in
     debian)
         notifycommand="$HOME/bin/notify.sh VideoDown ${icone}"
-        break
     ;;
     *)
         notifycommand="notify-send -h int:transient:1 -i $icone"
