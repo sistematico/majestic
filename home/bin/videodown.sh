@@ -16,7 +16,6 @@
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
-<<<<<<< HEAD
 NOME="Video Down"
 DISTRO="arch"
 SECONDS=0
@@ -34,24 +33,6 @@ if [ ! -d "$DIR" ]; then
 	DIR="${HOME}/desk"
 	if [ ! -d $DIR ]; then
 		mkdir -p $DIR
-=======
-DISTRO="arch"
-SECONDS=0
-comeco=$SECONDS
-LOG=0 # 0 = Sem log, 1 = Log no arquivo
-ARIA=1
-ts=$(date +"%s")
-dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
-icone="${HOME}/.local/share/icons/elementary/video-display.png"
-tmp="/tmp/videodown/$$"
-logs="${dir}/status.log"
-proc=$(pgrep -fc "bash $0")
-
-if [ ! -d "$dir" ]; then
-	dir="${HOME}/desk"
-	if [ ! -d $dir ]; then
-		mkdir -p $dir
->>>>>>> 910d4ac8524e90d9d50f2d40f6a949d23be7a1a2
 	fi
 fi
 
@@ -62,7 +43,6 @@ fi
 
 case $DISTRO in
     debian)
-<<<<<<< HEAD
         notifycommand="$HOME/bin/notify.sh 'Video Down' $ICONE"
         break
     ;;
@@ -72,16 +52,6 @@ case $DISTRO in
 esac
 
 [ ! -d $TMP ] && mkdir -p $TMP
-=======
-        notifycommand="$HOME/bin/notify.sh VideoDown ${icone}"
-    ;;
-    *)
-        notifycommand="notify-send -h int:transient:1 -i $icone"
-    ;;
-esac
-
-[ ! -d $tmp ] && mkdir -p $tmp
->>>>>>> 910d4ac8524e90d9d50f2d40f6a949d23be7a1a2
 [ $1 ] && url="$1" || url="$(xclip -o)"
 cd $DIR
 
