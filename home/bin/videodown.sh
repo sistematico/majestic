@@ -16,23 +16,23 @@
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
-nome="Video Down"
+NOME="Video Down"
 DISTRO="arch"
 SECONDS=0
-comeco=$SECONDS
-LOG=1 # 0 = Sem log, 1 = Log no arquivo
-aria=1
-ts=$(date +"%s")
-dir="${XDG_DESKTOP_DIR:-${HOME}/desk}"
-icone="${HOME}/.local/share/icons/elementary/video-display.png"
-tmp="/tmp/videodown/$$"
-logs="${dir}/status.log"
-proc=$(pgrep -fc "bash $0")
+COMECO=$SECONDS
+LOG=0 # 0 = Sem log, 1 = Log no arquivo
+ARIA=1
+TS=$(date +"%s")
+DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
+ICONE="${HOME}/.local/share/icons/elementary/video-display.png"
+TMP="/tmp/videodown/$$"
+LOGS="${DIR}/status.log"
+PROC=$(pgrep -fc "bash $0")
 
-if [ ! -d "$dir" ]; then
-	dir="${HOME}/desk"
-	if [ ! -d $dir ]; then
-		mkdir -p $dir
+if [ ! -d "$DIR" ]; then
+	DIR="${HOME}/desk"
+	if [ ! -d $DIR ]; then
+		mkdir -p $DIR
 	fi
 fi
 
@@ -43,17 +43,17 @@ fi
 
 case $DISTRO in
     debian)
-        notifycommand="$HOME/bin/notify.sh 'Video Down' $icone"
+        notifycommand="$HOME/bin/notify.sh 'Video Down' $ICONE"
         break
     ;;
     *)
-        notifycommand="notify-send -h int:transient:1 -i $icone"
+        notifycommand="notify-send -h int:transient:1 -i $ICONE"
     ;;
 esac
 
-[ ! -d $tmp ] && mkdir -p $tmp
+[ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
-cd $dir
+cd $DIR
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
@@ -70,18 +70,18 @@ else
 fi
 
 if [[ $LOG -ne 0 ]]; then
-    echo "---------------------------------------------------------------" >> "$logs"
-    echo "Status:       INICIO" >> "$logs"
-    echo "Título:       $titulo" >> "$logs"
-    echo "URL:          $url" >>"$logs"
-    echo "Path:         $dir" >> "$logs"
-    echo "Temp:         $tmp" >> "$logs"
-    echo "Processos:    $proc" >> "$logs"
+    echo "---------------------------------------------------------------" >> "$LOGS"
+    echo "Status:       INICIO" >> "$LOGS"
+    echo "Título:       $titulo" >> "$LOGS"
+    echo "URL:          $url" >>"$LOGS"
+    echo "Path:         $DIR" >> "$LOGS"
+    echo "Temp:         $TMP" >> "$LOGS"
+    echo "Processos:    $PROC" >> "$LOGS"
 fi
 
 $notifycommand "Video Down" "Início: <b>$titulo</b>"
 
-if [ $aria == 1 ]; then
+if [ $ARIA == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
@@ -90,18 +90,18 @@ else
 fi
 
 if [[ $status -ne 0 ]]; then
-    echo "---------------------------------------------------------------" >> "$logs"
-    echo "Status:       ERRO" >> "$logs"
-    echo "Título:       $titulo" >> "$logs"
-    echo "URL:          $url" >>"$logs"
-    echo "Path:         $dir" >> "$logs"
+    echo "---------------------------------------------------------------" >> "$LOGS"
+    echo "Status:       ERRO" >> "$LOGS"
+    echo "Título:       $titulo" >> "$LOGS"
+    echo "URL:          $url" >>"$LOGS"
+    echo "Path:         $DIR" >> "$LOGS"
 
 	$notifycommand "Video Down" "Erro: <b>$titulo</b>"
     exit
 fi
 
 final=$SECONDS
-diff=$((final - comeco))
+diff=$((final - COMECO))
 tamanho=$(stat --printf="%s" "${titulo}"*)
 tamanho="$((tamanho / 1024))"
 
@@ -120,17 +120,17 @@ else
 fi
 
 if [[ $LOG -ne 0 ]]; then
-    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> "$logs"
-    echo "Status:       SUCESSO" >> "$logs"
-    echo "Título:       $titulo" >> "$logs"
-    echo "URL:          $url" >>"$logs"
-    echo "Path:         $dir" >> "$logs"
-    echo "Temp:         $tmp" >> "$logs"
-    echo "Processos:    $proc" >> "$logs"
-    echo >> "$logs"
-    echo "Tempo decorrido: ${hora}:${minuto}:${segundo}" >> "$logs"
-    echo "Tamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" >> "$logs"
-    echo "Velocidade média: ${tempo}KBps" >> "$logs"
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> "$LOGS"
+    echo "Status:       SUCESSO" >> "$LOGS"
+    echo "Título:       $titulo" >> "$LOGS"
+    echo "URL:          $url" >>"$LOGS"
+    echo "Path:         $DIR" >> "$LOGS"
+    echo "Temp:         $TMP" >> "$LOGS"
+    echo "Processos:    $PROC" >> "$LOGS"
+    echo >> "$LOGS"
+    echo "Tempo decorrido: ${hora}:${minuto}:${segundo}" >> "$LOGS"
+    echo "Tamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" >> "$LOGS"
+    echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
 fi
 
 $notifycommand "Video Down" "Sucesso: <b>$titulo</b>\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps"
