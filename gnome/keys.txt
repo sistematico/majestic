@@ -2,3 +2,7 @@ KEY			COMMAND
 +			pactl set-sink-volume @DEFAULT_SINK@ +10%
 -			pactl set-sink-volume @DEFAULT_SINK@ -10%
 CTRL+ALT+h  /bin/bash -c "xdotool key --clearmodifiers ctrl+v && /usr/bin/diodon"
+
+4           dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+5           dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+6           dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
