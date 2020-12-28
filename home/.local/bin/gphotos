@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# b|k|M|G
+bw="--bwlimit 300k"
+
 if ! pgrep rclone > /dev/null 2> /dev/null; then
-    /usr/bin/rclone copy gphotos: /home/lucas/google/photos 2>&1
+    /usr/bin/rclone copy gphotos: /home/lucas/google/photos $bw 2>&1
 fi
