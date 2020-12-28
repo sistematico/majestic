@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-if rclone git > /dev/null 2> /dev/null; then
-    echo rodando
+if ! pgrep rclone > /dev/null 2> /dev/null; then
     /usr/bin/rclone copy gphotos: /home/lucas/google/photos 2>&1
 fi
