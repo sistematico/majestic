@@ -1,0 +1,12 @@
+[Unit]
+Description=Yandex-Disk service for %i
+After=local-fs.target network.target
+ConditionPathExists=%h/.config/yandex-disk/%i.cfg
+ 
+[Service]
+Type=forking
+ExecStart=/usr/bin/yandex-disk start -c %h/.config/yandex-disk/%i.cfg
+ExecStop=/usr/bin/yandex-disk stop -c %h/.config/yandex-disk/%i.cfg
+ 
+[Install]
+WantedBy=default.target
