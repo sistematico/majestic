@@ -52,7 +52,7 @@ atualiza() {
         git commit -m "${m}"
         git push
         if [ "$?" == 0 ]; then
-            $notifycommand "${nome}" "Repoositório $(basename ${1}) atualizado."
+            $notifycommand "${nome}" "Repositório $(basename ${1}) atualizado."
         else
             $notifycommand "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
         fi
