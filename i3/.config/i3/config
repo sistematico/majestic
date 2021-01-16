@@ -96,9 +96,9 @@ bindsym --release Control+Mod1+Sys_Req exec --no-startup-id $HOME/.local/bin/scr
 bindsym --release Control+Shift+Print exec --no-startup-id $HOME/.local/bin/screencast
 
 # MPD
-bindcode Mod2+$KP_6 exec --no-startup-id mpc next
-bindcode Mod2+$KP_4 exec --no-startup-id mpc prev
-bindcode Mod2+$KP_5 exec --no-startup-id mpc toggle
+bindcode $KP_6 exec --no-startup-id mpc next
+bindcode $KP_4 exec --no-startup-id mpc prev
+bindcode $KP_5 exec --no-startup-id mpc toggle
 
 # NCSpot
 #bindcode Mod2+$KP_6 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.ncspot /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
