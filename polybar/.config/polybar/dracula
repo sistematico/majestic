@@ -124,6 +124,8 @@ double-click-left = polybar-msg -p %pid% hook network 3
 [module/pulseaudio]
 type = internal/pulseaudio
 
+use-ui-max = false
+
 ;format-volume = <label-volume> <bar-volume>
 format-volume = <label-volume>
 
