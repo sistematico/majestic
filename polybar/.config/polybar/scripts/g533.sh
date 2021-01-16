@@ -11,7 +11,7 @@ if ! sudo /usr/local/bin/headsetcontrol -b 2> /dev/null | grep -q Battery; then
 fi
 
 batt=$(sudo /usr/local/bin/headsetcontrol -b | grep Battery | awk '{print $2}')
-batt=${batt%?}
+#batt=${batt%?}
 
 if [ "$batt" == "Chargin" ]; then
 	echo "%{F${cor}}%{F-} Carr."
