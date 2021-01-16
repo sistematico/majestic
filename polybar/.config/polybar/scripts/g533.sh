@@ -12,8 +12,8 @@ fi
 
 cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
 
-if [ "$batt" == "Chargin" ]; then
-	echo "%{F${cor}}%{F-} Carr."
+if [ "$batt" == "Charging" ]; then
+	echo "%{F${cor}}%{F-} Carregando..."
 else
     echo "%{F${cor}}%{F-} ${batt}"
 fi
