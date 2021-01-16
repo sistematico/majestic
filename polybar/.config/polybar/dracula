@@ -198,6 +198,11 @@ menu-3-0-exec = systemctl suspend
 menu-4-0 = deseja mesmo desligar?
 menu-4-0-exec = systemctl poweroff
 
+[module/hs]
+type = custom/script
+interval = 10
+exec = ~/.config/polybar/scripts/g533.sh
+
 [module/dl]
 type = custom/script
 interval = 5
