@@ -32,6 +32,7 @@ function fullsync() {
 function fullsite() {
     [ ! -d $HOME/sites/${1}/var/www ] && mkdir -p $HOME/sites/${1}/var/www
 	rsync -aAXvzz \
+    --exclude="node_modules/" \
     --exclude="*.mp4" \
     --exclude="*.mp3" \
     --exclude=".git/" \
