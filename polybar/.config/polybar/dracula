@@ -104,7 +104,8 @@ interface = eno1
 interval = 3.0
 
 format-connected-prefix = " "
-label-connected = %local_ip%
+;label-connected = %local_ip%
+label-connected = %downspeed%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
