@@ -18,7 +18,7 @@ height = 37
 border-left-size = 8
 border-right-size = 8
 border-top-size = 8
-border-bottom-size = 2
+border-bottom-size = 4
 border-color = #00000000
 
 radius = 6.0
