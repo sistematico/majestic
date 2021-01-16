@@ -13,7 +13,7 @@ gaps outer 0
 # Borders
 new_window pixel 0
 default_border pixel 0
-border_radius 6
+#border_radius 6
 
 for_window [class="^.*"] border pixel 0
 
