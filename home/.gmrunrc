@@ -7,7 +7,8 @@
 #Terminal = ${TERMINAL}
 Terminal = xfce4-terminal
 TermExec = ${Terminal} -e
-Browser = ${BROWSER}
+#Browser = ${BROWSER}
+Browser = firefox
 Editor = subl
 AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man
 
