@@ -31,7 +31,10 @@ function fullsync() {
 
 function fullsite() {
     [ ! -d $HOME/sites/${1}/var/www ] && mkdir -p $HOME/sites/${1}/var/www
-	rsync -aAXvzz --exclude="*.mp3" nginx@${1}:/var/www/ $HOME/sites/${1}/var/www/
+	rsync -aAXvzz \
+    --exclude="*.mp3" \
+    --exclude=".git/" \
+    nginx@${1}:/var/www/ $HOME/sites/${1}/var/www/
 }
 
 function checkiso() {
