@@ -7,7 +7,7 @@
     ### Display ###
     follow = mouse
 
-    geometry = "440x10-10-14"
+    geometry = "440x10-10-12"
     indicate_hidden = yes
     shrink = yes
     transparency = 0
