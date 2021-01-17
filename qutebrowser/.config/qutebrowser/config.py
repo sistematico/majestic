@@ -63,7 +63,7 @@ startpage = 'file:///home/lucas/.dotfiles/startpage/.config/startpage/index.html
 ## Background color of the completion widget category headers.
 ## Type: QssColor
 # c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
-c.colors.completion.category.bg = xresources['*background']
+c.colors.completion.category.bg = xresources['*.background']
 
 ## Bottom border color of the completion widget category headers.
 ## Type: QssColor
