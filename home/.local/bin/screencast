@@ -25,7 +25,7 @@ list_descendants () {
 PRESET="ultrafast"
 EXT="mp4"
 DATA=$(date +%H-%M-%S)
-ICONE="${HOME}/.local/share/icons/elementary/video-display.png"
+ICONE="${HOME}/.local/share/icons/newaita/camera-video.svg"
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 DISTRO="arch"
 
