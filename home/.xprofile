@@ -53,8 +53,8 @@ case $DESKTOP_SESSION in
         ln -sfT "/usr/share/dbus-1/services/org.freedesktop.mate.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     xfce|xfce4|xfce4-session)
-        ln -sfT "/usr/share/dbus-1/services/org.xfce.xfce4-notifyd.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service" &
-        exec xfce4-session
+        rm "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+        #exec xfce4-session
     ;;
     xfwm|xfwm4)
         export XDG_CURRENT_DESKTOP=XFCE
