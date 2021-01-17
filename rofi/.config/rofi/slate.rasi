@@ -13,7 +13,7 @@ inputbar {
 }
 
 prompt {
-  padding: 16px;
+  padding: 14px;
   border: 0 1px 0 0;
 }
 
