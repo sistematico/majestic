@@ -13,7 +13,7 @@ inputbar {
 }
 
 prompt {
-  padding: 14px;
+  padding: 10px;
   border: 0 1px 0 0;
 }
 
@@ -25,12 +25,12 @@ textbox {
 }
 
 entry {
-  padding: 16px;
+  padding: 10px;
 }
 
 listview {
   cycle: false;
-  margin: 0 0 -1px 0;
+  margin: 0 0 -20px 0;
   scrollbar: false;
 }
 
