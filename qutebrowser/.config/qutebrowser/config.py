@@ -80,7 +80,7 @@ c.colors.completion.category.bg = xresources['*.background']
 ## Background color of the completion widget for even rows.
 ## Type: QssColor
 # c.colors.completion.even.bg = '#333333'
-c.colors.completion.even.bg = xresources['*.color16']
+c.colors.completion.even.bg = xresources['*.color15']
 
 ## Text color of the completion widget. May be a single color to use for
 ## all columns or a list of three colors, one for each column.
@@ -90,7 +90,7 @@ c.colors.completion.even.bg = xresources['*.color16']
 ## Background color of the selected completion item.
 ## Type: QssColor
 # c.colors.completion.item.selected.bg = '#e8c000'
-c.colors.completion.item.selected.bg = xresources['*.color16']
+c.colors.completion.item.selected.bg = xresources['*.color15']
 
 ## Bottom border color of the selected completion item.
 ## Type: QssColor
@@ -123,7 +123,7 @@ c.colors.completion.odd.bg = xresources['*color0']
 
 ## Background color for the download bar.
 ## Type: QssColor
-c.colors.downloads.bar.bg = xresources['*color16']
+c.colors.downloads.bar.bg = xresources['*.color15']
 
 ## Background color for downloads with errors.
 ## Type: QtColor
@@ -323,7 +323,7 @@ c.colors.statusbar.url.error.fg = 'orange'
 ## Default foreground color of the URL in the statusbar.
 ## Type: QssColor
 # c.colors.statusbar.url.fg = 'white'
-c.colors.statusbar.url.fg = xresources['*color16']
+c.colors.statusbar.url.fg = xresources['*.color15']
 
 ## Foreground color of the URL in the statusbar for hovered links.
 ## Type: QssColor
@@ -334,7 +334,7 @@ c.colors.statusbar.url.hover.fg = 'white'
 ## (http).
 ## Type: QssColor
 # c.colors.statusbar.url.success.http.fg = 'white'
-c.colors.statusbar.url.success.http.fg = xresources['*color16']
+c.colors.statusbar.url.success.http.fg = xresources['*.color15']
 
 ## Foreground color of the URL in the statusbar on successful load
 ## (https).
@@ -356,7 +356,7 @@ c.colors.tabs.even.bg = xresources['*background']
 
 ## Foreground color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.fg = xresources['*color16']
+c.colors.tabs.even.fg = xresources['*.color15']
 
 ## Color for the tab indicator on errors.
 ## Type: QtColor
@@ -386,7 +386,7 @@ c.colors.tabs.odd.bg = xresources['*background']
 ## Foreground color of unselected odd tabs.
 ## Type: QtColor
 # c.colors.tabs.odd.fg = 'white'
-c.colors.tabs.odd.fg = xresources['*color16']
+c.colors.tabs.odd.fg = xresources['*.color15']
 
 ## Background color of selected even tabs.
 ## Type: QtColor
