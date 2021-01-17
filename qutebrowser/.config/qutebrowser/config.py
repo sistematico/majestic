@@ -80,7 +80,7 @@ c.colors.completion.category.bg = xresources['*.background']
 ## Background color of the completion widget for even rows.
 ## Type: QssColor
 # c.colors.completion.even.bg = '#333333'
-c.colors.completion.even.bg = xresources['*color16']
+c.colors.completion.even.bg = xresources['*.color16']
 
 ## Text color of the completion widget. May be a single color to use for
 ## all columns or a list of three colors, one for each column.
@@ -90,7 +90,7 @@ c.colors.completion.even.bg = xresources['*color16']
 ## Background color of the selected completion item.
 ## Type: QssColor
 # c.colors.completion.item.selected.bg = '#e8c000'
-c.colors.completion.item.selected.bg = xresources['*color16']
+c.colors.completion.item.selected.bg = xresources['*.color16']
 
 ## Bottom border color of the selected completion item.
 ## Type: QssColor
