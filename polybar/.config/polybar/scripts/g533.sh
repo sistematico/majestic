@@ -6,14 +6,14 @@
 batt=$(sudo /usr/local/bin/headsetcontrol -b | grep Battery | awk '{print $2}')
 
 if [ -z "$batt" ]; then
-    echo ""
+    echo ""
     exit
 fi
 
 cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
 
 if [ "$batt" == "Charging" ]; then
-	echo "%{F${cor}}%{F-} Carregando..."
+	echo "%{F${cor}}%{F-} Carregando..."
 else
-    echo "%{F${cor}}%{F-} ${batt}"
+    echo "%{F${cor}}%{F-} ${batt}"
 fi
