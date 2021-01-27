@@ -1,4 +1,5 @@
-
+# Don't Expose IPs
+/ssh/.ssh/config
 
 *.tar
 *.tar.*
