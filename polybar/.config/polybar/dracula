@@ -40,7 +40,7 @@ module-margin-right = 2
 font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 font-1 = icomoon:fontformat=truetype:size=8;2
 
-modules-left = i3 dl hs
+modules-left = i3 dl hs ff th te
 modules-center = xwindow
 modules-right = cpu memory filesystem network temperature pulseaudio date lock clip powermenu
 
@@ -217,13 +217,13 @@ content = 
 ;click-left = firefox &
 click-left = pgrep -x firefox >/dev/null || /usr/bin/firefox &
 
-[module/thunar]
+[module/th]
 type = custom/text
 content = 
 click-left = /usr/bin/thunar &
 ;click-left = pgrep -x thunar | egrep -v "grep|daemon" >/dev/null || /usr/bin/thunar &
 
-[module/term]
+[module/te]
 type = custom/text
 content = 
 click-left = urxvt &
