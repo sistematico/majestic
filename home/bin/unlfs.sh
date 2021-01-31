@@ -11,8 +11,9 @@
 
 git lfs uninstall
 git lfs ls-files | sed -r 's/^.{13}//' > /tmp/lfs-files.txt
-while read line; do git rm --cached "$line"; done < /tmp/files.txt
-while read line; do git add "$line"; done < /tmp/files.txt
+while read line; do git lfs untrack "$line"; done < /tmp/lfs-files.txt
+while read line; do git rm --cached "$line"; done < /tmp/lfs-files.txt
+while read line; do git add --force "$line"; done < /tmp/lfs-files.txt
 git add .gitattributes
 git commit -m "unlfs"
 #git push origin
