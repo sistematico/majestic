@@ -41,7 +41,7 @@ atualiza() {
         return
     fi
 
-    if [ $added -lt 3 ] || [ $removed -lt 3 ]; then
+    if [[ $added -lt 3 ]] || [[ $removed -lt 3 ]]; then
         return
     fi
 
