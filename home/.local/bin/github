@@ -34,8 +34,8 @@ atualiza() {
     
     cd ${1}
 
-	added=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $1}')
-	removed=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $2}')
+	added=$(($(git log --since="10 minute ago" --pretty=tformat: --numstat -1 | awk '{print $1}')))
+	removed=$(($(git log --since="10 minute ago" --pretty=tformat: --numstat -1 | awk '{print $2}')))
 
     if [ -z "$added" ] || [ -z "$removed" ]; then
         return
