@@ -18,8 +18,7 @@ repos=($(ls -d ${dir}/*))
 icone_sucesso="${HOME}/.local/share/icons/elementary/github.svg"
 icone_erro="${HOME}/.local/share/icons/elementary/network-error.png"
 som="complete"
-added=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $1}')
-removed=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $2}')
+minlines=10
 
 atualiza() {
     if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ]; then
@@ -41,7 +40,7 @@ atualiza() {
         return
     fi
 
-    if [[ $added -lt 3 ]] || [[ $removed -lt 3 ]]; then
+    if [[ $added -lt $minlines ]] || [[ $removed -lt $minlines ]]; then
         return
     fi
 
