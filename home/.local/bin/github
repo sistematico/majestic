@@ -18,6 +18,8 @@ repos=($(ls -d ${dir}/*))
 icone_sucesso="${HOME}/.local/share/icons/elementary/github.svg"
 icone_erro="${HOME}/.local/share/icons/elementary/network-error.png"
 som="complete"
+added=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $1}')
+removed=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $2}')
 
 atualiza() {
     if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ]; then
@@ -31,6 +33,18 @@ atualiza() {
     fi
     
     cd ${1}
+
+	added=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $1}')
+	removed=$(git log --since="20 minute ago" --pretty=tformat: --numstat -1 | awk '{print $2}')
+
+    if [ -z "$added" ] || [ -z "$removed" ]; then
+        return
+    fi
+
+    if [ $added -lt 3 ] || [ $removed -lt 3 ]; then
+        return
+    fi
+
     status=$(git add . -n)
     if [ ! -z "${status}" ]; then
         c=$(echo $(git add . -n | tr '\r\n' ' '))
