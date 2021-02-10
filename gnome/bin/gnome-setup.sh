@@ -23,6 +23,7 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize
 ######################
 # Evolution          #
 ######################
+# Default: false
 gsettings set org.gnome.evolution.mail composer-no-signature-delim true
 
 ######################
@@ -33,15 +34,18 @@ gsettings set org.gnome.evolution.mail composer-no-signature-delim true
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # Icon
-# gsettings set org.gnome.desktop.interface icon-theme "Gnome"
+# Default: 'Gnome'
+# gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 
 # Shell
-# gsettings set org.gnome.desktop.wm.preferences theme ""
+# Default: 'Adwaita'
+# gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
 
 ######################
 # Nautilus           #
 ######################
 # Always show text-entry location
+# Default: false
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 ######################

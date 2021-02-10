@@ -15,7 +15,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 VERSION="1.1"
-BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano dhcpcd"
+BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
 ver_cmp()
