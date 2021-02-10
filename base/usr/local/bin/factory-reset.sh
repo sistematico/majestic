@@ -44,21 +44,25 @@ vercomp () {
     return 0
 }
 
-NEWVERSION="$VERSION"
-source /usr/local/bin/factory-reset
-OLDVERSION="$VERSION"
+if [ ! -x /usr/local/bin/factory-reset ]; then
+    NEWVERSION="$VERSION"
+    source /usr/local/bin/factory-reset
+    OLDVERSION="$VERSION"
 
-vercomp $NEWVERSION $OLDVERSION
-case $? in
-    0) echo "Programa atualizado.";;
-    1) echo "A versão local é mais nova que a versão dos repositórios.";;
-    2) DESATUALIZADO=s ; echo "Programa desatualizado";;
-esac
+    vercomp $NEWVERSION $OLDVERSION
+    case $? in
+        0) echo "Programa atualizado.";;
+        1) echo "A versão local é mais nova que a versão dos repositórios.";;
+        2) DESATUALIZADO=s ; echo "Programa desatualizado";;
+    esac
+fi
+
+echo
 
 if [ ! -x /usr/local/bin/factory-reset ] || [ -z "$DESATUALIZADO" ]; then
     while :
     do    
-        clear
+        #clear
         echo "------------------------------------"
         echo "	   F A C T O R Y - R E S E T"
         echo "------------------------------------"
