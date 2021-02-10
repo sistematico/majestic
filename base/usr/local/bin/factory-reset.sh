@@ -18,51 +18,49 @@ VERSION="1.1"
 BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
-vercomp () {
-    if [[ $1 == $2 ]]
-    then
-        return 0
-    fi
+ver_cmp()
+{
     local IFS=.
-    local i ver1=($1) ver2=($2)
-    # fill empty fields in ver1 with zeros
-    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
-    do
-        ver1[i]=0
+    local V1=($1) V2=($2) I
+    for ((I=0 ; I<${#V1[*]} || I<${#V2[*]} ; I++)) ; do
+        [[ ${V1[$I]:-0} -lt ${V2[$I]:-0} ]] && echo -1 && return
+        [[ ${V1[$I]:-0} -gt ${V2[$I]:-0} ]] && echo 1 && return
     done
-    for ((i=0; i<${#ver1[@]}; i++))
-    do
-        if [[ -z ${ver2[i]} ]]
-        then
-            # fill empty fields in ver2 with zeros
-            ver2[i]=0
-        fi
-        if ((10#${ver1[i]} > 10#${ver2[i]}))
-        then
-            return 1
-        fi
-        if ((10#${ver1[i]} < 10#${ver2[i]}))
-        then
-            return 2
-        fi
-    done
-    return 0
+    echo 0
+}
+
+ver_eq()
+{
+    [[ $(ver_cmp "$1" "$2") -eq 0 ]]
+}
+
+ver_lt()
+{
+    [[ $(ver_cmp "$1" "$2") -eq -1 ]]
+}
+
+ver_gt()
+{
+    [[ $(ver_cmp "$1" "$2") -eq 1 ]]
+}
+
+ver_le()
+{
+    [[ ! $(ver_cmp "$1" "$2") -eq 1 ]]
+}
+
+ver_ge()
+{
+    [[ ! $(ver_cmp "$1" "$2") -eq -1 ]]
 }
 
 if [ -x /usr/local/bin/factory-reset ]; then
     NEWVERSION="$VERSION"
-    #source /usr/local/bin/factory-reset
     OLDVERSION="$(sed -n 's/^VERSION=\(.*\)/\1/p' < /usr/local/bin/factory-reset.sh)"
 
-    vercomp $NEWVERSION $OLDVERSION
+    ver_lt $OLDVERSION $NEWVERSION  && DESATUALIZADO=s ; echo "Programa desatualizado"
 
-    case $? in
-        0) echo "Programa atualizado.";;
-        1) echo "A versão local é mais nova que a versão dos repositórios.";;
-        2) DESATUALIZADO=s ; echo "Programa desatualizado";;
-    esac
-
-    sleep 15
+    sleep 5
 fi
 
 echo
