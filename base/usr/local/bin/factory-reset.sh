@@ -24,6 +24,7 @@ clear
 read -p "* Deseja instalar uma interface gráfica? [s/N]: " INTERFACE
 if [[ $INTERFACE == *[sS]* ]]; then
     INTERFACE="xorg-server nvidia"
+    
     while :
     do    
 	    clear
@@ -37,6 +38,7 @@ if [[ $INTERFACE == *[sS]* ]]; then
 	    echo "5. Sair"
 	    echo "------------------------------------"
 	    read -r -p "Escolha uma opção [1-5] : " pacotesinterface
+
         case $pacotesinterface in
 		    1)
                 INTERFACE="$INTERFACE i3-gaps xorg-xinit"
