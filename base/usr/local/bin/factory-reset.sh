@@ -4,6 +4,8 @@
 #
 # Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 #
+# Uso: curl -s -L https://git.io/JtrjF | bash
+#
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 10/02/2021 02:05:36
 
