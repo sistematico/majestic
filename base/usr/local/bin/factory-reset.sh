@@ -33,10 +33,10 @@ if [[ $INTERFACE == *[sS]* ]]; then
 	    echo "1. i3-gaps"
 	    echo "2. gnome"
 	    echo "3. xfce"
-        echo "3. mate"
-	    echo "4. sair"
+        echo "4. mate"
+	    echo "5. sair"
 	    echo "------------------------------------"
-	    read -r -p "Escolha uma opção [1-4] : " pacotesinterface
+	    read -r -p "Escolha uma opção [1-5] : " pacotesinterface
         case $pacotesinterface in
 		    1)
                 interfacepkgs="$interfacepkgs i3-gaps xorg-xinit"
