@@ -7,6 +7,81 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 10/02/2021 02:05:36
 
+VERSION="1.1"
+
+vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
+
+if [ -x /usr/local/bin/factory-reset ]; then
+NEWVERSION="$VERSION"
+source /usr/local/bin/factory-reset
+OLDVERSION="$VERSION"
+
+
+else
+    while :
+    do    
+        clear
+        echo "------------------------------------"
+        echo "	   F A C T O R Y - R E S E T"
+        echo "------------------------------------"
+        echo "1. Instalar"
+        echo "2. Instalar & Executar"
+        echo "3. Sair"
+        echo "------------------------------------"
+        read -r -p "Escolha uma opção [1-3] : " INSTALAR
+
+        case $INSTALAR in
+            1)
+                INTERFACE="$INTERFACE i3-gaps xorg-xinit"
+                break
+            ;;
+            2)
+                INTERFACE="$INTERFACE gnome gdm"
+                break
+            ;;
+            3)
+                INTERFACE="$INTERFACE xfce4 lightdm lightdm-gtk-greeter"
+                break		
+            ;;
+            5)
+                break
+            ;;
+            *)
+                echo "Escolha de 1 a 5 apenas"
+        esac
+    done
+
+fi
+
 BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
@@ -27,41 +102,41 @@ if [[ $INTERFACE == *[sS]* ]]; then
 
     while :
     do    
-	    clear
-	    echo "------------------------------------"
-	    echo "	     I N T E R F A C E"
-	    echo "------------------------------------"
-	    echo "1. i3 (gaps)"
-	    echo "2. GNOME"
-	    echo "3. XFCE"
+        clear
+        echo "------------------------------------"
+        echo "	     I N T E R F A C E"
+        echo "------------------------------------"
+        echo "1. i3 (gaps)"
+        echo "2. GNOME"
+        echo "3. XFCE"
         echo "4. MATE"
-	    echo "5. Sair"
-	    echo "------------------------------------"
-	    read -r -p "Escolha uma opção [1-5] : " pacotesinterface
+        echo "5. Sair"
+        echo "------------------------------------"
+        read -r -p "Escolha uma opção [1-5] : " pacotesinterface
 
         case $pacotesinterface in
-		    1)
+            1)
                 INTERFACE="$INTERFACE i3-gaps xorg-xinit"
                 break
-		    ;;
-		    2)
-		        INTERFACE="$INTERFACE gnome gdm"
+            ;;
+            2)
+                INTERFACE="$INTERFACE gnome gdm"
                 break
-		    ;;
-		    3)
-		        INTERFACE="$INTERFACE xfce4 lightdm lightdm-gtk-greeter"
+            ;;
+            3)
+                INTERFACE="$INTERFACE xfce4 lightdm lightdm-gtk-greeter"
                 break		
-		    ;;
-		    4)
+            ;;
+            4)
                 INTERFACE="$INTERFACE mate lightdm lightdm-gtk-greeter"
-		        break
-		    ;;
-		    5)
-		        break
-		    ;;
-		    *)
-		        echo "Escolha de 1 a 5 apenas"
-	    esac
+                break
+            ;;
+            5)
+                break
+            ;;
+            *)
+                echo "Escolha de 1 a 5 apenas"
+        esac
     done
 fi
 
@@ -71,14 +146,14 @@ if [[ $ADICIONAL == *[sS]* ]]; then
     while :
     do
         clear    
-	    read -r -p "Digite o nome dos pacotes separados por espaços: " NEW_OPTIONAL
+        read -r -p "Digite o nome dos pacotes separados por espaços: " NEW_OPTIONAL
 
         echo "Os seguintes pacotes foram adicionados:"
         echo
         echo "$NEW_OPTIONAL"
         echo
         
-  	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionaisok
+          read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionaisok
         if [[ $pacotesadicionaisok == *[sS]* ]]; then
             break
         fi
@@ -131,9 +206,9 @@ if [[ $CONTINUAR == [sS]* ]]; then
         echo "Atualizando todos os pacotes instalados: "
         echo "pacman -Syyu"
 
-		if [ -z "$INTERFACE" ]; then
-			pacman -S $INTERFACE
-		fi
+        if [ -z "$INTERFACE" ]; then
+            pacman -S $INTERFACE
+        fi
 
         if [ -z "$OPTIONAL" ]; then
             pacman -S $OPTIONAL
