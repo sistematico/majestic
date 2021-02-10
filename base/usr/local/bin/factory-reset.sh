@@ -21,7 +21,9 @@ OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 ver_cmp()
 {
     local IFS=.
-    local V1=($1) V2=($2) I
+    local V1=$((1)) 
+    local V2=$((2))
+    local I
     for ((I=0 ; I<${#V1[*]} || I<${#V2[*]} ; I++)) ; do
         [[ ${V1[$I]:-0} -lt ${V2[$I]:-0} ]] && echo -1 && return
         [[ ${V1[$I]:-0} -gt ${V2[$I]:-0} ]] && echo 1 && return
