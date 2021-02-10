@@ -66,11 +66,13 @@ else
 
         case $INSTALAR in
             1)
-                INTERFACE="$INTERFACE i3-gaps xorg-xinit"
-                break
+                curl -s -L https://raw.githubusercontent.com/sistematico/majestic/master/base/usr/local/bin/factory-reset.sh > /usr/local/bin/factory-reset
+                chmod +x /usr/local/bin/factory-reset
+                exit
             ;;
             2)
-                INTERFACE="$INTERFACE gnome gdm"
+                curl -s -L https://raw.githubusercontent.com/sistematico/majestic/master/base/usr/local/bin/factory-reset.sh > /usr/local/bin/factory-reset
+                chmod +x /usr/local/bin/factory-reset
                 break
             ;;
             3)
