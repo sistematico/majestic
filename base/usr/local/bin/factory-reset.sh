@@ -9,6 +9,11 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 10/02/2021 02:05:36
 
+if [[ $EUID -ne 0 ]]; then
+   echo "Este script precisa rodar com o usuário root." 
+   exit 1
+fi
+
 VERSION="1.1"
 BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
