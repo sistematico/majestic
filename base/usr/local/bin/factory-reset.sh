@@ -59,7 +59,7 @@ fi
 
 echo
 
-if [ ! -x /usr/local/bin/factory-reset ] || [ -z "$DESATUALIZADO" ]; then
+if [ ! -x /usr/local/bin/factory-reset ] || [ ! -z "$DESATUALIZADO" ]; then
     while :
     do    
         #clear
