@@ -103,6 +103,13 @@ if [[ $CONTINUAR == [sS]* ]]; then
     fi
 
     if [ "$dryrun" == "n" ]; then
+        read -r -e -p "Você tem CERTEZA ABSOLUTA que deseja continuar?\nTodos os pacotes exceto os pacotes básicos, interface e opcionais que você escolheu serão completamente removidos do seu sistema! [s/N]: " continuar
+
+        if [[ "$continuar" != [sS]* ]]; then
+            echo "Programa abortado."
+            exit
+        fi
+
         # Mark all as optional
         echo "Marcando todos os pacotes como opcionais: "
         pacman -D --asdeps $(pacman -Qqe)
