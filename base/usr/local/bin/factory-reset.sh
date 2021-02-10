@@ -44,12 +44,13 @@ vercomp () {
     return 0
 }
 
-if [ ! -x /usr/local/bin/factory-reset ]; then
+if [ -x /usr/local/bin/factory-reset ]; then
     NEWVERSION="$VERSION"
     source /usr/local/bin/factory-reset
     OLDVERSION="$VERSION"
 
     vercomp $NEWVERSION $OLDVERSION
+
     case $? in
         0) echo "Programa atualizado.";;
         1) echo "A versão local é mais nova que a versão dos repositórios.";;
@@ -59,7 +60,7 @@ fi
 
 echo
 
-if [ ! -x /usr/local/bin/factory-reset ] || [ ! -z "$DESATUALIZADO" ]; then
+if [ -x /usr/local/bin/factory-reset ] || [ -z "$DESATUALIZADO" ]; then
     while :
     do    
         #clear
@@ -71,6 +72,8 @@ if [ ! -x /usr/local/bin/factory-reset ] || [ ! -z "$DESATUALIZADO" ]; then
         echo "3. Sair"
         echo "------------------------------------"
         read -r -p "Escolha uma opção [1-3] : " INSTALAR
+
+        sleep 10
 
         case $INSTALAR in
             1)
