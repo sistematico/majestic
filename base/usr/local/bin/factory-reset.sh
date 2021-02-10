@@ -215,6 +215,12 @@ if [[ $CONTINUAR == [sS]* ]]; then
         if [ -z "$OPTIONAL" ]; then
             pacman -S $OPTIONAL
         fi
+
+        if [[ $GRAVARLOG != *[nN]* ]]; then
+            echo "Packages: $(pacman -Q | wc -l)" > /var/tmp/packages-after.log
+            echo "---" >> /var/tmp/packages-after.log
+            pacman -Q >> /var/tmp/packages-after.log
+        fi
     else
         echo
         echo "Rodando em Dry-Run..."
