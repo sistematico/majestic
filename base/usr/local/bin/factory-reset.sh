@@ -8,6 +8,8 @@
 # Última alteração: 10/02/2021 02:05:36
 
 VERSION="1.1"
+BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
+OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
 vercomp () {
     if [[ $1 == $2 ]]
@@ -40,18 +42,18 @@ vercomp () {
     return 0
 }
 
-if [ -x /usr/local/bin/factory-reset ]; then
-    NEWVERSION="$VERSION"
-    source /usr/local/bin/factory-reset
-    OLDVERSION="$VERSION"
+NEWVERSION="$VERSION"
+source /usr/local/bin/factory-reset
+OLDVERSION="$VERSION"
 
-    vercomp $NEWVERSION $OLDVERSION
-    case $? in
-        0) echo "Programa atualizado.";;
-        1) echo "A versão local é mais nova que a versão dos repositórios.";;
-        2) echo "Programa desatualizado";;
-    esac
-else
+vercomp $NEWVERSION $OLDVERSION
+case $? in
+    0) echo "Programa atualizado.";;
+    1) echo "A versão local é mais nova que a versão dos repositórios.";;
+    2) DESATUALIZADO=s ; echo "Programa desatualizado";;
+esac
+
+if [ ! -x /usr/local/bin/factory-reset ] || [ -z "$DESATUALIZADO" ]; then
     while :
     do    
         clear
@@ -83,11 +85,7 @@ else
                 echo "Escolha de 1 a 3 apenas"
         esac
     done
-
 fi
-
-BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
-OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
 [ "$1" == "-n" ] || [ "$1" != "-i" ] && DRYRUN="s" || DRYRUN="n"
 
