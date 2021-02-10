@@ -10,7 +10,7 @@
 basepkgs="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 #optionailpkgs="git rxvt-unicode terminus-font bash-completion"
 
-dryrun="n"
+dryrun="s"
 
 clear
 read -p "* Gravar todas as alterações em log? [S/n]: " GRAVARLOG
