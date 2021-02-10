@@ -65,7 +65,7 @@ if [ ! -x /usr/local/bin/factory-reset ] || [ ! -z "$DESATUALIZADO" ]; then
     do    
         #clear
         echo "------------------------------------"
-        echo "	   F A C T O R Y - R E S E T"
+        echo "	 F A C T O R Y - R E S E T"
         echo "------------------------------------"
         echo "1. Instalar"
         echo "2. Instalar & Executar"
@@ -73,7 +73,7 @@ if [ ! -x /usr/local/bin/factory-reset ] || [ ! -z "$DESATUALIZADO" ]; then
         echo "------------------------------------"
         read -r -p "Escolha uma opção [1-3] : " INSTALAR
 
-        sleep 10
+        #sleep 10
 
         case $INSTALAR in
             1)
