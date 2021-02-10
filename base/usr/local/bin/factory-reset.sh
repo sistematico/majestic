@@ -10,7 +10,7 @@
 BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
-dryrun="s"
+[ "$1" == "-n" ] || [ "$1" != "-i" ] && dryrun="s" || dryrun="n"
 
 clear
 read -p "* Gravar todas as alterações em log? [S/n]: " GRAVARLOG
