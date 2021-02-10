@@ -220,7 +220,10 @@ if [[ $CONTINUAR == [sS]* ]]; then
             echo "Packages: $(pacman -Q | wc -l)" > /var/tmp/packages-after.log
             echo "---" >> /var/tmp/packages-after.log
             pacman -Q >> /var/tmp/packages-after.log
+            echo "Logs gravados em /var/tmp/packages-before.log e /var/tmp/packages-after.log"
         fi
+
+        echo "Obrigado por usar o factory-reset!"
     else
         echo
         echo "Rodando em Dry-Run..."
