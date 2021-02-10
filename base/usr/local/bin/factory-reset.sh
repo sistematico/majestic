@@ -56,11 +56,11 @@ ver_ge()
     [[ ! $(ver_cmp "$1" "$2") -eq -1 ]]
 }
 
-if [ -x /usr/local/bin/factory-reset ]; then
+if [ ! -x /usr/local/bin/factory-reset ]; then
     NEWVERSION="$VERSION"
     OLDVERSION="$(sed -n 's/^VERSION=\(.*\)/\1/p' < /usr/local/bin/factory-reset.sh)"
 
-    ver_lt $OLDVERSION $NEWVERSION  && DESATUALIZADO=s ; echo "Programa desatualizado"
+    ver_lt $OLDVERSION $NEWVERSION && DESATUALIZADO=s ; echo "Programa desatualizado"
 
     sleep 5
 fi
