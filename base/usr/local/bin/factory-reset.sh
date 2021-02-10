@@ -91,7 +91,7 @@ if [[ $CONTINUAR == [sS]* ]]; then
 
     echo "Você está prestes a remover todos os pacotes e instalar os seguintes: "
     echo 
-    echo "Base: $BASE"
+    echo "Base     : $BASE"
     echo "Interface: $INTERFACE"
     echo "Opcionais: $OPTIONAL"
     echo
@@ -104,7 +104,7 @@ if [[ $CONTINUAR == [sS]* ]]; then
 
     if [ "$dryrun" == "n" ]; then
         # Mark all as optional
-        echo "Marcando todos os pacotes como opcionais"
+        echo "Marcando todos os pacotes como opcionais: "
         pacman -D --asdeps $(pacman -Qqe)
 
         # Mark base packages as explicit
@@ -115,24 +115,29 @@ if [[ $CONTINUAR == [sS]* ]]; then
         # Remove all except explicit packages
         # Note: The arguments -Qt list only true orphans. 
         # To include packages which are optionally required by another package, pass the -t flag twice (i.e., -Qtt).
-        echo "Removendo todos os pacotes excetos os explícitos"
+        echo "Removendo todos os pacotes excetos os explícitos: "
         pacman -Rns $(pacman -Qttdq)
 
         # Update all packages
-        echo "Atualizando todos os pacotes instalados"
-        pacman -Syyu
+        echo "Atualizando todos os pacotes instalados: "
+        echo "pacman -Syyu"
 
-		if [ -z "$INTERFACE" ] || [ -z "$OPTIONAL" ]; then
-			pacman -S $INTERFACE $OPTIONAL
+		if [ -z "$INTERFACE" ]; then
+			pacman -S $INTERFACE
 		fi
+
+        if [ -z "$OPTIONAL" ]; then
+            pacman -S $OPTIONAL
+        fi
     else
         echo
         echo "Rodando em Dry-Run..."
+        echo
         echo "Seriam marcados como pacotes explicitamente instalados:"
         echo
-        echo "Base: $BASE"
+        echo "Base     : $BASE"
         echo "Interface: $INTERFACE"
-        echo "Opcional: $OPTIONAL"
+        echo "Opcional : $OPTIONAL"
         echo
     fi
 else
