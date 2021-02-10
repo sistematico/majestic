@@ -41,11 +41,16 @@ vercomp () {
 }
 
 if [ -x /usr/local/bin/factory-reset ]; then
-NEWVERSION="$VERSION"
-source /usr/local/bin/factory-reset
-OLDVERSION="$VERSION"
+    NEWVERSION="$VERSION"
+    source /usr/local/bin/factory-reset
+    OLDVERSION="$VERSION"
 
-
+    vercomp $NEWVERSION $OLDVERSION
+    case $? in
+        0) echo "Programa atualizado.";;
+        1) echo "A versão local é mais nova que a versão dos repositórios.";;
+        2) echo "Programa desatualizado";;
+    esac
 else
     while :
     do    
@@ -69,14 +74,11 @@ else
                 break
             ;;
             3)
-                INTERFACE="$INTERFACE xfce4 lightdm lightdm-gtk-greeter"
-                break		
-            ;;
-            5)
-                break
+                echo "Programa abortado."
+                exit
             ;;
             *)
-                echo "Escolha de 1 a 5 apenas"
+                echo "Escolha de 1 a 3 apenas"
         esac
     done
 
