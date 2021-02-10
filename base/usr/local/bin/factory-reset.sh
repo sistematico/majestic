@@ -7,8 +7,8 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 01/09/2020 00:20:39
 
-basepkgs="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
-#optionailpkgs="git rxvt-unicode terminus-font bash-completion"
+BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
+OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
 dryrun="s"
 
@@ -23,42 +23,42 @@ fi
 clear
 read -p "* Deseja instalar uma interface gráfica? [s/N]: " INTERFACE
 if [[ $INTERFACE == *[sS]* ]]; then
-    interfacepkgs="xorg-server nvidia"
+    INTERFACE="xorg-server nvidia"
     while :
     do    
 	    clear
 	    echo "------------------------------------"
 	    echo "	     I N T E R F A C E"
 	    echo "------------------------------------"
-	    echo "1. i3-gaps"
-	    echo "2. gnome"
-	    echo "3. xfce"
-        echo "4. mate"
-	    echo "5. sair"
+	    echo "1. i3 (gaps)"
+	    echo "2. GNOME"
+	    echo "3. XFCE"
+        echo "4. MATE"
+	    echo "5. Sair"
 	    echo "------------------------------------"
 	    read -r -p "Escolha uma opção [1-5] : " pacotesinterface
         case $pacotesinterface in
 		    1)
-                interfacepkgs="$interfacepkgs i3-gaps xorg-xinit"
+                INTERFACE="$INTERFACE i3-gaps xorg-xinit"
                 break
 		    ;;
 		    2)
-		        interfacepkgs="$interfacepkgs gnome gdm"
+		        INTERFACE="$INTERFACE gnome gdm"
                 break
 		    ;;
 		    3)
-		        interfacepkgs="$interfacepkgs xfce4 lightdm lightdm-gtk-greeter"
+		        INTERFACE="$INTERFACE xfce4 lightdm lightdm-gtk-greeter"
                 break		
 		    ;;
 		    4)
-                interfacepkgs="$interfacepkgs mate lightdm lightdm-gtk-greeter"
+                INTERFACE="$INTERFACE mate lightdm lightdm-gtk-greeter"
 		        break
 		    ;;
-		    3)
+		    5)
 		        break
 		    ;;
 		    *)
-		        echo "Escolha de 1 a 4 apenas"
+		        echo "Escolha de 1 a 5 apenas"
 	    esac
     done
 fi
@@ -69,11 +69,11 @@ if [[ $ADICIONAL == *[sS]* ]]; then
     while :
     do
         clear    
-	    read -r -p "Digite o nome dos pacotes separados por espaços: " newoptionalpkgs
+	    read -r -p "Digite o nome dos pacotes separados por espaços: " NEW_OPTIONAL
 
         echo "Os seguintes pacotes foram adicionados:"
         echo
-        echo "$newoptionalpkgs"
+        echo "$NEW_OPTIONAL"
         echo
         
   	    read -r -p "Estes pacotes estão corretos? [s/N]: " pacotesadicionaisok
@@ -83,7 +83,7 @@ if [[ $ADICIONAL == *[sS]* ]]; then
     done
 fi
 
-optionailpkgs="$optionailpkgs $newoptionalpkgs"
+OPTIONAL="$OPTIONAL $NEW_OPTIONAL"
 
 clear
 read -p "* Tem certeza que deseja continuar? [s/N]: " CONTINUAR
@@ -91,9 +91,9 @@ if [[ $CONTINUAR == [sS]* ]]; then
 
     echo "Você está prestes a remover todos os pacotes e instalar os seguintes: "
     echo 
-    echo "Base: $basepkgs"
-    echo "Interface: $interfacepkgs"
-    echo "Opcionais: $optionalpkgs"
+    echo "Base: $BASE"
+    echo "Interface: $INTERFACE"
+    echo "Opcionais: $OPTIONAL"
     echo
     read -r -p "Deseja continuar? [s/N]: " continuar
 
@@ -109,8 +109,8 @@ if [[ $CONTINUAR == [sS]* ]]; then
 
         # Mark base packages as explicit
         echo "Marcando como explícitos os pacotes: "
-        echo "$basepkgs $interfacepkgs $optionalpkgs"
-        pacman -D --asexplicit $basepkgs
+        echo "$BASE $INTERFACE $OPTIONAL"
+        pacman -D --asexplicit $BASE
 
         # Remove all except explicit packages
         # Note: The arguments -Qt list only true orphans. 
@@ -122,17 +122,17 @@ if [[ $CONTINUAR == [sS]* ]]; then
         echo "Atualizando todos os pacotes instalados"
         pacman -Syyu
 
-		if [ -z "$interfacepkgs" ] || [ -z "$optionalpkgs" ]; then
-			pacman -S $interfacepkgs $optionalpkgs
+		if [ -z "$INTERFACE" ] || [ -z "$OPTIONAL" ]; then
+			pacman -S $INTERFACE $OPTIONAL
 		fi
     else
         echo
         echo "Rodando em Dry-Run..."
         echo "Seriam marcados como pacotes explicitamente instalados:"
         echo
-        echo "Base: $basepkgs"
-        echo "Interface: $interfacepkgs"
-        echo "Opcional: $optionalpkgs"
+        echo "Base: $BASE"
+        echo "Interface: $INTERFACE"
+        echo "Opcional: $OPTIONAL"
         echo
     fi
 else
