@@ -10,7 +10,7 @@
 BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
 
-[ "$1" == "-n" ] || [ "$1" != "-i" ] && dryrun="s" || dryrun="n"
+[ "$1" == "-n" ] || [ "$1" != "-i" ] && DRYRUN="s" || DRYRUN="n"
 
 clear
 read -p "* Gravar todas as alterações em log? [S/n]: " GRAVARLOG
@@ -102,7 +102,7 @@ if [[ $CONTINUAR == [sS]* ]]; then
         exit
     fi
 
-    if [ "$dryrun" == "n" ]; then
+    if [ "$DRYRUN" == "n" ]; then
         read -r -e -p "Você tem CERTEZA ABSOLUTA que deseja continuar?\nTodos os pacotes exceto os pacotes básicos, interface e opcionais que você escolheu serão completamente removidos do seu sistema! [s/N]: " continuar
 
         if [[ "$continuar" != [sS]* ]]; then
