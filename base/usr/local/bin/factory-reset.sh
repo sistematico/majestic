@@ -51,8 +51,8 @@ vercomp () {
 
 if [ -x /usr/local/bin/factory-reset ]; then
     NEWVERSION="$VERSION"
-    source /usr/local/bin/factory-reset
-    OLDVERSION="$VERSION"
+    #source /usr/local/bin/factory-reset
+    OLDVERSION="$(sed -n 's/^VERSION=\(.*\)/\1/p' < /usr/local/bin/factory-reset.sh)"
 
     vercomp $NEWVERSION $OLDVERSION
 
