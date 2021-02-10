@@ -61,6 +61,8 @@ if [ -x /usr/local/bin/factory-reset ]; then
         1) echo "A versão local é mais nova que a versão dos repositórios.";;
         2) DESATUALIZADO=s ; echo "Programa desatualizado";;
     esac
+
+    sleep 15
 fi
 
 echo
