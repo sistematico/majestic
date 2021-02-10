@@ -3,13 +3,10 @@
 # GPL v2.0 applies
 
 # Set terminal
-#Terminal = mate-terminal --start-factory-server --use-factory
-#Terminal = ${TERMINAL}
-Terminal = xfce4-terminal
+Terminal = xfce4-terminal # ${TERMINAL}
 TermExec = ${Terminal} -e
-#Browser = ${BROWSER}
-Browser = firefox
-Editor = subl
+Browser = firefox # ${BROWSER}
+Editor = mousepad
 AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man
 
 # Set window geometry (except height)
