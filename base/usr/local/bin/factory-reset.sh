@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# Arquivo: factory-reset.sh
+# Arquivo: /usr/local/bin/factory-reset
 #
 # Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 #
 # Criado em: 16/03/2018 16:35:20
-# Última alteração: 01/09/2020 00:20:39
+# Última alteração: 10/02/2021 02:05:36
 
 BASE="base linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub nano"
 OPTIONAL="git rxvt-unicode terminus-font bash-completion"
@@ -24,7 +24,7 @@ clear
 read -p "* Deseja instalar uma interface gráfica? [s/N]: " INTERFACE
 if [[ $INTERFACE == *[sS]* ]]; then
     INTERFACE="xorg-server nvidia"
-    
+
     while :
     do    
 	    clear
