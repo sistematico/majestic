@@ -21,6 +21,8 @@ som="complete"
 minlines=10
 
 atualiza() {
+	branch=$(git branch --show-current)
+
     if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ]; then
         return
     fi
@@ -50,7 +52,7 @@ atualiza() {
         m="Autocommit por ${nome}: alterações: $c"
         git add .
         git commit -m "${m}"
-        git push
+        git push origin $branch
         if [ "$?" == 0 ]; then
             notify-send -h int:transient:1 -i "${icone_sucesso}" "${nome}" "Repo <b>$(basename ${1})</b> atualizado."
         else
