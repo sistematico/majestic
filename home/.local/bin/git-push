@@ -35,6 +35,8 @@ case $distro in
 esac
 
 atualiza() {
+	branch=$(git branch --show-current)
+
     if pgrep git > /dev/null 2> /dev/null; then
         return
     fi
@@ -50,7 +52,7 @@ atualiza() {
         m="Autocommit por ${nome}: alterações: $c"
         git add .
         git commit -m "${m}"
-        git push
+        git push origin $branch
         if [ "$?" == 0 ]; then
             $notifycommand "${nome}" "Repositório $(basename ${1}) atualizado."
         else
