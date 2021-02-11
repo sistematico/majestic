@@ -47,12 +47,14 @@ atualiza() {
 
     cd ${1}
     status=$(git add . -n)
+
     if [ ! -z "${status}" ]; then
         c=$(echo $(git add . -n | tr '\r\n' ' '))
         m="Autocommit por ${nome}: alterações: $c"
         git add .
         git commit -m "${m}"
-        git push origin $branch
+        #git push origin $branch
+        git push
         if [ "$?" == 0 ]; then
             $notifycommand "${nome}" "Repositório $(basename ${1}) atualizado."
         else
