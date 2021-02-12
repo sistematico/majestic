@@ -30,6 +30,12 @@ gsettings set org.gnome.SessionManager logout-prompt false
 gsettings set org.gnome.evolution.mail composer-no-signature-delim true
 
 ######################
+# Terminal           #
+######################
+# Disable confirmation on terminal close
+gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
+
+######################
 # Theme              #
 ######################
 
