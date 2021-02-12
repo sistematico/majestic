@@ -20,6 +20,9 @@ gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 # Three Buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
+# Logout delay
+gsettings set org.gnome.SessionManager logout-prompt false
+
 ######################
 # Evolution          #
 ######################
