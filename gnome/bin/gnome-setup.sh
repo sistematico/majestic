@@ -24,6 +24,12 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize
 gsettings set org.gnome.SessionManager logout-prompt false
 
 ######################
+# GNOME Software     #
+######################
+#Prevent GNOME Software from downloading updates
+gsettings set org.gnome.software download-updates false
+
+######################
 # Evolution          #
 ######################
 # Default: false
