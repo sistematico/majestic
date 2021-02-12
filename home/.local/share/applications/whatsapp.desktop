@@ -6,4 +6,4 @@ Comment=
 Exec=/usr/local/webapps/WhatsApp-linux-x64/WhatsApp
 Icon=whatsapp
 Terminal=false
-#StartupWMClass=Popcorn-Time
+StartupWMClass=whatsapp-nativefier-d40211
