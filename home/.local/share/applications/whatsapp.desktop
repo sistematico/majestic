@@ -4,6 +4,6 @@ Encoding=UTF-8
 Name=WhatsApp
 Comment=
 Exec=/usr/local/webapps/WhatsApp-linux-x64/WhatsApp
-Icon=/usr/share/icons/Newaita-dark/apps/64/whatsapp.svg
+Icon=/usr/local/webapps/WhatsApp-linux-x64/resources/app/icon.png
 Terminal=false
 StartupWMClass=whatsapp-nativefier-d40211
