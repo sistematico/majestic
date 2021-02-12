@@ -1,9 +1,8 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Popcorn-Time
-Comment=Watch Movies
-Exec=/opt/popcorntime/Popcorn-Time
-Icon=popcorntime
+Name=GNOME Apps
+Comment=GNOME Apps Launcher
+Exec=dbus-send --session --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.shellDBusService.ShowApplications();'
+Icon=gnome
 Terminal=false
-StartupWMClass=Popcorn-Time
