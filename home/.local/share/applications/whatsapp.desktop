@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Popcorn-Time
-Comment=Watch Movies
-Exec=/opt/popcorntime/Popcorn-Time
-Icon=popcorntime
+Name=WhatsApp
+Comment=
+Exec=/usr/local/webapps/WhatsApp-linux-x64/WhatsApp
+Icon=whatsapp
 Terminal=false
-StartupWMClass=Popcorn-Time
+#StartupWMClass=Popcorn-Time
