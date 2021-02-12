@@ -6,3 +6,4 @@ Comment=Watch Movies
 Exec=/opt/popcorntime/Popcorn-Time
 Icon=popcorntime
 Terminal=false
+StartupWMClass=Popcorn-Time
