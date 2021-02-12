@@ -39,6 +39,30 @@ function fullsite() {
     nginx@${1}:/var/www/ $HOME/sites/${1}/var/www/
 }
 
+function songdown() {
+    [ ! -d $HOME/audio/${1} ] && mkdir -p $HOME/audio/${1}
+
+    rsync -aAXvzz \
+    nginx@${1}:/opt/liquidsoap/music/ \
+	$HOME/audio/${1}/ $2
+
+    find $HOME/audio/${1} -type d -exec chmod 755 '{}' \; 
+	find $HOME/audio/${1} -type f -exec chmod 644 '{}' \;
+}
+
+function songup() {
+    [ ! -d $HOME/audio/${1} ] && mkdir -p $HOME/audio/${1}   
+
+    if [ -d $HOME/audio/${1} ]; then 
+		find $HOME/audio/${1} -type d -exec chmod 755 '{}' \; 
+		find $HOME/audio/${1} -type f -exec chmod 644 '{}' \;
+	fi
+
+    rsync -aAXvzz \
+    $HOME/audio/${1}/ \
+    nginx@${1}:/opt/liquidsoap/music/ $2
+}
+
 function checkiso() {
 	if [ -f SHA512SUMS ]; then
         sha512sum --ignore-missing -c SHA512SUMS
