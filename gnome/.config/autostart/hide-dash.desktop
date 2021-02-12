@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Hide Dash
+Comment=
+Exec=/home/lucas/bin/hide-dash.sh
+StartupNotify=false
+Terminal=false
+Hidden=false
+
