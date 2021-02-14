@@ -28,18 +28,18 @@ server {
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
 
-    root /code/pdvlaravel/public;
+    root /code/pdvlaravel;
 
     include snippets/laravel.conf;
 }
 
 #################################
-##### STARTPAGE             #####
+##### LOCALHOST             #####
 #################################
 server {
     listen 80;
     listen [::]:80;
-    server_name startpages;
+    server_name pdvlaravel;
     return 301 https://$host$request_uri;
 }
 
@@ -50,20 +50,55 @@ server {
     ssl_session_cache shared:SSL:10m;
     ssl_session_timeout 5m;
 
-    ssl_certificate      /etc/ssl/nginx/startpages.pem;
-    ssl_certificate_key  /etc/ssl/nginx/startpages-key.pem;
+    ssl_certificate      /etc/ssl/nginx/pdvlaravel.pem;
+    ssl_certificate_key  /etc/ssl/nginx/pdvlaravel-key.pem;
 
     autoindex on;
     fastcgi_intercept_errors on;
     disable_symlinks off;
 
     index index.php index.html;
-    server_name startpages;
+    server_name localhost;
 
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
 
-    root /code/startpages;
+    root /code/pdvlaravel;
+
+    include snippets/laravel.conf;
+}
+
+#################################
+##### STARTPAGE             #####
+#################################
+server {
+    listen 80;
+    listen [::]:80;
+    server_name startpage;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 5m;
+
+    ssl_certificate      /etc/ssl/nginx/startpage.pem;
+    ssl_certificate_key  /etc/ssl/nginx/startpage-key.pem;
+
+    autoindex on;
+    fastcgi_intercept_errors on;
+    disable_symlinks off;
+
+    index index.php index.html;
+    server_name startpage;
+
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+
+    root /code/startpages/gaegu;
 
     include snippets/php.conf;
 }
@@ -274,6 +309,42 @@ server {
     access_log /var/log/nginx/access.log;
 
     root /code/radiochat;
+
+    include snippets/php.conf;
+}
+
+#################################
+##### ADBLOCK               #####
+#################################
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 5m;
+
+    ssl_certificate      /etc/ssl/nginx/127.0.0.2.pem;
+    ssl_certificate_key  /etc/ssl/nginx/127.0.0.2-key.pem;
+
+    server_name 127.0.0.2;
+    return 301 http://$host$request_uri;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    autoindex on;
+    fastcgi_intercept_errors on;
+    disable_symlinks off;
+
+    index index.php index.html;
+    server_name 127.0.0.2;
+
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+
+    root /code/adblock;
 
     include snippets/php.conf;
 }

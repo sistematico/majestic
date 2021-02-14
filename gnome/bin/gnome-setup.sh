@@ -60,8 +60,6 @@ mkdir ~/.themes && ln -s /usr/share/themes/Adwaita-dark ~/.themes/Adwaita
 # WRONG: gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
 gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
 
-
-
 ######################
 # Sound Theme        #
 ######################

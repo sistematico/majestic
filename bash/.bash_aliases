@@ -16,6 +16,7 @@ alias trizen='pikaur --noconfirm'
 alias rg='rg -uuu'
 alias fd='fd -uu'
 alias cat='bat'
+alias journalctl='sudo journalctl'
 
 # Gnome
 alias chtheme='gsettings set org.gnome.shell.extensions.user-theme name'
