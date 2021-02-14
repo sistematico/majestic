@@ -44,7 +44,7 @@ atualiza() {
 					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
 				else
 					if [ ! -f /tmp/git-cron.error ]; then
-						icone="${HOME}/.local/share/icons/elementary/network-error.png"
+						icone="${HOME}/.local/share/icons/Newaita/.LP/48/network-error.svg"
 						som="dialog-warning"
 						detectax "Erro ao atualizar <b>$(basename $1)</b>."
 						touch /tmp/gitlab.error
