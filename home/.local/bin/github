@@ -16,7 +16,7 @@ usuario="sistematico"
 dir="${HOME}/github"
 repos=($(ls -d ${dir}/*))
 icone_sucesso="${HOME}/.local/share/icons/brands/github.svg"
-icone_erro="${HOME}/.local/share/icons/elementary/network-error.png"
+icone_erro="${HOME}/.local/share/icons/Newaita-dark/.LP/48/network-error.svg"
 som="complete"
 minlines=10
 

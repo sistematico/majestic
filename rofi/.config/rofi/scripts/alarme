@@ -24,7 +24,7 @@ done
 
 audio="${HOME}/.erro.mp3"
 audio_web="https://github.com/sistematico/dotfiles/raw/master/home/.local/share/sounds/erro.mp3"
-icone="${HOME}/.local/share/icons/elementary/clock.png"
+icone="${HOME}/.local/share/icons/Newaita-dark/apps/48/clock.svg"
 
 if [ ! -f $audio ]; then
 	curl -L -s $audio_web > $audio
