@@ -14,7 +14,7 @@
 nome="GitLab.sh"
 dir="${HOME}/gitlab"
 repos=('pushstate' 'stream-player' 'stream-player-min' 'feriados' 'single')
-icone="${HOME}/.local/share/icons/elementary/gitlab.svg"
+icone="${HOME}/.local/share/icons/brands/gitlab.svg"
 som="complete"
 
 detectax() {

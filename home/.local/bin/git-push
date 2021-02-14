@@ -15,7 +15,7 @@
 nome="GitHub"
 dir="${HOME}/github"
 repos=($(ls -d ${dir}/*))
-icone="${HOME}/.local/share/icons/elementary/github.svg"
+icone="${HOME}/.local/share/icons/brands/github.svg"
 som="complete"
 notifycommand="$HOME/bin/notify.sh VideoDown ${icone} ${nome}"
 #notifycommand="notify-send -h int:transient:1 -i ${icone}"
