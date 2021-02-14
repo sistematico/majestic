@@ -36,20 +36,8 @@ if [ ! -d "$DIR" ]; then
 	fi
 fi
 
-if [ -f /etc/os-release ]; then
-    source /etc/os-release
-    [ ! -z "$ID" ] && DISTRO="$ID"
-fi
-
-case $DISTRO in
-    debian)
-        notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE} 'Video Down'"
-        break
-    ;;
-    *)
-        notifycommand="notify-send -h int:transient:1 -i $ICONE"
-    ;;
-esac
+notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE}"
+#notifycommand="notify-send -h int:transient:1 -i $ICONE"
 
 [ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
