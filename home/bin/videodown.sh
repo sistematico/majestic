@@ -43,7 +43,7 @@ fi
 
 case $DISTRO in
     debian)
-        notifycommand="$HOME/bin/notify.sh 'Video Down' $ICONE"
+        notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE} 'Video Down'"
         break
     ;;
     *)
