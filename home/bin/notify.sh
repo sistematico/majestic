@@ -24,11 +24,11 @@
 #    --dest org.freedesktop.Notifications  \
 #    --object-path /org/freedesktop/Notifications
 
-app_name="${3:-'My APP'}"
+app_name="${1:-'My APP'}"
 id="42"
-icon="${4:-'/usr/share/pixmaps/archlinux-logo.svg'}"
-summary="$1"
-body="$2"
+icon="${2:-'/usr/share/pixmaps/archlinux-logo.svg'}"
+summary="$3"
+body="$4"
 actions="[]"
 hints="{}"
 timeout="5000" # in milliseconds
