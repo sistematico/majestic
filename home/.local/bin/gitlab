@@ -19,9 +19,9 @@ som="complete"
 
 detectax() {
 	if xset q &>/dev/null; then
-		#$HOME/bin/notify.sh "$1" "$2"
+		$HOME/bin/notify.sh "$nome" "$icone"
 		#notify-send -i $icone "$1" "$2"
-		notify-send -h int:transient:1 -i "$icone" "$nome" "$1"
+		#notify-send -h int:transient:1 -i "$icone" "$nome" "$1"
 	else
 		echo "${nome}: $2"
 	fi
