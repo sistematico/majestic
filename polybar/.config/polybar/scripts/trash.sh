@@ -5,7 +5,7 @@ cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
 xrdb -query | grep border | head -n1 | awk '{print $2}'
 trash_dir="${HOME}/.local/share/Trash"
 trash_temp="/tmp/lixo"
-icone="${HOME}/.local/share/icons/elementary/user-trash.png"
+icone="${HOME}/.local/share/icons/Newaita-dark/actions/24/user-trash.svg"
 
 if [[ "${trash_dir}" = "" ]]; then
   trash_dir=${XDG_DATA_HOME:-"${HOME}/.local/share/Trash"}
