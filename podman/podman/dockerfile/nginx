@@ -1,3 +1,0 @@
-FROM nginx:latest
-RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:1000:/' /etc/passwd
-RUN sed -ri 's/^nginx:x:101:101:/nginx:x:1000:1000:/' /etc/passwd
