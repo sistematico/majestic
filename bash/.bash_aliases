@@ -18,9 +18,6 @@ alias fd='fd -uu'
 alias cat='bat'
 alias journalctl='sudo journalctl'
 
-# Gnome
-alias chtheme='gsettings set org.gnome.shell.extensions.user-theme name'
-
 # Main
 alias rehash='source ~/.bashrc && source ~/.bash_aliases && source ~/.bash_functions'
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'

@@ -49,7 +49,7 @@ gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # GTK 2
-mkdir ~/.themes && ln -s /usr/share/themes/Adwaita-dark ~/.themes/Adwaita
+#mkdir ~/.themes && ln -s /usr/share/themes/Adwaita-dark ~/.themes/Adwaita
 
 # Icon
 # Default: 'Gnome'
