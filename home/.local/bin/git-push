@@ -17,26 +17,10 @@ dir="${HOME}/github"
 repos=($(ls -d ${dir}/*))
 icone="${HOME}/.local/share/icons/elementary/github.svg"
 som="complete"
-distro="arch"
-
-if [ -f /etc/os-release ]; then
-    source /etc/os-release
-    [ ! -z "$ID" ] && distro="$ID"
-fi
-
-case $distro in
-    debian)
-        notifycommand="$HOME/bin/notify.sh VideoDown ${icone}"
-        break
-    ;;
-    *)
-        notifycommand="notify-send -h int:transient:1 -i ${icone}"
-    ;;
-esac
+notifycommand="$HOME/bin/notify.sh VideoDown ${icone}"
+#notifycommand="notify-send -h int:transient:1 -i ${icone}"
 
 atualiza() {
-    branch=$(git branch --show-current)
-
     if pgrep git > /dev/null 2> /dev/null; then
         return
     fi
@@ -53,7 +37,6 @@ atualiza() {
         m="Autocommit por ${nome}: alterações: $c"
         git add .
         git commit -m "${m}"
-        #git push origin $branch
         git push
         if [ "$?" == 0 ]; then
             $notifycommand "${nome}" "Repositório $(basename ${1}) atualizado."
