@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
-#
+#! /usr/bin/bash
+
 #This script creates XML files that can act as dynamic wallpapers for GNOME by referring to multiple wallpapers
 #Coded by David J Krajnik
 
-if [ "$*" = "" ]; then
+if [ ! $1 ]; then
   echo "This script creates XML files that can act as dynamic backgrounds for GNOME by referring to multiple wallpapers"
   echo "Usage: mkwlppr target-file.xml [duration] pic1 pic2 [pic3 .. picN]"
 else
@@ -34,12 +34,12 @@ else
       for file in $files
       do
         if [ ! -f $file ]; then
-	  echo "\"$file\" does not exist"
-	  inputIsValid="";
+      echo "\"$file\" does not exist"
+      inputIsValid="";
         elif [ "$(echo $file | sed 's/^.*\.\(jpg\|jpeg\|bmp\|png\|gif\|tif\|tiff\|jif\|jfif\|jp2\|jpx\|j2k\|j2c\)$//')" != "" ]; then
-	  echo "\"$file\" is not an image file"
-	  inputIsValid=""
-	fi
+      echo "\"$file\" is not an image file"
+      inputIsValid=""
+    fi
       done
       if [ $inputIsValid ]; then
         currDir=$(pwd)
