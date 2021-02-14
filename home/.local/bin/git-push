@@ -35,7 +35,7 @@ case $distro in
 esac
 
 atualiza() {
-	branch=$(git branch --show-current)
+    branch=$(git branch --show-current)
 
     if pgrep git > /dev/null 2> /dev/null; then
         return
