@@ -35,20 +35,8 @@ do
     command -v $APP >/dev/null 2>&1 || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
 done
 
-if [ -f /etc/os-release ]; then
-    source /etc/os-release
-    [ ! -z "$ID" ] && DISTRO="$ID"
-fi
-
-case $DISTRO in
-    debian)
-        notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE}"
-        break
-    ;;
-    *)
-        notifycommand="notify-send -h int:transient:1 -i $ICONE"
-    ;;
-esac
+notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE}"
+#notifycommand="notify-send -h int:transient:1 -i $ICONE"
 
 if [ -f ~/.config/user-dirs.dirs ]; then
     . ~/.config/user-dirs.dirs
