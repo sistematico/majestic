@@ -13,8 +13,6 @@ services:
             - ~/docker/confs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
             - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
             - ~/docker/certs:/etc/ssl/nginx
-        links:
-            - mysql
         restart: unless-stopped
         
     php:
