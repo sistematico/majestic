@@ -31,7 +31,7 @@ summary="$3"
 body="$4"
 actions="[]"
 hints="{}"
-timeout="5000" # in milliseconds
+timeout="${5:-5000}" # in milliseconds
 
 exec gdbus call --session   \
    --dest org.freedesktop.Notifications \
