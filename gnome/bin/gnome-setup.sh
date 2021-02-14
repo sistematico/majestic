@@ -45,8 +45,11 @@ gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
 # Theme              #
 ######################
 
-# GTK
+# GTK 3-4
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+
+# GTK 2
+mkdir ~/.themes && ln -s /usr/share/themes/Adwaita-dark ~/.themes/Adwaita
 
 # Icon
 # Default: 'Gnome'
@@ -54,7 +57,26 @@ gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # Shell
 # Default: 'Adwaita'
-# gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
+# WRONG: gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
+gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
+
+
+
+######################
+# Sound Theme        #
+######################
+# System Wide
+#/usr/share/soundsor On User
+#~/.local/share/sounds
+
+# Default: 'freedesktop'
+gsettings set org.gnome.desktop.sound theme-name 'freedesktop'
+
+# Default: true
+gsettings set org.gnome.desktop.sound event-sounds true
+
+# Default: false
+gsettings set org.gnome.desktop.sound input-feedback-sounds true
 
 ######################
 # Nautilus           #
