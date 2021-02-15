@@ -62,7 +62,7 @@ services:
     volumes:
       - ~/docker/data/mysql:/var/lib/mysql
       - ~/docker/confs/mysql/conf.d:/etc/mysql/conf.d
-      - ~/docker/confs/mysql/my.cnf:/etc/mysql/my.cnf
+      #- ~/docker/confs/mysql/my.cnf:/etc/mysql/my.cnf
     environment:
       - DB_HOST=mysql
       - MYSQL_ROOT_PASSWORD=senha
