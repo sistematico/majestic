@@ -1,0 +1,77 @@
+version: "3"
+
+services:
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        ports:
+            - "80:80"
+            - "443:443"
+            - "10000:443"
+        volumes:
+            - ~/github:/code
+            - ~/docker/confs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
+            - ~/docker/certs:/etc/ssl/nginx
+        links:
+            - mysql
+        restart: unless-stopped
+        
+    php:
+        container_name: php
+        image: php:fpm
+        ports:
+            - "9000:9000"
+        build:
+            context: ../../dockerfile/
+            dockerfile: php
+        volumes:
+            - ~/github:/code
+            - ~/docker/confs/php/phplog.conf:/usr/local/etc/php-fpm.d/log.conf
+            - ~/docker/confs/php/php.conf:/usr/local/etc/php-fpm.d/php.conf
+            - ~/docker/confs/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+        restart: unless-stopped
+
+    memcached:
+        container_name: memcached
+        image: memcached:latest
+        ports:
+            - "11211:11211"
+
+    redis:
+      image: redis
+      command: redis-server --requirepass Redis2019!
+      ports:
+        - "6379:6379"
+
+    mysql:
+        container_name: mysql
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        ports:
+            - "3306:3306"
+        build:
+            context: ../../dockerfile/
+            dockerfile: mysql
+        volumes:
+            - ~/docker/data/mysql:/var/lib/mysql
+            - ~/docker/confs/mysql/conf.d:/etc/mysql/conf.d
+        environment:
+            - DB_HOST=mysql
+            - MYSQL_ROOT_PASSWORD=senha
+            - MYSQL_DATABASE=app
+        restart: unless-stopped
+        
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        depends_on:
+            - mysql
+        ports:
+            - "8082:80"
+        volumes:
+            - ~/docker/confs/phpmyadmin/phpmyadmin.php:/etc/phpmyadmin/config.user.inc.php
+            - ~/docker/certs:/etc/ssl/nginx
+        environment:
+            - PMA_HOST=mysql
+        restart: unless-stopped
