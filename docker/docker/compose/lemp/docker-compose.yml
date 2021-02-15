@@ -31,6 +31,12 @@ services:
             - ~/docker/confs/php/php.conf:/usr/local/etc/php-fpm.d/php.conf
             - ~/docker/confs/php/php.ini:/usr/local/etc/php/conf.d/php.ini
         restart: unless-stopped
+        
+    memcached:
+        container_name: memcached
+        image: memcached:latest
+        ports:
+            - "11211:11211"
 
     mysql:
         container_name: mysql
