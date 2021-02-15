@@ -16,9 +16,7 @@ RUN apt-get install -y \
     curl \
     sed
 
-#RUN apt-get install curl libonig-dev libpng-dev libzip-dev sed -y
-
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install mbstring pdo pdo_mysql mysqli gd zip
 
