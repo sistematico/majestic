@@ -7,10 +7,9 @@ services:
         ports:
             - "80:80"
             - "443:443"
-            - "10000:443"
         volumes:
             - ~/github:/code
-            - ~/docker/confs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ~/docker/confs/nginx/laravel.conf:/etc/nginx/conf.d/default.conf
             - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
             - ~/docker/certs:/etc/ssl/nginx
         links:
@@ -24,7 +23,7 @@ services:
             - "9000:9000"
         build:
             context: ../../dockerfile/
-            dockerfile: laravel
+            dockerfile: laravel-php
         volumes:
             - ~/github:/code
             - ~/docker/confs/php/phplog.conf:/usr/local/etc/php-fpm.d/log.conf
