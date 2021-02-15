@@ -40,9 +40,15 @@ services:
 
     redis:
       image: redis
-      command: redis-server --requirepass Redis2019!
+      #command: redis-server --requirepass Redis2019!
       ports:
         - "6379:6379"
+
+    mailhog:
+      image: mailhog/mailhog
+      ports: 
+        - 1025:1025 # smtp server
+        - 8025:8025 # web ui
 
     mysql:
         container_name: mysql
