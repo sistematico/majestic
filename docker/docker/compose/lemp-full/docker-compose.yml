@@ -39,12 +39,14 @@ services:
             - "11211:11211"
 
     redis:
+      container_name: redis
       image: redis
       #command: redis-server --requirepass Redis2019!
       ports:
         - "6379:6379"
 
     mailhog:
+      container_name: mailhog
       image: mailhog/mailhog
       ports: 
         - 1025:1025 # smtp server
