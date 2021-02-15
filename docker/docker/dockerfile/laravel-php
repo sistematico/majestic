@@ -2,7 +2,8 @@ FROM php:fpm
 
 RUN apt-get update 
 
-RUN apt-get install -y \
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
@@ -11,9 +12,14 @@ RUN apt-get install -y \
     zip \
     unzip
 
+# Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install mbstring pdo pdo_mysql mysqli gd zip
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Get latest Composer
+#COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:1000:/' /etc/passwd
