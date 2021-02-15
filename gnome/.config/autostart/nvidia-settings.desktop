@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=NVIDIA X Server Settings
+Comment=
+Exec=/usr/bin/nvidia-settings --load-config-only
+Categories=Settings;HardwareSettings;
