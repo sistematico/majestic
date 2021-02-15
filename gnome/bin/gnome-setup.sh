@@ -53,7 +53,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # Icon
 # Default: 'Gnome'
-# gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
+gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 
 # Shell
 # Default: 'Adwaita'

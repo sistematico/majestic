@@ -125,3 +125,18 @@ sudo() {
     *)        command sudo "$subcommand" "$@" ;;
   esac
 }
+
+# Gnome
+chtheme() {
+    [ -d $HOME/.local/share/themes/$1 ] && gsettings set org.gnome.shell.extensions.user-theme name "$1"
+}
+
+chgtk() {
+    [ -d $HOME/.local/share/themes/$1 ] && gsettings set org.gnome.desktop.interface gtk-theme "$1"
+}
+
+chicon() {
+    [ -d $HOME/.local/share/icons/$1 ] && gsettings set org.gnome.desktop.interface icon-theme "$1"
+}
+
+
