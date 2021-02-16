@@ -31,7 +31,8 @@ summary="$3"
 body="$4"
 actions="[]"
 #hints="{}"
-hints="{'int:transient': 1}"
+#hints="{'int:transient': 1}"
+hints="{'int:transient:1'}"
 #"{'Ifname': <'wlan0'>, 'Ifname': <'wlan1'>}"
 #int:transient:1
 timeout="${5:-10000}" # in milliseconds
