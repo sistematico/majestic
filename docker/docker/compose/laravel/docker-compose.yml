@@ -9,7 +9,7 @@ services:
       - "443:443"
     volumes:
       - ~/github:/code
-      - ~/docker/confs/nginx/laravel-nginx.conf:/etc/nginx/conf.d/default.conf
+      - ~/docker/confs/laravel/nginx.conf:/etc/nginx/conf.d/default.conf
       - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
       - ~/docker/certs:/etc/ssl/nginx
     restart: unless-stopped
