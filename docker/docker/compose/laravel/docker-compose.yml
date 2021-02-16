@@ -12,8 +12,6 @@ services:
       - ~/docker/confs/nginx/laravel-nginx.conf:/etc/nginx/conf.d/default.conf
       - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
       - ~/docker/certs:/etc/ssl/nginx
-    links:
-      - mysql
     restart: unless-stopped
 
   laravel-php:
@@ -75,7 +73,7 @@ services:
     container_name: laravel-phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
     depends_on:
-      - mysql
+      - laravel-mysql
     ports:
       - "8082:80"
     volumes:
