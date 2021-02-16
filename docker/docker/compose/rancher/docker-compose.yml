@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+    rancher:
+        restart: unless-stopped
+        ports:
+            - '9080:80'
+            - '9443:443'
+        container_name: rancher
+        image: rancher/rancher
