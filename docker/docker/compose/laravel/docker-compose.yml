@@ -1,8 +1,8 @@
-version: "3"
+version: "3.3"
 
 services:
-  nginx:
-    container_name: nginx
+  laravel-nginx:
+    container_name: laravel-nginx
     image: nginx:latest
     ports:
       - "80:80"
@@ -16,8 +16,8 @@ services:
       - mysql
     restart: unless-stopped
 
-  php:
-    container_name: php
+  laravel-php:
+    container_name: laravel-php
     image: php:fpm
     ports:
       - "9000:9000"
@@ -31,27 +31,27 @@ services:
       - ~/docker/confs/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     restart: unless-stopped
 
-  memcached:
-    container_name: memcached
+  laravel-memcached:
+    container_name: laravel-memcached
     image: memcached:latest
     ports:
       - "11211:11211"
 
-  redis:
-    container_name: redis
+  laravel-redis:
+    container_name: laravel-redis
     image: redis
     ports:
       - "6379:6379"
 
-  mailhog:
-    container_name: mailhog
+  laravel-mailhog:
+    container_name: laravel-mailhog
     image: mailhog/mailhog
     ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui
 
-  mysql:
-    container_name: mysql
+  laravel-mysql:
+    container_name: laravel-mysql
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     ports:
@@ -71,8 +71,8 @@ services:
       - SERVICE_NAME=mysql
     restart: unless-stopped
 
-  phpmyadmin:
-    container_name: phpmyadmin
+  laravel-phpmyadmin:
+    container_name: laravel-phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
     depends_on:
       - mysql
