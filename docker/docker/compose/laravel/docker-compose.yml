@@ -10,7 +10,7 @@ services:
     volumes:
       - ~/github:/code
       - ~/docker/confs/laravel/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ~/docker/confs/nginx/snippets:/etc/nginx/snippets
+      - ~/docker/confs/laravel/snippets:/etc/nginx/snippets
       - ~/docker/certs:/etc/ssl/nginx
     restart: unless-stopped
 
