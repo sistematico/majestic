@@ -54,9 +54,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
-    build:
-      context: ../../dockerfile/
-      dockerfile: laravel-mysql
+    # build:
+    #   context: ../../dockerfile/
+    #   dockerfile: laravel-mysql
     volumes:
       - ~/docker/data/mysql:/var/lib/mysql
       - ~/docker/confs/mysql/conf.d:/etc/mysql/conf.d
