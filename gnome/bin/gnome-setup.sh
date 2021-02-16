@@ -88,3 +88,15 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 ######################
 # Sort directories first
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+
+
+######################
+# RESET GNOME FONTS  #
+######################
+gsettings reset org.gnome.desktop.interface font-name
+gsettings reset org.gnome.desktop.interface document-font-name
+gsettings reset org.gnome.desktop.interface monospace-font-name
+gsettings reset org.gnome.desktop.wm.preferences titlebar-font
+gsettings reset org.gnome.desktop.interface text-scaling-factor
+
+gsettings reset org.gnome.nautilus.desktop font
