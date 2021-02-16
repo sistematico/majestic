@@ -62,3 +62,7 @@ alias tb="nc termbin.com 9999"
 # Grub
 alias setlinux='sudo grub-set-default 0'
 alias setwin='sudo grub-set-default 3'
+
+# Laravel
+alias laravel-start='docker start laravel-nginx laravel-php laravel-memcached laravel-mailhog laravel-redis'
+alias laravel-stop='docker stop laravel-nginx laravel-php laravel-memcached laravel-mailhog laravel-redis'
