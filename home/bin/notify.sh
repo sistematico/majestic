@@ -30,7 +30,10 @@ icon="${2:-'/usr/share/pixmaps/archlinux-logo.svg'}"
 summary="$3"
 body="$4"
 actions="[]"
-hints="{}"
+#hints="{}"
+hints="{'transient': 1}"
+#"{'Ifname': <'wlan0'>, 'Ifname': <'wlan1'>}"
+#int:transient:1
 timeout="${5:-5000}" # in milliseconds
 
 exec gdbus call --session   \
