@@ -67,8 +67,8 @@ services:
       - DB_HOST=mysql
       - MYSQL_ROOT_PASSWORD=senha
       - MYSQL_DATABASE=app
-      - SERVICE_TAGS= dev
-      - SERVICE_NAME= mysql
+      - SERVICE_TAGS=dev
+      - SERVICE_NAME=mysql
     restart: unless-stopped
 
   phpmyadmin:
