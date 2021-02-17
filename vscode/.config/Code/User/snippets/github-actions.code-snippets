@@ -1,0 +1,27 @@
+{
+	"Github Actions": {
+		"prefix": "github-actions",
+		"body": [
+            "name: Deploy WebSite",
+            "",
+            "on: [push]",
+            "",
+            "jobs:",
+            "\tdeploy:",
+            "\t\truns-on: ubuntu-latest",
+            "\t\tsteps:",
+            "\t\t\t- name: Make Changes on VPS",
+            "\t\t\t\tuses: appleboy/ssh-action@master",
+            "\t\t\t\twith:",
+            "\t\t\t\t\thost: ${{secrets.SSH_HOST}}",
+            "\t\t\t\t\tusername: ${{ secrets.SSH_USERNAME }}",
+            "\t\t\t\t\tpassword: ${{ secrets.SSH_PASSWORD }}",
+            "\t\t\t\t\tport: ${{ secrets.SSH_PORT }}",
+            "\t\t\t\t\tscript: |",
+            "\t\t\t\t\t\tcd ${3:/var/www/}",
+            "\t\t\t\t\t\tgit clone git@github.com:${1:username}/${2:repo}.git",
+            "\t\t\t\t\t\tgit pull"
+		],
+		"description": "Create Github Actions main.yml"
+	}
+}
