@@ -38,3 +38,4 @@ var/cache/yum
 /etc/shadow-
 /etc/gshadow
 /etc/gshadow-
+usr/lib/modules/

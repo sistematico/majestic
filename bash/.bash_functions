@@ -29,7 +29,10 @@ function mma() {
 # rsync
 function fullsync() {
 	[ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
-	rsync -aAXvzz --exclude={"usr/lib/firmware/","node_modules/",".git/",".npm/_cacache/","usr/lib/x86_64-linux-gnu/","usr/lib/gcc/x86_64-linux-gnu/","var/lib/snapd/void/","usr/libexec/openssh/ssh-keysign","var/cache/","usr/src/kernels/","var/lib/php/sessions/","var/log/journal/","var/cache/apt/","*.mp3",".local/share/Trash/",".local/share/Steam/",".cache/","var/spoll/anacron/","var/log/btmp","var/lib/systemd/random-seed","tmp/backup","usr/bin/ssh-agent","var/cache/yum","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel","/etc/shadow","/etc/shadow-","/etc/gshadow","/etc/gshadow-"} root@${1}:/ $STORAGE/vps/${1}/
+	
+    rsync -aAXvzz \
+    --exclude-from "$HOME/.config/rsync-excludes.list" \
+    root@${1}:/ $STORAGE/vps/${1}/
 }
 
 function fullsite() {
@@ -39,6 +42,7 @@ function fullsite() {
     --exclude="*.mp4" \
     --exclude="*.mp3" \
     --exclude=".git/" \
+    --exclude=".gitignore" \
     nginx@${1}:/var/www/ $STORAGE/${1}/var/www/
 }
 
