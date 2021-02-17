@@ -13,8 +13,8 @@ services:
             - ~/docker/certs:/etc/ssl/nginx
         restart: unless-stopped
         
-    php:
-        container_name: php
+    php-standalone:
+        container_name: php-standalone
         image: php:fpm
         ports:
             - "9000:9000"
