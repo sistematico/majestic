@@ -43,7 +43,7 @@ function fullsite() {
     --exclude="*.mp3" \
     --exclude=".git/" \
     --exclude=".gitignore" \
-    nginx@${1}:/var/www/ $STORAGE/${1}/var/www/
+    nginx@${1}:/var/www/ $STORAGE/sites/${1}/var/www/
 }
 
 function songdown() {
