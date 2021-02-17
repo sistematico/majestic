@@ -47,26 +47,26 @@ function fullsite() {
 }
 
 function songdown() {
-    [ ! -d $HOME/audio/${1} ] && mkdir -p $HOME/audio/${1}
+    [ ! -d $STORAGE/audio/${1} ] && mkdir -p $STORAGE/audio/${1}
 
     rsync -aAXvzz \
     nginx@${1}:/opt/liquidsoap/music/ \
-	$HOME/audio/${1}/ $2
+	$STORAGE/audio/${1}/ $2
 
-    find $HOME/audio/${1} -type d -exec chmod 755 '{}' \; 
-	find $HOME/audio/${1} -type f -exec chmod 644 '{}' \;
+    find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
+	find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
 }
 
 function songup() {
-    [ ! -d $HOME/audio/${1} ] && mkdir -p $HOME/audio/${1}   
+    [ ! -d $STORAGE/audio/${1} ] && mkdir -p $HOME/audio/${1}   
 
-    if [ -d $HOME/audio/${1} ]; then 
-		find $HOME/audio/${1} -type d -exec chmod 755 '{}' \; 
-		find $HOME/audio/${1} -type f -exec chmod 644 '{}' \;
+    if [ -d $STORAGE/audio/${1} ]; then 
+		find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
+		find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
 	fi
 
     rsync -aAXvzz \
-    $HOME/audio/${1}/ \
+    $STORAGE/audio/${1}/ \
     nginx@${1}:/opt/liquidsoap/music/ $2
 }
 
