@@ -1,1 +1,44 @@
-github/majestic/crontab.txt -
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+# Backup
+#0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@artemis:/ /home/lucas/vps/artemis/
+#0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@hera:/ /home/lucas/vps/hera/
+
+# Alarme
+#0 6 * * 1,2,3,4,5 export DISPLAY=:0 ; canberra-gtk-play -i phone-incoming-call 2>&1
+
+# Alarme (/usr/share/sounds/freedesktop/stereo/)
+#25 6 * * * DISPLAY=:0 canberra-gtk-play -i phone-incoming-call 2>&1
+
+# Sites Sync
+#*/5 * * * * DISPLAY=:0 bash -c "~/.local/bin/sites" > /dev/null 2>&1
+
+# RClone (Google Photos)
+#0 0 * * * /usr/bin/rclone sync /home/lucas/img/gphotos gphotos:album/Majestic 2>&1
+#0 0 * * * /usr/bin/rclone copy gphotos:album /mnt/hdd/gphotos/album/ 2>&1
+
+# RClone ( Google Drive)
+#0 0 * * * /usr/bin/rclone copy gdrive: /mnt/hdd/gdrive/ 2>&1
+
+# Git Cron (add, commit, push automático)
+* * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/bash -c "${HOME}/.local/bin/gitlab" >/dev/null 2>&1
+* * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/bash -c "${HOME}/.local/bin/github" >/dev/null 2>&1
