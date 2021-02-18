@@ -6,58 +6,41 @@
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Sugestão de crontab:
-# */15 * * * * /usr/bin/bash -c "$HOME/.local/bin/github" 2>&1
-# * * * * * sh -c "/usr/local/bin/github" > /dev/null 2>&1
+# */15 * * * * /usr/bin/bash -c "/usr/local/bin/git-push" 2>&1
+# * * * * * sh -c "/usr/local/bin/git-push" > /dev/null 2>&1
 #
 # Criado em: 20/12/2017 19:27:31
-# Última Atualização: 28/08/2020 07:30:01
+# Última Atualização: 17/02/2021 20:09:00
 
 nome="GitHub"
-usuario="sistematico"
 dir="${HOME}/github"
 repos=($(ls -d ${dir}/*))
-icone_sucesso="${HOME}/.local/share/icons/brands/github.svg"
-icone_erro="${HOME}/.local/share/icons/Newaita-dark/.LP/48/network-error.svg"
+icone="${HOME}/.local/share/icons/brands/github.svg"
 som="complete"
-minlines=10
+notifycommand="$HOME/bin/notify.sh ${nome} ${icone} ${nome}"
 
 atualiza() {
-	branch=$(git branch --show-current)
-
-    if [ ! -d ${1} ] || [ ! -d ${1}/.git ] || [ -f ${1}/.github.lock ]; then
+    if pgrep git > /dev/null 2> /dev/null; then
         return
     fi
 
-    if grep -q "git@github.com" "${1}/.git/config"; then
-        if ! grep -q $usuario "${1}/.git/config"; then
-            return
-        fi
+    if [ ! -d ${1} ] || [ ! -f ${1}/.git/config ] || [ -f ${1}/.github.lock ]; then
+        return
     fi
-    
+
     cd ${1}
-
-	added=$(($(git log --since="10 minute ago" --pretty=tformat: --numstat -1 | awk '{print $1}')))
-	removed=$(($(git log --since="10 minute ago" --pretty=tformat: --numstat -1 | awk '{print $2}')))
-
-    if [ -z "$added" ] || [ -z "$removed" ]; then
-        return
-    fi
-
-    if [[ $added -lt $minlines ]] || [[ $removed -lt $minlines ]]; then
-        return
-    fi
-
     status=$(git add . -n)
+
     if [ ! -z "${status}" ]; then
         c=$(echo $(git add . -n | tr '\r\n' ' '))
         m="Autocommit por ${nome}: alterações: $c"
         git add .
         git commit -m "${m}"
-        git push origin $branch
+        git push
         if [ "$?" == 0 ]; then
-            notify-send -h int:transient:1 -i "${icone_sucesso}" "${nome}" "Repo <b>$(basename ${1})</b> atualizado."
+            $notifycommand "Repositório $(basename ${1}) atualizado."
         else
-            notify-send -h int:transient:1 -i "${icone_erro}" "${nome}" "Erro ao atualizar <b>$(basename ${1})</b>."
+            $notifycommand "Erro ao atualizar <b>$(basename ${1})</b>."
         fi
     fi
 }

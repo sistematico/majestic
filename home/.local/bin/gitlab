@@ -1,71 +1,59 @@
 #!/usr/bin/env bash
 #
-# github - Script para enviar automaticamente mudanças ao Github
+# gitlab - Script para enviar automaticamente mudanças ao Github
 # LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!
 #
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Sugestão de crontab:
-# */15 * * * * /usr/bin/bash -c "$HOME/.local/bin/gitlab" 2>&1
+# */15 * * * * /usr/bin/bash -c "/usr/local/bin/gitlab" 2>&1
+# * * * * * sh -c "/usr/local/bin/gitlab" > /dev/null 2>&1
 #
 # Criado em: 20/12/2017 19:27:31
-# Última Atualização: 06/05/2019 12:51:21
+# Última Atualização: 17/02/2021 20:07:36
 
-nome="GitLab.sh"
+nome="GitLab"
 dir="${HOME}/gitlab"
-repos=('pushstate' 'stream-player' 'stream-player-min' 'feriados' 'single')
+repos=($(ls -d ${dir}/*))
 icone="${HOME}/.local/share/icons/brands/gitlab.svg"
 som="complete"
-
-detectax() {
-	if xset q &>/dev/null; then
-		$HOME/bin/notify.sh "$nome" "$icone"
-		#notify-send -i $icone "$1" "$2"
-		#notify-send -h int:transient:1 -i "$icone" "$nome" "$1"
-	else
-		echo "${nome}: $2"
-	fi
-}
-
+notifycommand="$HOME/bin/notify.sh ${nome} ${icone} ${nome}"
+#notifycommand="notify-send -h int:transient:1 -i ${icone}"
 
 atualiza() {
-	if [ -d $1 ]; then
-		if [ ! -f $1/.noup ]; then
-			cd $1
-			status=$(git add . -n)
-			if [ ! -z "$status" ]; then
-				c=$(echo $(git add . -n | tr '\r\n' ' '))
-				m="Autocommit por ${nome}: alterações: $c"
-				git add .
-				git commit -m "$m"
-				git push
-				if [ "$?" == 0 ]; then
-					detectax "Repo <b>$(basename $1)</b> atualizado."
-					[ -f /tmp/git-cron.error ] && rm /tmp/git-cron.error
-				else
-					if [ ! -f /tmp/git-cron.error ]; then
-						icone="${HOME}/.local/share/icons/Newaita/.LP/48/network-error.svg"
-						som="dialog-warning"
-						detectax "Erro ao atualizar <b>$(basename $1)</b>."
-						touch /tmp/gitlab.error
-					fi
-				fi
-			fi
-		fi
-	fi
+    if pgrep git > /dev/null 2> /dev/null; then
+        return
+    fi
+
+    if [ ! -d ${1} ] || [ ! -f ${1}/.git/config ] || [ -f ${1}/.github.lock ]; then
+        return
+    fi
+
+    cd ${1}
+    status=$(git add . -n)
+
+    if [ ! -z "${status}" ]; then
+        c=$(echo $(git add . -n | tr '\r\n' ' '))
+        m="Autocommit por ${nome}: alterações: $c"
+        git add .
+        git commit -m "${m}"
+        git push
+        if [ "$?" == 0 ]; then
+            $notifycommand "Repositório $(basename ${1}) atualizado."
+        else
+            $notifycommand "Erro ao atualizar <b>$(basename ${1})</b>."
+        fi
+    fi
 }
 
-if [ ! $1 ] || [ "$1" == "-a" ]; then
-	for r in "${repos[@]}";	do
-		caminho="${dir}/${r}"
-		atualiza "$caminho"
-	done
-elif [ ! $2 ]; then
-	atualiza "$1"
+if [ "$#" -eq 1 ]; then
+    atualiza "$1"
+elif [ "$#" -gt 1 ]; then
+    for r in "$@";	do
+        atualiza "$r"
+    done
 else
-	for r in "$@";	do
-		caminho="${dir}/${r}"
-		atualiza "$caminho"
-	done
+    for r in "${repos[@]}";	do
+        atualiza "${r}"
+    done
 fi
-
