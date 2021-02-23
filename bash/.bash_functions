@@ -1,6 +1,13 @@
 # Vars used in functions.
 STORAGE="$HOME/storage"
 
+function cpr() {
+  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
+} 
+function mvr() {
+  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
+}
+
 # Docker
 dlg () {
   docker exec -it $1 bash
