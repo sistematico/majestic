@@ -11,6 +11,7 @@ export COMPOSER_HOME=${HOME}/.composer
 [ -d ${HOME}/.deno/bin ] && export PATH=${PATH}:${HOME}/.deno/bin
 [ -d ${COMPOSER_HOME}/vendor/bin ] && export PATH=${PATH}:${COMPOSER_HOME}/vendor/bin
 [ -d $HOME/.local/bin ] && export PATH=${PATH}:$HOME/.local/bin
+[ -d $HOME/.local/share/gem/ruby/2.7.0/bin ] && export PATH=${PATH}:$HOME/.local/share/gem/ruby/2.7.0/bin
 
 # Nodejs
 VERSION=v15.8.0
