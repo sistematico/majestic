@@ -34,6 +34,8 @@ fi
 
 titulo="Video Cut"
 
+RM=$(pwd)
+
 command -v yad 1> /dev/null 2> /dev/null
 if [ $? = 1 ]; then
 	echo "yad não instalado."
@@ -107,6 +109,20 @@ function show_time () {
 
     echo "${hour}:${min}:${sec}"
 }
+
+
+    FPS=$(ffprobe "$video" 2>&1 | sed -n "s/.*, \(.*\) tbr.*/\1/p")
+    DUR=$(ffprobe "$video" 2>&1 | sed -n "s/.* Duration: \([^,]*\), .*/\1/p")
+    HRS=$(echo $DUR | cut -d":" -f1)
+    MIN=$(echo $DUR | cut -d":" -f2)
+    SEC=$(echo $DUR | cut -d":" -f3)
+    TOT_FR=$(echo "($HRS*3600+$MIN*60+$SEC)*$FPS" | bc | cut -d"." -f1)
+
+
+
+
+
+
 
 novo=$(dirname "${video}")/$(nome "$video" "cut")
 t=$(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv="p=0")
