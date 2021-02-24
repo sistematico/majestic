@@ -26,8 +26,11 @@ if [ $? = 1 ]; then
 	exit
 fi
 
-#video=$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
-video=$HOME/desk/teste.mp4
+video=$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+#video=$HOME/desk/teste.mp4
+
+yad --info --title "$titulo" --text "$video" --button=gtk-ok:1
+
 
 nome() {
 	fl=$(basename -- "$video")
@@ -40,32 +43,25 @@ caminho() {
 }
 
 
-[[ -z $video ]] && exit 1
+#[[ -z $video ]] && exit 1
 
-novo=$(dirname "${video}")/$(nome "$video" "resize")
-largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width' | cut -d "=" -f 2)
-altura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^height' | cut -d "=" -f 2)
+#novo=$(dirname "${video}")/$(nome "$video" "resize")
+#largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width' | cut -d "=" -f 2)
+#altura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^height' | cut -d "=" -f 2)
 
-for r in ${resolucoes[@]}; do
-    if [ $r -lt $largura ]; then
-        res+="${r}!"
-		#echo $r
-    fi
-done
+#for r in ${resolucoes[@]}; do
+#    if [ $r -lt $altura ]; then
+#        res+="${r}!"
+#    fi
+#done
 
-#echo ${res%?} | awk '{$video=$video};1'
-
-resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$video=$video};1')")
+#resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$video=$video};1')")
 #[[ -z $resolucao ]] && exit 1
-
-echo $resolucao
-
 
 #saida=$(echo $resolucao | awk -F'!' '{printf "%s", $video}')
 #resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
-#ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}"
-
+#ffmpeg -i "${video}" -filter:v scale=-1:$resolucao -c:a copy "${saida}"
 
 #if [ $? = 0 ]; then
 #	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
