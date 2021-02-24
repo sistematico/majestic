@@ -26,19 +26,17 @@ if [ $? = 1 ]; then
 	exit
 fi
 
+video=$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+
 nome() {
-	fl=$(basename -- "$1")
+	fl=$(basename -- "$video")
 	ext="${fl##*.}"
 	echo "${fl%.*}.$2.$$.${ext}"
 }
 
 caminho() {
-    echo $(dirname "${1}")
+    echo $(dirname "${video}")
 }
-
-#echo "$(echo "${res}" | awk '{$1=$1};1')"
-
-video=$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
 
 
 [[ -z $video ]] && exit 1
@@ -53,10 +51,10 @@ for r in ${resolucoes[@]}; do
     fi
 done
 
-resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$1=$1};1')")
+resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$video=$video};1')")
 [[ -z $resolucao ]] && exit 1
 
-saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
+saida=$(echo $resolucao | awk -F'!' '{printf "%s", $video}')
 resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
 # -vf "scale=iw/2:ih/2"
