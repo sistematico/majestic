@@ -24,6 +24,8 @@
 #NAUTILUS_SCRIPT_CURRENT_URI
 #NAUTILUS_SCRIPT_WINDOW_GEOMETRY
 
+[ -z "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ] && yad --info --title "$titulo" --text "Você precisa especificar um vídeo." --button=gtk-ok:1 && exit 1 || video="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
+
 titulo="Video Cut"
 
 command -v yad 1> /dev/null 2> /dev/null
