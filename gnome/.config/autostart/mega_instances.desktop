@@ -1,7 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/megasync-instances
-#Name=sleep 60 && megasync_instances
-Name=megasync_instances
+Name=MegaSync Instances
 Comment=Open all your MEGA instances
-X-GNOME-Autostart-Delay=60
+#Exec=/usr/bin/megasync-instances
+Exec=/usr/bin/bash -c "/usr/bin/sleep 60 && /usr/bin/megasync-instances"
+Terminal=false
+Categories=Network;FileTransfer;
+#X-GNOME-Autostart-Delay=60
