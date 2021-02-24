@@ -25,8 +25,9 @@
 #NAUTILUS_SCRIPT_WINDOW_GEOMETRY
 
 if [ -z "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ] || [ ! -f $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS ]; then
-    yad --info --title "$titulo" --text "Você precisa especificar um vídeo. $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" --button=gtk-ok:1
-    exit 1
+    #yad --info --title "$titulo" --text "Você precisa especificar um vídeo. $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" --button=gtk-ok:1
+    video="$HOME/desk/teste.mp4"
+    #exit 1
 else
     video="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
 fi
@@ -112,7 +113,7 @@ t=$(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv="p=0")
 total="$(show_time $t)"
 nome=$(nome "$video" "novo")
 
-eval $(yad --title "$titulo" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$1" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "entrada=\"%s\"\ninicio=%s\nfim=%s\nsaida=\"%s\"\n", $1, $2, $3, $4}')
+eval $(yad --title "$titulo" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$video" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "entrada=\"%s\"\ninicio=%s\nfim=%s\nsaida=\"%s\"\n", $1, $2, $3, $4}')
 [[ -z $entrada || -z $inicio || -z $fim || -z $saida ]] && exit 1
 
 diff=$(($(date +%s --date="$fim")-$(date +%s --date="$inicio")))
@@ -121,7 +122,7 @@ offset="$(show_time $diff)"
 ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida" && status=$? &
 PID=$! && display 
 
- # | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..."
+########## # | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..."
 
 if [[ $status -eq 0 ]]; then
     yad --info --title "$titulo" --text "Video: $(basename ${saida}) cortado com sucesso." --button=gtk-ok:1
