@@ -26,7 +26,8 @@ if [ $? = 1 ]; then
 	exit
 fi
 
-video=$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+#video=$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+video=$HOME/desk/teste.mp4
 
 nome() {
 	fl=$(basename -- "$video")
@@ -48,25 +49,28 @@ altura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^height'
 for r in ${resolucoes[@]}; do
     if [ $r -lt $largura ]; then
         res+="${r}!"
+		#echo $r
     fi
 done
 
+#echo ${res%?} | awk '{$video=$video};1'
+
 resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$video=$video};1')")
-[[ -z $resolucao ]] && exit 1
+#[[ -z $resolucao ]] && exit 1
 
-saida=$(echo $resolucao | awk -F'!' '{printf "%s", $video}')
-resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
-
-# -vf "scale=iw/2:ih/2"
-#(ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo...")
-#ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" | yad --title "$titulo" --auto-close --progress --progress-text "Convertendo..."
-ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}"
+echo $resolucao
 
 
-if [ $? = 0 ]; then
-	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
-else
-	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
-fi
+#saida=$(echo $resolucao | awk -F'!' '{printf "%s", $video}')
+#resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
+
+#ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}"
+
+
+#if [ $? = 0 ]; then
+#	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
+#else
+#	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
+#fi
 
 
