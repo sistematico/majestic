@@ -10,6 +10,6 @@
 bw="--bwlimit 300k"
 
 if ! pgrep rclone > /dev/null 2> /dev/null; then
-    /usr/bin/rclone copy gphotos: /home/lucas/google/photos $bw 2>&1
+    /usr/bin/rclone copy gdrive: /home/lucas/google/drive $bw 2>&1
 fi
 
