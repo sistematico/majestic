@@ -34,6 +34,37 @@ if [ $? = 1 ]; then
 	exit
 fi
 
+display () # Calculate/collect progress bar info. & pipe to Zenity.
+{
+START=$(date +%s); FR_CNT=0; ETA=0; ELAPSED=0
+while [ -e /proc/$PID ]; do                         # Is FFmpeg running?
+    sleep 2
+    VSTATS=$(awk '{gsub(/frame=/, "")}/./{line=$1-1} END{print line}' \
+    "$RM"/vstats*)                                  # Parse vstats file.
+    if [[ $VSTATS -gt $FR_CNT ]]; then                # Parsed sane or no?
+        FR_CNT=$VSTATS
+        PERCENTAGE=$(( 100 * FR_CNT / TOT_FR ))     # Progbar calc.
+        ELAPSED=$(( $(date +%s) - START )); echo $ELAPSED > /tmp/elapsed.value
+        ETA=$(date -d @$(awk 'BEGIN{print int(('$ELAPSED' / '$FR_CNT') *\
+        ('$TOT_FR' - '$FR_CNT'))}') -u +%H:%M:%S)   # ETA calc.
+    fi
+    echo "# Working on file: $COUNT of $OF - Length: $DUR - Frames: $TOT_FR\
+    \nFilename: ${NFILE%.*}\nSaved to: $SAVEAS\
+    \nTelevision standard is set to: $TFORM2\
+    \nRe-coding with FFmpeg, method: $QUAL\
+    \nFrame: $FR_CNT of $TOT_FR   Elapsed: $(date -d @$ELAPSED -u\
+    +%H:%M:%S)   ET to finish: $ETA"                # Text for stats. output.
+    echo $PERCENTAGE                                # Feed the progbar.
+done | yad\
+    --progress\
+    --window-icon $ICON\
+    --title="AVI-2-MPG ${QUAL:10:13}"\
+    --text="Initializing please wait..."\
+    --percentage=0\
+    --auto-close\
+    --auto-kill
+}
+
 nome() {
     fl=$(basename -- "$1")
     ext="${fl##*.}"
@@ -82,9 +113,12 @@ eval $(yad --title "$titulo" --width=400 --form --field="Arquivo\::SFL" --field=
 diff=$(($(date +%s --date="$fim")-$(date +%s --date="$inicio")))
 offset="$(show_time $diff)"
 
-ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida" # | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..."
+ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida" && status=$? &
+PID=$! && display 
 
-if [ $? -eq 0 ]; then
+ # | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..."
+
+if [[ $status -eq 0 ]]; then
     yad --info --title "$titulo" --text "Video: $(basename ${saida}) cortado com sucesso." --button=gtk-ok:1
 else
     yad --error --title "$titulo" --text "Falha no corte de: $(basename ${saida})." --button=gtk-ok:1
