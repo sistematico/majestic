@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-echo "👾️"
+echo "🤖️"
 echo "---"
 echo "💣️ Editar | terminal=false bash='/home/lucas/.local/bin/nginx-edit.sh artemis'"
-
