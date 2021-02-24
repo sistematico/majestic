@@ -55,25 +55,18 @@ for r in ${resolucoes[@]}; do
     fi
 done
 
-echo $res
-
 resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$1=$1};1')")
 [[ -z $resolucao ]] && exit 1
 
-
-saida=$(echo $resolucao | awk -F'!' '{printf "%s", $video}')
+saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
 resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
-echo $resolucao
-echo $saida
+ffmpeg -i "${video}" -filter:v scale=-1:$resolucao -c:a copy "${saida}"
 
-
-#ffmpeg -i "${video}" -filter:v scale=-1:$resolucao -c:a copy "${saida}"
-
-#if [ $? = 0 ]; then
-#	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
-#else
-#	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
-#fi
+if [ $? = 0 ]; then
+	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
+else
+	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
+fi
 
 
