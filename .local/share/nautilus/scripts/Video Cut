@@ -6,7 +6,9 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        09/06/2018 19:39:27
-# Última alteração: 28/01/2019 19:41:58
+# Última alteração: 24/02/2021 18:27:36
+#
+# Source: https://gist.github.com/codyopel/cbeec85da523171662e4
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -35,6 +37,8 @@ fi
 titulo="Video Cut"
 
 RM=$(pwd)
+trap "killall ffmpeg ZAVI2MPG; rm -f "$RM/ffmpeg2pass*" "$RM/vstats*"; exit" \
+INT TERM EXIT 
 
 command -v yad 1> /dev/null 2> /dev/null
 if [ $? = 1 ]; then
