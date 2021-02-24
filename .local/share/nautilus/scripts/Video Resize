@@ -61,7 +61,14 @@ resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gno
 saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
 resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
-ffmpeg -i "${video}" -filter:v scale=-1:$resolucao -c:a copy "${saida}"
+if [ "$(( $resolucao % 2 ))" -ne 0 ]; then
+	#ffmpeg -i "${video}" -filter:v "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:a copy "/tmp/Divisible-${saida}"
+	ffmpeg -i "${video}" -filter:v scale=-2:$resolucao -c:a copy "${saida}"
+else
+	ffmpeg -i "${video}" -filter:v scale=-1:$resolucao -c:a copy "${saida}"
+fi
+
+
 
 if [ $? = 0 ]; then
 	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
