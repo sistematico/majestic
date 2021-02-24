@@ -135,7 +135,7 @@ eval $(yad --title "$titulo" --width=400 --form --field="Arquivo\::SFL" --field=
 diff=$(($(date +%s --date="$fim")-$(date +%s --date="$inicio")))
 offset="$(show_time $diff)"
 
-ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida" && status=$? &
+ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida" -vstats && status=$? &
 PID=$! && display 
 
 ########## # | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..."
