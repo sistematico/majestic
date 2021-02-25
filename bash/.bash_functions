@@ -142,15 +142,36 @@ sudo() {
 
 # Gnome
 chshell() {
-    [ -d $HOME/.local/share/themes/$1/gnome-shell ] && gsettings set org.gnome.shell.extensions.user-theme name "$1"
+    if [ ! -d $HOME/.local/share/themes/$1/gnome-shell ]; then
+        if [ ! -d /usr/share/themes/$1/gnome-shell ]; then
+            echo "Tema inválido"
+            return
+        fi
+    fi
+    echo "Trocando o tema"
+    gsettings set org.gnome.shell.extensions.user-theme name "$1"
 }
 
 chgtk() {
-    [ -d $HOME/.local/share/themes/$1 ] && gsettings set org.gnome.desktop.interface gtk-theme "$1"
+    if [ ! -d $HOME/.local/share/themes/$1/gtk-3.0 ]; then
+        if [ ! -d /usr/share/themes/$1/gtk-3.0 ]; then
+            echo "Tema inválido"
+            return
+        fi
+    fi
+    echo "Trocando o tema"    
+    gsettings set org.gnome.desktop.interface gtk-theme "$1"
 }
 
 chicon() {
-    [ -d $HOME/.local/share/icons/$1 ] && gsettings set org.gnome.desktop.interface icon-theme "$1"
+    if [ ! -d $HOME/.local/share/icons/$1 ]; then
+        if [ ! -d /usr/share/icons/$1 ]; then
+            echo "Tema inválido"
+            return
+        fi
+    fi
+    echo "Trocando o tema" 
+    gsettings set org.gnome.desktop.interface icon-theme "$1"
 }
 
 
