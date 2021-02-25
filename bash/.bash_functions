@@ -142,7 +142,7 @@ sudo() {
 
 # Gnome
 chshell() {
-    [ -d $HOME/.local/share/themes/$1 ] && gsettings set org.gnome.shell.extensions.user-theme name "$1"
+    [ -d $HOME/.local/share/themes/$1/gnome-shell ] && gsettings set org.gnome.shell.extensions.user-theme name "$1"
 }
 
 chgtk() {
