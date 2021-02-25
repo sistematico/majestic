@@ -1,4 +1,5 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+#
 #
 # This script creates XML files that can act as dynamic wallpapers for GNOME by referring to multiple wallpapers
 # Coded by David J Krajnik
