@@ -9,5 +9,7 @@ for file in $(cat $path) # for file in $(find . -type f -name "*.csv")
 do
      echo "Executar: ${op} ${file}?" #rm -i "$file"
      read line
+     [[ "$line" != [sSyY] ]] && exit
+     ${op} "${file}"
 done
 IFS="$OIFS"
