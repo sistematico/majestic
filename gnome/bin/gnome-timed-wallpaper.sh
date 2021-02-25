@@ -3,9 +3,30 @@
 # This script creates XML files that can act as dynamic wallpapers for GNOME by referring to multiple wallpapers
 # Coded by David J Krajnik
 
+writePropertiesFile() {
+
+    filename="$1"
+    name=$(echo "${filename%.*}")
+
+    cat >${filename} <<EOL
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+    <wallpaper deleted="false">
+        <name>${name}</name>
+        <filename>/usr/share/backgrounds/${name}/${filename}</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#3465a4</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+</wallpapers>
+EOL
+}
+
 if [ ! $1 ]; then
     echo "This script creates XML files that can act as dynamic backgrounds for GNOME by referring to multiple wallpapers"
-    echo "Usage: mkwlppr target-file.xml [duration] pic1 pic2 [pic3 .. picN]"
+    echo "Usage: $(basename $0) target-file.xml [duration] pic1 pic2 [pic3 .. picN]"
 else
     #Grab the name of the target xml file
     files=$*
@@ -13,12 +34,14 @@ else
     #remove the first item from $files
     xmlfile=$(echo $files | cut -d " " -f 1)
     files=$(echo $files | sed 's/^\<[^ ]*\>//')
+
     if [ "$(echo $xmlfile | grep '\.xml$')" = "" ]; then
         echo "Your target file must be an XML file"
     else
         inputIsValid="true"
         firstItem=$(echo $files | cut -d " " -f 1)
         duration="1795.0" #set the default duration
+
         if [ "$(echo $firstItem | grep '^[0-9]\+\.[0-9]\+$')" != "" ]; then
             echo "The duration must be an integer"
             files=$(echo $files | sed 's/^\<[^ ]*\>//')
@@ -30,6 +53,7 @@ else
             #remove the duration from the list of files
             files=$(echo $files | sed 's/^\<[^ ]*\>//')
         fi
+
         if [ "$files" = "" ]; then
             echo "You must enter image files to associate with the XML file"
         else
@@ -42,6 +66,7 @@ else
                     inputIsValid=""
                 fi
             done
+
             if [ $inputIsValid ]; then
                 currDir=$(pwd)
                 echo "<background>" >>$xmlfile
@@ -49,10 +74,12 @@ else
                 echo "    <hour>00</hour>\n    <minute>00</minute>\n    <second>00</second>\n  </starttime>" >>$xmlfile
                 echo "  <!-- This animation will start at midnight. -->" >>$xmlfile
                 firstFile=$(echo $files | cut -d " " -f 1) # grab the first item
+
                 if [ "$(echo $firstFile | sed 's/\(.\).*/\1/')" != "/" ]; then
                     #If the first character in the filename is not '/', then it is a relative path and must have the current directory's path appended
                     firstFile="$currDir/$firstFile"
                 fi
+
                 firstFile=$(echo $firstFile | sed 's/[^/]\+\/\.\.\/\?//g') #Remove occurrences of ".." from the filepath
                 files=$(echo $files | sed 's/^\<[^ ]*\>//')                # remove the first item
                 prevFile=$firstFile
@@ -60,6 +87,7 @@ else
                 #TODO add absolute path to the filenames
                 #if $currFile =~ "^/.*" then the file needs to path appended
                 echo "  <static>\n    <duration>$duration</duration>\n    <file>$firstFile</file>\n  </static>" >>$xmlfile
+
                 for currFile in $files; do
                     if [ "$(echo $currFile | sed 's/\(.\).*/\1/')" != "/" ]; then
                         #If the first character in the filename is not '/', then it is a relative path and must have the current directory's path appended
@@ -70,6 +98,7 @@ else
                     echo "  <static>\n    <duration>$duration</duration>\n    <file>$currFile</file>\n  </static>" >>$xmlfile
                     prevFile=$currFile
                 done
+
                 echo "  <transition>\n    <duration>5.0</duration>\n    <from>$currFile</from>\n    <to>$firstFile</to>\n  </transition>" >>$xmlfile
                 echo "</background>" >>$xmlfile
             fi
