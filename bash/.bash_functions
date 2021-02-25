@@ -141,7 +141,7 @@ sudo() {
 }
 
 # Gnome
-chtheme() {
+chshell() {
     [ -d $HOME/.local/share/themes/$1 ] && gsettings set org.gnome.shell.extensions.user-theme name "$1"
 }
 
