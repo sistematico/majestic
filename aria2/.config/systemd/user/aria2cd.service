@@ -1,0 +1,9 @@
+[Unit]
+Description=Aria2 Daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/aria2c --conf-path=%h/.config/aria2/aria2cd.conf
+
+[Install]
+WantedBy=default.target
