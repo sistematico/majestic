@@ -70,7 +70,7 @@ fi
 $notifycommand "Video Down" "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
-    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --enable-rpc "${url}"
+    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c --conf-path=/home/lucas/.config/aria2/aria2.conf "${url}"
     status="$?"
 else
     youtube-dl -o "${titulo}.%(ext)s" "${url}"
