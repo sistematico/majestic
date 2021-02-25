@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
+#
+# Sugestão de uso:
+# 
+# fdupes -fr -o time dir/ > /tmp/list.txt
+# spaces.sh /tmp/list.txt file
 
-[ $# -gt 0 ] && [ ! -z $1 ] && [ -f $1 ] && path="${1}" || exit 1
+[ $# -lt 1 ] && [ ! -z $1 ] && [ -f $1 ] && path="${1}" || exit 1
 shift ; op="$@"
 
 OIFS="$IFS"
