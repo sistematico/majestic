@@ -1,0 +1,1 @@
+/home/lucas/github/majestic/gnome/bin/gnome-timed-wallpaper.sh
