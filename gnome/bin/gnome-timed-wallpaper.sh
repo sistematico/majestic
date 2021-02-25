@@ -5,16 +5,16 @@
 
 writePropertiesFile() {
 
-    filename="$1"
-    name=$(echo "${filename%.*}")
+    name=$(echo "${1%.*}")
 
-    cat >${filename} <<EOL
+    cat >${name}.prop.xml <<EOL
 <?xml version="1.0"?>
+<!-- Move this file to /usr/share/gnome-background-properties/ !!!! -->
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
 <wallpapers>
     <wallpaper deleted="false">
         <name>${name}</name>
-        <filename>/usr/share/backgrounds/${name}/${filename}</filename>
+        <filename>/usr/share/backgrounds/${name}/${1}</filename>
         <options>zoom</options>
         <shade_type>solid</shade_type>
         <pcolor>#3465a4</pcolor>
@@ -69,10 +69,12 @@ else
 
             if [ $inputIsValid ]; then
                 currDir=$(pwd)
+
                 echo "<background>" >>$xmlfile
                 echo "  <starttime>\n    <year>2009</year>\n    <month>08</month>\n    <day>04</day>" >>$xmlfile
                 echo "    <hour>00</hour>\n    <minute>00</minute>\n    <second>00</second>\n  </starttime>" >>$xmlfile
                 echo "  <!-- This animation will start at midnight. -->" >>$xmlfile
+
                 firstFile=$(echo $files | cut -d " " -f 1) # grab the first item
 
                 if [ "$(echo $firstFile | sed 's/\(.\).*/\1/')" != "/" ]; then
@@ -86,6 +88,7 @@ else
                 currFile=""
                 #TODO add absolute path to the filenames
                 #if $currFile =~ "^/.*" then the file needs to path appended
+
                 echo "  <static>\n    <duration>$duration</duration>\n    <file>$firstFile</file>\n  </static>" >>$xmlfile
 
                 for currFile in $files; do
@@ -101,6 +104,9 @@ else
 
                 echo "  <transition>\n    <duration>5.0</duration>\n    <from>$currFile</from>\n    <to>$firstFile</to>\n  </transition>" >>$xmlfile
                 echo "</background>" >>$xmlfile
+
+                writePropertiesFile $xmlfile
+
             fi
         fi
     fi
