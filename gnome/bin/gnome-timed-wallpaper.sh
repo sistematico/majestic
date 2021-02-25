@@ -72,9 +72,9 @@ else
                 currDir=$(pwd)
 
                 echo "<background>" >>$xmlfile
-                echo "  <starttime>\n    <year>2009</year>\n    <month>08</month>\n    <day>04</day>" >>$xmlfile
-                echo "    <hour>00</hour>\n    <minute>00</minute>\n    <second>00</second>\n  </starttime>" >>$xmlfile
-                echo "  <!-- This animation will start at midnight. -->" >>$xmlfile
+                echo -e "  <starttime>\n    <year>2009</year>\n    <month>08</month>\n    <day>04</day>" >>$xmlfile
+                echo -e "    <hour>00</hour>\n    <minute>00</minute>\n    <second>00</second>\n  </starttime>" >>$xmlfile
+                echo -e "  <!-- This animation will start at midnight. -->" >>$xmlfile
 
                 firstFile=$(echo $files | cut -d " " -f 1) # grab the first item
 
@@ -90,7 +90,7 @@ else
                 #TODO add absolute path to the filenames
                 #if $currFile =~ "^/.*" then the file needs to path appended
 
-                echo "  <static>\n    <duration>$duration</duration>\n    <file>$firstFile</file>\n  </static>" >>$xmlfile
+                echo -e "  <static>\n    <duration>$duration</duration>\n    <file>$firstFile</file>\n  </static>" >>$xmlfile
 
                 for currFile in $files; do
                     if [ "$(echo $currFile | sed 's/\(.\).*/\1/')" != "/" ]; then
@@ -98,12 +98,12 @@ else
                         currFile="$currDir/$currFile"
                     fi
                     currFile=$(echo $currFile | sed 's/[^/]\+\/\.\.\/\?//g') # Remove occurrences of ".." from the filepath
-                    echo "  <transition>\n    <duration>5.0</duration>\n    <from>$prevFile</from>\n    <to>$currFile</to>\n  </transition>" >>$xmlfile
-                    echo "  <static>\n    <duration>$duration</duration>\n    <file>$currFile</file>\n  </static>" >>$xmlfile
+                    echo -e "  <transition>\n    <duration>5.0</duration>\n    <from>$prevFile</from>\n    <to>$currFile</to>\n  </transition>" >>$xmlfile
+                    echo -e "  <static>\n    <duration>$duration</duration>\n    <file>$currFile</file>\n  </static>" >>$xmlfile
                     prevFile=$currFile
                 done
 
-                echo "  <transition>\n    <duration>5.0</duration>\n    <from>$currFile</from>\n    <to>$firstFile</to>\n  </transition>" >>$xmlfile
+                echo -e "  <transition>\n    <duration>5.0</duration>\n    <from>$currFile</from>\n    <to>$firstFile</to>\n  </transition>" >>$xmlfile
                 echo "</background>" >>$xmlfile
 
                 writePropertiesFile $xmlfile
