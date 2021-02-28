@@ -121,6 +121,6 @@ if [[ $LOG -ne 0 ]]; then
     echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
 fi
 
-$notifycommand "Video Down" "Sucesso: <b>$titulo</b>\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps"
+$notifycommand "Video Down" "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
 exit
 

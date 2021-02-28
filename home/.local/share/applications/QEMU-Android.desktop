@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Android
+Comment=Android using libvirt
+#StartupWMClass=Jmemorise
+Exec=qemu-system-x86_64 /media/storage/.libvirt/images/android.qcow2
+Icon=android
+Terminal=false
+Categories=GTK;Network;
+

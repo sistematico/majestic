@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Arch Linux
+Comment=Arch Linux using Libvirt
+Exec=qemu-system-x86_64 /media/storage/.libvirt/images/archlinux.qcow2
+Icon=archlinux
+Terminal=false
+Categories=GTK;Network;
+
