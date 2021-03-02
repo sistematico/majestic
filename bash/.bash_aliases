@@ -67,3 +67,6 @@ alias setwin='sudo grub-set-default 3'
 alias laravel-start='docker start laravel-nginx laravel-php laravel-memcached laravel-mailhog laravel-redis'
 alias laravel-restart='docker restart laravel-nginx laravel-php laravel-memcached laravel-mailhog laravel-redis'
 alias laravel-stop='docker stop laravel-nginx laravel-php laravel-memcached laravel-mailhog laravel-redis'
+
+# Python
+alias pip-update='pip3 list --outdated --format=freeze | grep -v "^\-e" | cut -d = -f 1 | xargs -n1 pip3 install -U'

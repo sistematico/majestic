@@ -1,5 +1,5 @@
 # Vars used in functions.
-STORAGE="$HOME/storage"
+STORAGE="/media/storage"
 
 function cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
@@ -142,6 +142,26 @@ sudo() {
 
 # Gnome
 chshell() {
+    if [ ! $1 ]; then
+        echo "Temas disponíveis:"
+        echo
+        for tema in $(/usr/bin/ls /usr/share/themes); do
+            if [ -d /usr/share/themes/${tema} ]; then
+                if [ -d /usr/share/themes/${tema}/gnome-shell ]; then
+                    echo $tema
+                fi
+            fi
+        done
+        for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
+            if [ -d $HOME/.local/share/themes/${tema} ]; then
+                if [ -d $HOME/.local/share/themes/${tema}/gnome-shell ]; then
+                    echo $tema
+                fi
+            fi
+        done
+        return
+    fi
+
     if [ ! -d $HOME/.local/share/themes/$1/gnome-shell ]; then
         if [ ! -d /usr/share/themes/$1/gnome-shell ]; then
             echo "Tema inválido"
@@ -153,6 +173,25 @@ chshell() {
 }
 
 chgtk() {
+    if [ ! $1 ]; then
+        echo "Temas disponíveis:"
+        for tema in $(/usr/bin/ls /usr/share/themes); do
+            if [ -d /usr/share/themes/${tema} ]; then
+                if [ -d /usr/share/themes/${tema}/gtk-3.0 ]; then
+                    echo $tema
+                fi
+            fi
+        done
+        for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
+            if [ -d $HOME/.local/share/themes/${tema} ]; then
+                if [ -d $HOME/.local/share/themes/${tema}/gtk-3.0 ]; then
+                    echo $tema
+                fi
+            fi
+        done
+        return
+    fi
+
     if [ ! -d $HOME/.local/share/themes/$1/gtk-3.0 ]; then
         if [ ! -d /usr/share/themes/$1/gtk-3.0 ]; then
             echo "Tema inválido"
@@ -164,6 +203,21 @@ chgtk() {
 }
 
 chicon() {
+    if [ ! $1 ]; then
+        echo "Temas disponíveis:"
+        for tema in $(/usr/bin/ls /usr/share/icons); do
+            if [ -d "/usr/share/icons/${tema}" ]; then
+                echo $tema
+            fi            
+        done
+        for tema in $(/usr/bin/ls $HOME/.local/share/icons); do
+            if [ -d "$HOME/.local/share/icons/${tema}" ]; then
+                echo $tema
+            fi
+        done
+        return
+    fi
+
     if [ ! -d $HOME/.local/share/icons/$1 ]; then
         if [ ! -d /usr/share/icons/$1 ]; then
             echo "Tema inválido"
