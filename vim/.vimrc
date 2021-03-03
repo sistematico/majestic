@@ -1,9 +1,21 @@
+call plug#begin('~/.vim/plugged')
+
+" Nord
+Plug 'arcticicestudio/nord-vim'
+
+call plug#end()
+
 set guifont=Ubuntu\ Mono:h15:cANSI
 
-packadd! dracula
 syntax enable
-let g:dracula_colorterm = 0
-colorscheme dracula
+
+" Nord
+colorscheme nord
+
+" Dracula
+"packadd! dracula
+"let g:dracula_colorterm = 0
+"colorscheme dracula
 
 filetype plugin indent on
 syntax on
