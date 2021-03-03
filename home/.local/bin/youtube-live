@@ -3,11 +3,13 @@
 YOUTUBE_KEY=$(grep YOUTUBE_KEY $HOME/.env | xargs)
 YOUTUBE_KEY="${YOUTUBE_KEY#*=}"
 
-AUDIO_RATE="44100"
-VBR="2500k"                                    # Bitrate de la vidéo en sortie
-FPS="30"                                       # FPS de la vidéo en sortie
-QUAL="medium"                                  # Preset de qualité FFMPEG
-YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"  # URL de base RTMP youtube
+INRES="1920x1080"                               # input resolution
+INRES="1920x1080"                               # output resolution
+AUDIO_RATE="44100"                              # audio rate
+VBR="2500k"                                     # Bitrate de la vidéo en sortie
+FPS="30"                                        # FPS de la vidéo en sortie
+QUAL="medium"                                   # Preset de qualité FFMPEG
+YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"   # URL de base RTMP youtube
 
 ffmpeg \
     -f x11grab -s "$INRES" -i :0.0 -f pulse -i 0 \
@@ -15,7 +17,13 @@ ffmpeg \
     -i "$SOURCE" \
     -deinterlace \
     -vcodec libx264 -pix_fmt yuv420p \
+    -s $OUTRES \
     -preset $QUAL \
-    -r $FPS -g $(($FPS * 2)) -b:v $VBR \
-    -ac 2 -acodec libmp3lame -ar $AUDIO_RATE -threads 6 -qscale 3 -b:a 712000 -bufsize 512k \
+    -r $FPS -g $(($FPS * 2)) \
+    -b:v $VBR \
+    -ac 2 -acodec libmp3lame \
+    -ar $AUDIO_RATE \
+    -threads 6 -qscale 3 \
+    -b:a 712000 \
+    -bufsize 512k \
     -f flv "$YOUTUBE_URL/$YOUTUBE_KEY"
