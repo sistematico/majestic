@@ -15,6 +15,6 @@ AUDIO_RATE="44100"
 SERVER="live-sao" # twitch server in frankfurt, see http://bashtech.net/twitch/ingest.php for list
 
 ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f pulse -i 0 -f flv -ac 2 -ar $AUDIO_RATE \
-    -vcodec libx264 -g $GOP -keyint_min $GOPMIN -b:v $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p\
+    -vcodec libx264 -g $GOP -keyint_min $GOPMIN -b:v $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p \
     -s $OUTRES -preset $QUALITY -tune film -acodec libmp3lame -threads $THREADS -strict normal \
     -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$TWITCH_KEY"
