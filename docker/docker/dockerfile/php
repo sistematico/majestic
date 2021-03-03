@@ -9,3 +9,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:1000:/' /etc/passwd
 RUN sed -i 's/9090/9000/' /usr/local/etc/php-fpm.d/zz-docker.conf
+RUN sed -i 's/9099/9000/' /usr/local/etc/php-fpm.d/zz-docker.conf
