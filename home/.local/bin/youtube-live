@@ -8,13 +8,14 @@ INRES="1920x1080"                               # output resolution
 AUDIO_RATE="44100"                              # audio rate
 VBR="2500k"                                     # Bitrate de la vidéo en sortie
 FPS="30"                                        # FPS de la vidéo en sortie
-QUAL="medium"                                   # Preset de qualité FFMPEG
+QUAL="fast"                                     # Preset de qualité FFMPEG
 YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"   # URL de base RTMP youtube
 
 ffmpeg \
-    -f x11grab -s "$INRES" -i :0.0 -f pulse -i 0 \
-    -ac 2 -ar  \
-    -i "$SOURCE" \
+    -f x11grab \
+    -s "$INRES" \
+    -i $DISPLAY \
+    -f pulse -i 0 \
     -deinterlace \
     -vcodec libx264 -pix_fmt yuv420p \
     -s $OUTRES \
