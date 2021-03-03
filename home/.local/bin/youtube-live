@@ -12,7 +12,7 @@ QUAL="ultrafast"                                # Preset de qualité FFMPEG
 YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"   # URL de base RTMP youtube
 
 TXT_OVERLAY="${HOME}/.local/share/youtube/overlay.txt"   #txt overlay file location
-FONT="${HOME}/.local/share/fonts/OperatorMono-Bold.otf"   #font file location. Probably same for all ubuntu. (or all linux ?)
+FONT="/usr/share/fonts/ubuntu/Ubuntu-B.ttf"   #font file location. Probably same for all ubuntu. (or all linux ?)
 
 # ffmpeg \
 #     -f x11grab \
@@ -37,10 +37,13 @@ ffmpeg \
 	-f x11grab -video_size ${INRES} \
     -framerate $FPS \
     -i :0 -deinterlace \
-    -f pulse -i 0 \
+    -f pulse -ac 2 -i default \
     -vcodec libx264 -pix_fmt yuv420p \ 
     -preset $QUAL -tune zerolatency -g $(($FPS * 2)) -b:v $VBR \
     -ar $ABR -threads 6 -q:a 3 -b:a 712000 -bufsize 128k \
+    -filter_complex "[0:v][1:v] overlay=(W-w):0 [b]; \
+    [b] drawtext=fontfile=${FONT}: textfile=${TXT_OVERLAY}: reload=1: \
+          x=5: y=450: fontsize=25: fontcolor=white@1.0: box=1: boxcolor=black@0.5" \
     -f flv "$YOUTUBE_URL/$YOUTUBE_KEY"
 
 
