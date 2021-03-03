@@ -1,5 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
+" Vim Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 " Nord
 Plug 'arcticicestudio/nord-vim'
 
@@ -11,6 +15,7 @@ syntax enable
 
 " Nord
 colorscheme nord
+let g:airline_theme='nord_minimal'
 
 " Dracula
 "packadd! dracula
