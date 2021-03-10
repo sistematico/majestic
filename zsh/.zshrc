@@ -43,6 +43,7 @@ backward-kill-dir () {
     local WORDCHARS=${WORDCHARS/\/}
     WORDCHARS=${WORDCHARS/\.}
     WORDCHARS=${WORDCHARS/\_}
+    WORDCHARS=${WORDCHARS/\-}
     zle backward-kill-word
 }
 zle -N backward-kill-dir
