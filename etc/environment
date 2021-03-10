@@ -1,0 +1,13 @@
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+#
+GTK2_RC_FILES=/usr/share/themes/Canta-dark-compact/gtk-2.0/gtkrc
+EDITOR=nano
+GZIP=-9
+ANDROID_HOME=/opt/android-sdk
+HISTSIZE=10000
+HISTFILESIZE=10000
+STEAM_FRAME_FORCE_CLOSE=1
+RANGER_LOAD_DEFAULT_RC=FALSE

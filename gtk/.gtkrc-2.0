@@ -1,4 +1,6 @@
-gtk-icon-theme-name = "Adwaita"
-gtk-theme-name = "Ant-Dracula"
-#gtk-theme-name = "Adwaita"
-#gtk-font-name = "DejaVu Sans 11"
+#gtk-theme-name=Adwaita
+gtk-theme-name=Arc-Dark
+gtk-icon-theme-name=elementary-xfce
+#gtk-enable-event-sounds=true
+#gtk-enable-input-feedback-sounds=true
+#gtk-sound-theme-name=freedesktop

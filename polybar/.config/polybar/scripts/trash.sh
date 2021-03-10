@@ -5,7 +5,7 @@ cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
 xrdb -query | grep border | head -n1 | awk '{print $2}'
 trash_dir="${HOME}/.local/share/Trash"
 trash_temp="/tmp/lixo"
-icone="${HOME}/.local/share/icons/Newaita-dark/actions/24/user-trash.svg"
+icone="${HOME}/.local/share/icons/elementary/user-trash.png"
 
 if [[ "${trash_dir}" = "" ]]; then
   trash_dir=${XDG_DATA_HOME:-"${HOME}/.local/share/Trash"}
@@ -42,9 +42,9 @@ fi
 TRASH_COUNT=$(ls -U -1 "${trash_dir}/files" | wc -l)
 
 if [[ ${TRASH_COUNT} -gt 0 ]]; then
-	s="%{F${cor}}%{F-} ${TRASH_COUNT}"
+	s="%{F${cor}}%{F-} ${TRASH_COUNT}"
 else
-	s="%{F${cor}}%{F-}"
+	s="%{F${cor}}%{F-}"
 fi
 
 echo "${s}"

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>StartPage</title>
+    <link rel="stylesheet" href="css/fontawesome-5.6.3.min.css">
+    <link rel="stylesheet" href="css/fontes.css"> 
+    <link rel="stylesheet" href="css/principal.css">
+    <!-- Créditos: https://github.com/adriandersen/adriandersen.github.io -->
+  </head>
+  <body id="corpo">
+    
+    <div class="c">
+      <a onclick="nextSearchEngine()"><i class="g"></i></a><br>
+      
+      <form id="searchform" class="search" action="" method="" onsubmit="return doSearch()">
+        <input class="search" id="input" type="text" value="" name="" placeholder="ERROR: Check console or contact sysadm" autocomplete="off" autofocus>
+      </form>
+      <div id="buttons" class=""></div>
+
+    </div>
+
+    <div class="bottom">
+      <button id="modo" onclick="toggleDarkMode()" class="btn">Darkmode</button>
+      <button id="fonte" onclick="changeFont()" class="btn">Dosis</button>
+    </div>
+    
+    <script src="js/objects.js"></script>
+    <script src="js/func.js"></script>
+  </body>
+</html>
+

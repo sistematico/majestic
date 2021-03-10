@@ -1,18 +1,14 @@
-# Static information about the filesystems.
-# See fstab(5) for details.
+# /dev/sda2 LABEL=ROOT
+UUID=0ddcba01-c968-4115-a163-fc6cab387eaa	/         	ext4      	rw,relatime	0 1
 
-# <file system> <dir> <type> <options> <dump> <pass>
-# /dev/mapper/nyx-arch--root
-UUID=f9127a67-51e5-4f65-b354-5f78620da564	/         	ext4      	rw,relatime	0 1
+# /dev/sda1 LABEL=BOOT
+UUID=FCCE-CAAA      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
 
-# /dev/mapper/nyx-arch--home
-UUID=83604e7d-f05b-49c5-b3f2-551a9141e610	/home     	ext4      	rw,relatime	0 2
+# /dev/sda4 LABEL=HOME
+UUID=737cbc40-c06a-445b-8789-474d5e1d4f63	/home     	ext4      	rw,relatime	0 2
 
-# /dev/mapper/nyx-arch--swap
-UUID=491d56cf-6e6e-4b16-8ccb-6f066df632a7	none      	swap      	defaults  	0 0
+# /dev/sda3 LABEL=SWAP
+UUID=7cb0f930-b3d1-4c86-bf22-491d01068cfd	none      	swap      	defaults  	0 0
 
-# Hera
-root@hera:/ /home/lucas/sshfs/hera  fuse.sshfs noauto,x-systemd.automount,_netdev,users,idmap=user,IdentityFile=/home/lucas/.ssh/id_rsa,allow_other,reconnect 0 0
-
-# Artemis
-root@artemis:/ /home/lucas/sshfs/artemis  fuse.sshfs noauto,x-systemd.automount,_netdev,users,idmap=user,IdentityFile=/home/lucas/.ssh/id_rsa,allow_other,reconnect 0 0
+# /dev/sdb1 LABEL=HDD
+UUID=110d6da9-6382-4729-9969-836c3ee6d8f6	/mnt/hdd	ext4		rw,relatime,nobarrier,commit=60 0 2

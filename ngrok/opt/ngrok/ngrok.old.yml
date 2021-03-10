@@ -1,0 +1,8 @@
+authtoken: [TOKEN]
+tunnels:
+  web:
+    proto: tcp
+    addr: 80
+  ssh:
+    proto: tcp
+    addr: 22

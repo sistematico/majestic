@@ -1,7 +1,4 @@
-#!/usr/bin/env bash
-#
 # downloads.sh
-#
 
 cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
 
@@ -16,12 +13,12 @@ else
 	imagens=$(ps -ef | grep imgdown.sh | grep -v grep | wc -l)
 	
 	if [ $videos -gt 0 ] && [ $imagens -gt 0 ]; then
-		echo "%{F${cor}}%{F-} $videos / $imagens"
+		echo "$videos / $imagens %{F${cor}}%{F-}"
 	elif [ $videos -gt 0 ] && [ $imagens -eq 0 ]; then
-		echo "%{F${cor}}%{F-} $videos"
+		echo "$videos %{F${cor}}%{F-}"
 	elif [ $videos -eq 0 ] && [ $imagens -gt 0 ]; then
-		echo "%{F${cor}}%{F-} $imagens"
+		echo "$imagens %{F${cor}}%{F-}"
 	else
-		echo "%{F${cor}}%{F-}"
+		echo "%{F${cor}}%{F-}"
 	fi
 fi

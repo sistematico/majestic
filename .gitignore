@@ -1,6 +1,3 @@
-# Don't Expose IPs
-/ssh/.ssh/config
-
 *.tar
 *.tar.*
 *.jar
@@ -20,7 +17,6 @@ src/
 mpd.pid
 mpd.state
 mpd.db
-mpd.log
 
 .vscode
 

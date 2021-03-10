@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#
+# Arquivo: wallpaper
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 16/03/2018 16:35:20
+# Última alteração: 28/03/2019 06:01:31
+
+default="${HOME}/img/unsplash/alan-labisch-1279974-unsplash.jpg"
+# Altere isto! (xfconf-query -c xfce4-desktop -m)
+monitor="monitorDVI-I-0" # monitor0
+
+[ ! -f $HOME/.envs ] && echo "WALLPAPERS=\"${HOME}/img\"" > $HOME/.envs
+source $HOME/.envs
+
+findWall() {
+	[ -d $WALLPAPERS ] && wallpaper=$(find "$WALLPAPERS" -type f | shuf -n 1) || wallpaper="$default"
+	if [ "$1" == "xfce4-session" ]; then
+		/usr/bin/xfconf-query -c xfce4-desktop -p /backdrop/screen0/$monitor/workspace0/last-image -s "$wallpaper"
+	else
+		echo "$wallpaper" > /tmp/.wallpaper
+		feh --bg-fill "$wallpaper"
+	fi
+}
+
+desks=('i3' 'xfce4-session')
+for desk in "${desks[@]}"; do
+	[ $(ps -eo comm | grep $desk) ] && desktop=$desk || desktop='outro'
+done
+
+if [ ! $1 ]; then
+	findWall "$desktop"
+else
+	if [ "$1" == "-d" ]; then
+		[ "$desktop" == "xfce4-session" ] && wallpaper=$(/usr/bin/xfconf-query -c xfce4-desktop -p /backdrop/screen0/$monitor/workspace0/last-image) || wallpaper="$(cat /tmp/.wallpaper)"
+		yad --image dialog-question --title 'Atenção' --button=gtk-yes:0 --button=gtk-no:1 --text "Deseja apagar $(basename $wallpaper)?"
+		if [ $? = 0 ]; then
+			mv $wallpaper ~/.local/share/Trash/
+			findWall "$desktop"
+		fi
+	else
+		if [ "$desktop" == "outro" ]; then
+			feh --bg-fill "$default"
+		elif [ "$desktop" == "xfce4-session" ]; then
+			/usr/bin/xfconf-query -c xfce4-desktop -p /backdrop/screen0/$monitor/workspace0/last-image -s "$default"
+		fi
+	fi
+fi
+
+#echo $desktop

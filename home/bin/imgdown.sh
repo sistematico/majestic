@@ -22,7 +22,7 @@ min='300' 		# Em pixels verticais
 lixeira="${HOME}/.local/share/Trash"
 pasta="${HOME}/desk/$$"
 turl="$(xclip -o)"
-icone="${HOME}/.local/share/icons/Newaita/devices/48/camera-photo.svg"
+icone="${HOME}/.local/share/icons/elementary/camera-photo.png"
 som='complete'
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'

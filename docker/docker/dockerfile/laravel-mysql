@@ -1,7 +1,0 @@
-FROM mysql:latest
-
-RUN mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'senha';"
-RUN mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_ROOT_PASSWORD}';"
-RUN mysql -u root -p'${MYSQL_ROOT_PASSWORD}' -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '${MYSQL_ROOT_PASSWORD}';"
-
-RUN sed -ri 's/^mysql:x:999:999:/mysql:x:1000:1000:/' /etc/passwd

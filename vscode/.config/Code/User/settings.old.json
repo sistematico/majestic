@@ -1,0 +1,28 @@
+{
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "sqltools.useNodeRuntime": true,
+    "phpcs.executablePath": "/home/lucas/.composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "telemetry.enableTelemetry": false,
+    "workbench.iconTheme": "ayu",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "explorer.confirmDelete": false,
+    "psi-header.config": {
+        "author": "Lucas Saliés Brum",
+        "authorEmail": "lucas@archlinux.com.br"
+    },
+    "psi-header.templates": [
+        {
+            "language": "*",
+            "template": [
+                "Arquivo: <<filepath>>",
+                "Criado por: <<author>>, <<authorEmail>>",
+                "-----",
+                "Criado em: <<filecreated('DD/MM/YYYY hh:mm:ss')>>",
+                "Modificado em: <<dateformat('DD/MM/YYYY hh:mm:ss')>>",
+                "-----",
+                "Copyright (c) <<year>> <<author>>"
+            ]
+        },
+    ]    
+}

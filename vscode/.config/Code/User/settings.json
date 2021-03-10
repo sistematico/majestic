@@ -1,0 +1,70 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "One Dark Pro",
+    "git.enableSmartCommit": true,
+    "insertDateString.formatDate": "DD-MM-YYYY",
+    "insertDateString.format": "DD-MM-YYYY hh:mm:ss",
+    "explorer.confirmDelete": false,
+
+    "psi-header.config": {
+		"forceToTop": false,
+		"blankLinesAfter": 1
+		// "license": "Custom"
+	},
+	"psi-header.changes-tracking": {
+		"isActive": true,
+		"modAuthor": "Autor: ",
+		"modDate": "Modificado em: ",
+		"modDateFormat": "date",
+		"include": [],
+		"exclude": [
+			"markdown",
+			"json"
+		],
+		"excludeGlob": [
+			"out/**",
+			"src/**/*.xyz"
+		],
+		"autoHeader": "manualSave"
+	},
+	"psi-header.variables": [
+        ["company", "sistematico"],
+        ["nick", "sistematico"],
+		["author", "Lucas Saliés Brum"],
+		["authoremail", "lucas@archlinux.com.br"]
+	],
+    "psi-header.lang-config": [
+        {
+            "language": "shellscript",
+            "begin": "################################################################################",
+            "end": "################################################################################",
+            "prefix": "# ",
+            "suffix": "#"
+        }
+    ],
+    "psi-header.templates": [
+		{
+			"language": "*",
+			"template": [
+                "",
+				"<<filename>>",
+                "",
+                "Autor: <<author>> a.k.a. <<nick>> <<<authoremail>>>",
+                "",
+                "Criado em: <<filecreated('DD-MM-YYYY h:mm:ss a')>>",
+                "Modificado em: <<dateformat('DD-MM-YYYY h:mm:ss a')>>",
+                "",
+                "Este trabalho está licenciado com uma Licença Creative Commons",
+                "Atribuição 4.0 Internacional",
+                "http://creativecommons.org/licenses/by/4.0/",
+				""
+			]
+        }
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "editor.folding": false,
+    "editor.lightbulb.enabled": false,
+    "editor.renderLineHighlight": "none",
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.donotShowInfoMsg": true
+ }

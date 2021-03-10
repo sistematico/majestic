@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+dir="$HOME/img/heic/Atacama"
+lock="$HOME/.timed.lock"
+
+[ $1 ] && rm -f $lock
+
+setWallpaper() {
+	[ -f $lock ] && atual="$(cat $lock | tr -d '\040\011\012\015')"
+
+	if ls -1 $dir/*${1}* > /dev/null 2> /dev/null; then
+		novo="$(ls -1 $dir/*${1}* | tail -n1 | tr -d '\040\011\012\015')"
+	fi
+
+	if [ ! -z $novo ] && [ -f "$novo" ] && [ "$novo" != "$atual" ]; then
+		echo "$novo" > $lock
+		if [ "$XDG_CURRENT_DESKTOP" == "XFCE" ]; then
+			$(which xfconf-query) -c xfce4-desktop -p /backdrop/screen0/monitor$(xrandr | grep -m1 ' connected' | awk '{print $1}')/workspace0/last-image -s "$novo"
+		elif [ "$XDG_CURRENT_DESKTOP" == "i3" ]; then
+			feh --bg-fill "$novo"
+		fi
+	fi
+}
+
+if [ $(date +%H) -gt 5 ] && [ $(date +%H) -lt 10 ]; then
+	periodo='manha'
+elif [ $(date +%H) -gt 9 ] && [ $(date +%H) -lt 15 ]; then
+	periodo='almoco'
+elif [ $(date +%H) -gt 14 ] && [ $(date +%H) -lt 19 ]; then
+	periodo='tarde'
+elif [ $(date +%H) -gt 18 ] && [ $(date +%H) -lt 6 ]; then
+	periodo='noite'
+fi
+
+setWallpaper $periodo

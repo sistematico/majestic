@@ -1,0 +1,72 @@
+{
+	"XMLHttpRequest": {
+	 	"prefix": "xhr",
+	 	"body": [
+	 		"let xhr = (url,div) => {",
+			 "\tif (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari",
+			 "\t\txmlhttp = new XMLHttpRequest();",
+			 "\t} else { // code for IE6, IE5",
+			 "\t\txmlhttp = new ActiveXObject(\"Microsoft.XMLHTTP\");",
+			 "\t}",
+			 "",
+			 "\txmlhttp.onreadystatechange = function () {",
+			 "\t\tif (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
+			 "\t\t\tdiv.innerHTML = xmlhttp.responseText;",
+			 "\t\t}",
+			 "\t}",
+			 "\txmlhttp.open(\"GET\", url, true);",
+			 "\txmlhttp.send();",
+			 "};"
+	 	],
+	 	"description": "Retrieve data from URL using JavaScript"
+	},
+	"XMLHttpRequest POST": {
+		"prefix": "xhrpost",
+		"body": [
+			"let xhrPost = (url,div) => {",
+			"\txmlhttp = new XMLHttpRequest();",
+			"\txmlhttp.open('POST', url, true);",
+			"\txmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');",
+			"",
+			"\txmlhttp.onreadystatechange = function () {",
+			"\t\tif (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
+			"\t\t\tdiv.innerHTML = xmlhttp.responseText;",
+			"\t\t}",
+			"\t}",
+			"\txmlhttp.send();",
+			"};"
+		],
+		"description": "Retrieve data from URL using JavaScript and POST method"
+	},
+	"XMLHttpRequest JSON": {
+		"prefix": "xhrjson",
+		"body": [
+			"let xhrJson = (url, div) => {",
+			"\txmlhttp = new XMLHttpRequest();",
+			"",
+			"\txmlhttp.onreadystatechange = function () {",
+			"\t\tif (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
+			"\t\t\tlet objetos = JSON.parse(xmlhttp.responseText);",
+			"\t\t\tlet saida = '';",
+			"\t\t\tlet i;",
+			"\t\t\tfor(i = 0; i < objetos.length; i++) {",
+			"\t\t\t\tsaida += objetos[i].artista;",
+			"\t\t\t}",
+			"\t\t\tdiv.innerHTML = saida;",
+			"\t\t}",
+			"\t}",
+			"\txmlhttp.open(\"GET\", url, truehttps://gist.github.com/sistematico/c1bdf247c69edd60206b48fa9bc4cf11);",
+			"\txmlhttp.send();",
+			"};"
+		],
+		"description": "Retrieve data from URL using JavaScript and JSON object"
+	},
+	"setInterval": {
+		"prefix": "setinterval",
+		"body": [
+			"let interval = setInterval(${1:funcao},${2:1000});"
+		],
+		"description": "Set a interval"
+	}
+
+}

@@ -1,0 +1,37 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Abrir terminal aqui</name>
+	<unique-id>1540534870851127-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Exemplo de uma ação personalizada</description>
+	<upper>-1</upper>
+	<lower>-1</lower>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>preferences-desktop-wallpaper</icon>
+	<name>Definir como papel de parede</name>
+	<unique-id>1540534870851168-2</unique-id>
+	<command>xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path --create -t string -s \&quot;%f\&quot;</command>
+	<description>Implementing the entire wallpaper plugin with just a bit of XML</description>
+	<upper>1</upper>
+	<lower>0</lower>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>folder-pictures</icon>
+	<name>Ver Imagens</name>
+	<unique-id>1540971945177389-2</unique-id>
+	<command>viewnior.sh</command>
+	<description>Navega por todas as imagens de diretórios e subdiretórios</description>
+	<upper>-1</upper>
+	<lower>-1</lower>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>

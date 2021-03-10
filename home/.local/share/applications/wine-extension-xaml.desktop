@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Windows Presentation Foundation Host
+MimeType=application/xaml+xml;
+Exec=env WINEPREFIX="/home/lucas/.wine" wine start /ProgIDOpen Windows.XamlDocument %f
+NoDisplay=true
+StartupNotify=true
+Icon=00EF_PresentationHost.0

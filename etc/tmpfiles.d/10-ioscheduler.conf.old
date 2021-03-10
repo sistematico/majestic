@@ -1,0 +1,2 @@
+# Deprecated
+w /sys/block/sda/queue/scheduler - - - - bfq

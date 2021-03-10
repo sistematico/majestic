@@ -1,24 +1,22 @@
-# GRUB boot loader configuration
-
-GRUB_DEFAULT=saved
-GRUB_TIMEOUT=5
-GRUB_HIDDEN_TIMEOUT=0
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR="Arch"
-#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 nowatchdog"
+
+# Disable Ipv6
+#ipv6.disable=1
+#ipv6.disable_ipv6=1
+
+# SystemD Debug
+#GRUB_CMDLINE_LINUX_DEFAULT="systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on enforcing=0"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nomodeset nowatchdog net.ifnames=0"
 GRUB_CMDLINE_LINUX=""
-GRUB_DISABLE_SUBMENU=y
-GRUB_RECORDFAIL_TIMEOUT=$GRUB_HIDDEN_TIMEOUT
 
 # Preload both GPT and MBR modules so that they are not missed
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
 
-# Uncomment to enable booting from LUKS encrypted devices
-#GRUB_ENABLE_CRYPTODISK=y
-
-# Set to 'countdown' or 'hidden' to change timeout behavior,
-# press ESC key to display menu.
-GRUB_TIMEOUT_STYLE=menu
+# Uncomment to enable Hidden Menu, and optionally hide the timeout count
+#GRUB_HIDDEN_TIMEOUT=5
+#GRUB_HIDDEN_TIMEOUT_QUIET=true
 
 # Uncomment to use basic console
 GRUB_TERMINAL_INPUT=console
@@ -29,41 +27,28 @@ GRUB_TERMINAL_INPUT=console
 # The resolution used on graphical terminal
 # note that you can use only modes which your graphic card supports via VBE
 # you can see them in real GRUB with the command `vbeinfo'
-#
-# 640x400, 8/16/24 bits
-# 800x600, 8/16/24 bits
-# 1024x768, 8/16/24 bits
-# 1280x720, 8/16/24 bits
-# 1280x1024, 8/16/24 bits
-# 1280x800, 8/16/24 bits
-# 1600x1200, 8/16/24 bits
-
-#GRUB_GFXMODE=auto
-#GRUB_GFXMODE=1600x1200x24
-GRUB_GFXMODE=1280x800x24
+GRUB_GFXMODE=auto
 
 # Uncomment to allow the kernel use the same resolution used by grub
 GRUB_GFXPAYLOAD_LINUX=keep
 
-# Uncomment if you want GRUB to pass to the Linux kernel the old parameter
-# format "root=/dev/xxx" instead of "root=/dev/disk/by-uuid/xxx"
+# Uncomment if you want GRUB to pass to the Linux kernel the old parameter 
+# format "root=/dev/xxx" instead of "root=/dev/disk/by-uuid/xxx" 
 #GRUB_DISABLE_LINUX_UUID=true
 
 # Uncomment to disable generation of recovery mode menu entries
 GRUB_DISABLE_RECOVERY=true
 
-# Uncomment and set to the desired menu colors.  Used by normal and wallpaper
+# Uncomment and set to the desired menu colors.  Used by normal and wallpaper 
 # modes only.  Entries specified as foreground/background.
 #GRUB_COLOR_NORMAL="light-blue/black"
 #GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
 #GRUB_BACKGROUND="/path/to/wallpaper"
-GRUB_THEME="/usr/share/grub/themes/Vimix/theme.txt"
+GRUB_THEME="/usr/share/grub/themes/starfield/theme.txt"
 
 # Uncomment to get a beep at GRUB start
 #GRUB_INIT_TUNE="480 440 1"
 
-# Uncomment to make GRUB remember the last selection. This requires
-# setting 'GRUB_DEFAULT=saved' above.
-GRUB_SAVEDEFAULT="true"
+#GRUB_SAVEDEFAULT="true"

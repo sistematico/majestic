@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# i3lock custom script with added benefits
+#
+# Image rendering, converting, and pixelization are taken from https://www.reddit.com/r/unixporn/comments/3358vu/i3lock_unixpornworthy_lock_screen/. Credits to user `Babel2`.
+
+command -v jq 1> /dev/null 2> /dev/null
+if [ $? = 1 ]; then
+	echo "yad não instalado."
+	exit
+fi
+
+# Get keyboard layout code
+case "$(xset -q | grep LED | awk '{ print $10 }')" in
+  "00000000") kb_lang="eng";; # English
+  "00000002") kb_lang="eng";;
+  "00000003") kb_lang="Eng";; # Caps
+
+  "00001000") kb_lang="bg";; # Other
+  "00001002") kb_lang="bg";;
+  "00001003") kb_lang="Bg";; # Caps
+esac
+
+SCR_WIDTH=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+
+# Set joke to be less than the screen width or to the default one
+{
+  joke=$(curl -s 'https://api.chucknorris.io/jokes/random' | jq -r '.value')
+  joke_clear=$(echo $joke | sed "s/[\"|\']//g")
+  joke_len=$((${#joke_clear} * 12))
+
+  if [[ "$SCR_WIDTH" -le "$joke_len" ]] || [[ "$joke_clear" -eq "" ]]; then
+    joke="Chuck Norris is watching you..."
+    joke_len=$((${#joke} * 12))
+  fi
+}
+
+IMAGE=/tmp/lockscreen.png
+TEXT=/tmp/locktext.png
+#ICON=$HOME/.config/i3/spaceship.png
+ICON=$HOME/desk/locker.png
+LANG=/tmp/lang.png
+
+# Build lock screen3
+maim $IMAGE
+convert $IMAGE -scale 10% -scale 1000% -fill black -colorize 25% $IMAGE
+convert -size "$joke_len"x60 xc:#FAFAFA -font ProggyCleanTTSZ -pointsize 24 -fill xc:#3F464D -gravity center -annotate +0+0 "$joke" $TEXT
+convert -size 35x30 xc:#3F464D -font Ubuntu -pointsize 12 -fill xc:#FAFAFA -gravity center -annotate +0+0 "$kb_lang" $LANG
+convert $IMAGE $TEXT -gravity center -geometry +0+200 -composite $IMAGE
+convert $IMAGE $LANG -gravity NorthEast -geometry +0+1 -composite $IMAGE
+convert $IMAGE $ICON -gravity center -composite -matte $IMAGE
+
+i3lock -n -u -i $IMAGE

@@ -1,48 +1,55 @@
-call plug#begin('~/.vim/plugged')
+" Main
+syntax on
+set nowrap
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set shortmess=F
 
-" Vim Airline
+" Syntax Highlight
+au BufNewFile,BufRead /*.rasi setf css
+
+" Remaps
+nnoremap <F5> "=strftime("%c")<CR>P
+inoremap <F5> <C-R>=strftime("%c")<CR>
+cabbrev q q!
+" unmap <C-x>
+nnoremap <C-x> <esc><return>:qa<return>
+inoremap <C-x> <esc><return>:qa<return>
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Dracula
-" Plug 'dracula/vim', { 'as': 'dracula' }
-
-" Nord
-Plug 'arcticicestudio/nord-vim'
-
 call plug#end()
 
-set guifont=Ubuntu\ Mono:h15:cANSI
+filetype plugin indent on    " required
 
-syntax enable
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 
-" Nord
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+set t_Co=256
+" colorscheme minimalist
 colorscheme nord
-let g:airline_theme='nord_minimal'
-
-" Dracula
-"packadd! dracula
-"let g:dracula_colorterm = 0
-"colorscheme dracula
-
-filetype plugin indent on
-syntax on
-
-set whichwrap=b,s,<,>,[,]
-set mouse=a
-set noshowmode
-set cmdheight=1
-set tabstop=4 shiftwidth=4 expandtab
-
+" colorscheme dracula2
+" let g:airline_theme='minimalist'
+let g:airline_theme='nord'
+" let g:airline_theme='dracula'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='minimalist'
-let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#enabled = 1
 
-inoremap <C-s> <esc>:w<cr>                 " save files
-nnoremap <C-s> :w<cr>
-
-inoremap <C-d> <esc>:wq!<cr>               " save and exit
-nnoremap <C-d> :wq!<cr>
-
-inoremap <C-q> <esc>:qa!<cr>               " quit discarding changes
-nnoremap <C-q> :qa!<cr>
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+" set laststatus=2 " Always display the statusline in all windows
+" set showtabline=2 " Always display the tabline, even if there is only one tab
+set guifont=Inconsolata:h15

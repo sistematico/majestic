@@ -1,13 +1,3 @@
-# Vars used in functions.
-STORAGE="/media/storage"
-
-function cpr() {
-  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
-} 
-function mvr() {
-  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
-}
-
 # Docker
 dlg () {
   docker exec -it $1 bash
@@ -26,67 +16,19 @@ function mm() {
 	params=\"$@\"
 	killall mpv 1> /dev/null 2> /dev/null
 	sleep 1
+    #(mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params") > /dev/null 2>&1 &
+	#(mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params") > /dev/null 2> /dev/null &
 	(mpv --really-quiet --profile=youtube-cache ytdl://ytsearch:"$params") > /dev/null 2> /dev/null &
+
+	#i3-msg '[class="mpv"] sticky enable' > /dev/null 2> /dev/null &
+
+    #mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params" > /dev/null 2>&1 &
+    #i3-msg '[class="mpv"] sticky enable' > /dev/null 2>&1
 }
 
 function mma() {
-    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@" # ytdl://ytsearch10:"$@"
-}
-
-# rsync
-function fullsync() {
-	[ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
-	
-    rsync -aAXvzz \
-    --exclude-from "$HOME/.config/rsync-excludes.list" \
-    root@${1}:/ $STORAGE/vps/${1}/
-}
-
-function fullsite() {
-    [ ! -d $STORAGE/sites/${1}/var/www ] && mkdir -p $STORAGE/sites/${1}/var/www
-	rsync -aAXvzz \
-    --exclude="node_modules/" \
-    --exclude="*.mp4" \
-    --exclude="*.mp3" \
-    --exclude=".git/" \
-    --exclude=".gitignore" \
-    nginx@${1}:/var/www/ $STORAGE/sites/${1}/var/www/
-}
-
-function songdown() {
-    [ ! -d $STORAGE/audio/${1} ] && mkdir -p $STORAGE/audio/${1}
-
-    rsync -aAXvzz \
-    nginx@${1}:/opt/liquidsoap/music/ \
-	$STORAGE/audio/${1}/ $2
-
-    find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
-	find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
-}
-
-function songup() {
-    [ ! -d $STORAGE/audio/${1} ] && mkdir -p $HOME/audio/${1}   
-
-    if [ -d $STORAGE/audio/${1} ]; then 
-		find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
-		find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
-	fi
-
-    rsync -aAXvzz \
-    $STORAGE/audio/${1}/ \
-    nginx@${1}:/opt/liquidsoap/music/ $2
-}
-
-function checkiso() {
-	if [ -f SHA512SUMS ]; then
-        sha512sum --ignore-missing -c SHA512SUMS
-        return
-	fi
-	
-	if [ -f SHA256SUMS ]; then
-        sha256sum --ignore-missing -c SHA256SUMS
-        return
-	fi
+    #mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@"
 }
 
 # mp3
@@ -114,18 +56,11 @@ twitch() {
  }
 
 # mpc
-mpcr () {
+mpcreload () {
 	if [ $1 ]; then
 		mpc rm $1
 		mpc save $1
-		mpc clear
-		mpc load $1
-		mpc play
 	fi
-}
-
-mpcl () {
-	$HOME/bin/mpc.sh
 }
 
 sudo() {
@@ -139,93 +74,3 @@ sudo() {
     *)        command sudo "$subcommand" "$@" ;;
   esac
 }
-
-# Gnome
-chshell() {
-    if [ ! $1 ]; then
-        echo "Temas disponíveis:"
-        echo
-        for tema in $(/usr/bin/ls /usr/share/themes); do
-            if [ -d /usr/share/themes/${tema} ]; then
-                if [ -d /usr/share/themes/${tema}/gnome-shell ]; then
-                    echo $tema
-                fi
-            fi
-        done
-        for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
-            if [ -d $HOME/.local/share/themes/${tema} ]; then
-                if [ -d $HOME/.local/share/themes/${tema}/gnome-shell ]; then
-                    echo $tema
-                fi
-            fi
-        done
-        return
-    fi
-
-    if [ ! -d $HOME/.local/share/themes/$1/gnome-shell ]; then
-        if [ ! -d /usr/share/themes/$1/gnome-shell ]; then
-            echo "Tema inválido"
-            return
-        fi
-    fi
-    echo "Trocando o tema"
-    gsettings set org.gnome.shell.extensions.user-theme name "$1"
-}
-
-chgtk() {
-    if [ ! $1 ]; then
-        echo "Temas disponíveis:"
-        for tema in $(/usr/bin/ls /usr/share/themes); do
-            if [ -d /usr/share/themes/${tema} ]; then
-                if [ -d /usr/share/themes/${tema}/gtk-3.0 ]; then
-                    echo $tema
-                fi
-            fi
-        done
-        for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
-            if [ -d $HOME/.local/share/themes/${tema} ]; then
-                if [ -d $HOME/.local/share/themes/${tema}/gtk-3.0 ]; then
-                    echo $tema
-                fi
-            fi
-        done
-        return
-    fi
-
-    if [ ! -d $HOME/.local/share/themes/$1/gtk-3.0 ]; then
-        if [ ! -d /usr/share/themes/$1/gtk-3.0 ]; then
-            echo "Tema inválido"
-            return
-        fi
-    fi
-    echo "Trocando o tema"    
-    gsettings set org.gnome.desktop.interface gtk-theme "$1"
-}
-
-chicon() {
-    if [ ! $1 ]; then
-        echo "Temas disponíveis:"
-        for tema in $(/usr/bin/ls /usr/share/icons); do
-            if [ -d "/usr/share/icons/${tema}" ]; then
-                echo $tema
-            fi            
-        done
-        for tema in $(/usr/bin/ls $HOME/.local/share/icons); do
-            if [ -d "$HOME/.local/share/icons/${tema}" ]; then
-                echo $tema
-            fi
-        done
-        return
-    fi
-
-    if [ ! -d $HOME/.local/share/icons/$1 ]; then
-        if [ ! -d /usr/share/icons/$1 ]; then
-            echo "Tema inválido"
-            return
-        fi
-    fi
-    echo "Trocando o tema" 
-    gsettings set org.gnome.desktop.interface icon-theme "$1"
-}
-
-

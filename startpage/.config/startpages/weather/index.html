@@ -1,0 +1,636 @@
+<head>
+  <meta charset="UTF-8">
+</head>
+<body onload="startTime(); GetJson();">
+<div>
+<div id="txt"></div>
+<ul>
+  <li>
+    <div class="containIcons">
+      <div data-element="icon_Obj0">
+        <div data-element="a_Obj0">
+          <div data-element="a_a_Obj0"></div>
+        </div>
+        <div data-element="b_Obj0">
+          <div data-element="b_a_Obj0"></div>
+          <div data-element="b_b_Obj0"></div>
+          </div>
+          <div data-element="c_Obj0"></div>
+        </div>
+      <div class="Text Obj0"></div>
+    </div>
+  </li>
+  <li>
+    <div class="containIcons">
+      <div data-element="icon_Obj1">
+        <div data-element="a_Obj1">
+          <div data-element="a_a_Obj1"></div>
+        </div>
+        <div data-element="b_Obj1">
+          <div data-element="b_a_Obj1"></div>
+          <div data-element="b_b_Obj1"></div>
+          </div>
+          <div data-element="c_Obj1"></div>
+        </div>
+      <div class="Text Obj1"></div>
+    </div>
+  </li>
+  <li>
+    <div class="containIcons">
+      <div data-element="icon_Obj2">
+        <div data-element="a_Obj2">
+          <div data-element="a_a_Obj2"></div>
+        </div>
+        <div data-element="b_Obj2">
+          <div data-element="b_a_Obj2"></div>
+          <div data-element="b_b_Obj2"></div>
+          </div>
+          <div data-element="c_Obj2"></div>
+        </div>
+      <div class="Text Obj2"></div>
+    </div>
+  </li>
+  <li>
+    <div class="containIcons">
+      <div data-element="icon_Obj3">
+        <div data-element="a_Obj3">
+          <div data-element="a_a_Obj3"></div>
+        </div>
+        <div data-element="b_Obj3">
+          <div data-element="b_a_Obj3"></div>
+          <div data-element="b_b_Obj3"></div>
+          </div>
+          <div data-element="c_Obj3"></div>
+        </div>
+      <div class="Text Obj3"></div>
+    </div>
+  </li>
+  <li>
+    <div class="containIcons">
+      <div data-element="icon_Obj4">
+        <div data-element="a_Obj4">
+          <div data-element="a_a_Obj4"></div>
+        </div>
+        <div data-element="b_Obj4">
+          <div data-element="b_a_Obj4"></div>
+          <div data-element="b_b_Obj4"></div>
+          </div>
+          <div data-element="c_Obj4"></div>
+        </div>
+      <div class="Text Obj4"></div>
+    </div>
+  </li>
+  <li>
+    <div class="containIcons">
+      <div data-element="icon_Obj5">
+        <div data-element="a_Obj5">
+          <div data-element="a_a_Obj5"></div>
+        </div>
+        <div data-element="b_Obj5">
+          <div data-element="b_a_Obj5"></div>
+          <div data-element="b_b_Obj5"></div>
+          </div>
+          <div data-element="c_Obj5"></div>
+        </div>
+      <div class="Text Obj5"></div>
+    </div>
+  </li>
+</ul>
+</div>
+<form class="SearchForm"  method="get" action="https://google.com/search" autocomplete="off">
+  <input class="searchBox" id="searchBox" name="q" type="text" placeholder="" autofocus>
+</form>
+</body>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body {
+  background-color: #161616;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.SearchForm {
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.searchBox {
+  font-size: 5em;
+  text-align: center;
+  background-color: #161616;
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 white;
+}
+
+.searchBox:focus {
+  outline:0;
+}
+
+#txt {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5em;
+  color: white;
+}
+
+ul {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  position: relative;
+  float: Left;
+  margin: 0.5em;
+}
+
+.Text {
+  color: #ddd;
+}
+
+.icon {
+  position: relative;
+  color: #161616;
+  position: relative;
+  display: inline-block;
+  width: 12em;
+  height: 10em;
+  font-size: 0.7em; /* control icon size here */
+}
+
+.cloud {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 3.6875em;
+  height: 3.6875em;
+  margin: -1.84375em;
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow:
+    -2.1875em 0.6875em 0 -0.6875em,
+    2.0625em 0.9375em 0 -0.9375em,
+    0 0 0 0.375em #fff,
+    -2.1875em 0.6875em 0 -0.3125em #fff,
+    2.0625em 0.9375em 0 -0.5625em #fff;
+}
+.cloud:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -0.5em;
+  display: block;
+  width: 4.5625em;
+  height: 1em;
+  background: currentColor;
+  box-shadow: 0 0.4375em 0 -0.0625em #fff;
+}
+.cloud:nth-child(2) {
+  z-index: 0;
+  background: #fff;
+  box-shadow:
+    -2.1875em 0.6875em 0 -0.6875em #fff,
+    2.0625em 0.9375em 0 -0.9375em #fff,
+    0 0 0 0.375em #fff,
+    -2.1875em 0.6875em 0 -0.3125em #fff,
+    2.0625em 0.9375em 0 -0.5625em #fff;
+  opacity: 0.3;
+  transform: scale(0.5) translate(6em, -3em);
+  animation: cloud 4s linear infinite;
+}
+.cloud:nth-child(2):after { background: #fff; }
+
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  margin: -1.25em;
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.375em #fff;
+  animation: spin 12s infinite linear;
+}
+.rays {
+  position: absolute;
+  top: -2em;
+  left: 50%;
+  display: block;
+  width: 0.375em;
+  height: 1.125em;
+  margin-left: -0.1875em;
+  background: #fff;
+  border-radius: 0.25em;
+  box-shadow: 0 5.375em #fff;
+}
+.rays:before,
+.rays:after {
+  content: '';
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  display: block;
+  width: 0.375em;
+  height: 1.125em;
+  transform: rotate(60deg);
+  transform-origin: 50% 3.25em;
+  background: #fff;
+  border-radius: 0.25em;
+  box-shadow: 0 5.375em #fff;
+}
+.rays:before {
+  transform: rotate(120deg);
+}
+.cloud + .sun {
+  margin: -2em 1em;
+}
+
+.rain,
+.lightning,
+.snow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 3.75em;
+  height: 3.75em;
+  margin: 0.375em 0 0 -2em;
+  background: currentColor;
+}
+
+.rain:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 1.125em;
+  height: 1.125em;
+  margin: -1em 0 0 -0.25em;
+  background: #0cf;
+  border-radius: 100% 0 60% 50% / 60% 0 100% 50%;
+  box-shadow:
+    0.625em 0.875em 0 -0.125em rgba(255,255,255,0.2),
+    -0.875em 1.125em 0 -0.125em rgba(255,255,255,0.2),
+    -1.375em -0.125em 0 rgba(255,255,255,0.2);
+  transform: rotate(-28deg);
+  animation: rain 3s linear infinite;
+}
+
+.bolt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -0.25em 0 0 -0.125em;
+  color: #fff;
+  opacity: 0.3;
+  animation: lightning 2s linear infinite;
+}
+.bolt:nth-child(2) {
+  width: 0.5em;
+  height: 0.25em;
+  margin: -1.75em 0 0 -1.875em;
+  transform: translate(2.5em, 2.25em);
+  opacity: 0.2;
+  animation: lightning 1.5s linear infinite;
+}
+.bolt:before,
+.bolt:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  margin: -1.625em 0 0 -1.0125em;
+  border-top: 1.25em solid transparent;
+  border-right: 0.75em solid;
+  border-bottom: 0.75em solid;
+  border-left: 0.5em solid transparent;
+  transform: skewX(-10deg);
+}
+.bolt:after {
+  margin: -0.25em 0 0 -0.25em;
+  border-top: 0.75em solid;
+  border-right: 0.5em solid transparent;
+  border-bottom: 1.25em solid transparent;
+  border-left: 0.75em solid;
+  transform: skewX(-10deg);
+}
+.bolt:nth-child(2):before {
+  margin: -0.75em 0 0 -0.5em;
+  border-top: 0.625em solid transparent;
+  border-right: 0.375em solid;
+  border-bottom: 0.375em solid;
+  border-left: 0.25em solid transparent;
+}
+.bolt:nth-child(2):after {
+  margin: -0.125em 0 0 -0.125em;
+  border-top: 0.375em solid;
+  border-right: 0.25em solid transparent;
+  border-bottom: 0.625em solid transparent;
+  border-left: 0.375em solid;
+}
+
+.flake:before,
+.flake:after {
+  content: '\2744';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -1.025em 0 0 -1.0125em;
+  color: #fff;
+  list-height: 1em;
+  opacity: 0.2;
+  animation: spin 8s linear infinite reverse;
+}
+.flake:after {
+  margin: 0.125em 0 0 -1em;
+  font-size: 1.5em;
+  opacity: 0.4;
+  animation: spin 14s linear infinite;
+}
+.flake:nth-child(2):before {
+  margin: -0.5em 0 0 0.25em;
+  font-size: 1.25em;
+  opacity: 0.2;
+  animation: spin 10s linear infinite;
+}
+.flake:nth-child(2):after {
+  margin: 0.375em 0 0 0.125em;
+  font-size: 2em;
+  opacity: 0.4;
+  animation: spin 16s linear infinite reverse;
+}
+
+
+/* Animations */
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes cloud {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translate(-200%, -3em);
+  }
+}
+
+@keyframes rain {
+  0% {
+    background: #0cf;
+    box-shadow:
+      0.625em 0.875em 0 -0.125em rgba(255,255,255,0.2),
+      -0.875em 1.125em 0 -0.125em rgba(255,255,255,0.2),
+      -1.375em -0.125em 0 #0cf;
+  }
+  25% {
+    box-shadow:
+      0.625em 0.875em 0 -0.125em rgba(255,255,255,0.2),
+      -0.875em 1.125em 0 -0.125em #0cf,
+      -1.375em -0.125em 0 rgba(255,255,255,0.2);
+  }
+  50% {
+    background: rgba(255,255,255,0.3);
+    box-shadow:
+      0.625em 0.875em 0 -0.125em #0cf,
+      -0.875em 1.125em 0 -0.125em rgba(255,255,255,0.2),
+      -1.375em -0.125em 0 rgba(255,255,255,0.2);
+  }
+  100% {
+    box-shadow:
+      0.625em 0.875em 0 -0.125em rgba(255,255,255,0.2),
+      -0.875em 1.125em 0 -0.125em rgba(255,255,255,0.2),
+      -1.375em -0.125em 0 #0cf;
+  }
+}
+
+@keyframes lightning {
+  45% {
+    color: #fff;
+    background: #fff;
+    opacity: 0.2;
+  }
+  50% {
+    color: #0cf;
+    background: #0cf;
+    opacity: 1;
+  }
+  55% {
+    color: #fff;
+    background: #fff;
+    opacity: 0.2;
+  }
+}
+
+</style>
+
+<script>
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    m = checkTime(m);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+var city = 'Campo+Grande' // Replace London with your City
+let url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&APPID=22d4e741c978538ccba7d43999bb6441"; //change metric to imperial to change units, go to line 519 
+
+var Output;
+async function GetJson() {
+  await fetch(url)
+      .then(res => res.json())
+      .then((out) => {
+          Output = out
+          console.log(Output);
+  }).catch(err => console.error(err));
+  //console.log(Output);
+  Work();
+}
+
+
+var i = 0;
+function Work() {
+  console.log("Start Work,i =" + i)
+//for (i = 0; i < 40; i+=8) {
+  while (i <= 40) {
+  if (i > Output.list.length-7) {
+    console.log("Last one")
+    i  = Output.list.length-1
+    console.log("i " + i)
+    AddDayAndTemerature(whichObject, i)
+    AddWeatherIcons()
+    break;
+    }
+
+  console.log("i " + i)
+  AddDayAndTemerature(whichObject, i)
+  AddWeatherIcons()
+
+  whichObject += 1
+  i += 8
+  }
+}
+function AddWeatherIcons() {
+  switch (Output.list[i].weather["0"].main) {
+    case "Rain":
+      console.log("Rain")
+      rainy()
+      break;
+    case "Clouds":
+        console.log("Clouds")
+        cloudy()
+        break;
+    case "Clear":
+        console.log("Clear")
+        sunny()
+        break;
+    default:
+        console.log("Error: Weather not found - add to switch")
+  }
+}
+
+function AddDayAndTemerature(InputDays, InputHours) {
+
+  switch (((new Date().getDay()) + InputDays) % 7) {
+      case 0:
+        console.log("Sunday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Sunday, " + Output.list[InputHours].main.temp + "C°" // Change the C° for another unit; 
+        // use Math.floor(Output.list[InputHours].main.temp + 0.5) instead of Output.list[InputHours].main.temp to round the numbers
+        break;
+      case 1:
+        console.log("Monday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Monday, " + Output.list[InputHours].main.temp + "C°"
+        break;
+      case 2:
+        console.log("Tuesday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Tuesday, " + Output.list[InputHours].main.temp + "C°"
+        break;
+      case 3:
+        console.log("Wednesday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Wednesday, " + Output.list[InputHours].main.temp + "C°"
+        break;
+      case 4:
+        console.log("Thursday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Thursday, " + Output.list[InputHours].main.temp + "C°"
+        break;
+      case 5:
+      console.log(InputHours)
+        console.log("Friday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Friday, " + Output.list[InputHours].main.temp + "C°"
+        break;
+      case 6:
+        console.log("Saturday, " + Output.list[InputHours].main.temp + "C°")
+        document.querySelector("div.Text.Obj" + InputDays).innerHTML = "Saturday, " + Output.list[InputHours].main.temp + "C°"
+        break;
+    }
+}
+
+var whichObject = 0
+
+
+function sun_shower() {
+  console.log("sun_shower");
+  console.log("Icons has been added to " + whichObject)
+  document.querySelector("div[data-element=icon_Obj" + whichObject + "]").className ="icon sun-shower"
+  document.querySelector("div[data-element=a_Obj" + whichObject + "]").className ="cloud"
+  document.querySelector("div[data-element=a_a_Obj" + whichObject + "]").className =""
+  document.querySelector("div[data-element=b_Obj" + whichObject + "]").className ="sun"
+  document.querySelector("div[data-element=b_a_Obj" + whichObject + "]").className ="rays"
+  document.querySelector("div[data-element=b_b_Obj" + whichObject + "]").className =""
+  document.querySelector("div[data-element=c_Obj" + whichObject + "]").className ="rain"
+}
+
+function thunder_storm() {
+  console.log("thunder_storm")
+  console.log("Icons has been added to " + whichObject)
+  document.querySelector("div[data-element=icon_Obj" + whichObject + "]").className ="icon thunder-storm";
+  document.querySelector("div[data-element=a_Obj" + whichObject + "]").className = "cloud";
+  document.querySelector("div[data-element=a_a_Obj" + whichObject + "]").className = "cloud";
+  document.querySelector("div[data-element=b_Obj" + whichObject + "]").className = "lightning";
+  document.querySelector("div[data-element=b_a_Obj" + whichObject + "]").className = "bolt"
+  document.querySelector("div[data-element=b_b_Obj" + whichObject + "]").className = "bolt"
+  document.querySelector("div[data-element=c_Obj" + whichObject + "]").className =""
+}
+
+function cloudy() {
+  console.log("cloudy")
+  console.log("Icons has been added to " + whichObject)
+  document.querySelector("div[data-element=icon_Obj" + whichObject + "]").className ="icon cloudy";
+  document.querySelector("div[data-element=a_Obj" + whichObject + "]").className = "cloud";
+  document.querySelector("div[data-element=a_a_Obj" + whichObject + "]").className = "";
+  document.querySelector("div[data-element=b_Obj" + whichObject + "]").className = "cloud";
+  document.querySelector("div[data-element=b_a_Obj" + whichObject + "]").className = ""
+  document.querySelector("div[data-element=b_b_Obj" + whichObject + "]").className = ""
+  document.querySelector("div[data-element=c_Obj" + whichObject + "]").className =""
+}
+
+function flurries() {
+  console.log("flurries")
+  console.log("Icons has been added to " + whichObject)
+  document.querySelector("div[data-element=icon_Obj" + whichObject + "]").className ="icon flurries";
+  document.querySelector("div[data-element=a_Obj" + whichObject + "]").className = "cloud";
+  document.querySelector("div[data-element=a_a_Obj" + whichObject + "]").className = "";
+  document.querySelector("div[data-element=b_Obj" + whichObject + "]").className = "snow";
+  document.querySelector("div[data-element=b_a_Obj" + whichObject + "]").className = "flake"
+  document.querySelector("div[data-element=b_b_Obj" + whichObject + "]").className = "flake"
+  document.querySelector("div[data-element=c_Obj" + whichObject + "]").className =""
+}
+
+function sunny() {
+  console.log("sunny")
+  console.log("Icons has been added to " + whichObject)
+  document.querySelector("div[data-element=icon_Obj" + whichObject + "]").className ="icon sunny";
+  document.querySelector("div[data-element=a_Obj" + whichObject + "]").className = "sun";
+  document.querySelector("div[data-element=a_a_Obj" + whichObject + "]").className = "rays";
+  document.querySelector("div[data-element=b_Obj" + whichObject + "]").className = "";
+  document.querySelector("div[data-element=b_a_Obj" + whichObject + "]").className = ""
+  document.querySelector("div[data-element=b_b_Obj" + whichObject + "]").className = ""
+  document.querySelector("div[data-element=c_Obj" + whichObject + "]").className =""
+}
+
+function rainy() {
+  console.log("rainy")
+  console.log("Icons has been added to " + whichObject)
+  document.querySelector("div[data-element=icon_Obj" + whichObject + "]").className ="icon rainy";
+  document.querySelector("div[data-element=a_Obj" + whichObject + "]").className = "cloud";
+  document.querySelector("div[data-element=a_a_Obj" + whichObject + "]").className = "";
+  document.querySelector("div[data-element=b_Obj" + whichObject + "]").className = "rain";
+  document.querySelector("div[data-element=b_a_Obj" + whichObject + "]").className = ""
+  document.querySelector("div[data-element=b_b_Obj" + whichObject + "]").className = ""
+  document.querySelector("div[data-element=c_Obj" + whichObject + "]").className =""
+}
+
+    document.getElementById('searchBox').onblur = function (event) {
+        var blurEl = this;
+        setTimeout(function() {
+            blurEl.focus()
+        }, 10);
+    };
+</script>

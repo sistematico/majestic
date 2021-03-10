@@ -1,0 +1,750 @@
+;----------------------------------------------------------
+;		        I C O N E S
+;----------------------------------------------------------
+;                    
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                
+
+;----------------------------------------------------------
+;		        C O R E S
+;----------------------------------------------------------
+; 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C 
+; 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
+
+;----------------------------------------------------------
+;		        C O R E S
+;----------------------------------------------------------
+[colors]
+background = #2E3440
+background-alt = #434C5E
+foreground = ${xrdb:foreground:#222}
+foreground-alt = #555
+primary = #A3BE8C
+secondary = #D08770
+alert = #BF616A
+roxo = #b48ead
+
+;----------------------------------------------------------
+;		        B A R R A ( T O P )
+;----------------------------------------------------------
+[bar/top]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 29
+fixed-center = true
+
+locale = pt_BR.UTF-8 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.alert}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 1
+
+; fixed:pixelsize=11 / Hack:style=Regular:pixelsize=11 / Iosevka:style=Regular:pixelsize=11
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=11;2
+font-1 = feather:style=Regular:pixelsize=11;3
+font-2 = FontAwesome:size=6;2
+font-3 = Termsynu:size=7;0
+font-4 = Moon Phases:size=10;3
+
+modules-left = i3 sep uptime pkg news
+modules-center = window
+modules-right = cpu memory hddled filesystem temperature netled network hackspeed data beats moon pulse powermenu
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+border-bottom-size = 2
+border-bottom-color = ${colors.secondary}
+
+;----------------------------------------------------------
+;		        B A R R A ( B O T T O M )
+;----------------------------------------------------------
+[bar/bottom]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 29
+fixed-center = true
+bottom = true
+
+locale = pt_BR.UTF-8
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.alert}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 1
+
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=11;2
+font-1 = feather:style=Regular:pixelsize=11;3
+
+modules-left = browser terminal editor thunar docker telegram steam sep tdocker tmpd sep btcusd
+modules-center = mpd
+modules-right = weather sep dl notes wallpaper screencast screenshot refresh tv lixo
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+border-top-size = 2
+border-top-color = ${colors.secondary}
+
+;----------------------------------------------------------
+;		        I 3
+;----------------------------------------------------------
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+strip-wsnumbers = true
+
+label-mode = %mode%
+label-mode-foreground = ${colors.secondary}
+label-mode-padding = 1
+
+label-focused = %name%
+label-focused-foreground = ${colors.secondary}
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 1
+
+label-unfocused = %name%
+label-unfocused-padding = 1
+
+label-visible = %name%
+label-visible-background = ${colors.background-alt}
+label-visible-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+;----------------------------------------------------------
+;		       C R Y P T O
+;----------------------------------------------------------
+[module/btcusd]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+exec = ~/.config/polybar/scripts/btc-usd.sh
+interval = 300
+
+;----------------------------------------------------------
+;		       U P T I M E
+;----------------------------------------------------------
+[module/uptime]
+type = custom/script
+interval = 30
+exec = ~/.config/polybar/scripts/uptime.sh
+
+;----------------------------------------------------------
+;		        P K G
+;----------------------------------------------------------
+[module/pkg]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+click-left = ~/.config/polybar/scripts/pkg.sh -u &
+exec = ~/.config/polybar/scripts/pkg.sh
+interval = 600
+
+;----------------------------------------------------------
+;		        N E W S
+;----------------------------------------------------------
+[module/news]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+
+format = <label>
+label = %output:0:40:...%
+
+exec = ~/.config/polybar/scripts/anews.py
+interval = 600
+
+;----------------------------------------------------------
+;		        W I N D O W
+;----------------------------------------------------------
+[module/window]
+type = custom/script
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+;label = %output:0:45:...%  %{B- -o -u}
+label = %output:0:40:...%
+click-left = ~/.config/polybar/scripts/janela.sh -i
+click-middle = ~/.config/polybar/scripts/janela.sh -c
+click-right = ~/.config/polybar/scripts/janela.sh -w
+exec = ~/.config/polybar/scripts/janela.sh
+
+;-------------------------------------------------------------------------
+;              C P U
+;-------------------------------------------------------------------------
+[module/cpu]
+type = internal/cpu
+interval = 1.5
+
+;format = <ramp-coreload>
+format = <label> <ramp-coreload>
+;format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+
+label = %percentage:2%%
+;label-foreground = #99
+
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 3
+;ramp-coreload-0-foreground = ${colors.secondary}
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 3
+;ramp-coreload-1-foreground = ${colors.secondary}
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 3
+;ramp-coreload-2-foreground = ${colors.secondary}
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 3
+;ramp-coreload-3-foreground = ${colors.secondary}
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 3
+;ramp-coreload-4-foreground = ${colors.secondary}
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 3
+;ramp-coreload-5-foreground = ${colors.secondary}
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 3
+;ramp-coreload-6-foreground = ${colors.secondary}
+ramp-coreload-7 = █
+ramp-coreload-7-font = 3
+;ramp-coreload-7-foreground = ${colors.secondary}
+
+;-------------------------------------------------------------------------
+;              M E M O R I A
+;-------------------------------------------------------------------------
+[module/memory]
+type = internal/memory
+interval = 0.5
+
+;format = <bar-used>
+format = <label> <bar-used>
+;format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+
+label = %percentage_used:2%%
+
+bar-used-width = 8
+bar-used-gradient = true
+;bar-used-foreground-0 = #449f3d
+;bar-used-foreground-1 = #2f8419
+;bar-used-foreground-2 = #f5a70a
+;bar-used-foreground-3 = #ed5456
+;bar-used-foreground-0 = ${colors.secondary}
+;bar-used-foreground-1 = ${colors.secondary}
+;bar-used-foreground-2 = ${colors.secondary}
+;bar-used-foreground-3 = ${colors.secondary}
+bar-used-indicator = █
+bar-used-indicator-font = 3
+;bar-used-indicator-foreground = #fff
+bar-used-indicator-foreground = ${colors.secondary}
+bar-used-fill = █
+bar-used-fill-font = 3
+bar-used-empty = █
+bar-used-empty-font = 3
+bar-used-empty-foreground = #44
+
+;----------------------------------------------------------
+;              H D D L E D
+;----------------------------------------------------------
+[module/hddled]
+type = custom/script
+exec = ~/.config/polybar/scripts/hdd.sh
+tail = true
+
+;-------------------------------------------------------------------------
+;              D I S C O
+;-------------------------------------------------------------------------
+[module/filesystem]
+type = internal/fs
+interval = 60
+
+;mount-0 = /
+;mount-1 = /home
+mount-0 = /home
+
+;fixed-values = true
+;spacing = 2
+
+;format-mounted-prefix = " "
+;format-mounted-prefix-foreground = ${colors.secondary}
+format = <label>
+
+format-mounted = <label-mounted>
+
+;label-mounted = %mountpoint% %percentage_used%%
+label-mounted = %percentage_used%%
+label-unmounted = %mountpoint% não montado
+;label-unmounted-foreground = ${colors.foreground-alt}
+
+;-------------------------------------------------------------------------
+;              T E M P
+;-------------------------------------------------------------------------
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format-prefix = ""
+format-prefix-foreground = ${colors.secondary}
+
+format-warn-prefix = ""
+format-warn-prefix-foreground = ${colors.secondary}
+
+format = <label>
+format-warn = <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+;----------------------------------------------------------
+;              N E T L E D IN
+;----------------------------------------------------------
+[module/netled]
+type = custom/script
+exec = ~/.config/polybar/scripts/netled.sh
+tail = true
+
+;----------------------------------------------------------
+;		        N E T W O R K
+;----------------------------------------------------------
+[module/network]
+type = internal/network
+interface = eno1
+interval = 3.0
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <label-connected>
+;format-connected-prefix = " "
+;format-connected-prefix-foreground = ${colors.secondary}
+
+format-disconnected = <label-disconnected>
+;format-disconnected-prefix = " "
+;format-disconnected-prefix-foreground = ${colors.secondary}
+
+format-packetloss = <label-packetloss>
+;format-packetloss-prefix = " "
+;format-packetloss-prefix-foreground = ${colors.secondary}
+
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+;label-connected = %downspeed:3% %upspeed:3%
+label-connected = %downspeed:3%
+;label-connected = %ifname%
+label-disconnected = offline
+label-packetloss = loss
+
+;----------------------------------------------------------
+;		        H A C K S P E E D
+;----------------------------------------------------------
+[module/hackspeed]
+type = custom/script
+exec = ~/.config/polybar/scripts/hackspeed.sh
+tail = true
+
+;-------------------------------------------------------------------------
+;              D A T A
+;-------------------------------------------------------------------------
+[module/data]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %a, %d-%m-%Y"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.secondary}
+
+label = %date% %time%
+
+;----------------------------------------------------------
+;			    B E A T S
+;----------------------------------------------------------
+[module/beats]
+type = custom/script
+exec =  ~/.config/polybar/scripts/beats.sh
+click-left = ~/.config/rofi/scripts/alarme &
+label = %output%
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+
+;----------------------------------------------------------
+;			 M O O N P H A S E
+;----------------------------------------------------------
+[module/moon]
+type = custom/script
+interval = 600
+label-font = 5
+exec =  ~/.config/polybar/scripts/moonphase.py
+click-left = notify-send -i ~/.config/dunst/icons/moon.svg "Fases da Lua" "$(python2 ~/.config/polybar/scripts/moonphase.py desc)" &
+label = %output%
+format = <label>
+format-foreground = ${colors.secondary}
+
+;-------------------------------------------------------------------------
+;              P U L S E
+;-------------------------------------------------------------------------
+[module/pulse]
+type = internal/pulseaudio
+
+format-volume-prefix = "%{T2}%{T-} "
+format-volume-prefix-foreground = ${colors.secondary}
+
+format-volume = <label-volume>
+label-volume = %percentage%%
+
+label-muted = 
+label-muted-foreground = ${colors.secondary}
+
+;-------------------------------------------------------------------------
+;              P O W E R M E N U
+;-------------------------------------------------------------------------
+[module/powermenu]
+type = custom/menu
+
+;expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+
+label-close = " "
+label-close-foreground = ${colors.secondary}
+
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = sair
+menu-0-0-exec = menu-open-1
+
+menu-0-1 = suspender
+menu-0-1-exec = menu-open-2
+
+menu-0-2 = reiniciar
+menu-0-2-exec = menu-open-3
+
+menu-0-3 = desligar
+menu-0-3-exec = menu-open-4
+
+menu-1-0 = SAIR?!
+menu-1-0-exec = i3-msg exit
+
+menu-2-0 = SUSPENDER?!
+menu-2-0-exec = systemctl suspend
+
+menu-3-0 = REINICIAR?!
+menu-3-0-exec = systemctl reboot
+
+menu-4-0 = DESLIGAR?!
+menu-4-0-exec = systemctl poweroff
+
+;----------------------------------------------------------
+;              M P D
+;----------------------------------------------------------
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+interval = 2
+
+;format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+format-online = <label-song>
+format-offline = <label-offline>
+
+label-song = %{F#D08770}%{F-} %artist% - %title%
+label-offline = %{F#D08770}%{F-} mpd
+
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = stp
+icon-prev = prev
+icon-next = next
+icon-seekb = seekb
+icon-seekf = seekf
+icon-random = rdm
+icon-repeat = 
+icon-repeatone = ¹
+icon-single = single
+icon-consume = consume
+
+;----------------------------------------------------------
+;              N E T L E D OUT
+;----------------------------------------------------------
+[module/netledout]
+type = custom/script
+exec = ~/.config/polybar/scripts/netled.sh out
+tail = true
+
+;----------------------------------------------------------
+;		       W E A T H E R
+;----------------------------------------------------------
+[module/weather]
+type = custom/script
+interval = 60
+exec = ~/.config/polybar/scripts/weather.py
+
+;----------------------------------------------------------
+;		        D O W N L O A D S
+;----------------------------------------------------------
+[module/dl]
+type = custom/script
+interval = 5
+click-left = ~/.config/polybar/scripts/downloads.sh x > /dev/null 2> /dev/null &
+click-middle = ~/.config/polybar/scripts/downloads.sh c > /dev/null 2> /dev/null &
+click-right = ~/.config/polybar/scripts/downloads.sh i > /dev/null 2> /dev/null &
+exec = ~/.config/polybar/scripts/downloads.sh
+
+;----------------------------------------------------------
+;              P I N G
+;----------------------------------------------------------
+[module/ping]
+type = custom/script
+exec = ~/.config/polybar/scripts/ping2.sh
+interval = 30
+
+;----------------------------------------------------------
+;		        W A L L P A P E R
+;----------------------------------------------------------
+[module/wallpaper]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = ~/.config/polybar/scripts/wallpaper.sh x &
+;click-middle = ~/.config/polybar/scripts/wallpaper.sh dd &
+click-middle = ~/.config/polybar/scripts/wallpaper.sh rr &
+click-right = ~/.config/polybar/scripts/wallpaper.sh d &
+scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
+scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
+
+;----------------------------------------------------------
+;			S C R E E N C A S T
+;----------------------------------------------------------
+[module/screencast]
+type = custom/script
+;interval = 1
+label = %output%
+click-left = termite -e ~/.local/bin/screencast &
+click-right = ~/.local/bin/screencast clear &
+exec = ~/.local/bin/screencast status
+tail = true
+
+;----------------------------------------------------------
+;			S C R E E N S H O T
+;----------------------------------------------------------
+[module/screenshot]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = ~/.local/bin/screenshot &
+click-middle = ~/.local/bin/screenshot -w &
+click-right = ~/.local/bin/screenshot -c &
+scroll-down = ~/.local/bin/screenshot -e &
+
+;----------------------------------------------------------
+;		       T V
+;----------------------------------------------------------
+[module/tv]
+type = custom/script
+interval = 5
+click-left = ~/.config/polybar/scripts/tv.sh -x &
+exec = ~/.config/polybar/scripts/tv.sh
+
+;----------------------------------------------------------
+;		       L I X E I R A
+;----------------------------------------------------------
+[module/lixo]
+type = custom/script
+tail = true
+click-middle = ~/.config/polybar/scripts/trash.sh -o &
+click-right = ~/.config/polybar/scripts/trash.sh -x &
+exec = ~/.config/polybar/scripts/trash.sh
+
+;----------------------------------------------------------
+;              T O G G L E S
+;----------------------------------------------------------
+[module/tdocker]
+type = custom/script
+click-left = ~/.config/polybar/scripts/systemd.sh -s docker x &
+exec = ~/.config/polybar/scripts/systemd.sh -s docker
+tail = true
+
+[module/tmpd]
+type = custom/script
+click-left = ~/.config/polybar/scripts/systemd.sh -u mpd x &
+exec = ~/.config/polybar/scripts/systemd.sh -u mpd
+tail = true
+
+[module/tclamav]
+type = custom/script
+click-left = ~/.config/polybar/scripts/systemd.sh -s clamav-daemon x &
+exec = ~/.config/polybar/scripts/systemd.sh -s clamav-daemon
+tail = true
+
+[module/tfreshclam]
+type = custom/script
+click-left = ~/.config/polybar/scripts/systemd.sh -s clamav-freshclam x &
+exec = ~/.config/polybar/scripts/systemd.sh -s clamav-freshclam
+tail = true
+
+;----------------------------------------------------------
+;		       N O T E S
+;----------------------------------------------------------
+[module/notes]
+type = custom/script
+interval = 5
+click-left = ~/.config/rofi/scripts/notes &
+exec = ~/.config/polybar/scripts/notes.sh
+
+;-------------------------------------------------------------------------
+;					O U T R O S
+;-------------------------------------------------------------------------
+[module/sep]
+type = custom/text
+content = 
+
+[module/sepv]
+type = custom/text
+content = 
+
+[module/lock]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = $HOME/.local/lock/fortune &
+
+[module/browser]
+type = custom/text
+content = "%{F#BF616A}%{F-}"
+click-left = firefox &
+click-middle = qutebrowser &
+click-right = chromium &
+
+[module/thunar]
+type = custom/text
+content = "%{F#EBCB8B}%{F-}"
+click-left = thunar &
+
+[module/terminal]
+type = custom/text
+content = "%{F#5E81AC}%{F-}"
+click-left = $TERMINAL &
+
+[module/telegram]
+type = custom/text
+content = "%{F#a3be8c}%{F-}"
+click-left = telegram-desktop &
+
+[module/steam]
+type = custom/text
+content = 
+content-foreground = ${colors.roxo}
+click-left = /usr/bin/steam > /dev/null 2> /dev/null &
+
+[module/deluge]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = deluge &
+
+[module/vbox]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = ~/.config/rofi/scripts/virtualbox &
+
+[module/docker]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = ~/.config/rofi/scripts/docker &
+
+[module/editor]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = code &
+click-right = subl &
+
+[module/refresh]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = i3-msg restart &
+
+[module/notes2]
+type = custom/text
+content = 
+content-foreground = ${colors.secondary}
+click-left = ~/.config/rofi/scripts/notes &
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

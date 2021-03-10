@@ -4,20 +4,13 @@
 #
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
-# Criado em: 20/12/2017 19:27:31
+# Criado em: 20/12/2017 19:27:31 
 # Última Atualização: 03/05/2018 17:36:08
-#
-# Créditos:
-# - https://unix.stackexchange.com/a/366655
-# - https://stackoverflow.com/a/3077316
-# - https://stackoverflow.com/a/3919908
-# - https://stackoverflow.com/a/27671738
 
-which wget >/dev/null 2>&1 || { echo >&2 "O programa wget não está instalado. Abortando."; exit 1; }
+which wget >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
 
-downloaded="/var/tmp/unsplash.txt"
 mask=$(date +'%Y-%m-%d_%H%M%S')
 nome="unsplash-${mask}"
 dir="${HOME}/img/unsplash"
@@ -25,69 +18,44 @@ arquivo="${dir}/${nome}.jpg"
 x=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $3}')
 y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
 max=100
-flush=1
-dconf=1
+clean=1
 
 [ ! -d $dir ] && mkdir -p $dir
 
-delWall() {
-	if [ -f ${HOME}/.unsplash ] && [ -f $(cat ${HOME}/.unsplash) ]; then
-        rm -f $(cat ${HOME}/.unsplash)
-        rdmWall
+if [ "$1" != "--flush" ] && [ $clean == 1 ]; then
+    if [ $(ls -1 $dir | wc -l) -gt $max ]; then
+	    echo "Mais que $max"
+	    echo "Apagando o último: $(ls -Lt1 $dir | tail -1)"
+	    rm $dir/$(ls -Lt1 $dir | tail -1)
     fi
-}
+fi
 
-rdmWall() {
-	arquivo=$dir/$(ls -1 "$dir" | shuf -n1)
-	setWall "$arquivo"
-}
+url="https://source.unsplash.com/${x}x${y}/?nature,water"
 
-setWall() {
-	if [ "$(file -b --mime-type ${1})" == "image/jpeg" ]; then
-		if [ "$DESKTOP_SESSION" == "mate" ]; then
-			gsettings set org.mate.background picture-filename "${1}"
-		elif [ "$DESKTOP_SESSION" == "gnome" ]; then
-		    if [ "$GSETTINGS_BACKEND" == "dconf" ]; then
-    			dconf write "/org/gnome/desktop/background/picture-uri" "'file://${1}'"
-			else
-                gsettings set org.gnome.desktop.background picture-uri "file://${1}"
-			fi
-		else
-			which feh >/dev/null 2>&1 && { feh --bg-fill "${1}"; }
-		fi
-		echo "${1}" > ${HOME}/.unsplash
-	fi
-}
 
-flush() {
-	if [ $(ls -1 $dir | wc -l) -gt $max ]; then
-		rm "$dir/$(ls -Lt1 $dir | tail -1)"
-	fi
-}
-
-clean() {
-	rm -f "${dir}/*.jpg"
-}
-
-[ $flush == 1 ] && flush
-
-if [ "$1" == "--delete" ]; then
-	delWall
-elif [ "$1" == "--clean" ]; then
-	clean
-elif [ "$1" == "--download" ]; then
-	if ! grep -w "$arquivo" $downloaded >/dev/null
-	then
-		#if WGET "$imgURL"; then
-		curl --max-time 120 --connect-timeout 10 -L -s "https://source.unsplash.com/${x}x${y}/?nature,water" > "$arquivo"
-		
-		if [ "$(file -b --mime-type $arquivo)" != "image/jpeg" ]; then
-			rm -f "$arquivo"
-		else
-			setWall "$arquivo"
-			echo "$arquivo" >> $downloaded
-		fi
-	fi
+if [ "$1" == "-d" ]; then
+	wget --server-response -q -O - "$url" 2>&1 | grep "Content-Disposition:" | tail -1 | awk -F"filename=" '{print $2}'
+	wget "$url" --content-disposition
+	#curl -L -s "$url" > $arquivo
+	#curl -O -J -L $url
+	#echo $arquivo > ~/.unsplash
 elif [ "$1" == "--random" ]; then
-	rdmWall
+	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
+	[ -f $arquivo ] && echo $arquivo > ~/.unsplash
+elif [ "$1" == "--flush" ]; then
+	rm -f $dir/*
+else
+	if [ -f ~/.unsplash ]; then
+		arquivo=$(cat ~/.unsplash)
+	fi
+fi
+
+if [ -f $arquivo ]; then
+	if [ "$DESKTOP_SESSION" == "mate" ]; then 
+   		gsettings set org.mate.background picture-filename "$arquivo"
+	elif [ "$DESKTOP_SESSION" == "gnome" ]; then 
+        gsettings set org.gnome.desktop.background picture-uri file://${arquivo}
+	else
+   		which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
+    fi  
 fi

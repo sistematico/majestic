@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -f $HOME/.disabled_srv ]; then
+	for i in $(cat $HOME/.disabled_srv); do 
+		systemctl --user stop $i; 
+	done
+fi

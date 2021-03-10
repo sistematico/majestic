@@ -8,7 +8,7 @@
 # Criado em:        2018-06-09 19:39:27
 # Última alteração: 2018-07-28 15:59:04
 
-titulo="Video Resize"
+titulo="Video Resize001"
 
 #    4:3 aspect ratio resolutions: 640×480, 800×600, 960×720, 1024×768, 1280×960, 1400×1050, 1440×1080 , 1600×1200, 1856×1392, 1920×1440, and 2048×1536.
 #    16:10 aspect ratio resolutions: - 1280×800, 1440×900, 1680×1050, 1920×1200 and 2560×1600.
@@ -32,14 +32,7 @@ caminho() {
 }
 
 #echo "$(echo "${res}" | awk '{$1=$1};1')"
-
-if [ ! $1 ]; then
-	video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" "$1" | awk '{$1=$1};1')
-	[[ -z $video ]] && exit 1
-else
-	video="$1"
-fi
-
+video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" "$1" | awk '{$1=$1};1')
 [[ -z $video ]] && exit 1
 
 novo=$(dirname "${video}")/$(nome "$video" "resize")

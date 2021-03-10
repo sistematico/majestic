@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    apache:
+        container_name: apache
+        image: httpd:latest
+        ports:
+            - "80:80"
+            - "443:443"
+        build:
+            context: ../../dockerfile/apache/
+            dockerfile: apache
+        volumes:
+            - ~/htdocs:/var/www/html
+        restart: unless-stopped

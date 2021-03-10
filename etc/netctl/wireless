@@ -1,0 +1,28 @@
+Description='Automatically generated profile by wifi-menu'
+Interface=wlan0
+Connection=wireless
+Security=none
+ESSID=Lucas
+IP=dhcp
+IP6=no
+Address=('192.168.0.1') 
+Gateway='192.168.0.100'
+# Local
+# DNS=('127.0.0.1')
+# Google
+# DNS=('8.8.8.8' '8.8.4.4')
+# OpenNIC
+# DNS=('185.121.177.177' '185.121.177.53')
+# Cisco Umbrella
+DNS=('208.67.222.222' '208.67.220.220')
+# Comodo
+# DNS=('8.26.56.26' '8.20.247.20')
+# Basic Yandex.DNS - Quick and reliable DNS
+# DNS=('77.88.8.8' '77.88.8.1')
+# Safe Yandex.DNS - Protection from virus and fraudulent content
+# DNS=('77.88.8.88' '77.88.8.2')
+# Family Yandex.DNS - Without adult content
+# DNS=('77.88.8.7' '77.88.8.3')
+# Quad9
+# DNS=('9.9.9.9' '9.9.9.10')
+

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Version=1.0
-Name=Headset Indicator
-Comment=Headset Indicator
-Exec=/usr/local/bin/headset-charge-indicator.py /usr/local/bin/headsetcontrol
-Icon=audio-headphones
-Terminal=false
-Categories=System

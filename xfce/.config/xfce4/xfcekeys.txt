@@ -1,0 +1,14 @@
+bash -c "${HOME}/bin/center.sh"			Shift+Ctrl+C
+bash -c "${HOME}/bin/dl.sh -a"			F9
+bash -c "${HOME}/bin/dl.sh -d"			F10
+bash -c "${HOME}/bin/dl.sh -dl"			F8
+bash -c "${HOME}/bin/dl.sh -x"			F11
+bash -c "${HOME}/bin/imgdown.sh"		F12
+bash -c "$HOME/.local/bin/screencast"	F5
+gmrun									Alt+F2
+mpc next								6
+mpc prev								4
+mpc toggle								5
+pactl -- set-sink-volume 0 +10%			+
+pactl -- set-sink-volume 0 -10%			-
+xfce4-screenshooter						Print

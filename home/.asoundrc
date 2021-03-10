@@ -1,0 +1,2 @@
+pcm.pulse { type pulse }
+ctl.pulse { type pulse }

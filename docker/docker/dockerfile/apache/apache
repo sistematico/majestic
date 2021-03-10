@@ -1,0 +1,9 @@
+FROM httpd:latest
+MAINTAINER Lucas Saliés Brum <lucas@archlinux.com.br>
+
+RUN apt-get update && apt-get -y upgrade && apt-get -y install php php-sqlite3 php-json curl
+
+EXPOSE 80
+EXPOSE 443
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

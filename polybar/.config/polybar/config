@@ -1,0 +1,461 @@
+;----------------------------------------------------------
+;		        C O R E S
+;----------------------------------------------------------
+; 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C 
+; 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
+
+;----------------------------------------------------------
+;		        C O R E S
+;----------------------------------------------------------
+[colors]
+; Transparente
+;background = #000000FF
+background = #2e3440
+background-alt = #434C5E
+foreground = #FFFFFF
+foreground-alt = #555
+primary = #A3BE8C
+secondary = #D08770
+alert = #BF616A
+roxo = #b48ead
+border = ${xrdb:border:#9dff00}
+theme = ${xrdb:border:#9dff00}
+
+;----------------------------------------------------------
+;		        B A R R A ( T O P )
+;----------------------------------------------------------
+[bar/top]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 29
+fixed-center = true
+
+locale = pt_BR.UTF-8 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-bottom-size = 2
+border-bottom-color = ${colors.border}
+
+line-size = 3
+line-color = ${colors.alert}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 1
+
+; fixed:pixelsize=11 / Hack:style=Regular:pixelsize=11 / Iosevka:style=Regular:pixelsize=11
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=11;2
+font-1 = feather:style=Regular:pixelsize=11;3
+font-2 = FontAwesome:size=6;2
+font-3 = Termsynu:size=7;0
+
+modules-left = i3
+modules-center = window
+modules-right = cpu memory temperature data pulse powermenu
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;----------------------------------------------------------
+;		        B A R R A ( B O T T O M )
+;----------------------------------------------------------
+[bar/bottom]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 29
+fixed-center = true
+bottom = true
+
+locale = pt_BR.UTF-8
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-top-size = 2
+border-top-color = ${colors.border}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 1
+
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=11;2
+font-1 = feather:style=Regular:pixelsize=11;3
+
+modules-left = browser thunar terminal editor telegram steam
+modules-center = mpd
+modules-right = dl theme wallpaper refresh tv lixo
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;----------------------------------------------------------
+;		        I 3
+;----------------------------------------------------------
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+strip-wsnumbers = true
+
+label-mode = %mode%
+label-mode-foreground = ${xrdb:border:#9dff00}
+label-mode-padding = 1
+
+label-focused = %name%
+label-focused-foreground = ${xrdb:border:#9dff00}
+label-focused-padding = 1
+
+label-unfocused = %name%
+label-unfocused-padding = 1
+
+label-visible = %name%
+label-visible-background = ${colors.background-alt}
+label-visible-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+;----------------------------------------------------------
+;		        D O W N L O A D S
+;----------------------------------------------------------
+[module/dl]
+type = custom/script
+interval = 5
+click-left = ~/.config/polybar/scripts/downloads.sh x > /dev/null 2> /dev/null &
+click-middle = ~/.config/polybar/scripts/downloads.sh c > /dev/null 2> /dev/null &
+click-right = ~/.config/polybar/scripts/downloads.sh i > /dev/null 2> /dev/null &
+exec = ~/.config/polybar/scripts/downloads.sh
+
+;----------------------------------------------------------
+;		       L I X E I R A
+;----------------------------------------------------------
+[module/lixo]
+type = custom/script
+tail = true
+click-middle = ~/.config/polybar/scripts/trash.sh -o &
+click-right = ~/.config/polybar/scripts/trash.sh -x &
+exec = ~/.config/polybar/scripts/trash.sh
+
+;----------------------------------------------------------
+;              M P D
+;----------------------------------------------------------
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+interval = 2
+
+;format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+format-online-prefix = " "
+format-online-prefix-foreground = ${xrdb:border:#9dff00}
+format-online = <label-song>
+format-offline = <label-offline>
+
+label-song = %artist% - %title%
+;label-offline = mpd
+label-offline = 
+
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = stp
+icon-prev = prev
+icon-next = next
+icon-seekb = seekb
+icon-seekf = seekf
+icon-random = rdm
+icon-repeat = 
+icon-repeatone = ¹
+icon-single = single
+icon-consume = consume
+
+;----------------------------------------------------------
+;		        W I N D O W
+;----------------------------------------------------------
+[module/window]
+type = custom/script
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${xrdb:border:#9dff00}
+;label = %output:0:45:...%  %{B- -o -u}
+label = %output:0:45:...%
+click-left = ~/.config/polybar/scripts/janela.sh -i
+click-middle = ~/.config/polybar/scripts/janela.sh -c
+click-right = ~/.config/polybar/scripts/janela.sh -w
+exec = ~/.config/polybar/scripts/janela.sh
+
+;-------------------------------------------------------------------------
+;              C P U
+;-------------------------------------------------------------------------
+[module/cpu]
+type = internal/cpu
+interval = 1.5
+
+format = <label>
+format-prefix = ""
+format-prefix-foreground = ${xrdb:border:#9dff00}
+label = %percentage:3%%
+
+;-------------------------------------------------------------------------
+;              M E M O R I A
+;-------------------------------------------------------------------------
+[module/memory]
+type = internal/memory
+interval = 0.5
+
+format = <label>
+format-prefix = 
+format-prefix-foreground = ${xrdb:border:#9dff00}
+label = %percentage_used:3%%
+
+;-------------------------------------------------------------------------
+;              D I S C O
+;-------------------------------------------------------------------------
+[module/filesystem]
+type = internal/fs
+interval = 60
+
+mount-0 = /
+format = <label>
+format-mounted = <label-mounted>
+label-mounted = %percentage_used%%
+label-unmounted = %mountpoint% não montado
+
+;-------------------------------------------------------------------------
+;              T E M P
+;-------------------------------------------------------------------------
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format-prefix = ""
+format-prefix-foreground = ${xrdb:border:#9dff00}
+format-warn-prefix = ""
+format = <label>
+format-warn = <label-warn>
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+;-------------------------------------------------------------------------
+;              D A T A
+;-------------------------------------------------------------------------
+[module/data]
+type = internal/date
+interval = 5
+
+format-prefix = " "
+format-prefix-foreground = ${xrdb:border:#9dff00}
+time = %H:%M
+time-alt = "%A %d-%m-%Y"
+label = %time%
+
+;-------------------------------------------------------------------------
+;              P U L S E
+;-------------------------------------------------------------------------
+[module/pulse]
+type = internal/pulseaudio
+
+label-muted = 
+ramp-volume-foreground = ${xrdb:border:#9dff00}
+format-volume = <ramp-volume>
+
+ramp-volume-0 = %{T2}%{T-}
+ramp-volume-1 = %{T2}%{T-}
+ramp-volume-2 = %{T2}%{T-}
+
+click-right = pavucontrol &
+
+;-------------------------------------------------------------------------
+;              P O W E R M E N U
+;-------------------------------------------------------------------------
+[module/powermenu]
+type = custom/menu
+
+;expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${xrdb:border:#9dff00}
+
+label-close = " "
+label-close-foreground = ${xrdb:border:#9dff00}
+
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = sair
+menu-0-0-exec = menu-open-1
+
+menu-0-1 = suspender
+menu-0-1-exec = menu-open-2
+
+menu-0-2 = reiniciar
+menu-0-2-exec = menu-open-3
+
+menu-0-3 = desligar
+menu-0-3-exec = menu-open-4
+
+menu-1-0 = SAIR?!
+menu-1-0-exec = i3-msg exit
+
+menu-2-0 = SUSPENDER?!
+menu-2-0-exec = systemctl suspend
+
+menu-3-0 = REINICIAR?!
+menu-3-0-exec = systemctl reboot
+
+menu-4-0 = DESLIGAR?!
+menu-4-0-exec = systemctl poweroff
+
+;----------------------------------------------------------
+;		        W A L L P A P E R
+;----------------------------------------------------------
+[module/wallpaper]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = ~/.config/polybar/scripts/wallpaper.sh x &
+;click-middle = ~/.config/polybar/scripts/wallpaper.sh dd &
+click-middle = ~/.config/polybar/scripts/wallpaper.sh rr &
+click-right = ~/.config/polybar/scripts/wallpaper.sh d &
+scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
+scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
+
+
+;----------------------------------------------------------
+;		       T V
+;----------------------------------------------------------
+[module/tv]
+type = custom/script
+interval = 5
+click-left = ~/.config/polybar/scripts/tv.sh -x &
+exec = ~/.config/polybar/scripts/tv.sh
+
+;-------------------------------------------------------------------------
+;					O U T R O S
+;-------------------------------------------------------------------------
+[module/sep]
+type = custom/text
+content = 
+
+[module/sepv]
+type = custom/text
+content = 
+
+[module/theme]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = $HOME/.config/polybar/scripts/theme.sh &
+
+[module/lock]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = $HOME/.local/lock/fortune &
+
+[module/browser]
+type = custom/text
+;content = "%{F#BF616A}%{F-}"
+content = ""
+content-foreground = ${xrdb:border:#9dff00}
+click-left = firefox &
+click-middle = qutebrowser &
+click-right = chromium &
+
+[module/thunar]
+type = custom/text
+;content = "%{F#EBCB8B}%{F-}"
+content = ""
+content-foreground = ${xrdb:border:#9dff00}
+click-left = thunar &
+
+[module/terminal]
+type = custom/text
+;content = "%{F#5E81AC}%{F-}"
+content = ""
+content-foreground = ${xrdb:border:#9dff00}
+click-left = $TERMINAL &
+
+[module/telegram]
+type = custom/text
+;content = "%{F#a3be8c}%{F-}"
+content = ""
+content-foreground = ${xrdb:border:#9dff00}
+click-left = telegram-desktop > /dev/null 2> /dev/null &
+
+[module/steam]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = /usr/bin/steam > /dev/null 2> /dev/null &
+
+[module/deluge]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = deluge &
+
+[module/vbox]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = ~/.config/rofi/scripts/virtualbox &
+
+[module/docker]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = ~/.config/rofi/scripts/docker &
+
+[module/editor]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = code &
+click-right = subl &
+
+[module/refresh]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = i3-msg restart &
+
+[module/notes2]
+type = custom/text
+content = 
+content-foreground = ${xrdb:border:#9dff00}
+click-left = ~/.config/rofi/scripts/notes &
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

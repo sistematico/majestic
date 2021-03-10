@@ -1,24 +1,37 @@
-# Majestic dotfiles (Arch Linux)
-Dotfiles do Arch Linux
+# sistematico dotfiles
 
-## Uso
- - `git clone https://github.com/sistematico/majestic ~/.dotfiles`
- - `pacman -S stow`
- - `cd ~/.dotfiles`
- - `stow bspwm`
- - `stow sxhkd`
- - `sudo stow -t /etc etc`
+![screenshot](https://raw.githubusercontent.com/sistematico/dotfiles/master/screenshot.png)
 
- ## Créditos
+## Requisitos
 
-- [Arch Linux](https://archlinux.org)
+- Sistema Operacional: `Arch Linux` [link](https://www.archlinux.org)
+- Gerenciador de Janelas: `i3-gaps` [link](https://github.com/Airblader/i3)
+- Barra: `polybar` [link](https://github.com/jaagr/polybar)
+- Shell: `bash` [link](https://www.gnu.org/software/bash/)
+- Terminal: `termite` [link](https://github.com/thestinger/termite)
+- Editor: `vim` [link](https://www.vim.org/)
+- Web Browser: `chromium` [link](http://www.chromium.org/Home)
+- Dotfiles: `stow` [link](https://www.gnu.org/software/stow/)
 
-## Contato
+## Instalação Manual(user)
 
-- lucas@archlinux.com.br
+1. Instale o `stow`
+2. `cd ~`
+3. `git clone https://github.com/sistematico/dotfiles .dotfiles`
+4. `cd .dotfiles`
+5. `stow i3`
+6. `stow polybar`
+7. `sudo stow -t /etc etc`
+8. `sudo stow -t /usr usr`
+9. `sudo stow -t /boot boot`
+10. `sudo stow -t / ngrok`
+11. `sudo stow -t / lightdm`
+12. `sudo stow -t / mate`
 
-## Ajude
+## Bônus!
 
-Se o meu trabalho foi útil de qualquer maneira, considere doar qualquer valor através do das seguintes plataformas:
+12. `sudo stow -t / agave`
 
-[![PagSeguro](https://img.shields.io/badge/PagSeguro-gray?logo=pagseguro&logoColor=white&style=flat-square)](https://pag.ae/bfxkQW) [![ko-fi](https://img.shields.io/badge/ko--fi-gray?logo=ko-fi&logoColor=white&style=flat-square)](https://ko-fi.com/L4L119L8J) [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-gray?logo=buy-me-a-coffee&logoColor=white&style=flat-square)](https://www.buymeacoffee.com/sistematico)
+## Instalação Automática
+
+`bash <(curl -s https://raw.githubusercontent.com/sistematico/dotfiles/master/install.sh)`

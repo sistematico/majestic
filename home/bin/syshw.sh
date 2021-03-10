@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-#
-# Arquivo: syshw.sh
-#
-# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
-#
-# Criado em: 16/03/2018 16:35:20
-# Última alteração: 01/09/2020 00:19:50
 
 clear
 
@@ -42,11 +35,7 @@ shell () {
 }
 
 terminal () {
-	if [[ "$TERMINAL" != "" ]]; then
-		cor-echo 'TR' $TERMINAL
-	else
-		cor-echo 'TR' urxvt
-	fi
+	cor-echo 'TR' $TERMINAL
 }
 
 cpu () {
@@ -55,8 +44,7 @@ cpu () {
     cpu=$(grep -m1 -i 'Processor' /proc/cpuinfo | awk -F ' ' '{print $1 $2 $3}')
   else
     #cpu=$(grep -m1 -i 'model name' /proc/cpuinfo | awk '{print $6}')
-    #cpu=$(grep -m1 -i 'model name' /proc/cpuinfo | awk -F: '{print $2}' | sed -e 's/^[[:space:]]*//')
-    cpu=$(cat /proc/cpuinfo | cat /proc/cpuinfo | awk '/model name/{print $4 " " $6; exit}')
+    cpu=$(grep -m1 -i 'model name' /proc/cpuinfo | awk -F: '{print $2}' | sed -e 's/^[[:space:]]*//')
   fi
   #cor-echo 'CP' "${cpu#*: }" # everything after colon is processor name
   cor-echo 'CP' "$cpu"
@@ -74,7 +62,7 @@ pacotes () {
 
 wm () {
 	if [ -z $DESKTOP_SESSION ]; then
-		WM="bspwm"
+		WM="i3-gaps"
 	else
 		WM=$DESKTOP_SESSION
 	fi

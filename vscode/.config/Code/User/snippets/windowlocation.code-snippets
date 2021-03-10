@@ -1,9 +1,0 @@
-{
-	"Window Location": {
-		"prefix": "location",
-		"body": [
-			"window.location.href = '${1:https://www.google.com.br}';"
-		],
-		"description": "JavaScript Redirect to Another Page"
-	}
-}

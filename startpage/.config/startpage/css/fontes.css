@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'Dosis';
+    src: url('fontes/dosis.woff2') format('woff2'),
+         url('fontes/dosis.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('fontes/lora.woff2') format('woff2'),
+         url('fontes/lora.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fontes/opensans.woff2') format('woff2'),
+         url('fontes/opensans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fontes/ubuntu.woff2') format('woff2'),
+         url('fontes/ubuntu.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

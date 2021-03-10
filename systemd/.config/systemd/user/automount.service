@@ -1,0 +1,9 @@
+[Unit]
+Description=AutoMount
+
+[Service]
+ExecStart=
+ExecStart=/usr/bin/udisksctl mount -b /dev/disk/by-id/ata-WDC_WD10PURZ-85U8XY0_WD-WCC4J5LLEZU1-part1
+
+[Install]
+WantedBy=default.target

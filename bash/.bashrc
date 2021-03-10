@@ -6,21 +6,6 @@
 [[ $- != *i* ]] && return
 
 ##################
-##### Vars    ####
-##################
-export AUTOSTART_XORG=1
-
-##################
-##### History  ###
-##################
-# Avoid duplicates
-export HISTCONTROL=ignoredups:erasedups
-
-# Size
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-
-##################
 ##### Opções  ####
 ##################
 # Ignora a caixa e alguns erros ao trocar de diretório
@@ -36,11 +21,15 @@ shopt -s autocd
 shopt -s histappend
 
 ##################
-##### Funções ####
+##### History  ###
 ##################
-if [[ -f ~/.bash_functions ]]; then
-    source ~/.bash_functions
-fi
+# Avoid duplicates
+export HISTCONTROL=ignoredups:erasedups
+
+# Size
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
 
 ##################
 ##### Aliases ####
@@ -52,8 +41,8 @@ fi
 ##################
 ##### Sources ####
 ##################
-if [ -f $HOME/.bash_colors ]; then
-	source $HOME/.bash_colors
+if [[ -f /etc/cores.inc ]]; then
+	source /etc/cores.inc
 fi
 
 if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
@@ -69,20 +58,37 @@ if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
 	source /usr/share/bash-completion/bash_completion
 fi
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+	source /etc/profile.d/vte.sh
+fi
+
+##################
+##### Funções ####
+##################
+if [[ -f ~/.bash_functions ]]; then
+    source ~/.bash_functions
+fi
+
 ##################
 ##### Prompt #####
 ##################
 # Sem cor
-#PS1='[\u@\h \W]:\$ '
+#PS1='[\u@\h \W]\$ '
 
-# Vim
-bind -r '\C-s'
-stty -ixon
+# Com cor
+PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-#trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+#if [ ! -e /tmp/.esd-${UID} ]; then
+if [[ ! -L /tmp/.esd-${UID} ]]; then
+        ln -s /tmp/.esd /tmp/.esd-${UID}
+fi
 
-d=.dircolors
-test -r $d && eval "$(dircolors $d)"
+if [ -f /usr/share/undistract-me/long-running.bash ]; then
+    . /usr/share/undistract-me/long-running.bash
+    notify_when_long_running_commands_finish_install
+fi
 
-# added by travis gem
-[ ! -s /home/lucas/.travis/travis.sh ] || source /home/lucas/.travis/travis.sh
+fortune chucknorris
+echo
+

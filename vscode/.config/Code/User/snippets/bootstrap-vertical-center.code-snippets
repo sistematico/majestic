@@ -1,0 +1,13 @@
+{
+	"Bootstrap Vertical Center": {
+		"prefix": "bscenter",
+		"body": [
+			"<div class=\"container h-100\">",
+			"\t<div class=\"row h-100 justify-content-center align-items-center\">",
+			"\t\t$1",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "Twitter Bootstrap 4 Vertical Center"
+	}
+}

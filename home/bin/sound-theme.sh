@@ -1,46 +1,45 @@
 #!/usr/bin/env bash
-#################################################################################
-#                                                                               #
-# sound-theme.sh                                                                #
-#                                                                               #
-# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>          #
-#                                                                               #
-# Criado em: 07-07-2020 07:44:51                                                #
-# Modificado em: 07-07-2020 08:13:02                                            #
-#                                                                               #
-# Este trabalho está licenciado com uma Licença Creative Commons                #
-# Atribuição 4.0 Internacional                                                  #
-# http://creativecommons.org/licenses/by/4.0/                                   #
-#                                                                               #
-#################################################################################
 
-command -v dialog >/dev/null 2>&1 || { echo "Programa dialog não encontrado. Abortando..." ; exit 1; }
-pacman -Qq libcanberra 1> /dev/null 2> /dev/null || { echo "Pacote libcanberra não encontrado. Abortando..." ; exit 1; }
-pacman -Qq libcanberra-pulse 1> /dev/null 2> /dev/null || { echo "Pacote libcanberra-pulse não encontrado. Abortando..." ; exit 1; }
-
-old=$(pwd)
-cd /usr/share/sounds
-
-i=1
-for t in *; do
-    if [ "$t" != "alsa" ]; then
-        options="${options} ${i} ${t}"
-        i=$((i+1))
-    fi
-done
-options="${options} $i nenhum"
-
-tema=$(dialog --stdout --title 'Tema' --menu 'Escolha um tema' 0 0 0 $options 2>&1)
-
-if [ "$tema" == "nenhum" ]; then
-    xfconf-query -c xsettings -p /Net/EnableEventSounds -s false
-    xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s false
-else
-    xfconf-query -c xsettings -p /Net/EnableEventSounds -s true
-    xfconf-query -c xsettings -p /Net/EnableInputFeedbackSounds -s true
-    xfconf-query -c xsettings -p /Net/SoundThemeName -s "$tema"
+command -v yad 1> /dev/null 2> /dev/null
+if [ $? = 1 ]; then
+    echo "yad não instalado."
+    exit
 fi
 
-cd "$old"
+gtk3="$HOME/.config/gtk-3.0/settings.ini"
+gtk2="$HOME/.gtkrc-2.0"
 
-exit 0
+toggle() {
+    if [ -f $1 ]; then
+		pattern="$2"
+		value="$3"
+        if grep -q "$pattern" "$1"; then
+			sed -i "s|${pattern}=.*|${pattern}=$value|g" $1
+        fi
+    fi
+}
+
+tema=$(yad --width 300 --entry --title "Tema de Som" \
+    --image=gnome-shutdown                        \
+    --button="gtk-ok:0" --button="gtk-close:1"    \
+    --text "Choose action:"                       \
+    --entry-text                                  \
+    $(ls /usr/share/sounds))
+
+if [ $tema ]; then
+	if [ -f $gtk2 ]; then
+		if grep -q 'gtk-sound-theme-name' "$gtk2"; then
+			sed -i 's/Var2=.*/Var2=smurf/' $gtk2
+		fi
+	fi
+
+    if [ -f $HOME/.config/gtk-3.0/settings.ini ]; then
+		if grep -q 'gtk-sound-theme-name' "$gtk3"; then
+        	#sed -i 's/gtk-sound-theme-name=.*/gtk-sound-theme-name=smurf/' $gtk3
+			sed -i "s|$var|r_str|g"
+		fi
+    fi
+
+	#xfconf-query -c xsettings -p /Net/SoundThemeName -s $tema
+	#DISPLAY=:0 canberra-gtk-play -i complete
+fi

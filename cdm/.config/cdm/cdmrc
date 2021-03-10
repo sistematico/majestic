@@ -1,0 +1,22 @@
+#!/bin/bash
+
+binlist=(
+   '~/.xinitrc i3'
+   '~/.xinitrc xfce'
+)
+namelist=('i3' 'xfce')
+
+# C X
+flaglist=(X X)
+
+dialogrc='/usr/share/cdm/themes/cdm'
+countfrom=0
+display=0
+#xtty=7
+xtty=keep
+locktty=no
+consolekit=no
+cktimeout=30
+serverargs=(-nolisten tcp)
+altstartx=no
+startxlog=/dev/null

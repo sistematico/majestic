@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+#
+# castnow.sh
+#
+# Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
+#
+# Criado em: 10/01/2019 02:36:19
+# Última Atualização: 12/01/2019 16:53:00
+#
+# https://github.com/xat/castnow
+
+[ ! "$1" ] && exit 1
+
+#[ $# -gt 2 ] && [ "$1" == "-s" ] && seek="$2" ; arquivo="$3" || arquivo="$1"
+arquivo="$1"
+legenda="${arquivo%.*}.srt"
+ip=$(ip route get 1 | awk '{print $7;exit}')
+#opts="--quiet"
+#opts="--myip ${ip} --tomp4"
+#opts="--tomp4 --ffmpeg-vcodec copy --ffmpeg-ac 2"
+icone="${HOME}/.local/share/icons/elementary/preferences-system-network.png"
+
+[ -n "$seek" ] && opts="$opts --seek $2"
+
+if [ ! -f "${arquivo}" ] && [ "${arquivo}" != "-q" ]; then
+	if xset q &>/dev/null; then
+		canberra-gtk-play -i complete
+		dbus-launch notify-send -i $icone "CastNow" "O arquivo: $arquivo não existe."
+	else
+		echo "CastNow: O arquivo: $arquivo não existe."
+	fi
+	exit
+fi
+
+if [ ! -f "${legenda}" ] && [ "${arquivo}" != "-q" ]; then
+	# if xset q &>/dev/null; then
+	# 	canberra-gtk-play -i complete 2>&1
+	# 	dbus-launch notify-send -i $icone "CastNow" "A legenda: $legenda não existe."
+	# else
+	# 	echo "CastNow: A legenda: $legenda não existe."
+	# fi
+	legenda=""
+else
+	legenda='--subtitles '${legenda}
+fi
+
+if [ "${arquivo}" != "-q" ]; then
+	if xset q &>/dev/null; then
+		dbus-launch notify-send -i $icone "CastNow" "Stream do arquivo: $arquivo iniciada.\nDigite <b>F4</b> para parar."
+	else
+		echo "CastNow: Stream do arquivo: $arquivo iniciada. Digite F4 para parar."
+	fi
+	/usr/bin/castnow $opts "${arquivo}" "${legenda}" 
+else
+	if xset q &>/dev/null; then
+		dbus-launch notify-send -i $icone "CastNow" "Stream do parada."
+	else
+		echo "CastNow: Stream do parada."
+	fi
+
+	/usr/bin/castnow --command s --exit &
+	sleep 1
+
+	/usr/bin/castnow --command q --exit &
+	sleep 1
+
+	while true;
+	do
+		echo stage 4
+		ppid=$(ps -ef | grep 'castnow' | egrep -vi "$0" | egrep -v grep | awk '{print $2; exit}')
+		echo $ppid
+    	if [[ ! -z "$ppid" ]]; then
+           	kill -9 $ppid
+           	sleep 2
+    	else
+         	break;
+    	fi
+	done
+
+fi

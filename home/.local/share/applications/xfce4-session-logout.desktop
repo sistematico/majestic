@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=XFCE4 Session Logout
+Comment=
+Exec=xfce4-session-logout
+#Icon=/usr/share/icons/Papirus/64x64/apps/cs-power.svg
+Icon=cs-power
+Terminal=false
+Categories=GTK;System;

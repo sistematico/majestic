@@ -1,0 +1,13 @@
+[Default Applications]
+text/html=firefox.desktop
+text/xml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+application/x-xpinstall=firefox.desktop
+application/vnd.oasis.opendocument.formula=libreoffice-math.desktop
+application/vnd.sun.xml.math=libreoffice-math.desktop
+application/vnd.oasis.opendocument.formula-template=libreoffice-math.desktop
+text/mathml=libreoffice-math.desktop
+application/mathml+xml=libreoffice-math.desktop
+x-scheme-handler/vscode=visual-studio-code-url-handler.desktop

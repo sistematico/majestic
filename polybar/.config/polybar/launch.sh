@@ -1,17 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-killall -q polybar
+# Terminate already running bar instances
+killall -q polybar 
 
-# Dracula
-polybar dracula >> /tmp/polybar-dracula.log 2>&1 & disown
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Transparent
-#polybar top >> /tmp/polybar-top.log 2>&1 & disown
-#ln -s /tmp/polybar_mqueue.$! /tmp/ipc-top
-
-#polybar bottom >> /tmp/polybar-bottom.log 2>&1 & disown
-#ln -s /tmp/polybar_mqueue.$! /tmp/ipc-bottom
-
-#echo hook:module/netx >>/tmp/polybar_mqueue.*
-
-
+polybar -q top &
+polybar -q bottom &

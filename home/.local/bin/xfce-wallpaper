@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "-d" ]; then
+	xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitor$(xrandr | grep connected | head -n1 | awk '{print $1}')/workspace0/last-image --set "$HOME/img/outras/glass-256.png"
+elif [ "$1" == "-c" ]; then
+	img="$(xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorDVI-I-0/workspace0/last-image)"
+	if [ -f "$img" ]; then
+		xclip -selection c -i $img
+		viewnior $img
+	fi
+else
+	xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitor$(xrandr | grep connected | head -n1 | awk '{print $1}')/workspace0/last-image --set "$(find ~/img/ts/ -type f | shuf -n1)"
+fi	

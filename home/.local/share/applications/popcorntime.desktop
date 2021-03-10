@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Popcorn-Time
-Comment=Watch Movies
-Exec=/opt/popcorntime/Popcorn-Time
-Icon=popcorntime
-Terminal=false
-StartupWMClass=Popcorn-Time

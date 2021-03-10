@@ -1,9 +1,0 @@
-{
-	"setInterval": {
-		"prefix": "setinterval",
-		"body": [
-			"let interval = setInterval(${1:funcao},${2:1000});"
-		],
-		"description": "Set a interval"
-	}
-}

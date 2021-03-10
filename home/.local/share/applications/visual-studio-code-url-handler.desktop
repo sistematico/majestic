@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=VS Code
+GenericName=Text Editor
+Comment=Code Editing. Redefined.
+Icon=visual-studio-code
+Exec=/opt/visual-studio-code/code --open-url %U
+Actions=
+MimeType=x-scheme-handler/vscode;
+Categories=Development;IDE;TextEditor;Utility;WebDevelopment;
+Keywords=vscode;
+StartupNotify=true
+Hidden=true

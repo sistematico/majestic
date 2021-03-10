@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Links
+NoDisplay=true
+Icon=links_32x32
+Exec=xlinks -g
+Actions=
+Categories=Network;WebBrowser;

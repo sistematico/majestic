@@ -1,0 +1,4 @@
+[Mount]
+Type=network
+Exec=/usr/lib/gvfsd-network
+AutoMount=false
