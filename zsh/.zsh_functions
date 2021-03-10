@@ -128,18 +128,6 @@ mpcl () {
 	$HOME/bin/mpc.sh
 }
 
-sudo() {
-  local subcommand
-
-  if (( "$#" == 0 )); then command sudo; return; fi    
-
-  subcommand=$1; shift
-  case $subcommand in
-    mousepad) command sudo dbus-launch mousepad "$@" ;;
-    *)        command sudo "$subcommand" "$@" ;;
-  esac
-}
-
 # Gnome
 chshell() {
     if [ ! $1 ]; then
