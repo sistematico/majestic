@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Among Us
+Comment=
+StartupWMClass=Among Us
+Exec=steam steam://rungameid/945360
+Icon=amongus
+Terminal=false
+Categories=Games;

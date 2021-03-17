@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=War Thunder
+Comment=
+StartupWMClass=War Thunder
+Exec=steam steam://rungameid/236390
+Icon=warthunder
+Terminal=false
+Categories=Games;
