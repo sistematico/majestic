@@ -39,15 +39,8 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 # Alt+Backspace
-backward-kill-dir () {
-    local WORDCHARS=${WORDCHARS/\/}
-    WORDCHARS=${WORDCHARS/\.}
-    WORDCHARS=${WORDCHARS/\_}
-    WORDCHARS=${WORDCHARS/\-}
-    zle backward-kill-word
-}
-zle -N backward-kill-dir
-bindkey '^[^?' backward-kill-dir
+autoload -Uz select-word-style
+select-word-style bash
 
 # Sources
 if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
