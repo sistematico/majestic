@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/megasync-instances
+#Exec=/usr/bin/megasync-instances
 Name=megasync_instances
 Comment=Open all your MEGA instances
