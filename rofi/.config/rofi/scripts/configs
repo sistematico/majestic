@@ -7,7 +7,7 @@
 # Criado em: 10/07/2018 14:25:18
 # Última alteração: 20/12/2019 21:54:30
 
-editor="mousepad"
+editor="l3afpad"
 
 configs=(
 	'i3'
