@@ -99,8 +99,7 @@ if [ "$res" ]; then
 				i3-msg exec $editor ~/.config/rofi/config.rasi
 			fi
 		;;
-		'GTK')
-		;;
+		'GTK') i3-msg exec $editor "${HOME}/.gtkrc-2.0" "${HOME}/.config/gtk-3.0/settings.ini" ;;
 		'LightDM')
 			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
