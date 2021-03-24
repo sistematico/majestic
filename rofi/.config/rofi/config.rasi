@@ -1,5 +1,5 @@
 configuration {
-	theme: "slate";
+    theme: "slate";
     modi: "window,drun,run,ssh";
     font: "Open Sans 11";
     show-icons: true;
