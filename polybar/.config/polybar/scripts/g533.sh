@@ -3,7 +3,7 @@
 # ~/.config/polybar/scripts/g533.sh
 #
 
-batt=$(sudo /usr/local/bin/headsetcontrol -b | grep Battery | awk '{print $2}')
+batt=$(sudo /usr/local/bin/headsetcontrol -b 2> /dev/null | grep Battery | awk '{print $2}')
 
 if [ -z "$batt" ]; then
     echo ""
