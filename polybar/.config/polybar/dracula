@@ -231,7 +231,7 @@ click-left = urxvt &
 [module/code]
 type = custom/text
 content = 
-click-left = pgrep -x code >/dev/null || /usr/bin/code &
+click-left = pgrep -x code-insiders >/dev/null || /usr/bin/code-insiders &
 
 [module/tlgr]
 type = custom/text
