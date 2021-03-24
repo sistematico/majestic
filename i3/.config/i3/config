@@ -328,14 +328,14 @@ assign [class="(^Atril|dagor2|Postman|Thunderbird|dontstarve_steam)"] $ws10
 ####################################################################
 ################ I N I T ###########################################
 ####################################################################
-exec --no-startup-ip start-pulseaudio-x11
+#exec --no-startup-ip start-pulseaudio-x11
+
 exec_always --no-startup-id hsetroot -solid '#2e3440'
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id dunst
-exec_always --no-startup-id xrdb -merge $HOME/.Xresources
-exec --no-startup-id numlockx on
-exec --no-startup-id xautolock -time 3 -detectsleep -locker $HOME/.local/lock/fortune
-#exec --no-startup-id thunar --daemon
+#exec_always --no-startup-id xrdb -merge $HOME/.Xresources
+#exec --no-startup-id numlockx on
+#exec --no-startup-id xautolock -time 3 -detectsleep -locker $HOME/.local/lock/fortune
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
