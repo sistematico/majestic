@@ -32,7 +32,7 @@ res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines 
 
 if [ "$res" ]; then
 	case $res in
-		'i3') i3-msg $editor ~/.config/i3/config ;;
+		'i3') $editor ~/.config/i3/config ;;
 		'Polybar')
 			polyconfig=$(echo "Config;Apps;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 			if [ "$polyconfig" = "Reload" ]; then
@@ -40,10 +40,10 @@ if [ "$res" ]; then
 			elif [ "$polyconfig" = "Apps" ]; then
 				app=$( ls "${HOME}/.config/polybar/scripts/" | egrep "\.sh|\.py" | rofi -dmenu -p "Polybar Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/polybar/scripts/ | egrep "\.sh|\.py" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
 				if [ $app ]; then
-					i3-msg $editor "${HOME}/.config/polybar/scripts/${app}"
+					$editor "${HOME}/.config/polybar/scripts/${app}"
 				fi
 			elif [ "$polyconfig" == "Config" ]; then
-				i3-msg $editor "${HOME}/.config/polybar/config"
+				$editor "${HOME}/.config/polybar/config" 
 			fi
 		;;
 		'i3lock')
@@ -54,8 +54,8 @@ if [ "$res" ]; then
 					ln -sf ${HOME}/.local/lock/${i3lockapps} ${HOME}/.local/lock/default
 				fi
 			elif [ "$i3lockconfig" == "Config" ]; then
-				#i3-msg $editor $(grep xautolock ~/.config/i3/config | awk '{print $8}') 
-				i3-msg $editor ${HOME}/.local/lock/default
+				#$editor $(grep xautolock ~/.config/i3/config | awk '{print $8}') 
+				$editor ${HOME}/.local/lock/default
 			elif [ "$i3lockconfig" == "Reload" ]; then
 				killall xautolock
 				xautolock -time 3 -detectsleep -locker $HOME/.local/lock/default > /dev/null 2> /dev/null &
@@ -63,15 +63,15 @@ if [ "$res" ]; then
 				bash -c "${HOME}/.local/lock/default" &
 			fi
 		;;
-		'Conky') i3-msg $editor ~/.config/conky/conky.conf ;;
+		'Conky') $editor ~/.config/conky/conky.conf ;;
 		'Dunst')
 			dunstconfig=$(echo "Config;Reload;Teste" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 			if [ "$dunstconfig" = "Reload" ]; then
 				killall dunst && dunst &
 			elif [ "$dunstconfig" = "Teste" ]; then
-				i3-msg notify-send "Teste" "Teste"
+				notify-send "Teste" "Teste"
 			elif [ $dunstconfig ]; then
-				i3-msg $editor ~/.config/dunst/dunstrc
+				$editor ~/.config/dunst/dunstrc
 			fi
 		;;
 		'Compton')
@@ -79,7 +79,7 @@ if [ "$res" ]; then
 			if [ "$comptonconfig" = "Reload" ]; then
 				killall compton && compton &
 			elif [ $comptonconfig ]; then
-				i3-msg $editor ~/.config/compton.conf
+				$editor ~/.config/compton.conf
 			fi
 		;;
 		'Rofi')
@@ -88,29 +88,29 @@ if [ "$res" ]; then
 			if [ "$roficonfig" = "Apps" ]; then
 				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/scripts/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $app ]; then
-					i3-msg $editor "${HOME}/.config/rofi/scripts/${app}"
+					$editor "${HOME}/.config/rofi/scripts/${app}"
 				fi
 			elif [ "$roficonfig" = "Themes" ]; then
 				tema=$( ls "${HOME}/.config/rofi/" | egrep -v "config.rasi|scripts" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $tema ]; then
-					i3-msg $editor "${HOME}/.config/rofi/themes/${tema}" 
+					$editor "${HOME}/.config/rofi/themes/${tema}" 
 				fi
 			elif [ $roficonfig ]; then
-				i3-msg $editor ~/.config/rofi/config.rasi
+				$editor ~/.config/rofi/config.rasi
 			fi
 		;;
-		'GTK') i3-msg $editor "${HOME}/.gtkrc-2.0" "${HOME}/.config/gtk-3.0/settings.ini" ;;
+		'GTK') $editor "${HOME}/.gtkrc-2.0" "${HOME}/.config/gtk-3.0/settings.ini" ;;
 		'LightDM')
 			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 			if [ $ldm ]; then
-				i3-msg sudo $editor "/etc/lightdm/${ldm}.conf"
+				sudo $editor "/etc/lightdm/${ldm}.conf"
 			fi
 		;;
-		'ncmpcpp') i3-msg $editor "${HOME}/.config/ncmpcpp/config" ;;
-		'qutebrowser') i3-msg $editor ~/.config/qutebrowser/config.py ;;
+		'ncmpcpp') $editor "${HOME}/.config/ncmpcpp/config" ;;
+		'qutebrowser') $editor ~/.config/qutebrowser/config.py ;;
 		'StartPage')
-		    i3-msg $editor "${HOME}/.config/startpage/*.html"
+		    $editor "${HOME}/.config/startpage/*.html"
 		;;
 		'Home')
 			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -lines 12 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
@@ -118,11 +118,11 @@ if [ "$res" ]; then
 			if [ "$homefiles" = ".Xresources" ]; then
 				resfiles=$( echo "Config;Cores;Reload" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -lines 3 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)
 				if [ "$resfiles" == "Config" ]; then
-					i3-msg $editor ~/.Xresources
+					$editor ~/.Xresources
 				elif [ "$resfiles" == "Cores" ]; then
 					colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -lines 10 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 					if [ $colorfiles ]; then
-						i3-msg $editor ~/.colors/${colorfiles}
+						$editor ~/.colors/${colorfiles}
 					fi
 				elif [ "$resfiles" == "Reload" ]; then
 					xrdb ~/.Xresources
@@ -130,29 +130,29 @@ if [ "$res" ]; then
 			elif [ "$homefiles" = "bin" ]; then
 				binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)
 				if [ $binfiles ]; then
-					i3-msg $editor ~/bin/${binfiles}
+					$editor ~/bin/${binfiles}
 				fi
             elif [ "$homefiles" = ".bin" ]; then
 				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 				if [ $dotbinfiles ]; then
-					i3-msg $editor ~/.local/bin/${dotbinfiles}
+					$editor ~/.local/bin/${dotbinfiles}
 				fi
 			elif [ "$homefiles" = "mimeapps" ]; then
-				i3-msg $editor ~/.config/mimeapps.list
+				$editor ~/.config/mimeapps.list
             elif [ "$homefiles" = "lock" ]; then
 				dotlockfiles=$(ls "${HOME}/.local/lock/" | rofi -dmenu -p "~/.local/lock" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 				if [ $dotlockfiles ]; then
-					i3-msg $editor ~/.local/lock/${dotlockfiles}
+					$editor ~/.local/lock/${dotlockfiles}
 				fi
 			elif [ $homefiles ]; then
-				i3-msg $editor ~/${homefiles}
+				$editor ~/${homefiles}
 			fi
 		;;
-		'Termite') i3-msg $editor ~/.config/termite/config ;;
+		'Termite') $editor ~/.config/termite/config ;;
 		'st') 
 			stfiles=$(echo "Config;Re-Build" | rofi -sep ";" -dmenu -p "Simple Terminal" -bw 0 -lines 2 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
 			if [ "$stfiles" = "Config" ]; then
-				i3-msg $editor ${HOME}/aur/st-scrollback-git/config.h 
+				$editor ${HOME}/aur/st-scrollback-git/config.h 
 			elif [ "$stfiles" = "Re-Build" ]; then
 				rm -f ${HOME}/aur/st-scrollback-git/st*.pkg.tar.xz
 				$TERMINAL -e "cd ${HOME}/aur/st-scrollback-git/ && makepkg -i && exit" && dbus-launch notify-send "Completo" "Compilação completa!"
@@ -160,7 +160,7 @@ if [ "$res" ]; then
 		;;
 		'crontab') 
 			crontab -l > /tmp/cron.txt
-			i3-msg $editor /var/spool/cron/$(whoami)
+			$editor /var/spool/cron/$(whoami)
 		;;
 	esac
 fi
