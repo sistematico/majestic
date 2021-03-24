@@ -7,17 +7,16 @@
 # Criado em: 10/07/2018 14:25:18
 # Última alteração: 20/12/2019 21:54:30
 
-editor="l3afpad"
+editor="code-insiders"
 
 configs=(
 	'i3'
 	'Polybar'
 	'i3lock'
-	'Conky'
-	#'LX Appearance'
 	'Dunst'
 	'Compton'
 	'Rofi'
+	'GTK'
 	'LightDM'
 	'qutebrowser'
 	'ncmpcpp'
@@ -26,6 +25,7 @@ configs=(
 	'Termite'
 	'st'
 	'crontab'
+	'Conky'
 )
 
 res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines "${#configs[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
