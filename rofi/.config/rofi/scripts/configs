@@ -64,7 +64,6 @@ if [ "$res" ]; then
 			fi
 		;;
 		'Conky') i3-msg exec $editor ~/.config/conky/conky.conf ;;
-		'LX Appearance') i3-msg exec lxappearance ;;
 		'Dunst')
 			dunstconfig=$(echo "Config;Reload;Teste" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 			if [ "$dunstconfig" = "Reload" ]; then
@@ -100,6 +99,8 @@ if [ "$res" ]; then
 				i3-msg exec $editor ~/.config/rofi/config.rasi
 			fi
 		;;
+		'GTK')
+		;;
 		'LightDM')
 			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
@@ -107,9 +108,7 @@ if [ "$res" ]; then
 				i3-msg exec sudo $editor "/etc/lightdm/${ldm}.conf"
 			fi
 		;;
-		'ncmpcpp')
-		    i3-msg exec $editor "${HOME}/.config/ncmpcpp/config"
-		;;
+		'ncmpcpp') i3-msg exec $editor "${HOME}/.config/ncmpcpp/config" ;;
 		'qutebrowser') i3-msg exec $editor ~/.config/qutebrowser/config.py ;;
 		'StartPage')
 		    i3-msg exec $editor "${HOME}/.config/startpage/*.html"
