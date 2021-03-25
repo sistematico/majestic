@@ -2,6 +2,18 @@
 
 [[ $EUID -eq 0 ]] && exit
 
+# Gnome Backup
+#dconf dump /org/gnome/ > backup.txt
+
+# Reset
+#dconf reset -f /org/gnome/
+
+######################
+# GEDIT BUG          #
+######################
+# https://bugs.archlinux.org/task/70153
+dconf write /org/gnome/gedit/plugins/active-plugins "['spell', 'sort', 'modelines', 'docinfo']"
+
 ######################
 # GNOME              #
 ######################
@@ -27,7 +39,7 @@ gsettings set org.gnome.SessionManager logout-prompt false
 # GNOME Software     #
 ######################
 #Prevent GNOME Software from downloading updates
-gsettings set org.gnome.software download-updates false
+#gsettings set org.gnome.software download-updates false
 
 ######################
 # Evolution          #
@@ -53,12 +65,12 @@ gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # Icon
 # Default: 'Gnome'
-gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
+# gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 
 # Shell
 # Default: 'Adwaita'
 # WRONG: gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
-gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
+# gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
 
 ######################
 # Sound Theme        #
@@ -68,13 +80,13 @@ gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
 #~/.local/share/sounds
 
 # Default: 'freedesktop'
-gsettings set org.gnome.desktop.sound theme-name 'freedesktop'
+#gsettings set org.gnome.desktop.sound theme-name 'freedesktop'
 
 # Default: true
-gsettings set org.gnome.desktop.sound event-sounds true
+#gsettings set org.gnome.desktop.sound event-sounds true
 
 # Default: false
-gsettings set org.gnome.desktop.sound input-feedback-sounds true
+#gsettings set org.gnome.desktop.sound input-feedback-sounds true
 
 ######################
 # Nautilus           #

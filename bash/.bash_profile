@@ -4,11 +4,8 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-# Sem cor
-#PS1='[\u@\h \W]:\$ 
-
-# Dracula
-PS1="${RED}[${GRN}\u@\h \W${RED}]:\$${DEF} " 
+PS1='[\u@\h \W]:\$ 
+#PS1="${RED}[${GRN}\u@\h \W${RED}]:\$${DEF} " 
 
 test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
 

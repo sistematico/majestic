@@ -16,3 +16,9 @@ root@hera:/ /home/lucas/sshfs/hera  fuse.sshfs noauto,x-systemd.automount,_netde
 
 # Artemis
 root@artemis:/ /home/lucas/sshfs/artemis  fuse.sshfs noauto,x-systemd.automount,_netdev,users,idmap=user,IdentityFile=/home/lucas/.ssh/id_rsa,allow_other,reconnect 0 0
+
+# /dev/mapper/vgstorage-lvstorage
+/dev/mapper/vgstorage-lvstorage	/media/storage     	btrfs     	rw,relatime,autodefrag,noauto,nodatacow,x-systemd.automount,x-systemd.mount-timeout=30,x-systemd.idle-timeout=15min	0 0
+
+# /home/lucas/storage
+#/media/storage /home/lucas/storage none defaults,bind 0 0

@@ -60,10 +60,27 @@ export LANG=pt_BR.UTF-8
 #export LC_MESSAGES=C
 #export LC_TIME=en_DK.UTF-8
 
+#GTK_THEME=Adwaita:dark
+
 # Autostart
 numlockx on &
 
-#ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
-
-# DE/WM
-exec i3
+session=${1:-i3}
+case $session in
+    i3|i3wm)
+        ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.fr>
+		exec i3
+    ;;
+    bspwm)
+        #ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.fr>
+		exec bspwm
+    ;;
+    xfce)
+        ln -sfT "/usr/share/dbus-1/services/org.xfce.xfce4-notifyd.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbu>
+		exec startxfce4
+    ;;
+    *)
+        ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.fr>
+        exec $session
+    ;;
+esac
