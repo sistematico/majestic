@@ -52,8 +52,8 @@ fi
 ##################
 ##### Sources ####
 ##################
-if [ -f $HOME/.bash_colors ]; then
-	source $HOME/.bash_colors
+if [ -f $HOME/.colors/bash ]; then
+	source $HOME/.colors/bash
 fi
 
 if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
