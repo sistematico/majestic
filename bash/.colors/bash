@@ -1,33 +1,32 @@
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-bakgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
+#----------------------------------------------------------------------+
+#Color picker, usage: printf ${BLD}${CUR}${RED}${BBLU}"Some text"${DEF}|
+#---------------------------+--------------------------------+---------+
+#        Text color         |       Background color         |         |
+#------------+--------------+--------------+-----------------+         |
+#    Base    |Lighter\Darker|    Base      | Lighter\Darker  |         |
+#------------+--------------+--------------+-----------------+         |
+RED='\e[31m'; LRED='\e[91m'; BRED='\e[41m'; BLRED='\e[101m' #| Red     |
+GRN='\e[32m'; LGRN='\e[92m'; BGRN='\e[42m'; BLGRN='\e[102m' #| Green   |
+YLW='\e[33m'; LYLW='\e[93m'; BYLW='\e[43m'; BLYLW='\e[103m' #| Yellow  |
+BLU='\e[34m'; LBLU='\e[94m'; BBLU='\e[44m'; BLBLU='\e[104m' #| Blue    |
+MGN='\e[35m'; LMGN='\e[95m'; BMGN='\e[45m'; BLMGN='\e[105m' #| Magenta |
+CYN='\e[36m'; LCYN='\e[96m'; BCYN='\e[46m'; BLCYN='\e[106m' #| Cyan    |
+GRY='\e[37m'; DGRY='\e[90m'; BGRY='\e[47m'; BDGRY='\e[100m' #| Gray    |
+#------------------------------------------------------------+---------+
+# Effects                                                              |
+#----------------------------------------------------------------------+
+DEF='\e[0m'   # Default color and effects                              |
+BLD='\e[1m'   # Bold\brighter                                          |
+DIM='\e[2m'   # Dim\darker                                             |
+CUR='\e[3m'   # Italic font                                            |
+UND='\e[4m'   # Underline                                              |
+INV='\e[7m'   # Inverted                                               |
+COF='\e[?25l' # Cursor Off                                             |
+CON='\e[?25h' # Cursor On                                              |
+#----------------------------------------------------------------------+
+# Text positioning, usage: XY 10 10 "Some text"                        |
+XY   () { printf "\e[${2};${1}H${3}";   } #                            |
+#----------------------------------------------------------------------+
+# Line, usage: line - 10 | line -= 20 | line "word1 word2 " 20         |
+line () { printf %.s"${1}" $(seq ${2}); } #                            |
+#----------------------------------------------------------------------+
