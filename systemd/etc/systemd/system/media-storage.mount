@@ -1,0 +1,11 @@
+[Unit]
+Description=Mount /media/storage
+
+[Mount]
+What=/dev/vgstorage/lvstorage
+Where=/media/storage
+Type=btrfs
+Option=defaults
+
+[Install]
+WantedBy=multi-user.target

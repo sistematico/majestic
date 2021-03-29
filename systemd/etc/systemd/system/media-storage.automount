@@ -1,0 +1,7 @@
+Description=Automount /media/storage
+
+[Automount]
+Where=/media/storage
+
+[Install]
+WantedBy=multi-user.target
