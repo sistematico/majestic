@@ -2,18 +2,23 @@
 
 [[ $EUID -eq 0 ]] && exit
 
-# Gnome Backup
+######################
+# BACKUP             #
+######################
 #dconf dump /org/gnome/ > backup.txt
 
-# Reset
-#dconf reset -f /org/gnome/
-
-#gkr-pam: unable to locate daemon control file
-
+######################
+# RESET              #
+######################
+# dconf reset -f /org/gnome/
 
 ######################
-# GEDIT BUG          #
+# BUGS               #
 ######################
+# gkr-pam: unable to locate daemon control file
+# dbus-launch gsettings reset org.gnome.clocks world-clocks
+
+# [gedit] core dump : 'org.gnome.nautilus.preferences' does not contain a key named 'confirm-trash'
 # https://bugs.archlinux.org/task/70153
 dconf write /org/gnome/gedit/plugins/active-plugins "['spell', 'sort', 'modelines', 'docinfo']"
 
