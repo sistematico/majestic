@@ -8,6 +8,9 @@
 # Reset
 #dconf reset -f /org/gnome/
 
+#gkr-pam: unable to locate daemon control file
+
+
 ######################
 # GEDIT BUG          #
 ######################
