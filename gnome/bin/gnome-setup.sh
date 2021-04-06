@@ -50,6 +50,16 @@ gsettings set org.gnome.SessionManager logout-prompt false
 #gsettings set org.gnome.software download-updates false
 
 ######################
+# GEDIT              #
+######################
+# Remember last opened folder
+# GTK 3
+gsettings set org.gtk.Settings.FileChooser startup-mode cwd
+
+# GTK 2
+echo 'StartupMode=cwd' >> $HOME/.config/gtk-2.0/gtkfilechooser.ini
+
+######################
 # Evolution          #
 ######################
 # Default: false
