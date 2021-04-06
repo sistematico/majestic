@@ -29,6 +29,7 @@ ICONE="${HOME}/.local/share/icons/Newaita-dark/devices/symbolic/video-display-sy
 TMP="/tmp/videodown/$$"
 LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
+HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 
 if [ ! -d "$DIR" ]; then
 	DIR="${HOME}/desk"
@@ -50,7 +51,7 @@ if [[ ! ${url} =~ $padrao ]]; then
     exit
 else
     #titulo=$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')
-	titulo="$(curl "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
+	titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
 
 	if [ ${#titulo} -gt 250 ]; then
 		diff=$((${#titulo}-250))
