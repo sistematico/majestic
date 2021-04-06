@@ -49,6 +49,7 @@ if [[ ! ${url} =~ $padrao ]]; then
 	$notifycommand "Video Down" "O link é inválido!"
     exit
 else
+    #titulo=$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')
 	titulo="$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
 
 	if [ ${#titulo} -gt 250 ]; then
