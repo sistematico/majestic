@@ -17,6 +17,7 @@
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
 NOME="Video Down"
+NOME_CURTO="VideoDown"
 SECONDS=0
 COMECO=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
@@ -28,7 +29,7 @@ TMP="/tmp/videodown/$$"
 LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
-NOTIFY="$HOME/bin/notify.sh \"$NOME\" \"$ICONE\" \"$NOME\"" # notify-send -h int:transient:1 -i $ICONE
+NOTIFY=$HOME/bin/notify.sh "$NOME_CURTO" "$ICONE" "$NOME" # notify-send -h int:transient:1 -i $ICONE
 YOUTUBE="youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
