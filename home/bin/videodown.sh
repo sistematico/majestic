@@ -29,22 +29,17 @@ TMP="/tmp/videodown/$$"
 LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
-NOTIFY="$HOME/bin/notify.sh "$NOME" ${ICONE}" # notify-send -h int:transient:1 -i $ICONE
+NOTIFY=$HOME/bin/notify.sh "$NOME" "$ICONE" "$NOME" # notify-send -h int:transient:1 -i $ICONE
 
-if [ ! -d "$DIR" ]; then
-	DIR="${HOME}/desk"
-	if [ ! -d $DIR ]; then
-		mkdir -p $DIR
-	fi
-fi
-
+[ ! -d "$DIR" ] && mkdir -p $DIR
 [ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
+
 cd $DIR
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	$NOTIFY "$NOME" "O link é inválido!"
+	$NOTIFY "O link é inválido!"
     exit
 else
     #titulo=$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')
@@ -67,7 +62,7 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $PROC" >> "$LOGS"
 fi
 
-$NOTIFY "$NOME" "Início: <b>$titulo</b>"
+$NOTIFY "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
@@ -86,7 +81,7 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$LOGS"
     echo "Path:         $DIR" >> "$LOGS"
 
-	$NOTIFY "$NOME" "Erro: <b>$titulo</b>"
+	$NOTIFY "Erro: <b>$titulo</b>"
     exit
 fi
 
@@ -123,6 +118,6 @@ if [[ $LOG -ne 0 ]]; then
     echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
 fi
 
-$NOTIFY "$NOME" "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
+$NOTIFY "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
 exit
 
