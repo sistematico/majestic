@@ -17,7 +17,6 @@
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
 NOME="VideoDown"
-YOUTUBE="youtube-dl -i"
 SECONDS=0
 COMECO=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
@@ -30,6 +29,7 @@ LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 NOTIFY=$HOME/bin/notify.sh "$NOME" "$ICONE" "$NOME" # notify-send -h int:transient:1 -i $ICONE
+YOUTUBE="youtube-dl -i"
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
 [ ! -d $TMP ] && mkdir -p $TMP
