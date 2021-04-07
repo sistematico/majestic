@@ -16,12 +16,12 @@
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
-NOME="Video Down"
+NOME="VideoDown"
 DISTRO="arch"
 SECONDS=0
 COMECO=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
-ARIA=1
+ARIA=0
 TS=$(date +"%s")
 DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
 #ICONE="${HOME}/.local/share/icons/Elementary/devices/48/video-display.svg"
@@ -38,7 +38,7 @@ if [ ! -d "$DIR" ]; then
 	fi
 fi
 
-notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE}"
+notifycommand="$HOME/bin/notify.sh "$NOME" ${ICONE}"
 #notifycommand="notify-send -h int:transient:1 -i $ICONE"
 
 [ ! -d $TMP ] && mkdir -p $TMP
@@ -73,11 +73,11 @@ fi
 $notifycommand "Video Down" "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
-    youtube-dl -i -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
+    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
     #youtube-dl -i -o "%(title).%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
-    youtube-dl -i -o "${titulo}.%(ext)s" "${url}"
+    youtube-dl -o "${titulo}.%(ext)s" "${url}"
     #youtube-dl -i -o "%(title).%(ext)s" "${url}"
     status="$?"
 fi
