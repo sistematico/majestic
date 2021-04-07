@@ -73,12 +73,12 @@ fi
 $notifycommand "Video Down" "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
-    #youtube-dl -i -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
-    youtube-dl -i -o "%(title).%(ext)s" --external-downloader aria2c "${url}"
+    youtube-dl -i -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
+    #youtube-dl -i -o "%(title).%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
-    #youtube-dl -i -o "${titulo}.%(ext)s" "${url}"
-    youtube-dl -i -o "%(title).%(ext)s" "${url}"
+    youtube-dl -i -o "${titulo}.%(ext)s" "${url}"
+    #youtube-dl -i -o "%(title).%(ext)s" "${url}"
     status="$?"
 fi
 
