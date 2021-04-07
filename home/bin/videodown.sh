@@ -24,12 +24,12 @@ LOG=0 # 0 = Sem log, 1 = Log no arquivo
 ARIA=0
 TS=$(date +"%s")
 DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
-#ICONE="${HOME}/.local/share/icons/Elementary/devices/48/video-display.svg"
 ICONE="${HOME}/.local/share/icons/Newaita-dark/devices/symbolic/video-display-symbolic.svg"
 TMP="/tmp/videodown/$$"
 LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
+NOTIFY="$HOME/bin/notify.sh "$NOME" ${ICONE}" # notify-send -h int:transient:1 -i $ICONE
 
 if [ ! -d "$DIR" ]; then
 	DIR="${HOME}/desk"
@@ -38,16 +38,13 @@ if [ ! -d "$DIR" ]; then
 	fi
 fi
 
-notifycommand="$HOME/bin/notify.sh "$NOME" ${ICONE}"
-#notifycommand="notify-send -h int:transient:1 -i $ICONE"
-
 [ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
 cd $DIR
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	$notifycommand "$NOME" "O link é inválido!"
+	$NOTIFY "$NOME" "O link é inválido!"
     exit
 else
     #titulo=$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')
@@ -70,7 +67,7 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $PROC" >> "$LOGS"
 fi
 
-$notifycommand "$NOME" "Início: <b>$titulo</b>"
+$NOTIFY "$NOME" "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
@@ -89,7 +86,7 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$LOGS"
     echo "Path:         $DIR" >> "$LOGS"
 
-	$notifycommand "$NOME" "Erro: <b>$titulo</b>"
+	$NOTIFY "$NOME" "Erro: <b>$titulo</b>"
     exit
 fi
 
@@ -126,6 +123,6 @@ if [[ $LOG -ne 0 ]]; then
     echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
 fi
 
-$notifycommand "$NOME" "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
+$NOTIFY "$NOME" "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
 exit
 
