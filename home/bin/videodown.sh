@@ -43,7 +43,6 @@ if [[ ! ${url} =~ $padrao ]]; then
     exit
 else
 	titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
-
 	if [ ${#titulo} -gt 250 ]; then
 		diff=$((${#titulo}-250))
 		trim=$((${#titulo}-$diff))
@@ -64,12 +63,10 @@ fi
 $NOTIFY "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
-    $YOUTUBE -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
-    #$YOUTUBE -o "%(title).%(ext)s" --external-downloader aria2c "${url}"
+    $YOUTUBE -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}" # "%(title).%(ext)s"
     status="$?"
 else
     $YOUTUBE -o "${titulo}.%(ext)s" "${url}"
-    #$YOUTUBE -o "%(title).%(ext)s" "${url}"
     status="$?"
 fi
 
@@ -79,7 +76,6 @@ if [[ $status -ne 0 ]]; then
     echo "Título:       $titulo" >> "$LOGS"
     echo "URL:          $url" >>"$LOGS"
     echo "Path:         $DIR" >> "$LOGS"
-
 	$NOTIFY "Erro: <b>$titulo</b>"
     exit
 fi
