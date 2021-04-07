@@ -17,7 +17,7 @@
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
 NOME="VideoDown"
-DISTRO="arch"
+YOUTUBE="youtube-dl -i"
 SECONDS=0
 COMECO=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
@@ -65,12 +65,12 @@ fi
 $NOTIFY "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
-    youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
-    #youtube-dl -i -o "%(title).%(ext)s" --external-downloader aria2c "${url}"
+    $YOUTUBE -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
+    #$YOUTUBE -o "%(title).%(ext)s" --external-downloader aria2c "${url}"
     status="$?"
 else
-    youtube-dl -o "${titulo}.%(ext)s" "${url}"
-    #youtube-dl -i -o "%(title).%(ext)s" "${url}"
+    $YOUTUBE -o "${titulo}.%(ext)s" "${url}"
+    #$YOUTUBE -o "%(title).%(ext)s" "${url}"
     status="$?"
 fi
 
