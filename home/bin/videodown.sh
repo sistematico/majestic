@@ -47,7 +47,7 @@ cd $DIR
 
 padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 if [[ ! ${url} =~ $padrao ]]; then
-	$notifycommand "Video Down" "O link é inválido!"
+	$notifycommand "$NOME" "O link é inválido!"
     exit
 else
     #titulo=$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')
@@ -70,7 +70,7 @@ if [[ $LOG -ne 0 ]]; then
     echo "Processos:    $PROC" >> "$LOGS"
 fi
 
-$notifycommand "Video Down" "Início: <b>$titulo</b>"
+$notifycommand "$NOME" "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
     youtube-dl -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}"
@@ -89,7 +89,7 @@ if [[ $status -ne 0 ]]; then
     echo "URL:          $url" >>"$LOGS"
     echo "Path:         $DIR" >> "$LOGS"
 
-	$notifycommand "Video Down" "Erro: <b>$titulo</b>"
+	$notifycommand "$NOME" "Erro: <b>$titulo</b>"
     exit
 fi
 
@@ -126,6 +126,6 @@ if [[ $LOG -ne 0 ]]; then
     echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
 fi
 
-$notifycommand "Video Down" "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
+$notifycommand "$NOME" "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
 exit
 
