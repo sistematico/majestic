@@ -29,8 +29,7 @@ LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 NOTIFY=$HOME/bin/notify.sh "$NOME" "$ICONE" "$NOME" # notify-send -h int:transient:1 -i $ICONE
-# -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio'
-YOUTUBE="youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio'"
+YOUTUBE="youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
 [ ! -d $TMP ] && mkdir -p $TMP
@@ -43,7 +42,6 @@ if [[ ! ${url} =~ $padrao ]]; then
 	$NOTIFY "O link é inválido!"
     exit
 else
-    #titulo=$(curl "$url" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')
 	titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
 
 	if [ ${#titulo} -gt 250 ]; then
