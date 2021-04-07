@@ -16,7 +16,7 @@
 
 [ -f $HOME/.config/user-dirs.dirs ] && source $HOME/.config/user-dirs.dirs
 
-NOME="VideoDown"
+NOME="Video Down"
 SECONDS=0
 COMECO=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
