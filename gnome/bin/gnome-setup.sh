@@ -45,10 +45,10 @@ gsettings set org.gnome.SessionManager logout-prompt false
 
 # Auto-Raise
 # Default: false
-gsettings get org.gnome.desktop.wm.preferences auto-raise true
+gsettings set org.gnome.desktop.wm.preferences auto-raise true
 
 # Default: 'click' //  'mouse' or 'sloppy' 
-gsettings get org.gnome.desktop.wm.preferences focus-mode 'mouse'
+gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 
 ######################
 # GNOME Software     #
