@@ -64,10 +64,10 @@ fi
 $NOTIFY "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
-    $YOUTUBE -o "${titulo}.%(ext)s" --external-downloader aria2c "${url}" # "%(title).%(ext)s"
+    $YOUTUBE -o "${titulo}.mp4" --external-downloader aria2c "${url}" # "%(title).%(ext)s"
     status="$?"
 else
-    $YOUTUBE -o "${titulo}.%(ext)s" "${url}"
+    $YOUTUBE -o "${titulo}.mp4" "${url}"
     status="$?"
 fi
 
