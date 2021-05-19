@@ -17,13 +17,13 @@ set guifont=Ubuntu\ Mono:h15:cANSI
 syntax enable
 
 " Nord
-colorscheme nord
-let g:airline_theme='nord_minimal'
+"colorscheme nord
+"let g:airline_theme='nord_minimal'
 
 " Dracula
-"packadd! dracula
-"let g:dracula_colorterm = 0
-"colorscheme dracula
+packadd! dracula
+let g:dracula_colorterm = 0
+colorscheme dracula
 
 filetype plugin indent on
 syntax on
