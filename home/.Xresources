@@ -10,6 +10,7 @@ URxvt.boldFont: xft:FONT:style=Bold:size=FONT_SIZE
 URxvt.italicFont: xft:FONT:style=Italic:size=FONT_SIZE
 URxvt.boldItalicFont: xft:FONT:style=Bold Italic:size=FONT_SIZE
 
+! URxvt
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 !URxvt.geometry: 92x24
