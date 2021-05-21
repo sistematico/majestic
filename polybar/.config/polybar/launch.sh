@@ -3,7 +3,7 @@
 killall -q polybar
 
 # Dracula
-polybar dracula >> /tmp/polybar-dracula.log 2>&1 & disown
+polybar --config=$HOME/.config/polybar/dracula dracula >> /tmp/polybar-dracula.log 2>&1 & disown
 
 # Transparent
 #polybar top >> /tmp/polybar-top.log 2>&1 & disown
