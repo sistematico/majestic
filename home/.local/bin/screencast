@@ -9,23 +9,11 @@
 # Criado em: 09/06/2017 23:26:41
 # Última Atualização: 31/10/2018 12:35:15
 
-list_descendants () {
-  local children=$(ps -o pid= --ppid "$1")
-
-  for pid in $children
-  do
-    list_descendants "$pid"
-  done
-
-  echo "$children "
-}
-
-
 # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 PRESET="ultrafast"
 EXT="mp4"
 DATA=$(date +%H-%M-%S)
-ICONE="${HOME}/.local/share/icons/Newaita/devices/48/camera-video.svg"
+ICONE="/usr/share/icons/Newaita/devices/48/camera-video.svg"
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 DISTRO="arch"
 TRIMCOMECO=3
@@ -37,6 +25,17 @@ for APP in ${APPS[@]}
 do
     command -v $APP >/dev/null 2>&1 || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
 done
+
+list_descendants () {
+  local children=$(ps -o pid= --ppid "$1")
+
+  for pid in $children
+  do
+    list_descendants "$pid"
+  done
+
+  echo "$children "
+}
 
 notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE}"
 #notifycommand="notify-send -h int:transient:1 -i $ICONE"

@@ -9,7 +9,7 @@ else
 	then
 		if [ $1 ]; then
 			killall xautolock &
-			notify-send -i "${HOME}/.local/share/icons/Newaita-dark/apps/48/screensaver.svg" "Screen Locker" "Proteção de tela desativada."
+			notify-send -i "/usr/share/icons/Newaita-dark/apps/48/screensaver.svg" "Screen Locker" "Proteção de tela desativada."
 		fi
 		echo "%{F${cor}}%{F-}"
 	else
