@@ -18,11 +18,12 @@ def read_xresources(prefix):
 xresources = read_xresources('*')
 
 #startpage = 'file:///home/lucas/github/startpages/bento/index.html'
-startpage = 'https://startpages.lucasbrum.net'
+startpage = 'https://startpages.lucasbrum.net/gaegu'
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
 # config.load_autoconfig()
+config.load_autoconfig(False)
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
