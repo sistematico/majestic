@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# downloads.sh
+# Polybar downloads.sh
 #
 
 cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
