@@ -6,6 +6,6 @@ history_file = "/home/lucas/.cache/greenclip.history"
 image_cache_directory = "/tmp/greenclip"
 max_history_length = 50
 max_selection_size_bytes = 0
-#static_history = [""]
+static_history = ["GreenClip"]
 trim_space_from_selection = true
 use_primary_selection_as_input = true
