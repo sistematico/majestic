@@ -62,6 +62,7 @@ bindsym Mod1+Shift+Tab workspace next
 
 # Video Down
 bindsym F5 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh x
+bindsym F6 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh a
 
 # Center Windows
 bindsym $mod+Shift+c move position center
