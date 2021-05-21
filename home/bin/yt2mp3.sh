@@ -19,7 +19,7 @@
 NOME="MP3 Down"
 #DIR="${HOME:-${XDG_MUSIC_DIR}}"
 DIR="${HOME}/desk"
-ICONE="${HOME}/.local/share/icons/Newaita/devices/48/video-display.svg"
+ICONE="/usr/share/icons/Newaita/devices/48/video-display.svg"
 
 if [ ! -d "$DIR" ]; then
     DIR="${HOME}/desk"
