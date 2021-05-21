@@ -9,6 +9,8 @@ if [ "$1" == "c" ]; then
 	killall youtube-dl
 elif [ "$1" == "x" ]; then
 	bash -c "$HOME/bin/videodown.sh"
+elif [ "$1" == "a" ]; then
+	bash -c "$HOME/bin/mp3down.sh"
 elif [ "$1" == "i" ]; then
 	bash -c "$HOME/bin/imgdown.sh"
 else 
