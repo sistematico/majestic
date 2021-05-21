@@ -17,7 +17,8 @@ def read_xresources(prefix):
 
 xresources = read_xresources('*')
 
-startpage = 'file:///home/lucas/github/startpages/bento/index.html'
+#startpage = 'file:///home/lucas/github/startpages/bento/index.html'
+startpage = 'https://startpages.lucasbrum.net'
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
