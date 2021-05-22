@@ -29,6 +29,15 @@
 	<directories/>
 </action>
 <action>
+    <icon>drive-harddisk</icon>
+    <name>Montar ISO</name>
+    <unique-id>1580763352449366-1</unique-id>
+    <command>mkdir iso/ && sudo mount %f iso/ -o ro,loop</command>
+    <description></description>
+    <patterns>*</patterns>
+    <directories/>
+</action>
+<action>
 	<icon>viewnior</icon>
 	<name>Imagens</name>
 	<unique-id>1542629194348820-1</unique-id>
