@@ -6,7 +6,7 @@
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
 #                                                                              #
 # Criado em: 30-04-2019 13:55:09                                               #
-# Modificado em: 02/09/2020 18:24:49                                           #
+# Modificado em: 23/05/2021 13:04:44                                           #
 #                                                                              #
 # Este trabalho está licenciado com uma Licença Creative Commons               #
 # Atribuição 4.0 Internacional                                                 #
@@ -33,7 +33,7 @@ NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int
 YOUTUBE="youtube-dl --extract-audio --audio-format mp3" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 
 if [ -z "$DESKTOP_SESSION" ]; then
-    NOTIFY="notify-send -i ${icone} ${nome}"
+    NOTIFY="notify-send -h int:transient:1 -i ${icone} ${nome}"
 fi
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
