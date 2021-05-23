@@ -24,7 +24,7 @@ LOG=0 # 0 = Sem log, 1 = Log no arquivo
 ARIA=1
 TS=$(date +"%s")
 DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
-ICONE="/usr/share/icons/Newaita-dark/devices/symbolic/video-display-symbolic.svg"
+ICONE="/usr/share/icons/Newaita/devices/64/video-display.svg"
 TMP="/tmp/videodown/$$"
 LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
