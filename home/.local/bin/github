@@ -11,8 +11,8 @@
 # LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!                    #
 #                                                                              #
 # Sugestão de crontab:                                                         #
-# */15 * * * * /usr/bin/bash -c "/usr/local/bin/git-push" 2>&1                 #
-# * * * * * sh -c "/usr/local/bin/git-push" > /dev/null 2>&1                   #
+# */15 * * * * /usr/bin/bash -c "/usr/local/bin/github" 2>&1                   #
+# * * * * * /bin/sh -c "/usr/local/bin/github" > /dev/null 2>&1                #
 #                                                                              #
 # Este trabalho está licenciado com uma Licença Creative Commons               #
 # Atribuição 4.0 Internacional                                                 #
