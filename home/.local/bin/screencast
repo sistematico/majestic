@@ -44,6 +44,10 @@ if [ -z "$DESKTOP_SESSION" ]; then
 	notifycommand="notify-send -h int:transient:1 -i $ICONE $NOME"
 fi
 
+if [ -z "$DISPLAY" ]; then
+    DISPLAY=:0
+fi
+
 if [ -f ~/.config/user-dirs.dirs ]; then
     . ~/.config/user-dirs.dirs
     CAMINHO="${XDG_VIDEOS_DIR}/screencast"
