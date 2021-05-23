@@ -21,7 +21,7 @@ notifycommand="$HOME/bin/notify.sh ${nome} ${icone} ${nome}"
 
 [ ! -d $dir ] && echo "$dir não existe, abortando." && exit
 
-if [ -z "$DESKTOP_SESSION" ];
+if [ -z "$DESKTOP_SESSION" ]; then
     notifycommand="notify-send -h int:transient:1 -i ${icone} ${nome}"
 fi
 

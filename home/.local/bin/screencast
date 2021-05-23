@@ -40,7 +40,7 @@ list_descendants () {
 
 notifycommand="$HOME/bin/notify.sh VideoDown ${ICONE} $NOME"
 
-if [ -z "$DESKTOP_SESSION" ];
+if [ -z "$DESKTOP_SESSION" ]; then
 	notifycommand="notify-send -h int:transient:1 -i $ICONE $NOME"
 fi
 

@@ -32,7 +32,7 @@ HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox
 NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int:transient:1 -i $ICONE
 YOUTUBE="youtube-dl --extract-audio --audio-format mp3" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 
-if [ -z "$DESKTOP_SESSION" ];
+if [ -z "$DESKTOP_SESSION" ]; then
     NOTIFY="notify-send -i ${icone} ${nome}"
 fi
 
