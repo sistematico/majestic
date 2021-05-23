@@ -33,7 +33,7 @@ NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int
 YOUTUBE="youtube-dl" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 
 if [ -z "$DESKTOP_SESSION" ]; then
-    NOTIFY="notify-send -h int:transient:1 -i ${icone} ${nome}"
+    NOTIFY="notify-send -h int:transient:1 -i ${ICONE} ${NOME_CURTO}"
 fi
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
