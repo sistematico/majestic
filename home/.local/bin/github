@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
-#
-# github - Script para enviar automaticamente mudanças ao Github
-# LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!
-#
-# Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
-#
-# Sugestão de crontab:
-# */15 * * * * /usr/bin/bash -c "/usr/local/bin/git-push" 2>&1
-# * * * * * sh -c "/usr/local/bin/git-push" > /dev/null 2>&1
-#
-# Criado em: 20/12/2017 19:27:31
-# Última Atualização: 17/02/2021 20:09:00
+################################################################################
+#                                                                              #
+# Arquivo: ~/.local/bin/github                                                 #
+#                                                                              #
+# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
+#                                                                              #
+# Criado em: 20/12/2017 19:27:31                                               #
+# Modificado em: 23/05/2021 13:06:18                                           #
+#                                                                              #
+# LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!                    #
+#                                                                              #
+# Sugestão de crontab:                                                         #
+# */15 * * * * /usr/bin/bash -c "/usr/local/bin/git-push" 2>&1                 #
+# * * * * * sh -c "/usr/local/bin/git-push" > /dev/null 2>&1                   #
+#                                                                              #
+# Este trabalho está licenciado com uma Licença Creative Commons               #
+# Atribuição 4.0 Internacional                                                 #
+# http://creativecommons.org/licenses/by/4.0/                                  #
+#                                                                              #
+################################################################################
 
 nome="GitHub"
 dir="${HOME}/github"
