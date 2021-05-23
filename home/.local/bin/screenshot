@@ -26,6 +26,10 @@ tipo="image/png"
 lixeira="${HOME}/.local/share/Trash"
 borda="10"
 
+if [ -z "$DESKTOP_SESSION" ]; then
+	notifycommand="notify-send -h int:transient:1 -i $ICONE $NOME"
+fi
+
 [ ! -d $dir ] && mkdir -p $dir
 [ ! -d $lixeira ] && mkdir -p $lixeira
 
