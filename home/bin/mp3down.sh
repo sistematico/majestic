@@ -24,7 +24,7 @@ LOG=0 # 0 = Sem log, 1 = Log no arquivo
 ARIA=1
 TS=$(date +"%s")
 DIR="${XDG_MUSIC_DIR:-${HOME}/audio}"
-ICONE="/usr/share/icons/Newaita-dark/devices/symbolic/video-display-symbolic.svg"
+ICONE="/usr/share/icons/Newaita/apps/64/multimedia-audio-player.svg"
 TMP="/tmp/mp3down/$$"
 LOGS="${DIR}/status.log"
 PROC=$(pgrep -fc "bash $0")
