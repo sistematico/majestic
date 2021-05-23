@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ################################################################################
 #                                                                              #
-# mp3down.sh                                                                 #
+# Arquivo: ~/bin/mp3down.sh                                                    #
 #                                                                              #
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
 #                                                                              #
