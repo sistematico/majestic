@@ -19,6 +19,9 @@
 # 
 # m h  dom mon dow   command
 
+# i3: env DISPLAY=:0 command
+# Gnome: env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus command
+
 # Backup
 #0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@artemis:/ /home/lucas/vps/artemis/
 #0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@hera:/ /home/lucas/vps/hera/
@@ -40,5 +43,8 @@
 #0 0 * * * /usr/bin/rclone copy gdrive: /mnt/hdd/gdrive/ 2>&1
 
 # Git Cron (add, commit, push automático)
-* * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/bash -c "${HOME}/.local/bin/gitlab" >/dev/null 2>&1
-* * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/bash -c "${HOME}/.local/bin/github" >/dev/null 2>&1
+#* * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/bash -c "${HOME}/.local/bin/gitlab" >/dev/null 2>&1
+#* * * * * env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus /usr/bin/bash -c "${HOME}/.local/bin/github" >/dev/null 2>&1
+
+* * * * * env DISPLAY=:0 /usr/bin/bash -c "${HOME}/.local/bin/gitlab" >/dev/null 2>&1
+* * * * * env DISPLAY=:0 /usr/bin/bash -c "${HOME}/.local/bin/github" >/dev/null 2>&1

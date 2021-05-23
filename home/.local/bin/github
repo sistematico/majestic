@@ -14,10 +14,16 @@
 
 nome="GitHub"
 dir="${HOME}/github"
-repos=($(ls -d ${dir}/*))
+repos=($(ls -d ${dir}/* 2> /dev/null))
 icone="${HOME}/.local/share/icons/brands/github.svg"
 som="complete"
 notifycommand="$HOME/bin/notify.sh ${nome} ${icone} ${nome}"
+
+[ ! -d $dir ] && echo "$dir não existe, abortando." && exit
+
+if [ -z "$DESKTOP_SESSION" ]; then
+	notifycommand="notify-send -i ${icone} ${nome}"
+fi
 
 atualiza() {
     if pgrep git > /dev/null 2> /dev/null; then

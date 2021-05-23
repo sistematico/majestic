@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 ################################################################################
 #                                                                              #
-# videodown.sh                                                                 #
+# Arquivo: ~/bin/videodown.sh                                                  #
 #                                                                              #
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
 #                                                                              #
-# Criado em: 30-04-2019 13:55:09                                               #
-# Modificado em: 02/09/2020 18:24:49                                           #
+# Criado em: 30/04/2019 13:55:09                                               #
+# Modificado em: 23/05/2021 12:53:08                                           #
 #                                                                              #
 # Este trabalho está licenciado com uma Licença Creative Commons               #
 # Atribuição 4.0 Internacional                                                 #
@@ -31,6 +31,10 @@ PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int:transient:1 -i $ICONE
 YOUTUBE="youtube-dl" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
+
+if [ -z "$DESKTOP_SESSION" ]; then
+    NOTIFY="notify-send -i ${icone} ${nome}"
+fi
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
 [ ! -d $TMP ] && mkdir -p $TMP
