@@ -150,6 +150,7 @@ label = %date% %time%
 
 [module/temperature]
 type = internal/temperature
+interval = 30
 thermal-zone = 0
 warn-temperature = 60
 
