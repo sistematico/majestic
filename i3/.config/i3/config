@@ -126,6 +126,9 @@ bindcode Mod2+$KP_1 exec --no-startup-id mpc seek -10
 bindcode $KP_Add exec --no-startup-id amixer -q -D pulse sset Master 2%+
 bindcode $KP_Sub exec --no-startup-id amixer -q -D pulse sset Master 2%-
 
+bindcode Shift+$KP_Add exec --no-startup-id mpc volume +2
+bindcode Shift+$KP_Sub exec --no-startup-id mpc volume -2
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
