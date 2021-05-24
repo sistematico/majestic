@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Facebook
+Name=Reddit
 Comment=
-Exec=/usr/local/webapps/Facebook-linux-x64/Facebook
-Icon=/usr/local/webapps/Facebook-linux-x64/resources/app/icon.png
+Exec=/usr/local/webapps/Reddit-linux-x64/Reddit
+Icon=/usr/local/webapps/Reddit-linux-x64/resources/app/icon.png
 Terminal=false
-StartupWMClass=facebook-nativefier-d58ff9
+StartupWMClass=reddit-nativefier-a95df2

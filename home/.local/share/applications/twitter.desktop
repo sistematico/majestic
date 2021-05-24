@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Facebook
+Name=Twitter
 Comment=
-Exec=/usr/local/webapps/Facebook-linux-x64/Facebook
-Icon=/usr/local/webapps/Facebook-linux-x64/resources/app/icon.png
+Exec=/usr/local/webapps/Twitter-linux-x64/Twitter
+Icon=/usr/local/webapps/Twitter-linux-x64/resources/app/icon.png
 Terminal=false
 StartupWMClass=twitter-nativefier-4fd9c9
