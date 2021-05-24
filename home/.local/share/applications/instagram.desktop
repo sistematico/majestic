@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Instagram
+Comment=
+Exec=/usr/local/webapps/Instagram-linux-x64/Instagram
+Icon=/usr/local/webapps/Instagram-linux-x64/resources/app/icon.png
+Terminal=false
+StartupWMClass=instagram-nativefier-51e18f

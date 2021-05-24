@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Bitwarden
+Comment=
+Exec=/usr/local/webapps/Bitwarden-linux-x64/Bitwarden
+Icon=/usr/local/webapps/Bitwarden-linux-x64/resources/app/icon.png
+Terminal=false
+StartupWMClass=bitwarden-nativefier-431e11
