@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Facebook
+Comment=
+Exec=/usr/local/webapps/Facebook-linux-x64/Facebook
+Icon=/usr/local/webapps/Facebook-linux-x64/resources/app/icon.png
+Terminal=false
+StartupWMClass=facebook-nativefier-d40211
