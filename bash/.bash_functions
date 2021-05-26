@@ -182,13 +182,15 @@ chgtk() {
                 fi
             fi
         done
-        for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
-            if [ -d $HOME/.local/share/themes/${tema} ]; then
-                if [ -d $HOME/.local/share/themes/${tema}/gtk-3.0 ]; then
-                    echo $tema
+        if [ -d $HOME/.local/share/themes ]; then 
+            for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
+                if [ -d $HOME/.local/share/themes/${tema} ]; then
+                    if [ -d $HOME/.local/share/themes/${tema}/gtk-3.0 ]; then
+                        echo $tema
+                    fi
                 fi
-            fi
-        done
+            done
+        fi
         return
     fi
 
