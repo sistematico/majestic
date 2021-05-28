@@ -1,5 +1,5 @@
 # Vars used in functions.
-STORAGE="/media/storage"
+STORAGE="/home/lucas"
 
 function cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
