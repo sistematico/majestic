@@ -12,6 +12,8 @@ var/lib/php/sessions/
 var/log/journal/
 var/cache/apt/
 *.mp3
+*.mp4
+*.m4a
 .local/share/Trash/
 .local/share/Steam/
 .cache/
@@ -38,4 +40,4 @@ var/cache/yum
 /etc/shadow-
 /etc/gshadow
 /etc/gshadow-
-usr/lib/modules/
+/usr/lib/modules/
