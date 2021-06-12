@@ -6,6 +6,11 @@ add_newline = false
 #[│](bold green)$username@$hostname $directory$rust$package
 #[└─>](bold green) $status"""
 
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_symbol = ".../"
+read_only = " 🔒"
+
 [cmd_duration]
 min_time = 500
 format = "Duração [$duration](bold yellow)"
