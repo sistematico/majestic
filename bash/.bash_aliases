@@ -19,7 +19,7 @@ alias cat='bat'
 alias journalctl='sudo journalctl'
 
 # Main
-alias rehash='source ~/.bashrc && source ~/.bash_aliases && source ~/.bash_functions'
+alias rehash='source ~/.bashrc && source ~/.bash_aliases && source ~/.bash_functions && source ~/.bash_profile'
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
 alias els='els --els-icons=fontawesome'
 alias ufw='sudo ufw'
