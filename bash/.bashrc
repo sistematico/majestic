@@ -86,3 +86,6 @@ test -r $d && eval "$(dircolors $d)"
 
 # added by travis gem
 [ ! -s /home/lucas/.travis/travis.sh ] || source /home/lucas/.travis/travis.sh
+
+# StarShip.rs
+eval "$(starship init bash)"
