@@ -25,9 +25,9 @@ URxvt.urgentOnBell: true
 URxvt.depth: 32
 URxvt.iso14755: false
 
-!URxvt.transparent: false
-URxvt.shading:       20
-URxvt.background: rgba:0000/0000/0200/c800
+URxvt.transparent: false
+!URxvt.shading:       20
+!URxvt.background: rgba:0000/0000/0200/c800
 
 !! Common Keybinds for Navigations
 URxvt.keysym.Shift-Up: command:\033]720;1\007
