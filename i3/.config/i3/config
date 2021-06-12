@@ -323,7 +323,7 @@ for_window [class="Spotify"] move to workspace $ws6
 ################ A S S I G N #######################################
 ####################################################################
 assign [class="^(Navigator|Google-chrome|[Cc]hromium|[Qq]utebrowser|[Ee]piphany|[Ff]irefox|[Ff]irefox-developer)"] $ws1
-assign [class="(Termite|Tilix|st-256color|Xfce4-terminal|URxvt)"] $ws2
+assign [class="(Termite|Tilix|st-256color|Xfce4-terminal|URxvt|Alacritty)"] $ws2
 assign [class="^(VSCodium|Code|Pluma|Sublime_text|Atom|L3afpad|Mousepad)"] $ws3
 assign [class="(Thunar|Pcmanfm)"] $ws4
 assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer|Dconf-editor|Filezilla|JDownloader|Gimp-2.10|Inkscape)"] $ws5
