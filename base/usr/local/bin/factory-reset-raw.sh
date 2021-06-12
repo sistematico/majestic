@@ -7,7 +7,7 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 01/09/2020 00:20:39
 
-BASE="base base-devel linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd sudo nano openssh git cronie terminus-font xorg-server xorg-xinit nvidia i3-gaps-rounded-git polybar-git feh dunst picom-ibhagwan-git rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris"
+BASE="base base-devel linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd sudo nano openssh git cronie terminus-font xorg-server xorg-xinit nvidia i3-gaps-rounded-git polybar-git feh dunst picom-ibhagwan-git rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris gnome-themes-extra dracula-gtk-theme ttf-dejavu"
 
 systemctl --now disable docker
 systemctl disable gdm lightdm
