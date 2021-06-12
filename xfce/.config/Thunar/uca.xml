@@ -73,4 +73,13 @@
 	<patterns>*</patterns>
 	<video-files/>
 </action>
+<action>
+	<icon>weather-overcast</icon>
+	<name>VirusScan</name>
+	<unique-id>1546383797562485-2</unique-id>
+	<command>clamtk %F</command>
+	<description>Executa um anti-vírus nas pastas ou arquivos selecionados</description>
+	<patterns>*</patterns>
+	<video-files/>
+</action>
 </actions>
