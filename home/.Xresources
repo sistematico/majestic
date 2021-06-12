@@ -1,7 +1,8 @@
 #include ".colors/dracula"
 
 ! URxvt Vars
-#define FONT Fantasque Sans Mono
+!#define FONT Fantasque Sans Mono
+#define FONT JetBrainsMono Nerd Font Mono
 #define FONT_SIZE 10
 
 ! Fonts
