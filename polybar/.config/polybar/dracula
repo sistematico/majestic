@@ -225,7 +225,7 @@ click-left = pgrep -x thunar | egrep -v "grep|daemon" >/dev/null || /usr/bin/thu
 [module/terminal]
 type = custom/text
 content = 
-click-left = urxvt &
+click-left = $TERMINAL &
 
 [module/code]
 type = custom/text

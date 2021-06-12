@@ -33,7 +33,8 @@ export GL=${HOME}/gitlab
 export DOT=${HOME}/.dotfiles
 
 # Vars
-export TERMINAL=urxvt
+#export TERMINAL=urxvt
+export TERMINAL=alacritty
 export BROWSER=firefox
 export EDITOR=nano
 export RANGER_LOAD_DEFAULT_RC=false
