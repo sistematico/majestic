@@ -25,10 +25,10 @@ icone="/usr/share/icons/Newaita/devices/48/video-display.svg"
 tipo="image/png"
 lixeira="${HOME}/.local/share/Trash"
 borda="10"
-notifycommand="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO"
+notifycommand="$HOME/bin/notify.sh ScreenShot $icone ScreenShot"
 
 if [ -z "$DESKTOP_SESSION" ]; then
-	notifycommand="notify-send -h int:transient:1 -i $ICONE $NOME"
+	notifycommand="notify-send -h int:transient:1 -i $icone ScreenShot"
 fi
 
 [ ! -d $dir ] && mkdir -p $dir
