@@ -10,6 +10,8 @@
 # to the user's home directory starting with `~/`.
 #import:
 #  - /path/to/alacritty.yml
+import:
+  - ~/.config/alacritty/dracula.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -45,12 +47,12 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 20
+    y: 20
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  #dynamic_padding: false
 
   # Window decorations
   #
