@@ -7,7 +7,7 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 01/09/2020 00:20:39
 
-BASE="base base-devel linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd nano terminus-font"
+BASE="base base-devel linux linux-firmware efibootmgr lvm2 intel-ucode btrfs-progs grub dhcpcd nano git terminus-font xorg-server xorg-xinit nvidia"
 
 echo "Packages: $(pacman -Q | wc -l)" > /var/tmp/packages-before.log
 echo "---" >> /var/tmp/packages-before.log
