@@ -150,7 +150,7 @@ if [ "$res" ]; then
 				$editor ~/${homefiles}
 			fi
 		;;
-		'Alacritty') $editor ~/.config/alacritty.yml ;;
+		'Alacritty') $editor ~/.config/alacritty/alacritty.yml ;;
 		'st') 
 			stfiles=$(echo "Config;Re-Build" | rofi -sep ";" -dmenu -p "Simple Terminal" -bw 0 -lines 2 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
 			if [ "$stfiles" = "Config" ]; then
