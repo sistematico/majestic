@@ -23,5 +23,9 @@
         "args": {
             "snippet": "SELECTION, TM_SELECTED_TEXT, TM_CURRENT_LINE, TM_CURRENT_WORD, TM_LINE_INDEX, TM_LINE_NUMBER, TM_FILENAME, TM_DIRECTORY, TM_FILEPATH"
         }
+    },
+    {
+        "key": "ctrl+shift+k ctrl+shift+s",
+        "command": "editor.action.sortLinesAscending"
     }
 ]
