@@ -74,7 +74,7 @@ label-urgent-padding = 2
 
 [module/xwindow]
 type = internal/xwindow
-label =  %{A1:xdotool getwindowfocus windowkill:}%title:0:30:...%%{A}
+label =  %{A2:xdotool getwindowfocus windowkill:}%title:0:30:...%%{A}
 
 [module/cpu]
 type = internal/cpu
