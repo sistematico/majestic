@@ -77,7 +77,7 @@ if [ "$res" ]; then
 		'Picom')
 			picomconfig=$(echo "Config;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 			if [ "$picomconfig" = "Reload" ]; then
-				killall picom && picom &
+				killall picom && picom -b --config $HOME/.config/picom/picom.conf &
 			elif [ $picomconfig ]; then
 				$editor ~/.config/picom/picom.conf
 			fi
