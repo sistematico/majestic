@@ -47,6 +47,17 @@ modules-right = cpu memory filesystem network temperature pulseaudio date lock c
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
+;   none
+tray-position = right
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
