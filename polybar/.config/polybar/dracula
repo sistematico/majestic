@@ -230,7 +230,8 @@ click-left = $TERMINAL &
 [module/code]
 type = custom/text
 content = 
-click-left = pgrep -x code > /dev/null || /usr/bin/code &
+;click-left = pgrep -x code > /dev/null || /usr/bin/code &
+click-left = /usr/bin/code &
 
 [module/telegram]
 type = custom/text
