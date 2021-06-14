@@ -60,13 +60,6 @@ gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 # gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
 
 ######################
-# Nautilus           #
-######################
-# Always show text-entry location
-# Default: false
-gsettings set org.gnome.nautilus.preferences always-use-location-entry true
-
-######################
 # GTK                #
 ######################
 # Sort directories first
