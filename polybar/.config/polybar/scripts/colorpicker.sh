@@ -200,7 +200,8 @@ if [ "$1" = "--pick" ]; then
   X=""
   Y=""
 
-  MOUSE_ID=$(xinput --list | grep -m 1 'Mouse' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
+  #MOUSE_ID=$(xinput --list | grep -m 1 'Mouse' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
+  MOUSE_ID=$(xinput --list | grep -m 1 'Abyssus' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
   sleep 0.1
   STATE1=$(xinput --query-state $MOUSE_ID | grep 'button\[' | sort)
   while true; do
