@@ -1,3 +1,4 @@
 gtk-icon-theme-name = "Newaita-dark"
-gtk-theme-name = "Dracula"
+# Dracula
+gtk-theme-name = "Arc-Gruvbox"
 gtk-font-name = "DejaVu Sans 10"
