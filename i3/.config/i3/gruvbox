@@ -20,6 +20,11 @@ for_window [class="^.*"] border pixel 0
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Fantasque Sans Mono 8
 
+# GruvBox
+set_from_resource $bg background #282828
+set_from_resource $bd border #5f676a
+
+# Dracula
 set_from_resource $bg background #282a36
 set_from_resource $bd border #D08770
 
