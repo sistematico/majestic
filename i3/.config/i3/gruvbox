@@ -14,7 +14,7 @@ new_window pixel 0
 default_border pixel 0
 #border_radius 6
 
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -23,13 +23,15 @@ font pango:Fantasque Sans Mono 8
 # GruvBox
 set_from_resource $bg background #282828
 set_from_resource $bd border #5f676a
+set_from_resource $ind border #c78f23
 
 # Dracula
-set_from_resource $bg background #282a36
-set_from_resource $bd border #D08770
+#set_from_resource $bg background #282a36
+#set_from_resource $bd border #D08770
+#set_from_resource $ind active #D08770
 
 # classe                borda   fundo   texto   ind.    borda filho
-client.focused          $bg     $bg     $bg     $bd     $bd
+client.focused          $ind    $bg     $bg     $bd     $bd
 client.focused_inactive $bg     $bg     $bg     $bd     $bd
 client.unfocused        $bg     $bg     $bg     $bd     $bd
 client.urgent           $bg     $bg     $bg     $bd     $bd

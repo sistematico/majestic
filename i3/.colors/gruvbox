@@ -2,6 +2,7 @@
 *.foreground: #F8F8F2
 *.background: #282A36
 *.border: 	  #5F676A
+*.active: 	  #c78f23
 *.color0:     #000000
 *.color8:     #4D4D4D
 *.color1:     #FF5555
