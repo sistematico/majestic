@@ -33,9 +33,9 @@ colorscheme gruvbox
 
 set background=dark " dark/light
 
-let g:airline_theme='gruvbox'
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
+" let g:airline_theme='gruvbox'
+" let g:airline_powerline_fonts = 1
+" let g:airline_skip_empty_sections = 1
 
 filetype plugin indent on
 syntax on
