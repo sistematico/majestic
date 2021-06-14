@@ -3,8 +3,6 @@ configuration {
     modi: "window,drun,run,ssh";
     font: "Open Sans 11";
     show-icons: true;
-    drun-icon-theme: "Newaita-dark";
-    levenshtein-sort: true;
     hide-scrollbar: true;
     click-to-exit: true;
 }
