@@ -28,10 +28,10 @@ set_from_resource $ind active #c78f23
 # Dracula
 #set_from_resource $bg background #282a36
 #set_from_resource $bd border #D08770
-#set_from_resource $ind active #D08770
+#set_from_resource $ind active #282a36
 
 # classe                borda   fundo   texto   ind.    borda filho
-client.focused          $ind    $bg     $bg     $bd     $bd
+client.focused          $ind    $bg     $bg     $bd     $ind
 client.focused_inactive $bg     $bg     $bg     $bd     $bd
 client.unfocused        $bg     $bg     $bg     $bd     $bd
 client.urgent           $bg     $bg     $bg     $bd     $bd
