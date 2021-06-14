@@ -4,7 +4,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
-let g:gruvbox_contrast_dark = 'hard' " soft, medium and hard
+let g:gruvbox_transparent_bg = 'hard' " soft, medium and hard
 colorscheme gruvbox
 set background=dark " dark/light
 
