@@ -5,6 +5,8 @@ Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
+let NERDTreeShowHidden=1
+
 let g:gruvbox_transparent_bg = 'hard' " soft, medium and hard
 colorscheme gruvbox
 set background=dark " dark/light
@@ -32,3 +34,4 @@ inoremap <C-q> <esc>:qa!<cr>               " quit discarding changes
 nnoremap <C-q> :qa!<cr>
 
 autocmd VimEnter * hi Normal ctermbg=none
+autocmd VimEnter * NERDTree
