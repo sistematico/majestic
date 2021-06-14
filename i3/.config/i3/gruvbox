@@ -23,7 +23,7 @@ font pango:Fantasque Sans Mono 8
 # GruvBox
 set_from_resource $bg background #282828
 set_from_resource $bd border #5f676a
-set_from_resource $ind border #c78f23
+set_from_resource $ind active #c78f23
 
 # Dracula
 #set_from_resource $bg background #282a36
