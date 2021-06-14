@@ -32,7 +32,7 @@ set_from_resource $ind active #c78f23
 
 # classe                borda   fundo   texto   ind.    borda filho
 client.focused          $ind    $bg     $bg     $bd     $ind
-client.focused_inactive $bg     $bg     $bg     $bd     $bd
+client.focused_inactive $bg     $bg     $bg     $bd     $ind
 client.unfocused        $bg     $bg     $bg     $bd     $bd
 client.urgent           $bg     $bg     $bg     $bd     $bd
 client.placeholder      $bg     $bg     $bg     $bd     $bd
