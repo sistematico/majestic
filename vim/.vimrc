@@ -30,8 +30,10 @@ syntax enable
 " let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_contrast_light = 'hard'
 colorscheme gruvbox
-let g:airline_theme='gruvbox'
 
+set background=dark " dark/light
+
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 
