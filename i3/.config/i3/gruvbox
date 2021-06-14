@@ -73,6 +73,9 @@ bindsym F6 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh a
 # Center Windows
 bindsym $mod+Shift+c move position center
 
+# TTY Clock
+bindsym Control+Shift+c exec --no-startup-id i3-sensible-terminal -e tty-clock
+
 # Rofi
 bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 0 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
 bindsym --release Mod1+g exec --no-startup-id exec $HOME/.config/rofi/scripts/git
@@ -297,6 +300,7 @@ for_window [window_type="menu"] floating enable, move position center
 for_window [class="(Mate-font-viewer|Notes|Pavucontrol|YAD|Gnome-font-viewer)"] floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
+for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 
 for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird|Video Cut|Video Resize|Biblioteca|Library|About|Amigos|Sobre o Mozilla Firefox|VideoCut|dagor2)"] floating enable, move position center
 for_window [class="(Agave|Engrampa|Galculator|Catfish|Viewnior|File-roller|Xarchiver)"] floating enable, move position center
