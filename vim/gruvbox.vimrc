@@ -29,3 +29,5 @@ nnoremap <C-d> :wq!<cr>
 
 inoremap <C-q> <esc>:qa!<cr>               " quit discarding changes
 nnoremap <C-q> :qa!<cr>
+
+autocmd VimEnter * hi Normal ctermbg=none
