@@ -1,6 +1,5 @@
 * {
-  /* background-color: #282C33; */
-  background-color: #282a36;
+  background-color: #282A36;
   border-color: #2e343f;
   text-color: #8ca0aa;
   spacing: 0;
@@ -18,7 +17,7 @@ prompt {
 }
 
 textbox {
-  background-color: #2e343f;
+  background-color: #282A36;
   border: 0 0 1px 0;
   border-color: #282C33;
   padding: 8px 16px;
