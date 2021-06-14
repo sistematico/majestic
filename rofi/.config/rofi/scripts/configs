@@ -43,7 +43,7 @@ if [ "$res" ]; then
 					$editor "${HOME}/.config/polybar/scripts/${app}"
 				fi
 			elif [ "$polyconfig" == "Config" ]; then
-				$editor "${HOME}/.config/polybar/dracula" 
+				$editor "${HOME}/.config/polybar/config" 
 			fi
 		;;
 		'i3lock')

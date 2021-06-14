@@ -2,7 +2,7 @@
 
 killall -q polybar
 
-polybar --config=$HOME/.config/polybar/config bar >> /tmp/polybar.log 2>&1 & disown
+polybar --config=$HOME/.config/polybar/config gruvbox >> /tmp/polybar.log 2>&1 & disown
 
 # Transparent
 #polybar top >> /tmp/polybar-top.log 2>&1 & disown
