@@ -213,13 +213,13 @@ if [ "$1" = "--pick" ]; then
       COLOR=`xwd -root -silent | convert xwd:- -depth 8 -crop "1x1+$X+$Y" txt:- | grep -om1 '#\w\+'`
       sed -i "/$COLOR/d" $COLORFILE
       echo $COLOR >> $COLORFILE
-      update
+      #update
       break;
     fi
     STATE1=$STATE2
   done
 elif [ "$1" = "--update" ]; then
-echo "update" >> /home/alexandre/debug.log
+echo "update" >> $HOME/debug.log
 	echo "$(cat $COLORFILE)" > $COLORFILE
 elif [ "$1" = "--popup" ]; then
 	open_popup
