@@ -74,7 +74,7 @@ bindsym F6 exec --no-startup-id $HOME/.config/polybar/scripts/downloads.sh a
 bindsym $mod+Shift+c move position center
 
 # TTY Clock
-bindsym Control+Shift+c exec --no-startup-id i3-sensible-terminal -e tty-clock
+#bindsym Control+Shift+c exec --no-startup-id i3-sensible-terminal -e tty-clock ; i3-msg "border 1pixel" title_format "<span foreground='red'>%title</span>"
 
 # Rofi
 bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 0 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
