@@ -6,7 +6,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'arcticicestudio/nord-vim'
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -19,9 +19,12 @@ syntax enable
 "let g:airline_theme='nord_minimal'
 
 " Dracula
-packadd! dracula
-let g:dracula_colorterm = 0
-colorscheme dracula
+"packadd! dracula
+"let g:dracula_colorterm = 0
+"colorscheme dracula
+
+" Gruvbox
+colorscheme gruvbox
 
 filetype plugin indent on
 syntax on
