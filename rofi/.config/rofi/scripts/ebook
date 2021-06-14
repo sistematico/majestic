@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 app="atril" #app="xdg-open"
-dir="${HOME}/docs"
-[ ! -d $dir ] && echo "Diretório $dir não encontrado." && exit 0
+dir="${HOME}/docs/pdf/"
+[ ! -d $dir ] && rofi -e "Diretório $dir não encontrado." && exit 0
 params="-show run -i -fuzzy -location 0 -opacity 80 -width 20 -padding 16"
 
 readarray -t arquivos <<< "$(find $dir -type f -iname '*.pdf')"
@@ -25,6 +25,9 @@ lista() {
 livros
 
 livro=$( (lista) | rofi -dmenu $params -lines $(echo ${#livros[@]}) -p "E-books:" )
-[ "$livro" ] && $app "${livros[$livro]}"
+if [ ! -z "$livro" ]; then
+    killall $app
+    $app "${livros[$livro]}"
+fi
 
 exit 0
