@@ -15,19 +15,25 @@ set guifont=Ubuntu\ Mono:h15:cANSI
 syntax enable
 
 " Nord
-"colorscheme nord
-"let g:airline_theme='nord_minimal'
+" colorscheme nord
+" let g:airline_theme='nord_minimal'
+" let g:airline_theme='minimalist'
 
 " Dracula
-"packadd! dracula
-"let g:dracula_colorterm = 0
-"colorscheme dracula
+" packadd! dracula
+" let g:dracula_colorterm = 0
+" colorscheme dracula
+" let g:airline_theme='minimalist'
 
 " Gruvbox
 " Dark/Light (soft, medium and hard)
-let g:gruvbox_contrast_dark = 'hard'
-"let g:gruvbox_contrast_light = 'hard'
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_light = 'hard'
 colorscheme gruvbox
+let g:airline_theme='gruvbox'
+
+let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
 
 filetype plugin indent on
 syntax on
@@ -37,10 +43,6 @@ set mouse=a
 set noshowmode
 set cmdheight=1
 set tabstop=4 shiftwidth=4 expandtab
-
-let g:airline_powerline_fonts = 1
-let g:airline_theme='minimalist'
-let g:airline_skip_empty_sections = 1
 
 inoremap <C-s> <esc>:w<cr>                 " save files
 nnoremap <C-s> :w<cr>
