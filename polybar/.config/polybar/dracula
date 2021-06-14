@@ -40,7 +40,7 @@ module-margin-right = 2
 font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 font-1 = icomoon:fontformat=truetype:size=8;2
 
-modules-left = i3 firefox thunar terminal code telegram downloads headset
+modules-left = i3 firefox thunar terminal code telegram downloads colorpicker headset
 modules-center = xwindow
 modules-right = cpu memory filesystem network temperature pulseaudio date lock clip powermenu
 
@@ -285,6 +285,20 @@ tail = true
 click-middle = $HOME/.config/polybar/scripts/trash.sh -o &
 click-right = $HOME/.config/polybar/scripts/trash.sh -x &
 exec = $HOME/.config/polybar/scripts/trash.sh
+
+[module/colorpicker]
+type = custom/script
+exec = "$HOME/.config/polybar/scripts/colorpicker.sh"
+click-left = $HOME/.config/polybar/scripts/colorpicker.sh --pick
+click-right = "kill -USR1 $(pgrep --oldest --parent %pid%) && $HOME/.config/polybar/scripts/colorpicker.sh --update"
+double-click-right = "kill -USR2 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
+scroll-up = "echo "previous_color" > /tmp/i3colorpicker && kill -USR1 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
+scroll-down = "echo "next_color" > /tmp/i3colorpicker && kill -USR1 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
+tail = true
+format-prefix = " Color"
+format-prefix-foreground = ${colors.foreground-alt}
+label = %output%
+
 
 [module/wall]
 type = custom/text
