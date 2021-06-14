@@ -5,7 +5,8 @@ IFS=$'\n'
 if [ $1 ]; then
     type="$(file -ib "$1" | awk -F'/' '{print $1}' 2> /dev/null)"
     if [ "$type" == "image" ]; then
-        /usr/bin/feh --bg-fill "$1"
+        feh --bg-fill "$1"
+		sed "s|exec_always --no-startup-id feh.*|exec_always --no-startup-id feh --bg-fill $1|" ~/.config/i3/config
     fi
 fi
 IFS="$OIFS"
