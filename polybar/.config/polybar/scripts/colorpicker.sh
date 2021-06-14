@@ -256,7 +256,8 @@ else
         displaycolor="rgb($r,$g,$b)"
       fi
 
-      echo "%{u$hexcolor}$displaycolor %{-u}%{B$hexcolor}      %{B-}"
+      echo "%{u$hexcolor}$displaycolor%{-u}"
+      #echo "%{u$hexcolor}$displaycolor %{-u}%{B$hexcolor}      %{B-}"
       # echo "%{B$hexcolor}%{F$fhexcolor}  $displaycolor  %{B- F-}"
     fi
 	done

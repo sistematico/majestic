@@ -284,10 +284,8 @@ double-click-right = "kill -USR2 $(pgrep --oldest --parent %pid%) && ~/.config/p
 scroll-up = "echo "previous_color" > /tmp/i3colorpicker && kill -USR1 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
 scroll-down = "echo "next_color" > /tmp/i3colorpicker && kill -USR1 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
 tail = true
-format-prefix = " Color"
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
 label = %output%
-
 
 [module/wall]
 type = custom/text
