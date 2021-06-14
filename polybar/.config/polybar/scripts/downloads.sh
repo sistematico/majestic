@@ -3,7 +3,8 @@
 # Polybar downloads.sh
 #
 
-cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
+#cor=$(xrdb -query | grep border | head -n1 | awk '{print $2}')
+cor=$(xrdb -query | grep foreground | head -n1 | awk '{print $2}')
 
 if [ "$1" == "c" ]; then
 	killall youtube-dl
