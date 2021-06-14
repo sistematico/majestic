@@ -24,6 +24,9 @@ syntax enable
 "colorscheme dracula
 
 " Gruvbox
+" Dark/Light (soft, medium and hard)
+let g:gruvbox_contrast_dark = 'hard'
+"let g:gruvbox_contrast_light = 'hard'
 colorscheme gruvbox
 
 filetype plugin indent on
