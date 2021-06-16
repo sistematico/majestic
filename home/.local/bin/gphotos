@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+#
+# Arquivo: ~/.local/bin/gphotos
+# Descrição: Um script para sincronizar sua conta do Google Photos usando o rclone.
+#
+# Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
+#
+# Criado em:        16/06/2021 08:28:30
+# Última alteração: 16/06/2021 08:28:33
 
 dir="$HOME/google/photos"
 bw="--bwlimit 300k" # b|k|M|G
