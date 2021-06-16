@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
-#
-#0 0 * * * /usr/bin/rclone sync /home/lucas/google/photos gphotos:album/Majestic 2>&1
-#0 0 * * * /usr/bin/rclone copy gphotos: /home/lucas/google/photos/ 2>&1
-#
-#0 0 * * * /usr/bin/rclone sync /home/lucas/google/drive gdrive: 2>&1
-#0 0 * * * /usr/bin/rclone copy gdrive: /home/lucas/google/drive/ 2>&1
 
-# b|k|M|G
-bw="--bwlimit 300k"
+dir="$HOME/google/drive"
+bw="--bwlimit 300k" # b|k|M|G
 
 if ! pgrep rclone > /dev/null 2> /dev/null; then
-    /usr/bin/rclone copy gdrive: /home/lucas/google/drive $bw 2>&1
+    /usr/bin/rclone copy gdrive: $dir $bw 2>&1
 fi
 
