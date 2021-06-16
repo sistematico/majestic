@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
+#
+# Arquivo: g533.sh
+# Descrição: 
+#
+# Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
+#
+# Criado em:        16/06/2021 09:04:44
+# Última alteração: 16/06/2021 09:04:46
 
 icon="${HOME}/.local/share/icons/panel/batt"
 
 if ! sudo /usr/local/bin/headsetcontrol -b 2> /dev/null | grep -q Battery; then
 	#echo "<img>${icon}/full.png</img>"
-	[ $1 ] && echo "??%" || echo "<img>${icon}/audio-headset.png</img>"
+	[ $1 ] && echo "" || echo "<img>${icon}/audio-headset.png</img>"
 	exit
 fi
 
