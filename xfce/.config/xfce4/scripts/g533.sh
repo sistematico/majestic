@@ -11,7 +11,6 @@
 icon="${HOME}/.local/share/icons/panel/batt"
 
 if ! sudo /usr/local/bin/headsetcontrol -b 2> /dev/null | grep -q Battery; then
-	#echo "<img>${icon}/full.png</img>"
 	[ $1 ] && echo "" || echo "<img>${icon}/audio-headset.png</img>"
 	exit
 fi
