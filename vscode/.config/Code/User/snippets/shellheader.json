@@ -2,17 +2,15 @@
 	"Shell Script Header": {
 		"prefix": "shellheader",
 		"body": [
-			"console.log('$1');",
-			"$2",
 			"#!/usr/bin/env bash",
 			"#",
-			"# Arquivo: videocut-gui.sh",
-			"# Descrição: Script usando o YAD e ffmpeg para cortar arquivos de vídeo.",
+			"# Arquivo: ${1:shell.sh}",
+			"# Descrição: ${2:Um script em shell.}",
 			"#",
 			"# Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>",
 			"#",
-			"# Criado em:        09/06/2018 19:39:27",
-			"# Última alteração: 28/01/2019 19:41:58"
+			"# Criado em:        ${3:09/06/2018 19:39:27}",
+			"# Última alteração: ${4:28/01/2019 19:41:58}"
 		],
 		"description": "Add common header to shell scripts"
 	}
