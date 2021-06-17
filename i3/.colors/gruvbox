@@ -1,6 +1,5 @@
 ! Gruvbox Xresources palette
 *.foreground: #F8F8F2
-!*.background: #282A36
 *.background: #292828
 *.background-alt: #282828
 *.border: 	  #5F676A
