@@ -27,5 +27,10 @@
     {
         "key": "ctrl+shift+k ctrl+shift+s",
         "command": "editor.action.sortLinesAscending"
+    },
+    { 
+        "key": "ctrl+shift+=",
+        "command": "wwm.aligncode",
+        "when": "editorTextFocus && !editorReadonly"
     }
 ]
