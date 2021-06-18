@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (C) 2009 tm2gtksw2(Alexandre da Silva)
+
+ This file was generated from a textmate theme named One Dark (Bright)
+ with tm2gtksw2 tool. (Alexandre da Silva)
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the
+ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ Boston, MA 02111-1307, USA.
+-->
+
+<style-scheme id="onedarkbright" _name="One Dark (Bright)" version="1.0">
+  <author>tm2gtksw2(Alexandre da Silva)</author>
+  <_description>GMate Theme - Generated from textmate theme with tm2gtksw2</_description>
+
+  <style name="bracket-match"  background="#2e343d" bold="true"/>
+  <style name="bracket-mismatch"  background="#2e343d" underline="true"/>
+  <style name="css:at-rules" foreground="#ec7bee"/>
+  <style name="css:color" foreground="#b8cae8"/>
+  <style name="css:keyword" foreground="#eee280"/>
+  <style name="current-line"  background="#2e343d"/>
+  <style name="cursor" foreground="#528bff"/>
+  <style name="def:base-n-integer" foreground="#eeb164"/>
+  <style name="def:boolean" foreground="#eeb164"/>
+  <style name="def:builtin" foreground="#eeb164"/>
+  <style name="def:character" foreground="#eeb164"/>
+  <style name="def:comment" foreground="#5c6370" italic="true"/>
+  <style name="def:complex" foreground="#eeb164"/>
+  <style name="def:decimal" foreground="#eeb164"/>
+  <style name="def:doc-comment" foreground="#5c6370" italic="true"/>
+  <style name="def:doc-comment-element" foreground="#5c6370" italic="true"/>
+  <style name="def:error" foreground="#eeeeee" background="#ee7c80"/>
+  <style name="def:floating-point" foreground="#eeb164"/>
+  <style name="def:function" foreground="#61cbee"/>
+  <style name="def:identifier" foreground="#fa6e7c"/>
+  <style name="def:keyword" foreground="#ec7bee"/>
+  <style name="def:note" foreground="#5c6370" italic="true"/>
+  <style name="def:number" foreground="#eeb164"/>
+  <style name="def:operator" foreground="#ec7bee"/>
+  <style name="def:preprocessor" foreground="#eeb164"/>
+  <style name="def:reserved" foreground="#ec7bee"/>
+  <style name="def:shebang" foreground="#5c6370" italic="true"/>
+  <style name="def:special-char" foreground="#eeb164"/>
+  <style name="def:special-constant" foreground="#eeb164"/>
+  <style name="def:statement" foreground="#ec7bee"/>
+  <style name="def:string" foreground="#adee7a"/>
+  <style name="def:type" foreground="#eee280"/>
+  <style name="draw-spaces" foreground="#747369"/>
+  <style name="html:dtd" foreground="#adee7a"/>
+  <style name="html:tag" foreground="#fa6e7c"/>
+  <style name="js:function" foreground="#61cbee"/>
+  <style name="line-numbers" foreground="#bfcae0" background="#2e343d"/>
+  <style name="perl:builtin" foreground="#61cbee"/>
+  <style name="perl:include-statement" foreground="#ec7bee"/>
+  <style name="perl:special-variable" foreground="#eeb164"/>
+  <style name="perl:variable" foreground="#fa6e7c"/>
+  <style name="php:string" foreground="#adee7a"/>
+  <style name="python:builtin-constant" foreground="#ec7bee"/>
+  <style name="python:builtin-function" foreground="#61cbee"/>
+  <style name="python:module-handler" foreground="#ec7bee"/>
+  <style name="python:special-variable" foreground="#ec7bee"/>
+  <style name="ruby:attribute-definition" foreground="#ec7bee"/>
+  <style name="ruby:builtin" foreground="#fa6e7c"/>
+  <style name="ruby:class-variable" foreground="#fa6e7c"/>
+  <style name="ruby:constant" foreground="#fa6e7c"/>
+  <style name="ruby:global-variable" foreground="#61cbee"/>
+  <style name="ruby:instance-variable" foreground="#fa6e7c"/>
+  <style name="ruby:module-handler" foreground="#ec7bee"/>
+  <style name="ruby:predefined-variable" foreground="#eeb164"/>
+  <style name="ruby:regex" foreground="#fa6e7c"/>
+  <style name="ruby:special-variable" foreground="#ec7bee"/>
+  <style name="ruby:symbol" foreground="#b8cae8"/>
+  <style name="rubyonrails:attribute-definition" foreground="#ec7bee"/>
+  <style name="rubyonrails:block-parameter" foreground="#eeb164"/>
+  <style name="rubyonrails:builtin" foreground="#fa6e7c"/>
+  <style name="rubyonrails:class-inherit" foreground="#adee7a"/>
+  <style name="rubyonrails:class-name" foreground="#eee280"/>
+  <style name="rubyonrails:class-variable" foreground="#fa6e7c"/>
+  <style name="rubyonrails:complex-interpolation" foreground="#eeb164"/>
+  <style name="rubyonrails:constant" foreground="#fa6e7c"/>
+  <style name="rubyonrails:global-variable" foreground="#61cbee"/>
+  <style name="rubyonrails:instance-variable" foreground="#fa6e7c"/>
+  <style name="rubyonrails:module-handler" foreground="#ec7bee"/>
+  <style name="rubyonrails:module-name" foreground="#eee280"/>
+  <style name="rubyonrails:predefined-variable" foreground="#eeb164"/>
+  <style name="rubyonrails:rails" foreground="#fa6e7c"/>
+  <style name="rubyonrails:regex" foreground="#fa6e7c"/>
+  <style name="rubyonrails:simple-interpolation" foreground="#eeb164"/>
+  <style name="rubyonrails:special-variable" foreground="#ec7bee"/>
+  <style name="rubyonrails:symbol" foreground="#b8cae8"/>
+  <style name="search-match"  background="#2e343d" bold="true" underline="true"/>
+  <style name="selection" foreground="#bfcae0" background="#3d4350"/>
+  <style name="text" foreground="#bfcae0" background="#282c34"/>
+  <style name="xml:attribute-name" foreground="#fa6e7c"/>
+  <style name="xml:doctype" foreground="#fa6e7c"/>
+  <style name="xml:element-name" foreground="#fa6e7c"/>
+  <style name="xml:namespace" foreground="#fa6e7c"/>
+  <style name="xml:tag" foreground="#fa6e7c"/>
+  
+
+</style-scheme>
+
