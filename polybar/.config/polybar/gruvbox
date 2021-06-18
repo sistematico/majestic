@@ -100,7 +100,7 @@ interval = 2
 ;   <icon-next>
 ;   <icon-seekb>
 ;   <icon-seekf>
-format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+format-online = <label-song> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>
 ;format-playing = ${self.format-online}
 ;format-paused = ${self.format-online}
 ;format-stopped = ${self.format-online}
@@ -127,10 +127,10 @@ label-song =  %artist% - %title%
 
 ; Available tokens:
 ;   None
-label-offline = 🎜 mpd is offline
+label-offline =  mpd is offline
 
 ; Only applies if <icon-X> is used
-icon-play = ⏵
+icon-play = 
 icon-pause = ⏸
 icon-stop = ⏹
 icon-prev = ⏮
