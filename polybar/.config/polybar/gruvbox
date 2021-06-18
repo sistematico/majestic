@@ -133,15 +133,15 @@ label-offline =  mpd is offline
 icon-play = 
 icon-pause = 
 icon-stop = 
-icon-prev = ⏮
-icon-next = ⏭
+icon-prev = 
+icon-next = 
 icon-seekb = 
 icon-seekf = 
-icon-random = 🔀
-icon-repeat = 🔁
-icon-repeatone = 🔂
-icon-single = 🔂
-icon-consume = ✀
+icon-random = 
+icon-repeat = 
+icon-repeatone = 
+icon-single = 
+icon-consume = 
 
 ; Used to display the state of random/repeat/repeatone/single
 ; Only applies if <icon-[random|repeat|repeatone|single]> is used
