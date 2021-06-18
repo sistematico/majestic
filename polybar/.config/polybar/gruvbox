@@ -131,12 +131,12 @@ label-offline =  mpd is offline
 
 ; Only applies if <icon-X> is used
 icon-play = 
-icon-pause = ⏸
-icon-stop = ⏹
+icon-pause = 
+icon-stop = 
 icon-prev = ⏮
 icon-next = ⏭
-icon-seekb = ⏪
-icon-seekf = ⏩
+icon-seekb = 
+icon-seekf = 
 icon-random = 🔀
 icon-repeat = 🔁
 icon-repeatone = 🔂
