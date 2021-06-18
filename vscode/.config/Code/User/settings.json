@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Gruvbox Material Dark",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter.notebook.ipynb"
   },
