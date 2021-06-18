@@ -22,5 +22,12 @@
 			"echo '</pre>';"
 		],
 		"description": "Debug PHP"
+	},
+	"PHP Get URI": {
+		"prefix": "phpuri",
+		"body": [
+			"$whatINeed = explode('/', $_SERVER['REQUEST_URI'])[1];"
+		],
+		"description": "Get current URI"
 	}
 }

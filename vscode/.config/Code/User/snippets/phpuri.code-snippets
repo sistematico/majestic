@@ -1,9 +1,0 @@
-{
-	"PHP Get URI": {
-		"prefix": "uri",
-		"body": [
-			"$whatINeed = explode('/', $_SERVER['REQUEST_URI'])[1];"
-		],
-		"description": "Get current URI"
-	}
-}
