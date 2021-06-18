@@ -35,9 +35,9 @@ border-bottom-color = ${colors.background-alt}
 ;modules-center = xwindow
 ;modules-right = cpu memory filesystem network temperature pulseaudio date lock clip powermenu
 
-modules-left = i3 firefox thunar terminal downloads headset
+modules-left = i3 firefox thunar terminal downloads
 modules-center = mpd
-modules-right = cpu memory temperature pulseaudio date lock powermenu
+modules-right = cpu memory temperature headset pulseaudio date lock powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -76,7 +76,7 @@ type = internal/mpd
 ; Can also be the full path to a unix socket where mpd is running.
 host = 127.0.0.1
 port = 6600
-password = mysecretpassword
+;password = mysecretpassword
 
 ; Seconds to sleep between progressbar/song timer sync
 ; Default: 1
@@ -117,7 +117,7 @@ format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon
 ;   %date%
 ;   %title%
 ; Default: %artist% - %title%
-label-song = 𝄞 %artist% - %title%
+label-song =  %artist% - %title%
 
 ; Available tokens:
 ;   %elapsed%
