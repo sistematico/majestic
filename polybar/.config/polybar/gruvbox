@@ -100,7 +100,8 @@ interval = 2
 ;   <icon-next>
 ;   <icon-seekb>
 ;   <icon-seekf>
-format-online = <label-song> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>
+;format-online = <label-song> <icon-prev> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress> <label-time>
+format-online = <label-song> <icon-prev> <toggle> <icon-next> <icon-repeat> <icon-random> <label-time>
 ;format-playing = ${self.format-online}
 ;format-paused = ${self.format-online}
 ;format-stopped = ${self.format-online}
@@ -123,7 +124,7 @@ label-song =  %artist% - %title%
 ;   %elapsed%
 ;   %total%
 ; Default: %elapsed% / %total%
-;label-time = %elapsed% / %total%
+label-time = %elapsed%/%total%
 
 ; Available tokens:
 ;   None
