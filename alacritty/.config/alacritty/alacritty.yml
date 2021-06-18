@@ -1,18 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
-# Import additional configuration files
-#
-# Imports are loaded in order, skipping all missing files, with the importing
-# file being loaded last. If a field is already present in a previous import, it
-# will be replaced.
-#
-# All imports must either be absolute paths starting with `/`, or paths relative
-# to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
 import:
-  - ~/.config/alacritty/gruvbox.yml
-  #- ~/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/themes/gruvbox-dark.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
