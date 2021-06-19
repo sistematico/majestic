@@ -20,5 +20,6 @@
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
-  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }
