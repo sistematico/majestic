@@ -1,0 +1,20 @@
+/* TABS DESIGN */
+
+.tab-line {     /* hide acrive tab line */
+	background-color: set your color !important;   /*OR*/
+    display: none !important; 
+}
+
+.tabbrowser-tab[fadein]:not([pinned]) { /* https://www.reddit.com/r/FirefoxCSS/comments/74cnrs/full_width_tabs_firefox_57/ */
+    max-width: none !important;
+}
+    /* colors */
+#titlebar {
+    background-color: #0a0a0a !important;
+    -moz-box-ordinal-group: 2;
+    -moz-appearance: none !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-background {
+    background: #1f1f1f !important;
+}

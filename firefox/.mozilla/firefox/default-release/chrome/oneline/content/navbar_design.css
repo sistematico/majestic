@@ -1,0 +1,217 @@
+/* NAV BAR DESIGN */
+
+#nav-bar {
+  height: 45px !important;
+}
+
+/* buttons design */
+#nav-bar toolbarbutton > .toolbarbutton-icon {
+  padding: 3.25px 11px !important;
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+  height: 30px !important;
+  width: 39px !important;
+  border-radius: 6.5px !important;
+}
+
+/* Remove back button circle */
+#back-button:not(:hover),
+#back-button:not(:hover) > .toolbarbutton-icon {
+background: transparent !important;
+border: none !important; box-shadow: none !important; }
+
+
+#new-tab-button,
+.tabs-newtab-button {
+ list-style-image: url("icons/newtab.svg") !important;
+ -moz-image-region: auto !important;
+}
+
+.panel-subview-body {
+	color: #ffffff !important;
+	background-color: #313131 !important;
+}
+
+
+/* URL BAR */
+#urlbar{
+    border-radius: 20px !important;
+}
+#urlbar .urlbar-input-box {
+    text-align: center;
+}
+#urlbar:not([focused]) .urlbar-input-box {
+    text-align: center;
+}
+#identity-icon-labels {
+    transform: translateY(-1px);
+}
+
+/* NAV BAR COLOR */
+#nav-bar {
+  background-color: #1f1f1f !important;
+}
+
+#PersonalToolbar {
+  background-color: #1f1f1f!important;
+}
+
+#PersonalToolbar .toolbarbutton-1:not(-moz-window-inactive):hover,
+#PersonalToolbar .bookmark-item:hover {
+  background-color: #1f1f1f!important;	
+}
+
+/* MEGAbar design  https://www.reddit.com/r/FirefoxCSS/comments/g5yvwl/how_can_i_make_my_url_bar_look_like_this_one_in/*/
+
+#urlbar[open] > #urlbar-background{
+  backdrop-filter: blur(28px);
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAAEEfUpiAAAABmJLR0QABgALAB6AWZxdAAADT0lEQVRYw3WWbW8UMQyEHzu5viB+NBISAv5thQptbzfhi3NMh/Sk1e7eJvbYM7YTwA9gAlfgsQNPQAc+Ac8JfAYSeAZaAgN4BRpwBPAVeAQCuPb6GnWNXluOumfW3t/APTAD+FIYLvUx6/kE5jJBLcr68FrgH3qtTuAF+CXvLFQBvFVk14rysYAdAXwvs5daeJHn3gvxCTyU2Vnvx4rzENQL9LXuZxagN/79rgUYoPVasGJ/LYuPmodWFp5qYS8LSb3MuqLeL/XOskBZuZdwO/AHiMXnWaiXlTsJN8R1rATW97bwKIyzIm1CyZAsnLq2C94uH1JEleXxxVBOYGRxfDEvTZRzlY1Lj2etu1tpXihWbC+8/01BtK4b7EX9lPiGfL+I12mGz2VglVuX50NCWSyshC5EN6UcsmElSL1mUYsYn0AG8FOqtkmiDqHzTqtMBDWXDg7J/kU8pXCfIrhR+m5d4KgahySsmYDW/7ccHELLFNghCUU2D0EYXSjpYrnJfW08pDbWL9LEMjdwhyT0kNzM5VVjVAT637RQb7lRfkMMpnkP6QMhrPUuHpDEqcdr3R+MoSuQXbg/rFl44awCS0ny2cvSjVfRg9bAFKRD2Dm7lPGQpA3ZnKJCr8bmXahJVboe0hTKGg1aJKtw3gRJs3zMnRK1bLWkU/5rUkSrZqJLltXDmibexpQBVj/4JtkdGwpTchCy7tSaEJRhxTmsDWih0qWfKgjM+ZSNY9Os09iPjc0p+5cqUvvR3BS1RpveCWzYhfA0BMTYgJ1+kJqmkLaJTnkeNkCnjXIsCGyg3Ox5lWmU6jgtimYAhh2fPJshitasZP8grVOlbvNFeT6tB2uUQ7IZVi2pU+DelOrtAjurhEWnUbLJmg9Gveh1HTYQdBiG9LSPVD3sTNREGyEB+jEwu82+YQ6QZpubqF1YwwTsv/8o7hJ52rFobJQ8TaRzw+8uAO0pam90izw2opqm8DCadtrwKTs/6iHdTkwIkGb86nAI0Q+bfjFMU7Gh7l0f0A6lZyGdyC4+L0kXcJrD3HTa8AiGjcawmh+bA0zYc5rwDuNdgd3GaUgpTut47QOAO269BIeUuWskF4A0EIel9dw0mHPDaW5E2URTWHcF4C/jKqMV1zs6FwAAAABJRU5ErkJggg==) no-repeat !important ;
+  background-position-y: var(--urlbar-toolbar-height) !important;
+  background-size: cover !important;
+  border-color: transparent !important;
+}
+.urlbarView{ margin-inline: 0px !important; width: 100% !important; }
+.urlbarView-body-inner{ border: none !important }
+.urlbarView-row-inner{ border-radius: 0px !important; }
+
+
+#urlbar-background {
+ border-radius: 6.5px !important;
+ border-color: #313131!important;
+ background: #313131 !important;
+}
+
+/* context menu */
+
+menupopup {
+  -moz-appearance: none !important;
+  padding: 0px 0px 0px 0px !important;
+  background-color: #313131 !important;
+  border: 1px #A0A0A0 solid !important;
+  border-radius: 5px !important;
+  border-color: #3a3b3c !important;
+  border-top-color: #67686a !important;
+  border-right-color: #67686a !important;
+  min-width: 280px !important;
+}
+menuseparator {
+  -moz-appearance: none !important;
+  border: none !important;
+  padding: .5px 0px .5px 0px !important;
+  margin: 4px 8px 4px 8px !important;
+  background-color: #808080 !important;
+}
+menuitem, menu {
+  -moz-appearance: none !important;
+  color: white !important;
+  padding: 7.5px 0px 7.5px 0px !important;
+}
+menuitem[disabled="true"], menuitem[disabled="true"] > .menu-text {
+  color: gray !important;
+}
+menuitem:hover, menu:hover, menu[open="true"], menuitem[_moz-menuactive="true"]  {
+  -moz-appearance: none !important;
+  padding: 7.5px 0px 7.5px 0px !important;
+  background-color: #414141 !important;
+}
+menugroup {
+  padding: 0px !important;
+  background-color: transparent !important;
+}
+menuitem > .menu-text, menuitem > .menu-iconic-text {
+  color: white !important;
+}
+menuitem[type="checkbox"] {
+  padding-left: 8px !important;
+  padding-top: 6.5px !important;
+  padding-bottom: 6.5px !important;
+}
+menuitem[type="radio"] {
+  padding-left: 8px !important;
+  padding-top: 6.5px !important;
+  padding-bottom: 6.5px !important;
+}
+menuitem[type="checkbox"] > .menu-iconic-text, menuitem[type="radio"] > .menu-iconic-text {
+  padding-left: 5px !important;
+}
+menuitem[checked="true"][type="checkbox"] > .menu-iconic-left {
+  padding: 7px 0px 0px 0px !important;
+  border: solid white;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg) scale(.75);
+  margin-bottom: 4px !important;
+}
+menuitem[checked="true"][type="radio"] > .menu-iconic-left {
+  padding: 1px !important;
+  border: solid white;
+  height: 17px !important;
+  border-radius: 100%;
+  background: white;
+  transform: scale(.5); 
+}
+menucaption {
+  background-color: transparent !important;
+  color: white !important;
+}
+#ContentSelectDropdown > menupopup {
+  background-image: none !important;
+}
+#ContentSelectDropdown {
+  padding: 0px !important;
+}
+menulist {
+  -moz-appearance: none !important;
+  padding: 4px 4px 4px 4px !important;
+  border: 2px solid #666666 !important;
+  background-color: transparent !important;
+}
+menulist:hover {
+  padding: 4px 4px 4px 4px !important;
+  border: 2px solid #999999 !important;
+  background-color: transparent !important;
+}
+menulist[open="true"]  {
+  border: 2px solid #666666 !important;
+  background-color: #333333 !important;
+}
+#context-back > .menu-iconic-left, #context-forward > .menu-iconic-left, #context-reload > .menu-iconic-left, #context-stop > .menu-iconic-left, #context-bookmarkpage > .menu-iconic-left {
+  padding: 0px !important;
+}
+.menu-iconic-left {
+  -moz-appearance: none !important;
+  padding: 0px 5px 0px 9px !important;
+}
+.menu-right {
+  -moz-appearance: none !important;
+  padding: 7.5px !important;
+  margin-right: 6px !important;
+  color: white !important;
+  border: solid white;
+  border-width: 0 2px 2px 0px;
+  transform: rotate(-45deg) scale(.55);
+}
+tooltip {
+  -moz-appearance: none !important;
+  color: white !important;
+  background-color: #2B2B2B !important;
+  border: 1px solid #767676 !important;
+  padding: 6.5px !important;
+}
+
+#context-openlinkprivate {
+ background-color: #4281F4 !important;
+ -moz-appearance: none !important;
+}
+
+#PlacesToolbar { 
+	background-color: #1f1f1f !important;
+	border-top: 2px !important;
+	border-color: #262628 !important;
+}
+
+/* Set the color for the progress bar as something is downloading */
+
+#downloads-button {
+	border: 2px;
+	border-color: red;
+}

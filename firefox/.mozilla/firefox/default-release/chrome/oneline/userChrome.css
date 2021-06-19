@@ -1,0 +1,13 @@
+/* designed by https://www.reddit.com/r/FirefoxCSS and Ikrom :D */
+
+@import url("content/hide_tabs_with_one_tab.css");
+@import url("content/navbar_design.css");
+@import url("content/tabs_design.css");
+@import url("content/tabs_on_bottom.css");
+@import url("content/windows_button_space.css");
+@import url("content/linux_button_fix.css");
+
+/*https://www.reddit.com/r/FirefoxCSS/comments/l8nno1/startpage_on_urlbar/*/
+#identity-box.extensionPage{ display:none }
+
+
