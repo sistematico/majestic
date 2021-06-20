@@ -19,7 +19,8 @@
 		"body": [
 			"echo '<pre>';",
 			"print_r(${1:\\$var});",
-			"echo '</pre>';"
+			"echo '</pre>';",
+			"exit;"
 		],
 		"description": "Debug PHP"
 	},
