@@ -21,5 +21,6 @@
   "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.fontFamily": "'JetBrains Mono NL','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
+  "editor.fontFamily": "'JetBrains Mono NL','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "window.zoomLevel": -2
 }
