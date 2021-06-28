@@ -5,7 +5,7 @@ GRUB_TIMEOUT=5
 GRUB_HIDDEN_TIMEOUT=0
 GRUB_DISTRIBUTOR="Arch"
 #GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 nowatchdog"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 video.only_lcd=0 nowatchdog"
 GRUB_CMDLINE_LINUX=""
 GRUB_DISABLE_SUBMENU=y
 GRUB_RECORDFAIL_TIMEOUT=$GRUB_HIDDEN_TIMEOUT
