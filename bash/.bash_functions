@@ -230,4 +230,14 @@ chicon() {
     gsettings set org.gnome.desktop.interface icon-theme "$1"
 }
 
+rstshell() {
+    gsettings reset org.gnome.shell.extensions.user-theme name
+}
 
+rstgtk() {
+    gsettings reset org.gnome.desktop.interface gtk-theme
+}
+
+rsticon() {
+    gsettings reset org.gnome.desktop.interface icon-theme
+}
