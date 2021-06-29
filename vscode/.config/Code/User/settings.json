@@ -28,5 +28,6 @@
     "name": "Lucas Saliés Brum",
     "email": "lucas@archlinux.com.br"
   },
-  "php-docblocker.useShortNames": true
+  "php-docblocker.useShortNames": true,
+  "sqltools.useNodeRuntime": true
 }
