@@ -23,5 +23,9 @@
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.fontFamily": "'JetBrains Mono NL','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "phpmd.unsafeCommandEnabled": true,
-  "phpmd.verbose": true
+  "phpmd.verbose": true,
+  "php-docblocker.author": {
+    "name": "Lucas Saliés Brum",
+    "email": "lucas@archlinux.com.br"
+  }
 }
