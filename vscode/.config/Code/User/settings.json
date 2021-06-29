@@ -27,5 +27,6 @@
   "php-docblocker.author": {
     "name": "Lucas Saliés Brum",
     "email": "lucas@archlinux.com.br"
-  }
+  },
+  "php-docblocker.useShortNames": true
 }
