@@ -24,8 +24,8 @@ export COMPOSER_HOME=${HOME}/.composer
 #export SSH_AUTH_SOCK
 
 # Temas
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export GTK_THEME=Adwaita:dark
+#export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+#export GTK_THEME=Adwaita:dark
 
 # Dirs
 export GH=${HOME}/github
