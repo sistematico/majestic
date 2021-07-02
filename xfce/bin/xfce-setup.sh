@@ -22,4 +22,9 @@ xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
 ######################
 # GTK THEME          #
 ######################
-xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
+xfconf-query -c xsettings -p /Net/ThemeName -s "Clearlooks"
+
+######################
+# ICON THEME         #
+######################
+xfconf-query -c xsettings -p /Net/IconThemeName -s "Clearlooks"
