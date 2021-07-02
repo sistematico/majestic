@@ -14,3 +14,12 @@
 # Sort directories first
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 
+######################
+# WINDOW THEME       #
+######################
+xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
+
+######################
+# GTK THEME          #
+######################
+xfconf-query -c xfwm4 -p /general/theme -s WhiteSur-dark
