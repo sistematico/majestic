@@ -11,11 +11,11 @@ snippets_tmp="/tmp/snippets"
 [ ! -d $nginx_tmp ] && mkdir $nginx_tmp
 [ ! -d $snippets_tmp ] && mkdir $snippets_tmp
 
-rsync -avzz root@${host}:/etc/nginx/sites/ $nginx_tmp --delete &&
+rsync -avzz root@${host}:/etc/nginx/sites/ $nginx_tmp/ --delete &&
 rsync -avzz root@${host}:/etc/nginx/snippets/ $snippets_tmp/ --delete &&
 
-cp -r $nginx_tmp $nginx_tmp-$(date +%s ) &&
-cp -r $snippets_tmp $snippets_tmp-$(date +%s ) &&
+cp -a $nginx_tmp $nginx_tmp-$(date +%s) &&
+cp -a $snippets_tmp $snippets_tmp-$(date +%s) &&
 
 $editor $nginx_tmp/* && $filemanager $nginx_tmp $snippets_tmp &&
 
