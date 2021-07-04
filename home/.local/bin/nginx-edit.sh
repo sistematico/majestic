@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
 
 host="${1:-hera}"
+
 editor="mousepad"
 filemanager="thunar"
 
-[ -d /tmp/sites ] && rm -rf /tmp/sites
-[ ! -d /tmp/sites ] && mkdir /tmp/sites
-[ ! -d /tmp/nginx-snippets ] && mkdir /tmp/nginx-snippets
+nginx_tmp="/tmp/nginx"
+snippets_tmp="/tmp/snippets"
 
-rsync -avzz root@${host}:/etc/nginx/sites/ /tmp/sites/ --delete &&
-rsync -avzz root@${host}:/etc/nginx/snippets/ /tmp/nginx-snippets/ --delete &&
-cp -r /tmp/sites/ /tmp/sites-$(date +%s ) &&
-cp -r /tmp/nginx-snippets/ /tmp/nginx-snippets-$(date +%s ) &&
-$editor /tmp/sites/* && $filemanager /tmp/sites/ /tmp/nginx-snippets/ &&
-rsync -avzz /tmp/sites/ root@${host}:/etc/nginx/sites/ --delete &&
-rsync -avzz /tmp/nginx-snippets/ root@${host}:/etc/nginx/snippets/ --delete &&
+[ ! -d $nginx_tmp ] && mkdir $nginx_tmp
+[ ! -d $snippets_tmp ] && mkdir $snippets_tmp
+
+rsync -avzz root@${host}:/etc/nginx/sites/ $nginx_tmp --delete &&
+rsync -avzz root@${host}:/etc/nginx/snippets/ $snippets_tmp/ --delete &&
+
+cp -r $nginx_tmp $nginx_tmp-$(date +%s ) &&
+cp -r $snippets_tmp $snippets_tmp-$(date +%s ) &&
+
+$editor $nginx_tmp/* && $filemanager $nginx_tmp $snippets_tmp &&
+
+rsync -avzz $nginx_tmp/ root@${host}:/etc/nginx/sites/ --delete &&
+rsync -avzz $snippets_tmp/ root@${host}:/etc/nginx/snippets/ --delete &&
+
 ssh root@${host} "systemctl restart nginx" &&
 
 exit
