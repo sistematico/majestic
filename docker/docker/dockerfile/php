@@ -1,7 +1,26 @@
 FROM php:fpm
 
-RUN apt-get update && apt-get install curl libonig-dev libpng-dev libzip-dev sed -y
+RUN apt-get update
+RUN apt-get install -y \
+    curl \
+    libzip-dev \
+    libonig-dev \
+    libpng-dev \
+    libwebp-dev \
+    libjpeg62-turbo-dev \
+    libxpm-dev \
+    libfreetype6-dev \
+    sed
+
 RUN rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-configure gd \
+    --with-webp-dir \
+    --with-jpeg-dir \
+    --with-png-dir \
+    --with-zlib-dir \
+    --with-xpm-dir \
+    --with-freetype-dir
 
 RUN docker-php-ext-install mbstring pdo pdo_mysql mysqli gd zip
 
