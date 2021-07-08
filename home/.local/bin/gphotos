@@ -12,7 +12,7 @@ dir="$HOME/google/photos"
 bw="--bwlimit 400k" # b|k|M|G
 
 if [ $1 ]; then
-	/ur/bin/find $dir -type f | /usr/bin/wc -l
+	/usr/bin/find $dir -type f | /usr/bin/wc -l
 else
 	if ! pgrep rclone > /dev/null 2> /dev/null; then
     	/usr/bin/rclone copy gphotos: $dir $bw 2>&1
