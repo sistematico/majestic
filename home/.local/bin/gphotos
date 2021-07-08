@@ -9,9 +9,13 @@
 # Última alteração: 16/06/2021 08:28:33
 
 dir="$HOME/google/photos"
-bw="--bwlimit 300k" # b|k|M|G
+bw="--bwlimit 400k" # b|k|M|G
 
-if ! pgrep rclone > /dev/null 2> /dev/null; then
-    /usr/bin/rclone copy gphotos: $dir $bw 2>&1
+if [ $1 ]; then
+	/ur/bin/find $dir -type f | /usr/bin/wc -l
+else
+	if ! pgrep rclone > /dev/null 2> /dev/null; then
+    	/usr/bin/rclone copy gphotos: $dir $bw 2>&1
+	fi
 fi
 
