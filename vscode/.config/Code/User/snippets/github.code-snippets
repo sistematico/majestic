@@ -18,8 +18,8 @@
       "        password: ${{ secrets.SSH_PASSWORD }}",
       "        port: ${{ secrets.SSH_PORT }}",
       "        script: |",
-      "          git clone -b backend git@github.com:sistematico/php-rest-api.git /var/www/api.lucasbrum.net",
-      "          cd /var/www/api.lucasbrum.net",
+      "          git clone -b backend git@github.com:sistematico/${1:site.com}.git /var/www/${1:site.com}",
+      "          cd /var/www/${1:site.com}",
       "          git checkout HEAD^ db/database.sqlite",
       "          git pull",
       "          composer install",
@@ -46,15 +46,15 @@
       "        password: ${{ secrets.SSH_PASSWORD }}",
       "        port: ${{ secrets.SSH_PORT }}",
       "        script: |",
-      "          git clone git@github.com:sistematico/lucasbrum.net.git /var/www/lucasbrum.net/",
-      "          mkdir -p /var/www/lucasbrum.net/{html,dist}",
-      "          cd /var/www/lucasbrum.net",
+      "          git clone git@github.com:sistematico/${1:site.com}.git /var/www/${1:site.com}/",
+      "          mkdir -p /var/www/${1:site.com}/{html,dist}",
+      "          cd /var/www/${1:site.com}",
       "          git checkout HEAD^ package-lock.json",
       "          git checkout HEAD^ package.json",
       "          git pull",
       "          /usr/bin/node --optimize_for_size --max_old_space_size=128 --gc_interval=100 /usr/bin/npm install --no-optional --no-shrinkwrap --no-package-lock",
       "          /usr/bin/node --optimize_for_size --max_old_space_size=128 --gc_interval=100 /usr/bin/npm run build",
-      "          rsync -av /var/www/lucasbrum.net/dist/ /var/www/lucasbrum.net/html/ --delete --exclude=\"txt/\""
+      "          rsync -av /var/www/${1:site.com}/dist/ /var/www/${1:site.com}/html/ --delete --exclude=\"txt/\""
     ],
     "description": "Create Github Actions File (Vue.js)"
   }
