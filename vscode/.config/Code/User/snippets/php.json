@@ -7,7 +7,7 @@
 		"description": "HTML Special Chars with ENT_QUOTES param"
 	},
 	"Enable PHP Debug": {
-		"prefix": "enablephpdebug",
+		"prefix": "phpenabledebug",
 		"body": [
 			"ini_set('display_errors', 'On');",
 			"error_reporting(E_ALL);"
@@ -37,5 +37,16 @@
 			"\\$url = (isset(\\$_SERVER['HTTPS']) && \\$_SERVER['HTTPS'] === 'on' ? \"https\" : \"http\") . \"://\" . \\$_SERVER['HTTP_HOST'];"
 		],
 		"description": "Get current URL"
+	},
+	"PHP strpos()": {
+		"prefix": "phpstrpos",
+		"body": [
+			"$frase = 'Eu não sei PHP';",
+			"$pesquisa = 'sei PHP'",
+			"if (strpos($frase, $pesquisa) === true) {",
+			"\t// Código caso encontre...",
+			"}"
+		],
+		"description": "Check if string contains some word"
 	}
 }
