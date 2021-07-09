@@ -26,7 +26,7 @@ ssh root@${host} "cp /etc/nginx/nginx.conf /var/backup/nginx/$(date +%Y)/$(date 
 ssh root@${host} "cp -a /etc/nginx/sites/ /var/backup/nginx/$(date +%Y)/$(date +%m)/$(date +%d)/sites-$(date +%s)" &&
 ssh root@${host} "cp -a /etc/nginx/snippets/ /var/backup/nginx/$(date +%Y)/$(date +%m)/$(date +%d)/snippets-$(date +%s)" &&
 
-$editor /tmp/nginx.conf $nginx_tmp/* && $filemanager $nginx_tmp $snippets_tmp &&
+($editor /tmp/nginx.conf $nginx_tmp/* ; $filemanager $nginx_tmp $snippets_tmp) &&
 
 rsync -avzz $nginx_tmp/ root@${host}:/etc/nginx/sites/ --delete &&
 rsync -avzz $snippets_tmp/ root@${host}:/etc/nginx/snippets/ --delete &&
