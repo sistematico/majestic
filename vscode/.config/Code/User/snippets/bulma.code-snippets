@@ -1,29 +1,29 @@
 {
-	"Bulma Starter Template": {
-		"prefix": "bulma",
-		"body": [
-			"<!DOCTYPE html>",
-			"<html>",
-			"\t<head>",
-			"\t\t<meta charset=\"utf-8\">",
-			"\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
-			"\t\t<title>Hello Bulma!</title>",
-			"\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css\">",
-			"</head>",
-			"<body>",
-			"\t<section class=\"section\">",
-			"\t\t<div class=\"container\">",
-			"\t\t\t<h1 class=\"title\">",
-			"\t\t\t\tHello World",
-			"\t\t\t</h1>",
-			"\t\t\t<p class=\"subtitle\">",
-			"\t\t\t\tMy first website with <strong>Bulma</strong>!",
-			"\t\t\t</p>",
-			"\t\t</div>",
-			"\t</section>",
-			"</body>",
-			"</html>"
-		],
-		"description": "Start a Bulma project"
-	}
+    "Bulma Starter Template": {
+        "prefix": "bulma",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "    <head>",
+            "        <meta charset=\"utf-8\">",
+            "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            "        <title>Hello Bulma!</title>",
+            "        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css\">",
+            "</head>",
+            "<body>",
+            "    <section class=\"section\">",
+            "        <div class=\"container\">",
+            "            <h1 class=\"title\">",
+            "                Hello World",
+            "            </h1>",
+            "            <p class=\"subtitle\">",
+            "                My first website with <strong>Bulma</strong>!",
+            "            </p>",
+            "        </div>",
+            "    </section>",
+            "</body>",
+            "</html>"
+        ],
+        "description": "Start a Bulma project"
+    }
 }
