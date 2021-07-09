@@ -5,8 +5,8 @@ host="${1:-hera}"
 editor="mousepad"
 filemanager="thunar"
 
-nginx_tmp="/tmp/nginx"
-snippets_tmp="/tmp/snippets"
+nginx_tmp="/tmp/nginx-sites"
+snippets_tmp="/tmp/nginx-snippets"
 
 [ ! -d $nginx_tmp ] && mkdir $nginx_tmp
 [ ! -d $snippets_tmp ] && mkdir $snippets_tmp
