@@ -1,4 +1,11 @@
 {
+    "HTML Redirect": {
+        "prefix": "htmlredirect",
+        "body": [
+            "<meta http-equiv=\"refresh\" content=\"${1:0}; URL='http://${2:site.com}'\" />"
+        ],
+        "description": "Redireciona a página"
+    },
     "HTML": {
         "prefix": "html5",
         "body": [
