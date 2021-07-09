@@ -1,15 +1,31 @@
 {
-	// Place your snippets for html here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
+    "HTML": {
+        "prefix": "html5",
+        "body": [
+            "<!doctype html>",
+            "<html lang=\"pt-br\">",
+            "<head>",
+            "    <meta charset=\"utf-8\">",
+            "    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">",
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            "    <meta name=\"description\" content=\"Descrição\">",
+            "    <meta name=\"author\" content=\"Autor do site\">",
+            "    <title>${1:titulo}</title>",
+            "    <meta property=\"og:title\" content=\"${2:titulo}\" />",
+            "    <meta property=\"og:description\" content=\"${3:descrição}\" />",
+            "    <meta property=\"og:type\" content=\"${4:website}\" />",
+            "    <meta property=\"og:url\" content=\"${5:https://site.com}\" />",
+            "    <meta property=\"og:image\" content=\"${6:https://site.com/img/logo.png}\" />",
+            "    <link rel=\"stylesheet\" href=\"css/main.css\">",
+            "    <link rel=\"shortcut icon\" href=\"img/favicon.ico\">",
+            "</head>",
+            "<body>",
+            "    ${7:corpo}",
+            "    <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script>",
+            "    <script src=\"js/scripts.js\"></script>",
+            "</body>",
+            "</html>"
+        ],
+        "description": "Basic HTML Skel"
+    }
 }
