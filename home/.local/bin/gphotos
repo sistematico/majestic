@@ -9,7 +9,7 @@
 # Última alteração: 16/06/2021 08:28:33
 
 dir="$HOME/google/photos"
-bw="--bwlimit 500k" # b|k|M|G
+bw="--bwlimit 900k" # b|k|M|G
 
 if [ $1 ]; then
 	/usr/bin/find $dir -type f | /usr/bin/wc -l
