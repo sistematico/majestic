@@ -1,0 +1,2 @@
+/dev/zram0 none swap defaults 0 0
+/dev/zram1 none swap defaults 0 0
