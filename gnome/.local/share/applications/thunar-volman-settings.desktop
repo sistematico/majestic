@@ -121,3 +121,4 @@ Categories=XFCE;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-Hardwa
 X-XfcePluggable=true
 X-XfceHelpComponent=thunar
 X-XfceHelpPage=using-removable-media
+NotShowIn=GNOME;
