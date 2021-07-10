@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ $EUID -ne 0 ]] && exit
+
 if [ ! $1 ]; then
     echo "Usage: $(basename $0) [enable|disable]"
     exit
