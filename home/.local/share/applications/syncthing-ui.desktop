@@ -8,3 +8,4 @@ Terminal=false
 Type=Application
 Keywords=synchronization;interface;
 Categories=Network;FileTransfer;P2P
+NotShowIn=GNOME;
