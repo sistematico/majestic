@@ -1,2 +1,21 @@
-/dev/zram0 none swap defaults 0 0
-/dev/zram1 none swap defaults 0 0
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda2 LABEL=ARCHROOT
+#UUID=54ae085b-d951-454b-943c-d0d74bed4134	/         	ext4      	rw,relatime	            0 1
+UUID=54ae085b-d951-454b-943c-d0d74bed4134	/         	ext4      	rw,noatime,commit=60	0 1
+
+# /dev/sda4 LABEL=ARCHHOME
+#UUID=23831b5d-c951-4422-95e6-d1fb03622942	/home     	ext4      	rw,relatime	            0 2
+UUID=23831b5d-c951-4422-95e6-d1fb03622942	/home     	ext4      	rw,noatime,commit=60	0 2
+
+# /dev/sda1 LABEL=ARCHEFI
+UUID=916E-519E      	                    /boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/sda3 LABEL=ARCHSWAP
+#UUID=d729ab50-5ee6-4a94-a7d3-b1e0a93cdc0d	none      	swap      	defaults  	            0 0
+
+# ZRAM
+/dev/zram0                                  none        swap        defaults                0 0
+/dev/zram1                                  none        swap        defaults                0 0
