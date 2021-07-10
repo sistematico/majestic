@@ -169,3 +169,4 @@ Keywords[tr]=program;uygulamalar;yerimleri;yer imleri;
 Keywords[zh_CN]=program;applications;bookmarks;程序;应用;书签;
 Keywords[zh_HK]=程序；應用程序；書籤；
 Keywords[zh_TW]=program;applications;bookmarks;
+OnlyShowIn=XFCE;
