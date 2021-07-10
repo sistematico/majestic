@@ -19,9 +19,9 @@ export COMPOSER_HOME=${HOME}/.composer
 [ -d ${HOME}/.npm/bin ] && export PATH=${PATH}:${HOME}/.npm/bin
 [ -d ${COMPOSER_HOME}/vendor/bin ] && export PATH=${PATH}:${COMPOSER_HOME}/vendor/bin
 
-#dbus-update-activation-environment --systemd DISPLAY
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-#export SSH_AUTH_SOCK
+dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
 
 # Temas
 #export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
