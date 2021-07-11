@@ -31,5 +31,8 @@
   "php-docblocker.useShortNames": true,
   "sqltools.useNodeRuntime": true,
   "faker.locale": "pt_BR",
-  "github.copilot.autocomplete.enable": true
+  "github.copilot.autocomplete.enable": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
