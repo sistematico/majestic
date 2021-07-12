@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "workbench.colorTheme": "Atom One Dark",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter.notebook.ipynb"
   },
