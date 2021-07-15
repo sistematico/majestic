@@ -34,5 +34,6 @@
   "github.copilot.autocomplete.enable": true,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "html.format.wrapAttributes": "force-aligned"
 }
