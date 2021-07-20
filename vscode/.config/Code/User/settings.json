@@ -36,5 +36,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "html.format.wrapAttributes": "force-aligned",
-  "liveServer.settings.donotShowInfoMsg": true
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.proxy": {
+    "enable": true,
+    "proxyUri": "https://localhost:443"
+  }
 }
