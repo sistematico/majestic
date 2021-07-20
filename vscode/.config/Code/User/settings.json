@@ -40,6 +40,14 @@
   "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.proxy": {
     "enable": true,
-    "proxyUri": "https://localhost:443"
+    "proxyUri": "https://localhost:443",
+    "baseUri": "/"
+  },
+  "liveServer.settings.root": "/home/lucas/github/php-mvc/public",
+  "liveServer.settings.useLocalIp": true,
+  "liveServer.settings.https": {
+    "enable": true,
+    "cert": "/home/lucas/docker/certs/localhost.pem",
+    "key": "/home/lucas/docker/certs/localhost-key.pem"
   }
 }
