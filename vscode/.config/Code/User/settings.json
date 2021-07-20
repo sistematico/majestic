@@ -50,5 +50,6 @@
     "cert": "/home/lucas/docker/certs/localhost.pem",
     "key": "/home/lucas/docker/certs/localhost-key.pem",
     "passphrase": ""
-  }
+  },
+  "editor.inlineSuggest.enabled": true
 }
