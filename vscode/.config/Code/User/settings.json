@@ -35,5 +35,6 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "html.format.wrapAttributes": "force-aligned"
+  "html.format.wrapAttributes": "force-aligned",
+  "liveServer.settings.donotShowInfoMsg": true
 }
