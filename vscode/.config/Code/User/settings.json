@@ -48,6 +48,7 @@
   "liveServer.settings.https": {
     "enable": true,
     "cert": "/home/lucas/docker/certs/localhost.pem",
-    "key": "/home/lucas/docker/certs/localhost-key.pem"
+    "key": "/home/lucas/docker/certs/localhost-key.pem",
+    "passphrase": ""
   }
 }
