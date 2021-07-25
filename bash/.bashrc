@@ -69,6 +69,10 @@ if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
 	source /usr/share/bash-completion/bash_completion
 fi
 
+if [ -f /usr/share/bash-completion/completions/dkms ]; then
+    source /usr/share/bash-completion/completions/dkms
+fi
+
 ##################
 ##### Prompt #####
 ##################
