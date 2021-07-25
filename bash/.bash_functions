@@ -43,14 +43,27 @@ function fullsync() {
 }
 
 function fullsite() {
-    [ ! -d $STORAGE/sites/${1}/var/www ] && mkdir -p $STORAGE/sites/${1}/var/www
+    [ ! -d $STORAGE/sites/${1} ] && mkdir -p $STORAGE/sites/${1}
 	rsync -aAXvzz \
-    --exclude="node_modules/" \
-    --exclude="*.mp4" \
-    --exclude="*.mp3" \
-    --exclude=".git/" \
-    --exclude=".gitignore" \
-    nginx@${1}:/var/www/ $STORAGE/sites/${1}/var/www/
+        --exclude="node_modules/" \
+        --exclude="*.mp4" \
+        --exclude="*.mp3" \
+        --exclude=".git/" \
+        --exclude=".gitignore" \
+        nginx@${1}:/var/www/ $STORAGE/sites/${1}/
+}
+
+function fullsitereverse() {
+    if [ -d $STORAGE/sites/${1} ]; then
+        rsync -aAXvzz \
+            --exclude="vendor/" \
+            --exclude="node_modules/" \
+            --exclude="*.mp4" \
+            --exclude="*.mp3" \
+            --exclude=".git/" \
+            --exclude=".gitignore" \
+            $STORAGE/sites/${1}/var/www/${1}.radiochat.com.br nginx@${1}:/var/www/
+    fi
 }
 
 function songdown() {
