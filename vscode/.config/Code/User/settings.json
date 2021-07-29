@@ -48,5 +48,30 @@
     "cert": "/home/lucas/docker/certs/localhost.pem",
     "key": "/home/lucas/docker/certs/localhost-key.pem",
     "passphrase": ""
-  }
+  },
+  "gaac.withGuessedCustomActions": [  
+    {
+      "action": "ignore",
+      "pattern": "/^.(gitignore|npmignore|vscodeignore)/",
+      "state": "MODIFIED"
+    },
+    {
+      "action": "update",
+      "pattern": "/^CHANGELOG/",
+      "state": "MODIFIED"
+    },
+    {
+      "action": "update",
+      "pattern": "/^LICENSE/",
+      "state": "MODIFIED"
+    },
+    {
+      "action": "update",
+      "pattern": "/^README/",
+      "state": "MODIFIED"
+    }
+  ],
+  "workbench.iconTheme": "file-icons",
+  "workbench.productIconTheme": "icons-carbon",
+  "files.autoSave": "afterDelay"
 }
