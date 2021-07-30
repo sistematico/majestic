@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "One Dark Pro",
+    "git.confirmSync": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "vetur.ignoreProjectWarning": true
+}
