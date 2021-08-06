@@ -17,6 +17,7 @@ alias rg='rg -uuu'
 alias fd='fd -uu'
 alias cat='bat'
 alias journalctl='sudo journalctl'
+alias script='script -a'
 
 # Main
 alias rehash='source ~/.bashrc && source ~/.bash_aliases && source ~/.bash_functions && source ~/.bash_profile'

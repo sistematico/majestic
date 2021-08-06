@@ -1,10 +1,17 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "GitHub Dark Dimmed",
     "git.confirmSync": false,
     "explorer.confirmDragAndDrop": false,
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "intelephense.diagnostics.undefinedTypes": false,
     "intelephense.diagnostics.undefinedFunctions": false,
-    "vetur.ignoreProjectWarning": true
+    "vetur.ignoreProjectWarning": true,
+    "workbench.startupEditor": "none",
+    "explorer.confirmDelete": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.linkedEditing": true,
+    "gtkTitleBar.mode": "dark",
+    "editor.tabCompletion": "on",
+    "workbench.productIconTheme": "icons-carbon"
 }

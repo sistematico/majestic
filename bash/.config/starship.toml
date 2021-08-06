@@ -1,13 +1,25 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-#format = """
-#[┌───────────────────>](bold green)
-#[│](bold green)$username@$hostname $directory$rust$package
-#[└─>](bold green) $status"""
+# black, red, green, blue, yellow, purple, cyan, white
+
+format = "(bright-black bold)\\($username@$hostname $directory$php\\):(bold green)$status "
+
+[hostname]
+ssh_only = false
+format =  "[$hostname](bold red)"
+disabled = false
+
+[username]
+style_user = "bright-blue bold"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
 
 [directory]
-format = "[$path]($style)[$read_only]($read_only_style) "
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = "yellow bold"
 truncation_symbol = ".../"
 read_only = " 🔒"
 
@@ -23,3 +35,7 @@ error_symbol = "[➜](bold red)"
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[php]
+format = " PHP [🔹 $version](147 bold)"
+disabled = false

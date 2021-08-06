@@ -71,7 +71,16 @@
       "state": "MODIFIED"
     }
   ],
-  "workbench.iconTheme": "file-icons",
-  "workbench.productIconTheme": "icons-carbon",
-  "files.autoSave": "afterDelay"
+  "files.exclude": {
+    ".editorconfig": true,
+    ".phpstorm.meta.php": true,
+    ".styleci.yml": true,
+    "**/database.sqlite": true,
+    "artisan": true,
+    "phpunit.xml": true,
+    "server.php": true,
+    "tests": true,
+    "vendor": true
+  },
+  "workbench.productIconTheme": "icons-carbon"
 }
