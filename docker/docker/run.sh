@@ -16,7 +16,8 @@ cp -a $TEMP_PATH/docker/docker $DOCKER_PATH
 
 mkdir $DOCKER_PATH/certs/
 
-if ! command -v mkcert &> /dev/null; then
+if ! command -v mkcert 1> /dev/null 2> /dev/null
+then
     sudo curl -s -L https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 > /usr/local/bin/mkcert
 fi
 
@@ -34,14 +35,15 @@ fi
 
 composer create-project laravel/laravel --prefer-dist $PROJECT_PATH/$PROJECT_NAME > /dev/null
 
-if ! grep -Fxq "laravel" /etc/hosts 1> /dev/null 2> /dev/null
+if ! grep -Fxq "$PROJECT_NAME" /etc/hosts 1> /dev/null 2> /dev/null
 then
-    sudo sed -i.bak '/127.0.0.1/s/$/ laravel/' /etc/hosts
+    sudo sed -i.bak "|127.0.0.1|s|$| $PROJECT_NAME|" /etc/hosts
 fi
 
-docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix 1> /dev/null
-docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix 1> /dev/null
+docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
+docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
 
-cd $DOCKER_PATH/compose/laravel ; docker-compose up -d --build
+cd $DOCKER_PATH/compose/laravel 
+docker-compose up -d --build
 
 google-chrome-stable https://laravel
