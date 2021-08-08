@@ -11,20 +11,6 @@ function progress() {
 
     reset='\e[0m'; black=30; red=31; green=32; yellow=33; blue=34; magenta=35; cyan=36; white=37
 
-    case $2 in
-        hello)
-            echo "Hello yourself!"
-            ;;
-        bye)
-            echo "See you again!"
-            break
-            ;;
-        *)
-            cor='\e[0m'
-            ;;
-    esac
-
-
     while kill -0 $pid 2>/dev/null
     do
         i=$(( (i+1) %4 ))
@@ -81,6 +67,9 @@ progress "Parando containers..."
 #docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix 1> /dev/null 2> /dev/null &
 docker rm $(docker ps -a -q) 2> /dev/null > /dev/null &
 progress "Removendo containers..."
+
+docker rmi $(docker images -q) 2> /dev/null > /dev/null &
+progress "Removendo imagens..."
 
 cd $DOCKER_PATH/compose/laravel 
 
