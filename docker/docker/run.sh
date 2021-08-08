@@ -32,7 +32,7 @@ fi
 
 [ -d $PROJECT_PATH/$PROJECT_NAME ] && mv $PROJECT_PATH/$PROJECT_NAME ~/.local/share/Trash/files/laravel-$(date +%s)
 
-composer create-project laravel/laravel --prefer-dist $PROJECT_PATH/$PROJECT_NAME
+composer create-project laravel/laravel --prefer-dist $PROJECT_PATH/$PROJECT_NAME > /dev/null
 
 if ! grep -Fxq "laravel" /etc/hosts 1> /dev/null 2> /dev/null
 then
