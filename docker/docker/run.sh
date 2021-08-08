@@ -1,12 +1,12 @@
 #!/bin/sh
-
 # https://git.io/JR4RO
 
 [ ! -f /var/run/docker.sock ] && sudo systemctl start docker
-
 [ -d ~/newdocker ] && rm -rf ~/newdocker
 
 git clone https://github.com/sistematico/majestic ~/newdocker
+find ~/newdocker -type d -not -name 'docker' -delete
+
 mkdir ~/newdocker/certs/
 
 if ! command -v mkcert &> /dev/null
