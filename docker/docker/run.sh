@@ -35,11 +35,11 @@ fi
 
 [ -d $PROJECT_PATH/$PROJECT_NAME ] && mv $PROJECT_PATH/$PROJECT_NAME ~/.local/share/Trash/files/laravel-$(date +%s)
 
-composer create-project laravel/laravel --prefer-dist $PROJECT_PATH/$PROJECT_NAME > /dev/null
+composer create-project laravel/laravel --prefer-dist $PROJECT_PATH/$PROJECT_NAME 2> /dev/null > /dev/null
 
-if ! grep -Fxq "$PROJECT_NAME" /etc/hosts 1> /dev/null 2> /dev/null
+if grep -Fxq "$PROJECT_NAME" /etc/hosts 2> /dev/null;
 then
-    sudo sed -i.bak "|127.0.0.1|s|$| $PROJECT_NAME|" /etc/hosts
+    sudo sed -i.bak "s|127.0.0.1|$ $PROJECT_NAME|g" /etc/hosts
 fi
 
 docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
