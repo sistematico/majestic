@@ -1,5 +1,5 @@
 #!/bin/sh
-# bash < <(https://git.io/JR4RO)
+# bash < <(curl -s -L https://git.io/JR4RO?v=1)
 
 DOCKER_PATH="$HOME/docker"
 TEMP_PATH="/tmp/docker"
@@ -21,7 +21,9 @@ then
     sudo curl -s -L https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 > /usr/local/bin/mkcert
 fi
 
-cd $DOCKER_PATH/certs/ ; mkcert -install 1> /dev/null ; mkcert laravel 1> /dev/null
+cd $DOCKER_PATH/certs/ 
+mkcert -install > /dev/null 2> /dev/null
+mkcert laravel > /dev/null 2> /dev/null
 
 if ! command -v composer &> /dev/null; then
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -44,6 +46,6 @@ docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-ma
 docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
 
 cd $DOCKER_PATH/compose/laravel 
-docker-compose up -d --build
+docker-compose up -d --build > /dev/null 2> /dev/null
 
 google-chrome-stable https://laravel
