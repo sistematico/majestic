@@ -95,3 +95,7 @@ test -r $d && eval "$(dircolors $d)"
 if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
     eval "$(starship init bash)"
 fi
+
+#if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+#        source /etc/profile.d/vte.sh
+#fi

@@ -2,11 +2,15 @@
 # gmrun is (C) Mihai Bazon, <mishoo@infoiasi.ro>
 # GPL v2.0 applies
 
-# Set terminal
-Terminal = xfce4-terminal # ${TERMINAL}
-TermExec = ${Terminal} -e
-Browser = firefox # ${BROWSER}
-Editor = mousepad
+# Set Vars
+Terminal    = xfce4-terminal
+TermExec    = ${Terminal} -e
+Browser     = google-chrome-stable
+Editor      = mousepad
+CodeEditor  = code
+FileManager = thunar
+EmailClient = evolution
+
 AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man
 
 # Set window geometry (except height)
@@ -34,39 +38,40 @@ TabTimeout = 0
 #   - %u gets replaced with the whole URL ("http://www.google.com")
 #   - %s gets replaced with "//www.google.com".  This is useful for URL-s
 #     like "man:printf" --> %s will get replaced with "printf"
-URL_google   = ${Browser} http://www.google.com/search?q="%s"
-URL_g        = ${Browser} http://www.google.com/search?q="%s"
-URL_busca    = ${Browser} http://www.google.com/search?q="%s"
-URL_img      = ${Browser} https://www.google.com.br/search?q="%s"&biw=1600&bih=795&source=lnms&tbm=isch&sa=X
-URL_traduzir = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#en/pt/"%s"
-URL_tanslate = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#pt/en/"%s"
-URL_t        = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#en/pt/"%s"
-URL_http     = ${Browser} %u
-URL_https    = ${Browser} %u
-URL_mailto   = thunderbird -remote "mailto(%s)"
-URL_mail     = thunderbird -remote "mailto(%s)"
-URL_man      = gtkman %s
-URL_info     = ${TermExec} 'info %s'
-URL_pd       = ${TermExec} 'perldoc %s'
-URL_file     = thunar %s
-URL_readme   = ${Editor} /usr/doc/%s/README
-URL_info     = ${TermExec} 'info %s'
-URL_sh       = sh -c '%s'
-URL_aur      = ${Browser} https://aur.archlinux.org/packages/?O=0&SeB=nd&K="%s"&outdated=&SB=n&SO=a&PP=50&do_Search=Go
-URL_imgur    = ${Browser} http://imgur.com/search?q='%s'
-URL_pkg      = ${Browser} https://www.archlinux.org/packages/?sort=&q='%s'&maintainer=&flagged=
-URL_t		 = ${TermExec} 'torrench %s'
-URL_torrent	 = ${TermExec} 'torrench %s'
-URL_torrents = ${TermExec} 'torrench %s'
-URL_p		 = ${TermExec} 'pacman -S %s'
-URL_pi		 = ${TermExec} 'pacman -S %s'
-URL_ps		 = ${TermExec} 'pacman -Ss %s'
-URL_pacman	 = ${TermExec} 'pacman -S %s'
+URL_code      = ${CodeEditor} %s
+URL_google    = ${Browser} http://www.google.com/search?q="%s"
+URL_g         = ${Browser} http://www.google.com/search?q="%s"
+URL_busca     = ${Browser} http://www.google.com/search?q="%s"
+URL_img       = ${Browser} https://www.google.com.br/search?q="%s"&biw=1600&bih=795&source=lnms&tbm=isch&sa=X
+URL_traduzir  = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#en/pt/"%s"
+URL_tanslate  = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#pt/en/"%s"
+URL_t         = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#en/pt/"%s"
+URL_http      = ${Browser} %u
+URL_https     = ${Browser} %u
+URL_mailto    = ${EmailClient} "mailto(%s)"
+URL_mail      = ${EmailClient} "mailto(%s)"
+URL_man       = gtkman %s
+URL_info      = ${TermExec} 'info %s'
+URL_file      = ${FileManager} %s
+URL_readme    = ${Editor} /usr/doc/%s/README
+URL_info      = ${TermExec} 'info %s'
+URL_sh        = sh -c '%s'
+URL_imgur     = ${Browser} http://imgur.com/search?q='%s'
+URL_aur       = ${Browser} https://aur.archlinux.org/packages/?O=0&SeB=nd&K="%s"&outdated=&SB=n&SO=a&PP=50&do_Search=Go
+URL_pkg       = ${Browser} https://www.archlinux.org/packages/?sort=&q='%s'&maintainer=&flagged=
+URL_ps		  = ${TermExec} 'pacman -Ss %s'
+URL_pacman	  = ${TermExec} 'pacman -S %s'
+URL_cdn	      = ${Browser} https://cdnjs.com/libraries?q='%s'
+URL_npm	      = ${Browser} https://www.npmjs.com/search?q='%s'
+URL_packagist = ${Browser} https://packagist.org/?query='%s'
+URL_github    = ${Browser} https://github.com/search?q='%s'
+URL_gist      = ${Browser} https://gist.github.com/search?q='%s'
+URL_mdn       = ${Browser} https://developer.mozilla.org/pt-BR/search?q='%s'
 
 # extension handlers
-EXT:avi,mp4,mkv,wmv,mpg = mpv %s
+EXT:avi,mp4,mkv,wmv,mpg,webm = mpv %s
 EXT:jpg,jpeg,bmp,gif = viewnior %s
-EXT:doc,rtf = AbiWord %s
-EXT:txt,sh,bash,cc,cpp,h,java,html,php,htm,epl,tex,latex,js,css,xml,xsl,am = ${Editor} %s
+EXT:doc,rtf = libreoffice --writer %s
+EXT:txt,sh,bash,cc,cpp,h,java,html,php,htm,epl,tex,latex,js,css,xml,xsl,am = ${CodeEditor} %s
 EXT:ps = gv %s
 EXT:pdf = atril %s

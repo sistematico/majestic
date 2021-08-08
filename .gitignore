@@ -32,3 +32,5 @@ ngrok.yml
 
 localtunnel.service
 st/aur/st-scrollback-git
+
+.commit

@@ -34,8 +34,8 @@ export DOT=${HOME}/.dotfiles
 
 # Vars
 #export TERMINAL=urxvt
-export TERMINAL=alacritty
-export BROWSER=firefox
+export TERMINAL=xfce4-terminal
+export BROWSER=google-chrome-stable
 export EDITOR=nano
 export RANGER_LOAD_DEFAULT_RC=false
 
