@@ -1,30 +1,26 @@
 #!/bin/sh
 # bash < <(https://git.io/JR4RO)
 
+DOCKER_PATH="$HOME/docker"
+TEMP_PATH="/tmp/docker"
+PROJECT_PATH="$HOME/github"
+PROJECT_NAME="laravel"
+
 [ ! -f /var/run/docker.sock ] && sudo systemctl start docker
-[ ! -d ~/github ] && mkdir ~/github
-[ -d ~/newdocker ] && mv ~/newdocker ~/.local/share/Trash/files/newdocker-$(date +%s)
+[ ! -d $PROJECT_PATH ] && mkdir $PROJECT_PATH
+[ -d $DOCKER_PATH ] && mv $DOCKER_PATH ~/.local/share/Trash/files/docker-$(date +%s)
+[ ! -d $TEMP_PATH ] && git clone https://github.com/sistematico/majestic $TEMP_PATH
 
-if [ ! -d /tmp/newdocker ]; then
-    git clone https://github.com/sistematico/majestic /tmp/newdocker
-fi
+cd $TEMP_PATH && git pull
+cp -a $TEMP_PATH/docker/docker $DOCKER_PATH
 
-cd /tmp/newdocker
-git pull
-
-cp -a /tmp/newdocker/docker/docker ~/newdocker
-mkdir ~/newdocker/certs/
+mkdir $DOCKER_PATH/certs/
 
 if ! command -v mkcert &> /dev/null; then
     sudo curl -s -L https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 > /usr/local/bin/mkcert
-    exit
 fi
 
-if [ ! -f ~/newdocker/certs/laravel.pem ]; then
-    cd ~/newdocker/certs/
-    mkcert -install
-    mkcert laravel
-fi
+cd $DOCKER_PATH/certs/ ; mkcert -install 1> /dev/null ; mkcert laravel 1> /dev/null
 
 if ! command -v composer &> /dev/null; then
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -34,19 +30,18 @@ if ! command -v composer &> /dev/null; then
     sudo mv composer.phar /usr/local/bin/composer
 fi
 
-[ -d ~/github/laravel ] && mv ~/github/laravel ~/.local/share/Trash/files/laravel-$(date +%s)
-composer create-project laravel/laravel --prefer-dist ~/github/laravel
+[ -d $PROJECT_PATH/$PROJECT_NAME ] && mv $PROJECT_PATH/$PROJECT_NAME ~/.local/share/Trash/files/laravel-$(date +%s)
+
+composer create-project laravel/laravel --prefer-dist $PROJECT_PATH/$PROJECT_NAME
 
 if ! grep -Fxq "laravel" /etc/hosts 1> /dev/null 2> /dev/null
 then
     sudo sed -i.bak '/127.0.0.1/s/$/ laravel/' /etc/hosts
 fi
 
-docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
-docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
+docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix 1> /dev/null
+docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix 1> /dev/null
 
-cd ~/newdocker/compose/laravel
-
-docker-compose up -d --build
+cd $DOCKER_PATH/compose/laravel ; docker-compose up -d --build
 
 google-chrome-stable https://laravel
