@@ -1,9 +1,9 @@
 #!/bin/sh
-# https://git.io/JR4RO
+# bash < <(https://git.io/JR4RO)
 
 [ ! -f /var/run/docker.sock ] && sudo systemctl start docker
+[ ! -d ~/github ] && mkdir ~/github
 [ -d ~/newdocker ] && mv ~/newdocker ~/.local/share/Trash/files/newdocker-$(date +%s)
-[ -d ~/github ] && mkdir ~/github
 
 if [ ! -d /tmp/newdocker ]; then
     git clone https://github.com/sistematico/majestic /tmp/newdocker
@@ -20,7 +20,7 @@ if ! command -v mkcert &> /dev/null; then
     exit
 fi
 
-if [ ! -f cd ~/newdocker/certs/laravel.pem ]; then
+if [ ! -f ~/newdocker/certs/laravel.pem ]; then
     cd ~/newdocker/certs/
     mkcert -install
     mkcert laravel
@@ -37,13 +37,15 @@ fi
 [ -d ~/github/laravel ] && mv ~/github/laravel ~/.local/share/Trash/files/laravel-$(date +%s)
 composer create-project laravel/laravel --prefer-dist ~/github/laravel
 
-if ! grep -Fxq "laravel" /etc/hosts > /dev/null
+if ! grep -Fxq "laravel" /etc/hosts 1> /dev/null 2> /dev/null
 then
-    sudo sed '/127.0.0.1/s/$/ laravel/' /etc/hosts
+    sudo sed -i.bak '/127.0.0.1/s/$/ laravel/' /etc/hosts
 fi
 
-docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null
-docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null
+docker stop laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
+docker rm laravel-nginx laravel-php laravel-memcached laravel-redis laravel-mailhog laravel-mysql laravel-phpmyadmin laravel-mix > /dev/null 2> /dev/null
+
+cd ~/newdocker/compose/laravel
 
 docker-compose up -d --build
 
