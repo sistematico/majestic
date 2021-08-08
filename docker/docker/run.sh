@@ -9,13 +9,9 @@ PROJECT_NAME="laravel"
 function progress() {
     pid=$!; spin='-\|/'; i=0
 
-    reset='\e[0m'; black=30; red=31; green=32; yellow=33; blue=34; magenta=35; cyan=36; white=37
-
     while kill -0 $pid 2>/dev/null
     do
         i=$(( (i+1) %4 ))
-        # echo -ne "\r\e[1;31m[\e[1;32m${spin:$i:1}\e[1;31m] \e[1;33m$1 \e[0m"
-        #printf "\r [${spin:$i:1}] $1"
         printf "\r\e[1;31m[\e[1;32m ${spin:$i:1} \e[1;31m] \e[1;33m$1 \e[0m"
         sleep .1
     done
@@ -24,7 +20,7 @@ function progress() {
 [ ! -f /var/run/docker.sock ] && sudo systemctl start docker
 [ ! -d $PROJECT_PATH ] && mkdir $PROJECT_PATH
 [ -d $DOCKER_PATH ] && mv $DOCKER_PATH ~/.local/share/Trash/files/docker-$(date +%s)
-[ ! -d $TEMP_PATH ] && git clone https://github.com/sistematico/majestic $TEMP_PATH
+[ ! -d $TEMP_PATH ] && git clone https://github.com/sistematico/majestic $TEMP_PATH > /dev/null
 
 cd $TEMP_PATH && git pull > /dev/null &
 progress "Efetuando o pull"
@@ -73,8 +69,7 @@ progress "Removendo imagens..."
 
 cd $DOCKER_PATH/compose/laravel 
 
-#docker-compose up -d --build > /dev/null 2> /dev/null &
-docker-compose up -d --build
+docker-compose up -d --build > /dev/null 2> /dev/null &
 progress "Configurando o Docker..."
 
 echo
