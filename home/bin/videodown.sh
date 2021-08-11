@@ -6,7 +6,7 @@
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
 #                                                                              #
 # Criado em: 30/04/2019 13:55:09                                               #
-# Modificado em: 23/05/2021 12:53:08                                           #
+# Modificado em: 09/08/2021 23:34:37                                           #
 #                                                                              #
 # Este trabalho está licenciado com uma Licença Creative Commons               #
 # Atribuição 4.0 Internacional                                                 #
@@ -31,6 +31,16 @@ PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int:transient:1 -i $ICONE
 YOUTUBE="youtube-dl" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
+HISTORY="/var/tmp/videodown.hist"
+
+checkUrl() {
+	local url=$1
+    padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
+    if [[ ! $url =~ $padrao ]]; then
+        false
+    fi
+	true
+}
 
 if [ -z "$DESKTOP_SESSION" ]; then
     NOTIFY="notify-send -h int:transient:1 -i ${ICONE} ${NOME_CURTO}"
@@ -40,19 +50,40 @@ fi
 [ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
 
+xclip -out -selection primary | xclip -in -selection clipboard
+selurl="$(xclip -o)"
+
 cd $DIR
 
-padrao='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
-if [[ ! ${url} =~ $padrao ]]; then
-	$NOTIFY "O link é inválido!"
+if [ -z "$url" ] && [ -z "$selurl" ]
+then
+    $NOTIFY "O link é inválido!"
     exit
-else
-	titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
-	if [ ${#titulo} -gt 250 ]; then
-		diff=$((${#titulo}-250))
-		trim=$((${#titulo}-$diff))
-		titulo=${titulo::-$trim}
-	fi
+fi
+
+if checkUrl ${selurl}
+then
+    if ! grep -Fxq "$selurl" $HISTORY
+    then
+        url="$selurl"
+    fi
+elif ! checkUrl ${url}
+then
+    $NOTIFY "O link é inválido!"
+    exit
+fi
+
+if grep -Fxq "$url" $HISTORY
+then
+    $NOTIFY "O vídeo já foi baixado!"
+    exit
+fi
+
+titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
+if [ ${#titulo} -gt 250 ]; then
+	diff=$((${#titulo}-250))
+	trim=$((${#titulo}-$diff))
+	titulo=${titulo::-$trim}
 fi
 
 if [[ $LOG -ne 0 ]]; then
@@ -119,5 +150,6 @@ if [[ $LOG -ne 0 ]]; then
 fi
 
 $NOTIFY "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
+echo $url >> $HISTORY
 exit
 

@@ -1,86 +1,20 @@
 {
-  "workbench.colorTheme": "GitHub Dark Dimmed",
-  "editor.inlineSuggest.enabled": true,
-  "editor.minimap.enabled": false,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
-  "vetur.ignoreProjectWarning": true,
-  "vetur.format.defaultFormatterOptions": {
-    "prettyhtml": {
-      "printWidth": 250, // No line exceeds 260 characters
-    }
-  },
-  "window.menuBarVisibility": "compact",
-  "editor.fontLigatures": true,
-  "git.autofetch": true,
-  "git.confirmSync": false,
-  "git.enableSmartCommit": true,
-  "security.workspace.trust.untrustedFiles": "open",
-  "workbench.startupEditor": "none",
-  "editor.linkedEditing": true,
-  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.fontFamily": "'JetBrains Mono NL','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "phpmd.unsafeCommandEnabled": true,
-  "phpmd.verbose": true,
-  "php-docblocker.author": {
-    "name": "Lucas Saliés Brum",
-    "email": "lucas@archlinux.com.br"
-  },
-  "php-docblocker.useShortNames": true,
-  "sqltools.useNodeRuntime": true,
-  "faker.locale": "pt_BR",
-  "github.copilot.autocomplete.enable": true,
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "html.format.wrapAttributes": "force-aligned",
-  "liveServer.settings.donotShowInfoMsg": true,
-  "liveServer.settings.donotVerifyTags": true,
-  "liveServer.settings.proxy": {
-    "enable": true,
-    "proxyUri": "https://localhost:443",
-    "baseUri": "/"
-  },
-  "liveServer.settings.root": "/home/lucas/github/php-mvc/public",
-  "liveServer.settings.useLocalIp": true,
-  "liveServer.settings.https": {
-    "enable": true,
-    "cert": "/home/lucas/docker/certs/localhost.pem",
-    "key": "/home/lucas/docker/certs/localhost-key.pem",
-    "passphrase": ""
-  },
-  "gaac.withGuessedCustomActions": [  
-    {
-      "action": "ignore",
-      "pattern": "/^.(gitignore|npmignore|vscodeignore)/",
-      "state": "MODIFIED"
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.startupEditor": "none",
+    "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDelete": false,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "editor.linkedEditing": true,
+    "files.exclude": {
+        "**/.commit*": true
     },
-    {
-      "action": "update",
-      "pattern": "/^CHANGELOG/",
-      "state": "MODIFIED"
-    },
-    {
-      "action": "update",
-      "pattern": "/^LICENSE/",
-      "state": "MODIFIED"
-    },
-    {
-      "action": "update",
-      "pattern": "/^README/",
-      "state": "MODIFIED"
-    }
-  ],
-  "files.exclude": {
-    ".editorconfig": true,
-    ".phpstorm.meta.php": true,
-    ".styleci.yml": true,
-    "**/database.sqlite": true,
-    "artisan": true,
-    "phpunit.xml": true,
-    "server.php": true,
-    "tests": true,
-    "vendor": true
-  },
-  "workbench.productIconTheme": "icons-carbon"
+    "workbench.productIconTheme": "icons-carbon",
+    "vetur.ignoreProjectWarning": true,
+    "polacode.transparentBackground": true,
+    "explorer.confirmDragAndDrop": false,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "editor.minimap.enabled": false
 }

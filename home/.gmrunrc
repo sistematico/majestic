@@ -57,7 +57,7 @@ URL_readme    = ${Editor} /usr/doc/%s/README
 URL_info      = ${TermExec} 'info %s'
 URL_sh        = sh -c '%s'
 URL_imgur     = ${Browser} http://imgur.com/search?q='%s'
-URL_aur       = ${Browser} https://aur.archlinux.org/packages/?O=0&SeB=nd&K="%s"&outdated=&SB=n&SO=a&PP=50&do_Search=Go
+URL_aur       = ${Browser} https://aur.archlinux.org/packages/?q='%s'&O=0&SeB=nd&outdated=&SB=n&SO=a&PP=50&do_Search=Pesquisar
 URL_pkg       = ${Browser} https://www.archlinux.org/packages/?sort=&q='%s'&maintainer=&flagged=
 URL_ps		  = ${TermExec} 'pacman -Ss %s'
 URL_pacman	  = ${TermExec} 'pacman -S %s'
