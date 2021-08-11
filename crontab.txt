@@ -27,7 +27,7 @@
 #0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@hera:/ /home/lucas/vps/hera/
 
 # Alarme
-#0 6 * * 1,2,3,4,5 export DISPLAY=:0 ; canberra-gtk-play -i phone-incoming-call 2>&1
+0 6 * * 1,2,3,4,5 export DISPLAY=:0 ; canberra-gtk-play -i phone-incoming-call 2>&1
 
 # Alarme (/usr/share/sounds/freedesktop/stereo/)
 #25 6 * * * DISPLAY=:0 canberra-gtk-play -i phone-incoming-call 2>&1
