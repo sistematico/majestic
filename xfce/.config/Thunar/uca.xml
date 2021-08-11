@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
+	<icon>folder-green</icon>
+	<name>Mover para...</name>
+	<unique-id>1628205624637712-1</unique-id>
+	<command>mv %F &quot;$(zenity --file-selection --directory)&quot;</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>folder-blue</icon>
+	<name>Copiar para...</name>
+	<unique-id>1628711679909121-1</unique-id>
+	<command>cp -r %F &quot;$(zenity --file-selection --directory)&quot;</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
 	<icon>utilities-terminal</icon>
 	<name>Abrir terminal aqui</name>
 	<unique-id>1590353499994617-1</unique-id>

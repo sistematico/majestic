@@ -96,6 +96,6 @@ if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
     eval "$(starship init bash)"
 fi
 
-#if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-#        source /etc/profile.d/vte.sh
-#fi
+# Long command notification
+trap '_start=$SECONDS' DEBUG
+PROMPT_COMMAND='(if (( SECONDS - _start > 20 )); then notify-send "O comando terminou."; fi)'

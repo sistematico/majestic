@@ -32,12 +32,14 @@ border-bottom-size = 4
 border-bottom-color = ${colors.background-alt}
 
 ; xwindow cpu memory filesystem network temperature pulseaudio date lock clip powermenu
-modules-left = i3 firefox thunar terminal downloads
+modules-left = i3 browser thunar terminal telegram downloads colorpicker
 modules-center = xwindow
 modules-right = cpu memory temperature headset pulseaudio date lock clip powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+locale = pt_BR.UTF-8
 
 [module/i3]
 type = internal/i3
@@ -220,7 +222,7 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = " %A, %Y-%m-%d"
 
 time = %H:%M
 time-alt = %H:%M:%S
@@ -290,11 +292,11 @@ click-middle = ~/.config/polybar/scripts/downloads.sh c > /dev/null 2> /dev/null
 click-right = ~/.config/polybar/scripts/downloads.sh i > /dev/null 2> /dev/null &
 exec = ~/.config/polybar/scripts/downloads.sh
 
-[module/firefox]
+[module/browser]
 type = custom/text
 content = 
-;click-left = firefox &
-click-left = pgrep -x firefox > /dev/null || /usr/bin/firefox &
+click-left = pgrep -x chrome > /dev/null || /usr/bin/google-chrome-stable &
+click-right = pgrep -x firefox > /dev/null || /usr/bin/firefox &
 
 [module/thunar]
 type = custom/text
