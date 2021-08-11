@@ -21,11 +21,11 @@ configs=(
 	'qutebrowser'
 	'ncmpcpp'
 	'StartPage'
-	'Home'
 	'Alacritty'
 	'st'
 	'crontab'
 	'Conky'
+	'Home'
 )
 
 res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines "${#configs[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
