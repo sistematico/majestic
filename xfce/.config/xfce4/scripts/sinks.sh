@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sink=$(pactl list short sinks | awk 'NR==1{print $2}')
 active=$(LANG=C pactl list sinks | awk '{if ($1 == "Active" && $2 == "Port:") {print $3; exit;}}')

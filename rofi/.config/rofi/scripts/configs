@@ -34,10 +34,10 @@ if [ "$res" ]; then
     case $res in
         'i3') $editor ~/.config/i3/config ;;
         'Polybar')
-            polyconfig=$(echo "Config;Apps;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+            polyconfig=$(echo "Config;Scripts;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
             if [ "$polyconfig" = "Reload" ]; then
                 ~/.config/polybar/launch.sh
-            elif [ "$polyconfig" = "Apps" ]; then
+            elif [ "$polyconfig" = "Scripts" ]; then
                 app=$( ls "${HOME}/.config/polybar/scripts/" | egrep "\.sh|\.py" | rofi -dmenu -p "Polybar Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/polybar/scripts/ | egrep "\.sh|\.py" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
                 if [ $app ]; then
                     $editor "${HOME}/.config/polybar/scripts/${app}"
@@ -69,7 +69,7 @@ if [ "$res" ]; then
         'i3lock')
             i3lockconfig=$(echo "Config;Select;Reload;Test" | rofi -sep ";" -dmenu -p "i3lock" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
             if [ "$i3lockconfig" = "Select" ]; then
-                i3lockapps=$( ls "${HOME}/.local/lock/" | egrep -v "default" | rofi -dmenu -p "i3Lock Lockers" -bw 0 -lines "$(ls -1 ${HOME}/.local/lock/ | egrep -v "default" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
+                i3lockapps=$( ls "${HOME}/.local/lock/" | egrep -v "default|png" | rofi -dmenu -p "i3Lock Lockers" -bw 0 -lines "$(ls -1 ${HOME}/.local/lock/ | egrep -v "default|png" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
                 if [ $i3lockapps ]; then
                     ln -sf ${HOME}/.local/lock/${i3lockapps} ${HOME}/.local/lock/default
                 fi
