@@ -97,5 +97,5 @@ if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
 fi
 
 # Long command notification
-trap '_start=$SECONDS' DEBUG
-PROMPT_COMMAND='(if (( SECONDS - _start > 20 )); then notify-send "O comando terminou."; fi)'
+#trap '_start=$SECONDS' DEBUG
+#PROMPT_COMMAND='(if (( SECONDS - _start > 20 )); then notify-send "O comando terminou."; fi)'

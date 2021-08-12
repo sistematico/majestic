@@ -34,7 +34,7 @@ border-bottom-color = ${colors.background-alt}
 ; xwindow cpu memory filesystem network temperature pulseaudio date lock clip powermenu
 modules-left = i3 browser thunar terminal telegram downloads colorpicker
 modules-center = xwindow
-modules-right = cpu memory temperature headset pulseaudio date lock clip powermenu
+modules-right = cpu memory temperature wireless headset pulseaudio date lock clip powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -179,7 +179,7 @@ mount-0 = /home
 label-mounted =  %percentage_used%%
 label-unmounted =  %mountpoint% not mounted
 
-[module/network]
+[module/wired]
 type = internal/network
 interface = eno1
 interval = 3.0
@@ -192,6 +192,53 @@ format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
+
+[module/wireless]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+;format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal>
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+; Default: %ifname% %local_ip%
+label-connected = %essid% %downspeed:6%
+;label-connected-foreground = #eefafafa
+
+; Default: (none)
+label-disconnected = not connected
+label-disconnected-foreground = #66ffffff
+
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = %{F#ff5555}%{F-}
+ramp-signal-1 = %{F#ffb86c}%{F-}
+ramp-signal-2 = %{F#f1fa8c}%{F-}
+ramp-signal-3 = %{F#6272a4}%{F-}
+ramp-signal-4 = %{F#50fa7b}%{F-}
+ramp-signal-5 = %{F#8be9fd}%{F-}
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
 
 [module/netx]
 type = custom/ipc
