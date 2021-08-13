@@ -31,7 +31,7 @@ font-1 = icomoon:fontformat=truetype:size=8;2
 border-bottom-size = 4
 border-bottom-color = ${colors.background-alt}
 
-modules-left = i3 browser thunar terminal telegram downloads
+modules-left = i3 browser thunar terminal telegram downloads desl
 modules-center = xwindow
 modules-right = cpu memory temperature headset pulseaudio date wireless lock clip powermenu
 
@@ -401,6 +401,18 @@ exec = $HOME/.config/polybar/scripts/lock.sh
 type = custom/text
 content = 
 click-left = $HOME/.config/rofi/scripts/apps > /dev/null 2> /dev/null &
+
+[module/desl]
+type = custom/script
+content = 
+
+format = <label>
+label = "desligando em %{F#c78f23}%output%%{F-}"
+
+exec = cat /tmp/desligamento.log
+exec-if = test -f /tmp/desligamento.log
+
+interval = 90
 
 [module/trash]
 ;content = 
