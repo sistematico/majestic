@@ -26,13 +26,8 @@ audio="${HOME}/.erro.mp3"
 audio_web="https://github.com/sistematico/dotfiles/raw/master/home/.local/share/sounds/erro.mp3"
 icone="/usr/share/icons/Newaita-dark/apps/48/clock.svg"
 
-if [ ! -f $audio ]; then
-	curl -L -s $audio_web > $audio
-fi
-
-if [ ! -f $tema ]; then
-	curl -L -s $tema_web > $tema
-fi
+[ ! -f $audio ] && curl -L -s $audio_web > $audio
+[ ! -f $tema ] && curl -L -s $tema_web > $tema
 
 if [ -f /tmp/rofi-alarme.pid ]; then
 	hora=$(echo -e "Existe um alarme em progresso para:\n$(cat /tmp/rofi-alarme.log)\nDeseja cancelar?\nSim\nNão" | rofi -p "Rofi Alarme: " -dmenu -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
@@ -52,8 +47,8 @@ if [ $hora ]; then
 		else
 			h=$(( $(date --date=${hora} +%s) - $(date +%s) ))
 			if [ $h -gt 1 ]; then
-				echo $$ > /tmp/rofi-alarme.pid
-				echo "$(date --date=${hora})" > /tmp/rofi-alarme.log
+				#echo $$ > /tmp/rofi-alarme.pid
+				#echo "$(date --date=${hora})" > /tmp/rofi-alarme.log
 				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n$(date --date=${hora})"
 				sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
 				notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
