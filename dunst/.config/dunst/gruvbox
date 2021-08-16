@@ -21,7 +21,8 @@
 
     frame_color = "#c78f23"
     #separator_color = none
-    separator_color = "#282A36"
+    #separator_color = "#282A36"
+    separator_color = "#c78f23"
     sort = yes
     idle_threshold = 120
 

@@ -7,11 +7,11 @@ call plug#end()
 
 let NERDTreeShowHidden=1
 
-let g:gruvbox_transparent_bg = 'hard' " soft, medium and hard
+let g:gruvbox_transparent_bg = 'medium' " soft, medium and hard
 colorscheme gruvbox
 set background=dark " dark/light
 
-let g:airline_theme='gruvbox'
+let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 
@@ -34,4 +34,4 @@ set tabstop=4 shiftwidth=4 expandtab
 "nnoremap <C-q> :qa!<cr>
 
 autocmd VimEnter * hi Normal ctermbg=none
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree

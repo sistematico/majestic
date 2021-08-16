@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
-#
-# Script de alarme usando o paplay, dunst e rofi.
-#
-# Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
-#
-# Criado em: 28/12/17 00:52:08
-# Última Atualização: 30/03/2019 08:45:23
-# Evaluate: ! date +"%d/%m/%y %H:%M:%S"
+################################################################################
+#                                                                              #
+# Arquivo: ~/.config/rofi/scripts/alarme                                       #
+#                                                                              #
+# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
+#                                                                              #
+# Descrição: Script de alarme usando o paplay, dunst e rofi.                   #
+#                                                                              #
+# Criado em: 28/12/2017 00:52:08                                               #
+# Modificado em: 13/08/2021 14:59:54                                           #
+#                                                                              #
+# Este trabalho está licenciado com uma Licença Creative Commons               #
+# Atribuição 4.0 Internacional                                                 #
+# http://creativecommons.org/licenses/by/4.0/                                  #
+#                                                                              #
+################################################################################
 
 dependencias=("curl" "rofi" "notify-send" "mpg123")
 
@@ -47,8 +55,8 @@ if [ $hora ]; then
 		else
 			h=$(( $(date --date=${hora} +%s) - $(date +%s) ))
 			if [ $h -gt 1 ]; then
-				#echo $$ > /tmp/rofi-alarme.pid
-				#echo "$(date --date=${hora})" > /tmp/rofi-alarme.log
+				echo $$ > /tmp/rofi-alarme.pid
+				echo "$(date --date=${hora})" > /tmp/rofi-alarme.log
 				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n$(date --date=${hora})"
 				sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
 				notify-send -i $icone "Rofi Alarme" "ACORDA!!!"

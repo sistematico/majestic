@@ -1,30 +1,38 @@
 #!/usr/bin/env bash
-#
-# Arquivo: Rofi Configs
-#
-# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
-#
-# Criado em: 10/07/2018 14:25:18
-# Última alteração: 20/12/2019 21:54:30
+################################################################################
+#                                                                              #
+# Arquivo: ~/.config/i3/config                                                 #
+#                                                                              #
+# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
+#                                                                              #
+# Criado em: 10/07/2018 14:25:18                                               #
+# Modificado em: 2021-08-13T20:17:11.948Z                                      #
+#                                                                              #
+# Este trabalho está licenciado com uma Licença Creative Commons               #
+# Atribuição 4.0 Internacional                                                 #
+# http://creativecommons.org/licenses/by/4.0/                                  #
+#                                                                              #
+################################################################################
 
-editor="code"
+editor="${VISUAL:-code}"
 [ "$editor" == "code" ] && sudoparams="--user-data-dir=$HOME/.vscode-root --no-sandbox"
 
 configs=(
     'i3'
     'Polybar'
+    'Rofi'
     'Terminais'
     'GTK'
     'i3lock'
     'Dunst'
     'Picom'
-    'Rofi'
     'LightDM'
     'qutebrowser'
     'ncmpcpp'
     'StartPage'
     'crontab'
     'Conky'
+    'bpytop'
     'Home'
 )
 
@@ -43,7 +51,22 @@ if [ "$res" ]; then
                     $editor "${HOME}/.config/polybar/scripts/${app}"
                 fi
             elif [ "$polyconfig" == "Config" ]; then
-                $editor "${HOME}/.config/polybar/config" 
+                $editor "${HOME}/.config/polybar/config"
+            fi
+        ;;
+        'Rofi')
+            roficonfig=$(echo "Apps;Config;Themes" | rofi -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+
+            if [ "$roficonfig" = "Apps" ]; then
+                app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/scripts/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+                if [ $app ]; then
+                    $editor "${HOME}/.config/rofi/scripts/${app}"
+                fi
+            elif [ "$roficonfig" = "Themes" ]; then
+                tema=$( ls "${HOME}/.config/rofi/themes" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+                [ ! -z $tema ] && $editor "${HOME}/.config/rofi/themes/${tema}"
+            elif [ $roficonfig ]; then
+                $editor ~/.config/rofi/config.rasi
             fi
         ;;
         'Terminais')
@@ -56,14 +79,14 @@ if [ "$res" ]; then
             elif [ "$terminais" = "st" ]; then
                 stfiles=$(echo "Config;Re-Build" | rofi -sep ";" -dmenu -p "Simple Terminal" -bw 0 -lines 2 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
                 if [ "$stfiles" = "Config" ]; then
-                    $editor ${HOME}/aur/st-scrollback-git/config.h 
+                    $editor ${HOME}/aur/st-scrollback-git/config.h
                 elif [ "$stfiles" = "Re-Build" ]; then
                     rm -f ${HOME}/aur/st-scrollback-git/st*.pkg.tar.xz
                     $TERMINAL -e "cd ${HOME}/aur/st-scrollback-git/ && makepkg -i && exit" && dbus-launch notify-send "Completo" "Compilação completa!"
                 fi
             fi
         ;;
-        'GTK') 
+        'GTK')
             $editor "${HOME}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"
         ;;
         'i3lock')
@@ -74,7 +97,7 @@ if [ "$res" ]; then
                     ln -sf ${HOME}/.local/lock/${i3lockapps} ${HOME}/.local/lock/default
                 fi
             elif [ "$i3lockconfig" == "Config" ]; then
-                #$editor $(grep xautolock ~/.config/i3/config | awk '{print $8}') 
+                #$editor $(grep xautolock ~/.config/i3/config | awk '{print $8}')
                 $editor ${HOME}/.local/lock/fortune
             elif [ "$i3lockconfig" == "Reload" ]; then
                 killall xautolock
@@ -100,23 +123,6 @@ if [ "$res" ]; then
                 killall picom && picom -b --config $HOME/.config/picom/picom.conf &
             elif [ $picomconfig ]; then
                 $editor ~/.config/picom/picom.conf
-            fi
-        ;;
-        'Rofi')
-            roficonfig=$(echo "Apps;Config;Themes" | rofi -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-
-            if [ "$roficonfig" = "Apps" ]; then
-                app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/scripts/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
-                if [ $app ]; then
-                    $editor "${HOME}/.config/rofi/scripts/${app}"
-                fi
-            elif [ "$roficonfig" = "Themes" ]; then
-                tema=$( ls "${HOME}/.config/rofi/" | egrep -v "config.rasi|scripts" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
-                if [ $tema ]; then
-                    $editor "${HOME}/.config/rofi/themes/${tema}" 
-                fi
-            elif [ $roficonfig ]; then
-                $editor ~/.config/rofi/config.rasi
             fi
         ;;
         'LightDM')
@@ -167,7 +173,8 @@ if [ "$res" ]; then
                 $editor ~/${homefiles}
             fi
         ;;
-        'crontab') 
+        'bpytop') $editor $HOME/.config/bpytop/bpytop.conf ;;
+        'crontab')
             crontab -l > /tmp/cron.txt
             $editor /var/spool/cron/$(whoami)
         ;;

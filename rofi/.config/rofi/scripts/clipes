@@ -1,4 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
+################################################################################
+#                                                                              #
+# Arquivo: ~/.config/rofi/scripts/clipes                                       #
+#                                                                              #
+# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
+#                                                                              #
+# Criado em: 30/04/2019 13:55:09                                               #
+# Modificado em: 13/08/2021 14:58:19                                           #
+#                                                                              #
+# Este trabalho está licenciado com uma Licença Creative Commons               #
+# Atribuição 4.0 Internacional                                                 #
+# http://creativecommons.org/licenses/by/4.0/                                  #
+#                                                                              #
+################################################################################
 
 dir="${HOME}/video/clipes"
 

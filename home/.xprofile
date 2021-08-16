@@ -23,38 +23,38 @@ dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-# Temas
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export GTK_THEME=Adwaita:dark
-export XCURSOR_THEME=Qogir-ubuntu-dark
-
 # Dirs
 export GH=${HOME}/github
 export GL=${HOME}/gitlab
 export DOT=${HOME}/.dotfiles
 
 # Vars
-export TERMINAL=kitty
+export TERMINAL=alacritty
 export BROWSER=google-chrome-stable
 export EDITOR=nano
+export VISUAL=code
 export RANGER_LOAD_DEFAULT_RC=false
 
 #export MOZ_DISABLE_CONTENT_SANDBOX=1
 #export MOZ_DISABLE_GMP_SANDBOX=1
 
 # iBus
-#export GTK_IM_MODULE=ibus
-#export XMODIFIERS=@im=ibus
-#export QT_IM_MODULE=ibus
-#ibus-daemon -drx &
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -drx &
 
-#export GPG_AGENT_INFO
-#export GNOME_KEYRING_CONTROL
-#export GNOME_KEYRING_PID
-#export SSH_AUTH_SOCK
+export GPG_AGENT_INFO
+export GNOME_KEYRING_CONTROL
+export GNOME_KEYRING_PID
 
 case $DESKTOP_SESSION in
     i3|i3wm|bspwm|openbox|herbsluftwm)
+
+		export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+		export GTK_THEME=Adwaita:dark
+		export XCURSOR_THEME=Qogir-ubuntu-dark
+
         ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     cinnamon|cinnamon-session)

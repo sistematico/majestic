@@ -1,11 +1,68 @@
-#!/bin/bash
+#!/usr/bin/env bash
+################################################################################
+#                                                                              #
+# Arquivo: ~/.config/rofi/scripts/apps                                         #
+#                                                                              #
+# Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
+#                                                                              #
+# Criado em: 30/04/2019 13:55:09                                               #
+# Modificado em: 2021-08-13 20:15:12Z                                          #
+#                                                                              #
+# Este trabalho está licenciado com uma Licença Creative Commons               #
+# Atribuição 4.0 Internacional                                                 #
+# http://creativecommons.org/licenses/by/4.0/                                  #
+#                                                                              #
+################################################################################
 
-res=$(echo "firefox;termite;thunar;telegram;vscode;lxtask;deluge" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 7 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
+apps=("Thunar" "Browsers" "Terminais" "Editores" "Database" "Telegram" "LXTask")
+browser=("Google Chrome" "Mozilla Firefox")
+term=("Alacritty" "Kitty" "st" "urxvt")
+edit=("Visual Studio Code" "PHPStorm" "WebStorm")
+data=("DataGrip" "SQLiteBrowser" "TablePlus")
+
+res=$(printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines "${#apps[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
 
 if [ ! -z $res ]; then
-	case $res in
-		telegram) i3-msg -q exec --no-startup-id telegram-desktop ;;
-		vscode) i3-msg -q exec --no-startup-id code ;;
-		*) i3-msg -q "exec --no-startup-id $res" ;;
-	esac
+    case $res in
+        "Thunar") thunar ;;
+        "Browsers")
+            browsers=$(printf "%s\n" "${browser[@]}" | rofi -dmenu -p "Browsers" -bw 0 -lines "${#browser[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
+            
+            case $browsers in
+                "Google Chrome") google-chrome-stable ;;
+                "Mozilla Firefox") firefox ;;
+            esac
+        ;;
+        "Terminais") 
+            terminais=$(printf "%s\n" "${term[@]}" | rofi -dmenu -p "Terminais" -bw 0 -lines "${#term[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
+            
+            case $terminais in
+                "Alacritty") alacritty ;;
+                "Kitty") kitty ;;
+                "st") st ;;
+                "urxvt") urxvt ;;
+            esac
+        ;;
+        "Editores") 
+            editores=$(printf "%s\n" "${edit[@]}" | rofi -dmenu -p "Editores" -bw 0 -lines "${#edit[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
+            
+            case $editores in
+                "Visual Studio Code") code ;;
+                "PHPStorm") phpstorm ;;
+                "WebStorm") webstorm ;;
+            esac
+        ;;
+        "Database") 
+            database=$(printf "%s\n" "${data[@]}" | rofi -dmenu -p "Database" -bw 0 -lines "${#data[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
+            
+            case $database in
+                "DataGrip") datagrip ;;
+                "SQLiteBrowser") sqlitebrowser ;;
+                "TablePlus") tableplus ;;
+            esac
+        ;;
+        "Telegram") telegram-desktop ;;
+        "LXTask") lxtask ;;
+        *) $res ;;
+    esac
 fi

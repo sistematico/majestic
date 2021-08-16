@@ -7,6 +7,9 @@ primary = #ffb52a
 secondary = #e60053
 alert = ${xrdb:active:#fff}
 
+;--------------------------------------------------;
+; BAR                                              ;
+;--------------------------------------------------;
 [bar/gruvbox]
 width = 100%
 height = 36
@@ -27,26 +30,40 @@ module-margin-right = 1
 
 font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 font-1 = icomoon:fontformat=truetype:size=8;2
+font-2 = entypo:fontformat=truetype:size=11;3
 
 border-bottom-size = 4
 border-bottom-color = ${colors.background-alt}
 
-modules-left = i3 browser thunar terminal telegram downloads desl
+modules-left = i3 conky launcher downloads desl
 modules-center = xwindow
-modules-right = cpu memory temperature headset pulseaudio date wireless lock clip powermenu
+modules-right = cpu memory temperature pulseaudio date wireless lock clip powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 locale = pt_BR.UTF-8
 
+;--------------------------------------------------;
+; I3                                               ;
+;--------------------------------------------------;
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-ws-icon-default = 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -56,17 +73,24 @@ label-mode-background = ${colors.primary}
 label-focused = %icon%
 label-focused-foreground = ${colors.alert}
 label-focused-padding = 2
+label-focused-font = 3
 
 label-unfocused = %icon%
 label-unfocused-padding = 2
+label-unfocused-font = 3
 
 label-visible = %icon%
 label-visible-padding = ${self.label-focused-padding}
+label-visible-font = 3
 
 label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
+label-urgent-font = 3
 
+;--------------------------------------------------;
+; MPD                                              ;
+;--------------------------------------------------;
 [module/mpd]
 type = internal/mpd
 
@@ -153,22 +177,50 @@ bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
 
+;--------------------------------------------------;
+; WINDOW                                           ;
+;--------------------------------------------------;
 [module/xwindow]
 type = internal/xwindow
 label =  %{A2:xdotool getwindowfocus windowkill:}%title:0:35:...%%{A}
 
+;--------------------------------------------------;
+; CPU                                              ;
+;--------------------------------------------------;
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
 label = %percentage:2%%
 
+;--------------------------------------------------;
+; MEMORY                                           ;
+;--------------------------------------------------;
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 label = %percentage_used%%
 
+;--------------------------------------------------;
+; TEMPERATURE                                      ;
+;--------------------------------------------------;
+[module/temperature]
+type = internal/temperature
+interval = 30
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-warn = <label-warn>
+
+label =  %temperature-c%
+label-warn =  %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+;--------------------------------------------------;
+; FILESYSTEM                                       ;
+;--------------------------------------------------;
 [module/filesystem]
 type = internal/fs
 interval = 25
@@ -178,6 +230,9 @@ mount-0 = /home
 label-mounted =  %percentage_used%%
 label-unmounted =  %mountpoint% not mounted
 
+;--------------------------------------------------;
+; WIRED                                            ;
+;--------------------------------------------------;
 [module/wired]
 type = internal/network
 interface = eno1
@@ -192,6 +247,9 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 
+;--------------------------------------------------;
+; WIRELESS                                         ;
+;--------------------------------------------------;
 [module/wireless]
 type = internal/network
 interface = wlan0
@@ -224,12 +282,18 @@ label-disconnected-foreground = #66ffffff
 ;label-packetloss-foreground = #eefafafa
 
 ; Only applies if <ramp-signal> is used
-ramp-signal-0 = %{F#ff5555}%{F-}
-ramp-signal-1 = %{F#ffb86c}%{F-}
-ramp-signal-2 = %{F#f1fa8c}%{F-}
-ramp-signal-3 = %{F#6272a4}%{F-}
-ramp-signal-4 = %{F#50fa7b}%{F-}
-ramp-signal-5 = %{F#8be9fd}%{F-}
+;ramp-signal-0 = %{F#ff5555}%{F-}
+;ramp-signal-1 = %{F#ffb86c}%{F-}
+;ramp-signal-2 = %{F#f1fa8c}%{F-}
+;ramp-signal-3 = %{F#6272a4}%{F-}
+;ramp-signal-4 = %{F#50fa7b}%{F-}
+;ramp-signal-5 = %{F#8be9fd}%{F-}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-5 = 
 
 ; Only applies if <animation-packetloss> is used
 animation-packetloss-0 = ⚠
@@ -239,16 +303,9 @@ animation-packetloss-1-foreground = #000000
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
 
-[module/netx]
-type = custom/ipc
-hook-0 = echo foobar
-hook-1 = date +%s
-hook-2 = whoami
-initial = 1
-click-left = polybar-msg -p %pid% hook network 1
-click-right = polybar-msg -p %pid% hook network 2
-double-click-left = polybar-msg -p %pid% hook network 3
-
+;--------------------------------------------------;
+; PULSEAUDIO                                       ;
+;--------------------------------------------------;
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -265,6 +322,9 @@ label-muted-foreground = #666
 
 click-right = pavucontrol
 
+;--------------------------------------------------;
+; DATE                                             ;
+;--------------------------------------------------;
 [module/date]
 type = internal/date
 interval = 5
@@ -278,19 +338,9 @@ time-alt = %H:%M:%S
 format-prefix = 
 label = %date% %time%
 
-[module/temperature]
-type = internal/temperature
-interval = 30
-thermal-zone = 0
-warn-temperature = 60
-
-format = <label>
-format-warn = <label-warn>
-
-label =  %temperature-c%
-label-warn =  %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
+;--------------------------------------------------;
+; POWER                                            ;
+;--------------------------------------------------;
 [module/powermenu]
 type = custom/menu
 
@@ -319,7 +369,6 @@ menu-0-4 = desligar
 menu-0-4-exec = menu-open-4
 
 
-
 menu-1-0 = deseja mesmo sair?
 menu-1-0-exec = i3-msg exit
 
@@ -332,6 +381,9 @@ menu-3-0-exec = systemctl suspend
 menu-4-0 = deseja mesmo desligar?
 menu-4-0-exec = systemctl poweroff
 
+;--------------------------------------------------;
+; UTILS                                            ;
+;--------------------------------------------------;
 [module/headset]
 type = custom/script
 interval = 10
@@ -366,7 +418,9 @@ click-left = $TERMINAL &
 [module/code]
 type = custom/text
 content = 
-click-left = /usr/bin/code &
+click-left = pgrep -x atom >/dev/null || /usr/bin/atom > /dev/null 2> /dev/null &
+click-middle = pgrep -x code >/dev/null || /usr/bin/code > /dev/null 2> /dev/null &
+click-right = pgrep -x code >/dev/null || /usr/bin/code > /dev/null 2> /dev/null &
 
 [module/telegram]
 type = custom/text
@@ -404,8 +458,8 @@ click-left = $HOME/.config/rofi/scripts/apps > /dev/null 2> /dev/null &
 
 [module/desl]
 type = custom/script
-content = 
 
+format-prefix = " "
 format = <label>
 label = "desligando em %{F#c78f23}%output%%{F-}"
 
@@ -439,6 +493,11 @@ type = custom/text
 content = 
 scroll-up = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
 scroll-down = feh --bg-fill $(ls $HOME/img/wallhaven/* | shuf -n1)
+
+[module/conky]
+type = custom/text
+content = %{T3}%{T-}
+click-left = pgrep -x conky >/dev/null && killall conky || conky > /dev/null 2> /dev/null &
 
 [module/sep]
 type = custom/text

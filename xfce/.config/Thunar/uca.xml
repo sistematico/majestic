@@ -29,22 +29,22 @@
 	<video-files/>
 </action>
 <action>
-	<icon>utilities-terminal</icon>
-	<name>Abrir terminal aqui</name>
-	<unique-id>1590353499994617-1</unique-id>
-	<command>xfce4-terminal --default-working-directory=%f</command>
-	<description>Exemplo de uma ação personalizada</description>
-	<patterns>*</patterns>
-	<startup-notify/>
-	<directories/>
-</action>
-<action>
-	<icon>catfish</icon>
-	<name>Pesquisar</name>
-	<unique-id>1590954587955997-1</unique-id>
+	<icon>org.xfce.catfish</icon>
+	<name>Catfish</name>
+	<unique-id>1625503705291124-1</unique-id>
 	<command>catfish --path=%f</command>
 	<description></description>
 	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Terminal</name>
+	<unique-id>1621604425045003-1</unique-id>
+	<command>xfce4-terminal --working-directory %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<startup-notify/>
 	<directories/>
 </action>
 <action>
@@ -75,6 +75,17 @@
 	<directories/>
 </action>
 <action>
+<action>
+	<icon>visual-studio-code</icon>
+	<name>VSCode</name>
+	<unique-id>1623801683194261-1</unique-id>
+	<command>code %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+</action>
+<action>
 	<icon>edit-cut</icon>
 	<name>Cortar Video</name>
 	<unique-id>1542932666832353-1</unique-id>
@@ -93,21 +104,35 @@
 	<video-files/>
 </action>
 <action>
-	<icon>weather-overcast</icon>
-	<name>CastNow</name>
-	<unique-id>1546383797562485-1</unique-id>
-	<command>castnow %F --myip 192.168.0.1</command>
-	<description>Executa um vídeo no ChromeCast</description>
+	<icon>preferences-system-privacy</icon>
+	<name>AntiVirus</name>
+	<unique-id>1623522627846103-1</unique-id>
+	<command>clamtk %F</command>
+	<description></description>
 	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
 	<video-files/>
 </action>
 <action>
-	<icon>weather-overcast</icon>
-	<name>VirusScan</name>
-	<unique-id>1546383797562485-2</unique-id>
-	<command>clamtk %F</command>
-	<description>Executa um anti-vírus nas pastas ou arquivos selecionados</description>
+	<icon>com.github.gijsgoudzwaard.image-optimizer</icon>
+	<name>Gruvbox</name>
+	<unique-id>1623700576329704-1</unique-id>
+	<command>$HOME/.local/bin/gruvbox-factory %f</command>
+	<description></description>
 	<patterns>*</patterns>
-	<video-files/>
+	<image-files/>
+</action>
+<action>
+	<icon>preferences-desktop-wallpaper</icon>
+	<name>i3 Wallpaper</name>
+	<unique-id>1623701207821222-2</unique-id>
+	<command>$HOME/.local/bin/i3wall %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<image-files/>
 </action>
 </actions>
