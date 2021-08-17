@@ -1,6 +1,5 @@
 {
-    "workbench.editor.showTabs": true,
-    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "workbench.colorTheme": "One Dark Pro",
     "workbench.startupEditor": "none",
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "security.workspace.trust.untrustedFiles": "open",
@@ -9,23 +8,22 @@
     "git.confirmSync": false,
     "git.autofetch": true,
     "editor.linkedEditing": true,
-    "files.exclude": {
-        "**/.commit*": true
-    },
     "workbench.productIconTheme": "icons-carbon",
     "vetur.ignoreProjectWarning": true,
-    "polacode.transparentBackground": true,
     "explorer.confirmDragAndDrop": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "editor.minimap.enabled": false,
-    "[vue]": {
-        "editor.defaultFormatter": "octref.vetur"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": true,
-    "breadcrumbs.enabled": true,
-    "editor.lineNumbers": "on"
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.NoBrowser": true,
+    "files.exclude": {
+        "**/.commit*": true
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
