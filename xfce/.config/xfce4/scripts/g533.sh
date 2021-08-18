@@ -30,8 +30,8 @@ elif [ "$batt" -ge 10 ]; then
 elif [ "$batt" -ge 5 ]; then
     echo "<img>${HOME}/.local/share/icons/panel/batt/5.svg</img>"
 else
-    echo "<img>${HOME}/.local/share/icons/panel/batt/full.svg</img>"
+    echo ""
 fi
 
-[ ! -z "$batt" ] && echo "<txt>${batt}%</txt>" || echo "<txt>n/a</txt>"
-[ ! -z "$batt" ] && echo "<tool>Restante: ${batt}%</tool>" || echo "<tool>Restante: ${batt}%</tool>"
+[ ! -z "$batt" ] && echo "<txt>${batt}%</txt>"
+[ ! -z "$batt" ] && echo "<tool>Restante: ${batt}%</tool>"

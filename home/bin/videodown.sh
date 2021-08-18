@@ -32,6 +32,21 @@ HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox
 NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int:transient:1 -i $ICONE
 YOUTUBE="youtube-dl" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 HISTORY="/var/tmp/videodown.hist"
+REQUIRED_APPS=("curl" "xclip" "youtube-dl")
+
+if [ -z "$DESKTOP_SESSION" ]; then
+    NOTIFY="notify-send -h int:transient:1 -i ${ICONE} ${NOME_CURTO}"
+fi
+
+for APP in "${REQUIRED_APPS[@]}"
+do
+   :
+    if ! command -v $APP &> /dev/null
+    then
+        $NOTIFY "${APP} não encontrado, instale-o primeiro."
+        exit
+    fi
+done
 
 checkUrl() {
 	local url=$1
@@ -41,10 +56,6 @@ checkUrl() {
     fi
 	true
 }
-
-if [ -z "$DESKTOP_SESSION" ]; then
-    NOTIFY="notify-send -h int:transient:1 -i ${ICONE} ${NOME_CURTO}"
-fi
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
 [ ! -d $TMP ] && mkdir -p $TMP
@@ -80,6 +91,12 @@ then
 fi
 
 titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
+
+if [ -z "$titulo" ]; then
+    $NOTIFY "Link inválido."
+    exit 1
+fi
+
 if [ ${#titulo} -gt 250 ]; then
 	diff=$((${#titulo}-250))
 	trim=$((${#titulo}-$diff))
