@@ -15,7 +15,6 @@ PRESET="ultrafast"
 EXT="mp4"
 DATA=$(date +%H-%M-%S)
 ICONE="/usr/share/icons/Newaita/devices/48/camera-video.svg"
-RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 DISTRO="arch"
 TRIMCOMECO=3
 TRIMFINAL=5
@@ -26,8 +25,10 @@ NICE="10"
 APPS=("ffmpeg" "xrandr" "pacmd")
 for APP in ${APPS[@]}
 do
-    command -v $APP >/dev/null 2>&1 || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
+    command -v $APP > /dev/null 2> /dev/null || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
 done
+
+RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 
 list_descendants () {
   local children=$(ps -o pid= --ppid "$1")

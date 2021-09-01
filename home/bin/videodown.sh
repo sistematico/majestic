@@ -117,11 +117,11 @@ $NOTIFY "Início: <b>$titulo</b>"
 
 if [ $ARIA == 1 ]; then
     $YOUTUBE -o "${titulo}.mp4" --external-downloader aria2c "${url}" # "%(title).%(ext)s"
-    status="$?"
 else
     $YOUTUBE -o "${titulo}.mp4" "${url}"
-    status="$?"
 fi
+
+status=$?
 
 if [[ $status -ne 0 ]]; then
     echo "---------------------------------------------------------------" >> "$LOGS"
@@ -131,6 +131,9 @@ if [[ $status -ne 0 ]]; then
     echo "Path:         $DIR" >> "$LOGS"
 	$NOTIFY "Erro: <b>$titulo</b>"
     exit
+else
+    echo $status >> $HISTORY
+    echo $url >> $HISTORY
 fi
 
 final=$SECONDS
@@ -167,6 +170,5 @@ if [[ $LOG -ne 0 ]]; then
 fi
 
 $NOTIFY "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
-echo $url >> $HISTORY
 exit
 
