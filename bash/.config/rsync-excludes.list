@@ -1,3 +1,4 @@
+boot/
 usr/lib/firmware/
 node_modules/
 .git/
