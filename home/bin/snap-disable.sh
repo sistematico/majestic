@@ -10,7 +10,6 @@ Pin: release a=*
 Pin-Priority: -10
 EOF
 
-
 systemctl --now disable \ 
 snapd.apparmor.service \ 
 snapd.autoimport.service \ 
@@ -22,16 +21,16 @@ snapd.service \
 snapd.snap-repair.service \ 
 snapd.system-shutdown.service \ 
 snapd.socket \ 
-snapd.snap-repair.timer 
+snapd.snap-repair.timer 2> /dev/null
 
 umount /snap/core* -lf
 
-snap remove gnome-3-34-1804
-snap remove gtk-common-themes
-snap remove snapd
-snap remove snap-store
-snap remove core
-snap remove core18
+snap remove gnome-3-34-1804 2> /dev/null
+snap remove gtk-common-themes 2> /dev/null
+snap remove snapd 2> /dev/null
+snap remove snap-store 2> /dev/null
+snap remove core 2> /dev/null
+snap remove core18 2> /dev/null
 
 apt remove snapd --purge
 
