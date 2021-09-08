@@ -2,6 +2,15 @@
 #
 # Purge snapd
 
+cat <<EOF >/etc/apt/preferences.d/no-snap.pref
+# To install snapd, specify its version with 'apt install snapd=VERSION'
+# where VERSION is the version of the snapd package you want to install.
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10
+EOF
+
+
 systemctl --now disable \ 
 snapd.apparmor.service \ 
 snapd.autoimport.service \ 
@@ -26,5 +35,4 @@ snap remove core18
 
 apt remove snapd --purge
 
-rm -rf /var/lib/snapd
-rm -rf /var/snap
+rm -rf /snap /var/snap /var/lib/snapd /var/cache/snapd /usr/lib/snapd
