@@ -32,5 +32,8 @@
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"
     },
-    "workbench.editor.untitled.hint": "hidden"
+    "workbench.editor.untitled.hint": "hidden",
+    "task.problemMatchers.neverPrompt": {
+        "shell": true
+    }
 }
