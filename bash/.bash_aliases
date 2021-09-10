@@ -44,6 +44,7 @@ alias tmux='tmux a'
 alias ranger='VISUAL=vim ranger'
 alias heic='mogrify -format jpg *.heic'
 alias id3='id3v2'
+alias noid3='find . -type f -exec id3v2 -l {} + | grep "No ID3 tag"'
 
 # VPS
 alias artemis='ssh root@artemis'
