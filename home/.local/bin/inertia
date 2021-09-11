@@ -39,15 +39,13 @@ if [[ ! "$DIR" =~ $REGEX ]]; then
 fi
 
 composer create-project laravel/laravel $DIR
-
 cd $DIR
-
 touch database/database.sqlite
-
 curl https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
-
 composer require sistematico/bootstrap-breeze --dev
 php artisan breeze:install vue-bootstrap
 npm install
 npm run dev
+npm run dev
 php artisan migrate
+php artisan key:generate
