@@ -35,5 +35,6 @@
     "workbench.editor.untitled.hint": "hidden",
     "task.problemMatchers.neverPrompt": {
         "shell": true
-    }
+    },
+    "vetur.validation.template": false
 }
