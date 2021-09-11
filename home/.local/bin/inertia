@@ -3,6 +3,7 @@
 # FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
 # BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
 
+OPTS="--keep-tite --stdout"
 REGEX="^[a-zA-Z0-9.-]+$"
 APPS="dialog curl"
 
@@ -16,7 +17,7 @@ do
 done
 
 if [ ! $1 ]; then
-    DIR=$(dialog --stdout --inputbox 'Digite o nome do projeto:' 0 0 "breeze-bootstrap")
+    DIR=$(dialog $OPTS --inputbox 'Digite o nome do projeto:' 0 0 "breeze-bootstrap")
 else 
     DIR="$1"
 fi
@@ -24,12 +25,10 @@ fi
 [ -z "$DIR" ] && exit
 
 if [ -d "$DIR" ]; then
-    dialog --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0
+    dialog $OPTS --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0
 
-    if [ $? = 0 ]; then
-        echo "Agora são: $( date )"
-    else
-        echo 'Ok, não vou mostrar as horas.'
+    if [ $? = 1 ]; then
+        exit
     fi
 fi
 
@@ -42,6 +41,7 @@ composer create-project laravel/laravel $DIR
 cd $DIR
 touch database/database.sqlite
 curl https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
+curl https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6ee2b7e989d232494fd466010164756e38ad622d/.env.example -o .env.example
 composer require sistematico/bootstrap-breeze --dev
 php artisan breeze:install vue-bootstrap
 npm install
@@ -49,3 +49,5 @@ npm run dev
 npm run dev
 php artisan migrate
 php artisan key:generate
+mkdir .vscode
+curl https://gist.githubusercontent.com/sistematico/40218f43ffd9d185d4591ba6987971d3/raw/a3215e4beb976786c8464764e973b011d7512bc5/tasks.json -o .vscode/tasks.json

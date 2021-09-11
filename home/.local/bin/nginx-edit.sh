@@ -2,8 +2,8 @@
 
 host="${1:-hera}"
 
-editor="mousepad"
-filemanager="thunar"
+editor="gedit"
+filemanager="nautilus"
 
 nginx_tmp="/tmp/nginx-sites"
 snippets_tmp="/tmp/nginx-snippets"
