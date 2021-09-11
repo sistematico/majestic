@@ -4,12 +4,16 @@
 # BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
 
 REGEX="^[a-zA-Z0-9.-]+$"
+APPS="dialog curl"
 
-if ! command -v dialog &> /dev/null
-then
-    echo -e "O programa \e[1;31mdialog\e[0m não está instalado, instale-o primeiro."
-    exit
-fi
+for app in $APPS
+do
+    if ! command -v $app &> /dev/null
+    then
+        echo -e "O programa \e[1;31m${app}\e[0m não está instalado, instale-o primeiro."
+        exit
+    fi
+done
 
 if [ ! $1 ]; then
     DIR=$(dialog --stdout --inputbox 'Digite o nome do projeto:' 0 0 "breeze-bootstrap")
@@ -35,7 +39,13 @@ if [[ ! "$DIR" =~ $REGEX ]]; then
 fi
 
 composer create-project laravel/laravel $DIR
+
 cd $DIR
+
+touch database/database.sqlite
+
+curl https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
+
 composer require sistematico/bootstrap-breeze --dev
 php artisan breeze:install vue-bootstrap
 npm install
