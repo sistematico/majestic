@@ -36,5 +36,6 @@
     "task.problemMatchers.neverPrompt": {
         "shell": true
     },
-    "vetur.validation.template": false
+    "vetur.validation.template": false,
+    "intelephense.diagnostics.undefinedMethods": false
 }

@@ -88,6 +88,8 @@ function songup() {
     rsync -aAXvzz \
     $STORAGE/audio/${1}/ \
     nginx@${1}:/opt/liquidsoap/music/ $2
+
+    ssh root@${1} "chown -R liquidsoap /opt/liquidsoap/music/"
 }
 
 function checkiso() {
