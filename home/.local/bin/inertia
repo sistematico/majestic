@@ -3,6 +3,7 @@
 # FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
 # BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
 
+TEMA="yellow" # default, red, green, yellow
 OPTS="--keep-tite --stdout"
 REGEX="^[a-zA-Z0-9.-]+$"
 APPS="dialog curl"
@@ -16,38 +17,114 @@ do
     fi
 done
 
-if [ ! $1 ]; then
-    DIR=$(dialog $OPTS --inputbox 'Digite o nome do projeto:' 0 0 "breeze-bootstrap")
-else 
-    DIR="$1"
-fi
+[ ! -d $HOME/.config/dialog/ ] && mkdir -p $HOME/.config/dialog/
 
-[ -z "$DIR" ] && exit
+case $TEMA in
+    amarelo|yellow)
+        TEMA="yellow"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/f73c6e7a15f19fba697660762efe0b3d0d9d5982/yellow.cfg -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    vermelho|red)
+        TEMA="red"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/f73c6e7a15f19fba697660762efe0b3d0d9d5982/red.cfg -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    verde|green)
+        TEMA="green"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/f73c6e7a15f19fba697660762efe0b3d0d9d5982/green.cfg -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    *)
+        TEMA="default"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/580d67450c44e6b75e7d389a584bd9b82646ae92/default.cfg -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+esac
 
-if [ -d "$DIR" ]; then
-    dialog $OPTS --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0
+export DIALOGRC=$HOME/.config/dialog/$TEMA.cfg
 
-    if [ $? = 1 ]; then
-        exit
+dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title "Inertia.js Bootstrap Installer" --yesno "Deseja continuar a instalação?" 0 0 2>&1
+[ $? = 1 ] && exit 1
+
+case "$2" in
+    "-b"|"--breeze")
+        TIPO="Breeze"
+    ;;
+    "-j"|"--jet"|"--jetstream")
+        TIPO="JetStream"
+    ;;
+    *)
+        TIPO="$(dialog $OPTS --title 'Tipo de Projeto' --menu 'Escolha o perfil da instalação:' 0 0 0 JetStream 'Laravel JetStream' Breeze 'Laravel Breeze' Nenhum 'Nenhum' 2>&1)"
+        [ $? = 1 ] && exit 1
+        if [ -z "$TIPO" ]; then
+            TIPO="JetStream"
+        fi
+    ;;
+esac
+
+if [ ! -d app ]; then
+    if [ ! $2 ]; then
+        DIR=$(dialog $OPTS --inputbox "Digite o nome do projeto:" 0 0 "${TIPO,,}-bootstrap")
+        [ $? = 1 ] && exit 1
+    else 
+        DIR="$2"
+    fi
+
+    [ -z "$DIR" ] && exit
+
+    if [ -d "$DIR" ]; then
+        dialog $OPTS --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0
+        [ $? = 1 ] && exit 1
+    fi
+
+    if [[ ! "$DIR" =~ $REGEX ]]; then
+      dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title "Erro!" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 0 0 2>&1
+      exit 1
+    fi
+
+    if [ ! -d app ]; then
+        composer create-project laravel/laravel $DIR
+        cd $DIR
     fi
 fi
 
-if [[ ! "$DIR" =~ $REGEX ]]; then
-  echo -e "O caminho \e[1;31m${DIR}\e[0m é inválido."
-  exit
-fi
-
-composer create-project laravel/laravel $DIR
-cd $DIR
 touch database/database.sqlite
-curl https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
-curl https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6ee2b7e989d232494fd466010164756e38ad622d/.env.example -o .env.example
-composer require sistematico/bootstrap-breeze --dev
-php artisan breeze:install vue-bootstrap
+curl -s -L https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
+curl -s -L https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6ee2b7e989d232494fd466010164756e38ad622d/.env.example -o .env.example
+
+case "$TIPO" in
+    "Breeze")
+        dialog $OPTS --title 'Inertia.js' --msgbox 'O instalador prosseguirá para a instalação da stack: Laravel 8, Laravel Breeze, Inertia.js, Vue.js 3 e Twitter Bootstrap 5' 8 50 2>&1
+        composer require sistematico/bootstrap-breeze --dev
+        php artisan breeze:install vue-bootstrap
+    ;;
+    "JetStream")
+        dialog $OPTS --title 'Inertia.js' --msgbox 'O instalador prosseguirá para a instalação da stack: Laravel 8, Laravel JetStream, Inertia.js, Vue.js 3 e Twitter Bootstrap 5' 8 50 2>&1
+        composer require laravel/jetstream
+        php artisan jetstream:install inertia
+        composer require nascent-africa/jetstrap --dev
+        php artisan jetstrap:swap inertia
+    ;;
+    *) ;;
+esac
+
 npm install
 npm run dev
 npm run dev
 php artisan migrate
 php artisan key:generate
-mkdir .vscode
-curl https://gist.githubusercontent.com/sistematico/40218f43ffd9d185d4591ba6987971d3/raw/a3215e4beb976786c8464764e973b011d7512bc5/tasks.json -o .vscode/tasks.json
+
+mkdir -p .vscode .github/workflows
+curl -s -L https://gist.githubusercontent.com/sistematico/40218f43ffd9d185d4591ba6987971d3/raw/b0d67111384be03e877f54c3e4177928bb6bb02d/tasks.json -o .vscode/tasks.json
+curl -s -L https://gist.githubusercontent.com/sistematico/337acaa2f7efc84c62a525236a81ed7d/raw/7d21cf0f6fe7a9550e9e5a382fa479d43e49ce9b/laravel.yml -o .github/workflows/laravel.yml
+
+EXECUTAR=$(dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title "Executar o Artisan e NPM" --yesno "Deseja executar os comandos: \nphp artisan serve\nnpm run watch" 0 0 2>&1)
+
+dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title 'Parabéns' --msgbox 'Instalação finalizada com sucesso.' 6 40
+
+echo $EXECUTAR
+
+if [ ! -z "$EXECUTAR" ]; then
+    tmux new-session -d -s Inertia
+    #tmux send-keys 'vagrant up' C-m
+    tmux send-keys -t Inertia.0 "php artisan serve" ENTER
+    tmux send-keys -t Inertia.1 "npm run watch" ENTER
+    tmux detach -s Inertia
+fi

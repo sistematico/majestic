@@ -20,7 +20,7 @@ TRIMCOMECO=3
 TRIMFINAL=5
 TRIMMIN=$((TRIMCOMECO + TRIMFINAL))
 THREADS=2
-NICE="10"
+NICE="5"
 
 APPS=("ffmpeg" "xrandr" "pacmd")
 for APP in ${APPS[@]}
