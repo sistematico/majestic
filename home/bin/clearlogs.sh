@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env sh
+#
+# Arquivo: clearlogs.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 18/09/2021 15:48:06
+# Última alteração: 18/09/2021 15:48:10
 
 if [ $UID = 0 ]; then
 	journalctl --flush --rotate
