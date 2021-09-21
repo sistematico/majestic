@@ -1,0 +1,16 @@
+#!/bin/sh
+# Arquivo: .git/hooks/post-commit
+
+if [ "git config --local commit.template" != ".commit" ]; then
+    git config --local commit.template .commit
+fi
+
+if [ -s .commit ] || [ ! -f .commit ]; then
+    echo 'Update automático' > .commit
+fi
+
+# Commit
+printf "`git log -1 --pretty=%s`" > .commit
+
+# Push
+git push

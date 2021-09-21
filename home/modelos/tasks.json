@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Artisan Serve",
+      "type": "shell",
+      "command": "php",
+      "detail": "php artisan serve",
+      "group": "none",
+      "args": [
+        "artisan",
+        "serve",
+        "--env=local"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "NPM Watch",
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": [],
+      "detail": "npm run watch",
+      "group": "none",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "NPM Dev",
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "detail": "npm run dev",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

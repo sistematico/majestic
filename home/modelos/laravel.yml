@@ -1,0 +1,42 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Copy repository contents via scp
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.SSH_PASS }}
+        port: ${{ secrets.SSH_PORT }}
+        source: "."
+        target: ${{ secrets.PROJECT_PATH }}
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Building Laravel Site
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.SSH_PASS }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          cd ${{ secrets.PROJECT_PATH }}
+          git pull origin main
+          [ -f .env ] || cp .env.example .env
+          [ -f database/database.sqlite ] || touch database/database.sqlite
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
+          php artisan migrate -q
+          php artisan db:seed
+          npm install
+          npm run production
+          php artisan key:generate
