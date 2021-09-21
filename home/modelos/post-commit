@@ -1,6 +1,14 @@
 #!/bin/sh
 # Arquivo: .git/hooks/post-commit
 
+if ! grep -Fxq ".commit" .gitignore
+then
+    echo '.commit' >> .gitignore
+    git add .gitignore
+    git commit -m "Arquivo .commit adicionado ao arquivo .gitignore"
+    git push
+fi
+
 if [ "git config --local commit.template" != ".commit" ]; then
     git config --local commit.template .commit
 fi
