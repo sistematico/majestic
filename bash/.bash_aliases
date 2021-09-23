@@ -30,7 +30,9 @@ alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 
 # Devel
-alias crlf='find . -not -type d -exec file "{}" ";" | grep CRLF | egrep -v "vendor|node_modules" 2> /dev/null'
+#alias crlf='find . -not -type d -exec file "{}" ";" | grep CRLF | egrep -v "vendor|node_modules" 2> /dev/null'
+alias crlf='find . -type d \( -name node_modules -o -name vendor -o -name zz-old \) -prune -false -o -type f -exec file "{}" ";" | grep CRLF 2> /dev/null'
+
 
 alias vim="vim -c 'startinsert'"
 #alias showip='curl icanhazip.com'

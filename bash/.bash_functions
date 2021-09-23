@@ -256,3 +256,10 @@ rstgtk() {
 rsticon() {
     gsettings reset org.gnome.desktop.interface icon-theme
 }
+
+dos2unix() {
+    sed -i 's/^M$//' "$1"     # DOS to Unix
+    #sed 's/$/^M/'            # Unix to DOS
+    sed -i $'s/\r$//' "$1"    # DOS to Unix
+    #sed $'s/$/\r/'           # Unix to DOS
+}
