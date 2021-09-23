@@ -6,16 +6,31 @@
 # FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
 # BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
 
-TEMA="yellow" # default, red, green, yellow
-OPTS="--keep-tite --stdout"
+DIALOG="whiptail" # whiptail, dialog
+TITLE="Inertia.js Bootstrap Installer"
+BACKTITLE="Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding"
+TMUX_SESSION="Inertia"
+SECS=3
+UPDATE=0
+TEMA="red" # default, red, green, yellow
+[ "$DIALOG" == "dialog" ] && OPTS="--keep-tite --stdout" || OPTS=""
 REGEX="^[a-zA-Z0-9.-]+$"
-APPS="dialog curl"
+APPS="$DIALOG curl composer"
+TIPO="JetStream"
+
+running() { 
+    ps $1 | grep $1 >/dev/null
+}
 
 for app in $APPS
 do
     if ! command -v $app &> /dev/null
     then
-        echo -e "O programa \e[1;31m${app}\e[0m não está instalado, instale-o primeiro."
+        if [ "$app" == "$DIALOG" ]; then
+            echo -e "O programa \e[1;31m${app}\e[0m não está instalado, instale-o primeiro."
+        else
+            $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O programa \e[1;31m${app}\e[0m não está instalado, instale-o primeiro." 10 30 ; sleep $SECS
+        fi
         exit
     fi
 done
@@ -43,8 +58,27 @@ esac
 
 export DIALOGRC=$HOME/.config/dialog/$TEMA.cfg
 
-dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title "Inertia.js Bootstrap Installer" --yesno "Deseja continuar a instalação?" 0 0 2>&1
+#$DIALOG --title "$TITLE" --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 3>&1 1>&2 2>&3
+
+#$DIALOG --keep-tite --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 ; sleep $SECS
+#timeout 5 $DIALOG --title "$TITLE" --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 3>&1 1>&2 2>&3
+
+timeout $SECS $DIALOG --infobox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 3>&1 1>&2 2>&3
+
+$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "Deseja continuar a instalação?" 0 0 2>&1
 [ $? = 1 ] && exit 1
+
+if [ $UPDATE = 1 ]; then
+    sudo -H composer self-update &>/dev/null
+    COMPOSER_PID=$!
+    (
+        echo 10
+        while running $COMPOSER_PID; do
+            echo 50
+        done    
+        echo 100
+    ) | $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --gauge "Atualizando o composer" 8 40 0 2>&1
+fi
 
 case "$2" in
     "-b"|"--breeze")
@@ -54,7 +88,7 @@ case "$2" in
         TIPO="JetStream"
     ;;
     *)
-        TIPO="$(dialog $OPTS --title 'Tipo de Projeto' --menu 'Escolha o perfil da instalação:' 0 0 0 JetStream 'Laravel JetStream' Breeze 'Laravel Breeze' Nenhum 'Nenhum' 2>&1)"
+        TIPO="$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --menu 'Escolha o perfil da instalação:' 0 0 0 JetStream 'Laravel JetStream' Breeze 'Laravel Breeze' Nenhum 'Nenhum' 2>&1)"
         [ $? = 1 ] && exit 1
         if [ -z "$TIPO" ]; then
             TIPO="JetStream"
@@ -62,9 +96,11 @@ case "$2" in
     ;;
 esac
 
+DIR="$(pwd)"
+
 if [ ! -d app ]; then
     if [ ! $2 ]; then
-        DIR=$(dialog $OPTS --inputbox "Digite o nome do projeto:" 0 0 "${TIPO,,}-bootstrap")
+        DIR=$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --inputbox "Digite o nome do projeto:" 0 0 "${TIPO,,}-bootstrap" 2>&1)
         [ $? = 1 ] && exit 1
     else 
         DIR="$2"
@@ -73,37 +109,58 @@ if [ ! -d app ]; then
     [ -z "$DIR" ] && exit
 
     if [ -d "$DIR" ]; then
-        dialog $OPTS --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0
+        $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0 2>&1
         [ $? = 1 ] && exit 1
     fi
 
     if [[ ! "$DIR" =~ $REGEX ]]; then
-      dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title "Erro!" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 0 0 2>&1
+      #$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 0 0 2>&1
+      $DIALOG --keep-tite --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 10 30 ; sleep $SECS
+      $DIALOG --keep-tite --backtitle "$BACKTITLE" --title "$TITLE" --infobox "O caminho \e[1;31m${DIR}\e[0m é inválido." 10 30 ; sleep $SECS
       exit 1
     fi
 
-    if [ ! -d app ]; then
-        composer create-project laravel/laravel $DIR
-        cd $DIR
-    fi
+    composer create-project laravel/laravel $DIR > /dev/null 2> /dev/null &
+    LARAVEL_PID=$!
+
+    (
+        echo 10
+        while running $LARAVEL_PID; do
+            echo 50
+        done    
+        echo 100            
+    ) | $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --gauge "Instalando o pacote laravel/laravel em ${DIR}..." 8 40 0 2>&1
 fi
 
-touch database/database.sqlite
+cd $DIR
+test -f database/database.sqlite || touch database/database.sqlite
 curl -s -L https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
 curl -s -L https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6ee2b7e989d232494fd466010164756e38ad622d/.env.example -o .env.example
 
 case "$TIPO" in
     "Breeze")
-        dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title 'Inertia.js' --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel 8\n- Laravel Breeze\n- Inertia.js\n- Vue.js 3\n- Twitter Bootstrap 5" 15 50 2>&1
+        #$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel Breeze" 15 50 2>&1
+        $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --infobox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel Breeze" 10 30 ; sleep $SECS
+
         composer require sistematico/bootstrap-breeze --dev
         php artisan breeze:install vue-bootstrap
     ;;
     *)
-        dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title 'Inertia.js' --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel 8\n- Laravel Breeze\n- Inertia.js\n- Vue.js 3\n- Twitter Bootstrap 5" 15 50 2>&1
+        #$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel JetStream" 15 50 2>&1
+        $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --infobox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel JetStream" 10 30 ; sleep $SECS
         composer require laravel/jetstream
-        php artisan jetstream:install inertia
-        composer require nascent-africa/jetstrap --dev
-        php artisan jetstrap:swap inertia
+        php artisan jetstream:install inertia --teams
+        
+        FRONTEND=$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --radiolist "Escolha o Framework do Front-End" 10 35 5 \
+                "1" "TailwindCSS (Padrão do Laravel)" ON \
+                "2" "Twitter Bootstrap 5" OFF 2>&1)
+
+        [ -z "$FRONTEND" ] && exit 1
+
+        if [ "$FRONTEND" == "2" ]; then
+            composer require nascent-africa/jetstrap --dev
+            php artisan jetstrap:swap inertia
+        fi
     ;;
 esac
 
@@ -118,20 +175,32 @@ curl -s -L https://gist.githubusercontent.com/sistematico/40218f43ffd9d185d4591b
 curl -s -L https://gist.githubusercontent.com/sistematico/337acaa2f7efc84c62a525236a81ed7d/raw/7d21cf0f6fe7a9550e9e5a382fa479d43e49ce9b/laravel.yml -o .github/workflows/laravel.yml
 
 
-dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title 'Parabéns' --msgbox 'Instalação finalizada com sucesso.' 6 40 2>&1
+#$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox '' 6 40 2>&1
+$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --infobox "Instalação finalizada com sucesso." 10 30 ; sleep $SECS
 
-dialog $OPTS --backtitle "Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding" --title "Executar o Artisan e NPM" --yesno "Deseja executar os comandos: \nphp artisan serve\nnpm run watch" 0 0 2>&1
+$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "Deseja executar os comandos: \nphp artisan serve\nnpm run watch" 0 0 2>&1
 if [ $? = 0 ]; then
-    ## #{session_name}:#{window_index}.#{pane_index}
-    SESS="Inertia"
-    \tmux new-session -d -s $SESS
-    #tmux send-keys 'vagrant up' C-m
+    \tmux has-session -t $TMUX_SESSION 2>/dev/null
 
-    \tmux new-window -t $SESS -n artisan -d
-    \tmux new-window -t $SESS -n npm -d
+    if [ $? != 0 ]; then
+        \tmux new-session -d -s $TMUX_SESSION
+    else
+        \tmux kill-session -t $TMUX_SESSION
+    fi
+    
+    \tmux new-window -t $TMUX_SESSION -n artisan -d
+    \tmux new-window -t $TMUX_SESSION -n npm -d
 
-    \tmux send-keys -t $SESS:artisan "php artisan serve" ENTER
-    \tmux send-keys -t $SESS:npm "npm run watch" ENTER
+    \tmux send-keys -t $TMUX_SESSION:artisan "php artisan serve" ENTER
+    \tmux send-keys -t $TMUX_SESSION:npm "npm run watch" ENTER
 
-    \tmux detach -s $SESS
+    \tmux detach -s $TMUX_SESSION
+else
+    \tmux has-session -t $TMUX_SESSION 2>/dev/null
+
+    if [ $? == 0 ]; then
+        \tmux kill-session -t $TMUX_SESSION
+    fi
 fi
+
+exit

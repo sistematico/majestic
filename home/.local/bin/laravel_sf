@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+#
+# Laravel Scaffolding
+
+TMUX_SESSION="Inertia"
+
+test -f database/database.sqlite || touch database/database.sqlite
+test -d .vscode || mkdir .vscode
+test -d .github/workflows || mkdir -p .github/workflows
+
+curl -s -L \
+https://gist.githubusercontent.com/sistematico/40218f43ffd9d185d4591ba6987971d3/raw/b0d67111384be03e877f54c3e4177928bb6bb02d/tasks.json \
+-o .vscode/tasks.json
+
+curl -s -L \
+https://gist.githubusercontent.com/sistematico/337acaa2f7efc84c62a525236a81ed7d/raw/7d21cf0f6fe7a9550e9e5a382fa479d43e49ce9b/laravel.yml \
+-o .github/workflows/laravel.yml
+
+curl -s -L \
+https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6afb199a226798939775aa7422852e166713812d/.env \
+-o .env
+
+curl -s -L \
+https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6afb199a226798939775aa7422852e166713812d/.env.example \
+-o .env.example
+
+npm install
+npm run dev
+npm run dev
+php artisan migrate
+php artisan key:generate
+
+\tmux has-session -t $TMUX_SESSION 2>/dev/null
+if [ $? != 0 ]; then
+    \tmux kill-session -t $TMUX_SESSION
+fi
+
+\tmux new-session -d -s $TMUX_SESSION
+    
+\tmux new-window -t $TMUX_SESSION -n artisan -d
+\tmux new-window -t $TMUX_SESSION -n npm -d
+
+\tmux send-keys -t $TMUX_SESSION:artisan "php artisan serve" ENTER
+\tmux send-keys -t $TMUX_SESSION:npm "npm run watch" ENTER
+
+\tmux detach -s $TMUX_SESSION
+
+exit

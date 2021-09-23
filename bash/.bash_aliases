@@ -29,6 +29,9 @@ alias neofetch='neofetch --config ~/.neofetch.conf'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 
+# Devel
+alias crlf='find . -not -type d -exec file "{}" ";" | grep CRLF | egrep -v "vendor|node_modules" 2> /dev/null'
+
 alias vim="vim -c 'startinsert'"
 #alias showip='curl icanhazip.com'
 alias showip='dig +short myip.opendns.com @resolver1.opendns.com'
