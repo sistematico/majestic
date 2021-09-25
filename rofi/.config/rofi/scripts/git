@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ls ~/github/ | rofi -dmenu -p "GitHub: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
+ls ~/github/ | rofi -dmenu -p "GitHub: " -bw 0 -l 1 -separator-style none -location 0 -theme-str 'window {width: 350px;}' -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
 
 op=(
 'i3'
@@ -16,18 +16,18 @@ op=(
 'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -l 11 -separator-style none -location 0 -width 180 -padding 5)
 
 if [ "$res" ]; then
 	case $res in
 		'i3') i3-msg exec pluma ~/.config/i3/config ;;
 		'i3blocks')
-			i3blocks=$(echo "Config;Apps" | rofi -sep ";" -dmenu -p "i3blocks" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+			i3blocks=$(echo "Config;Apps" | rofi -sep ";" -dmenu -p "i3blocks" -bw 0 -l 2 -separator-style none -location 0 -width 180 -padding 5)
 			if [ $i3blocks ]; then
 				case $i3blocks in
 					'Config') i3-msg exec pluma "${HOME}/.config/i3blocks/config" ;;
 					'Apps')
-						i3blocksapps=$(ls "${HOME}/.config/i3blocks/scripts/" | rofi -dmenu -p "i3 Blocks Apps" -bw 0 -lines 16 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+						i3blocksapps=$(ls "${HOME}/.config/i3blocks/scripts/" | rofi -dmenu -p "i3 Blocks Apps" -bw 0 -l 16 -separator-style none -location 0 -width 150 -padding 5)	
 						if [ $i3blocksapps ]; then
 							i3-msg exec pluma ~/.config/i3blocks/scripts/${i3blocksapps}
 						fi
@@ -41,27 +41,27 @@ if [ "$res" ]; then
 		'Compton') i3-msg exec pluma ~/.config/compton.conf ;;
 		'Rofi') i3-msg exec pluma ~/.config/rofi/config.rasi ;;
 		'Rofi Apps') 
-			app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 3 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+			app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -l 3 -separator-style none -location 0 -width 250 -padding 5)
 			if [ $app ]; then
 				i3-msg exec pluma "${HOME}/.config/rofi/scripts/${app}"
 			fi
 		;;
 		'Rofi Themes')
-			tema=$( ls "${HOME}/.config/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+			tema=$( ls "${HOME}/.config/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -l 20 -separator-style none -location 0 -width 250 -padding 5)
 			if [ $tema ]; then
 				i3-msg exec pluma "${HOME}/.config/rofi/themes/${tema}"
 			fi
 		;;
 		'LightDM')
-			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -l 2 -separator-style none -location 0 -width 180 -padding 5)
 			if [ $ldm ]; then
 				i3-msg exec sudo pluma "/etc/lightdm/${ldm}.conf"
 			fi
 		;;
 		'Home')
-			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -lines 9 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 9 -separator-style none -location 0 -width 190 -padding 5)
 			if [ "$homefiles" = "bin" ]; then
-				binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -l 10 -separator-style none -location 0 -width 150 -padding 5)	
 				if [ $binfiles ]; then
 					i3-msg exec pluma ~/bin/${binfiles} 
 				fi

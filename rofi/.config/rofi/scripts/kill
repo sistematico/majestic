@@ -13,7 +13,7 @@ icone="/usr/share/icons/Oranchelo/apps/scalable/xkill.svg"
 numero=$(echo "$apps" | wc -l)
 [ $numero -gt 10 ] && numero=10
 
-matar=$(echo -e "$apps" | uniq -u | rofi -p "Rofi Kill: " -lines "$numero" -dmenu -bw 0 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+matar=$(echo -e "$apps" | uniq -u | rofi -p "Rofi Kill: " -l "$numero" -dmenu -bw 0 -separator-style none -location 0 -theme-str 'window {width: 250px;}' -hide-scrollbar -padding 5)
 
 if [ $matar ]; then
 	#notify-send -i $icone "Rofi Kill" "Tentando matar: $matar"

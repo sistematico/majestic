@@ -7,7 +7,7 @@
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Criado em: 09/06/2017 23:26:41
-# Última Atualização: 31/10/2018 12:35:15
+# Última Atualização: 25/09/2021 03:13:10
 
 # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 NOME="ScreenCast"
@@ -19,43 +19,35 @@ DISTRO="arch"
 TRIMCOMECO=3
 TRIMFINAL=5
 TRIMMIN=$((TRIMCOMECO + TRIMFINAL))
-THREADS=2
-NICE="5"
+THREADS="2"
+NICE="-n 10"
+TMUX_SESSION="ScreenCast"
+[ -z "$DESKTOP_SESSION" ] && NOTIFYCOMMAND="notify-send -h int:transient:1 -i $ICONE $NOME" || NOTIFYCOMMAND="$HOME/bin/notify.sh ScreenCast ${ICONE} $NOME"
+CAMINHO="${HOME}/video/screencast"
+PIDFILE="/tmp/screencast.pid"
+LOCKFILE="/tmp/screencast.lock"
+STEP1_FILE="/tmp/screencast.step1.${EXT}"
+STEP2_FILE="/tmp/screencast.step2.${EXT}"
+STEP3_FILE="/tmp/screencast.step3.${EXT}"
+[ -z "$DISPLAY" ] && DISPLAY=:0
 
-APPS=("ffmpeg" "xrandr" "pacmd")
+#trap "rm -f -- $PIDFILE $LOCKFILE" EXIT # EXIT INT KILL TERM
+trap "rm -f -- $PIDFILE $LOCKFILE" EXIT
+
+APPS=("ffmpeg" "xrandr" "pacmd" "tmux")
 for APP in ${APPS[@]}
 do
     command -v $APP > /dev/null 2> /dev/null || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
 done
 
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
-
-list_descendants () {
-  local children=$(ps -o pid= --ppid "$1")
-
-  for pid in $children
-  do
-    list_descendants "$pid"
-  done
-
-  echo "$children "
-}
-
-notifycommand="$HOME/bin/notify.sh ScreenCast ${ICONE} $NOME"
-
-if [ -z "$DESKTOP_SESSION" ]; then
-	notifycommand="notify-send -h int:transient:1 -i $ICONE $NOME"
-fi
-
-if [ -z "$DISPLAY" ]; then
-    DISPLAY=:0
-fi
+NOOUTPUT="-hide_banner -loglevel error -nostats"
+FFMPEG_STEP1_PARAMS="-f x11grab -probesize 42M -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart $NOOUTPUT -threads $THREADS -async 1"
+FFMPEG_STEP2_PARAMS="-c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p $NOOUTPUT -threads $THREADS"
 
 if [ -f ~/.config/user-dirs.dirs ]; then
     . ~/.config/user-dirs.dirs
     CAMINHO="${XDG_VIDEOS_DIR}/screencast"
-else
-    CAMINHO="${HOME}/video/screencast"
 fi
 
 CAMINHO="${CAMINHO}/$(date +%Y)/$(date +%m)/$(date +%d)"
@@ -63,41 +55,87 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
-if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid" && test -f "/tmp/screencast.step1.${EXT}";
-then
+kill_descendants() {
+    local children=$(ps -o pid= --ppid "$1")
 
-    [ -f /tmp/screencast.step2.${EXT} ] && rm -f /tmp/screencast.step2.${EXT}
-    [ -f /tmp/screencast.final.${EXT} ] && rm -f /tmp/screencast.final.${EXT}
+    for pid in $children
+    do
+        list_descendants "$pid"
+    done
+  
+    while kill -0 $children 2>/dev/null; do 
+        kill -SIGTERM $children
+        sleep 1
+    done
+}
 
-    NEWPID=$(/bin/cat /tmp/videodown.pid)
+list_descendants() {
+    local children=$(ps -o pid= --ppid "$1")
 
-    $notifycommand "Gravação terminada, matando os processos: $(list_descendants $NEWPID)"
-    kill -QUIT $(list_descendants $NEWPID)
-    sleep 2
-   
-    $notifycommand "Conversão para o WhatsApp"
-    nice -n $NICE ffmpeg -threads $THREADS -i /tmp/screencast.step1.${EXT} -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /tmp/screencast.step2.${EXT} 1> /dev/null 2> /dev/null
+    for pid in $children
+    do
+        list_descendants "$pid"
+    done
+
+    echo "$children "
+}
+
+gravar() {
+    echo "$$" > $PIDFILE
+    [ -f $STEP1_FILE ] && rm -f $STEP1_FILE
+    touch $LOCKFILE
+    $NOTIFYCOMMAND "Gravação iniciada" 1> /dev/null
+    nice $NICE ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE > /dev/null & 
+}
+
+converter() {
+    $NOTIFYCOMMAND "Conversão iniciada" 1> /dev/null
+
+    $NOTIFYCOMMAND "Matando descendentes: $(list_descendants $(/bin/cat $PIDFILE))" 1> /dev/null
     
-    duration=$(ffprobe -i /tmp/screencast.step2.${EXT} -show_entries format=duration -v quiet -of csv='p=0')
+    kill_descendants $(/bin/cat $PIDFILE)
+
+    while read i; do 
+        kill -SIGTERM $i
+    done< <(pgrep ffmpeg)
+
+    [ -f $STEP2_FILE ] && rm -f $STEP2_FILE
+    [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
+
+    $NOTIFYCOMMAND "Conversão para o WhatsApp" 1> /dev/null
+    nice $NICE ffmpeg -i $STEP1_FILE $FFMPEG_STEP2_PARAMS $STEP2_FILE
+    
+    duration=$(ffprobe -i $STEP2_FILE -show_entries format=duration -v quiet -of csv='p=0')
     int=${duration%.*}
     trim=$((int - 3))
 
     if [[ $trim -gt $TRIMMIN ]]; then
-        $notifycommand "Corte de 5 segundos no começo e 3 no final"
-        nice -n $NICE ffmpeg -threads $THREADS -ss 2 -t $trim -i /tmp/screencast.step2.${EXT} /tmp/screencast.final.${EXT}
-        mv /tmp/screencast.final.${EXT} "${CAMINHO}/${ARQUIVO}"
+        $NOTIFYCOMMAND "Corte de 5 segundos no começo e 3 no final" 1> /dev/null
+        nice $NICE ffmpeg -i $STEP2_FILE -ss 2 -t $trim $NOOUTPUT -threads $THREADS $STEP3_FILE
+        [ -f $STEP3_FILE ] && mv $STEP3_FILE "${CAMINHO}/${ARQUIVO}"
     else
-        mv /tmp/screencast.step2.${EXT} "${CAMINHO}/${ARQUIVO}"
+        [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
+        [ -f $STEP2_FILE ] && mv $STEP2_FILE "${CAMINHO}/${ARQUIVO}"
     fi
 
-    $notifycommand "ScreenCast salvo ${ARQUIVO}" 
+    if [ -f ${CAMINHO}/${ARQUIVO} ]; then
+        $NOTIFYCOMMAND "ScreenCast salvo ${ARQUIVO}" 1> /dev/null
+    else
+        $NOTIFYCOMMAND "Erro ao salvar o arquivo ${ARQUIVO}" 1> /dev/null
+    fi
+}
 
-    rm -f /tmp/videodown.pid /tmp/screencast.step1.${EXT} /tmp/screencast.step2.${EXT}
+if [ -f $LOCKFILE ]; then
+    converter
 else
-    [ -f /tmp/screencast.step1.${EXT} ] && rm -f /tmp/screencast.step1.${EXT}
-    echo $$ > /tmp/videodown.pid
-    $notifycommand "Gravação iniciada"
-    nice -n $NICE ffmpeg -threads $THREADS -async 1 -f x11grab -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart /tmp/screencast.step1.${EXT}
+    if ! pgrep -x ffmpeg >/dev/null; then
+        gravar
+    else
+        while read i; do 
+            kill -SIGTERM $i
+        done< <(pgrep ffmpeg)
+        #kill_descendants $(/bin/cat $PIDFILE)
+    fi
 fi
 
-exit 0
+exit

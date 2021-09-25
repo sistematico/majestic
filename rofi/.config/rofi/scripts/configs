@@ -36,17 +36,17 @@ configs=(
     'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines "${#configs[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -theme-str 'window {width: 130px;}' -bw 0 -l "${#configs[@]}" -separator-style none -location 0 -padding 5)
 
 if [ "$res" ]; then
     case $res in
         'i3') $editor ~/.config/i3/config ;;
         'Polybar')
-            polyconfig=$(echo "Config;Scripts;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+            polyconfig=$(echo "Config;Scripts;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             if [ "$polyconfig" = "Reload" ]; then
                 ~/.config/polybar/launch.sh
             elif [ "$polyconfig" = "Scripts" ]; then
-                app=$( ls "${HOME}/.config/polybar/scripts/" | egrep "\.sh|\.py" | rofi -dmenu -p "Polybar Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/polybar/scripts/ | egrep "\.sh|\.py" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
+                app=$( ls "${HOME}/.config/polybar/scripts/" | egrep "\.sh|\.py" | rofi -dmenu -p "Polybar Apps" -bw 0 -l "$(ls -1 ${HOME}/.config/polybar/scripts/ | egrep "\.sh|\.py" | wc -l)" -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ $app ]; then
                     $editor "${HOME}/.config/polybar/scripts/${app}"
                 fi
@@ -55,29 +55,29 @@ if [ "$res" ]; then
             fi
         ;;
         'Rofi')
-            roficonfig=$(echo "Apps;Config;Themes" | rofi -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+            roficonfig=$(echo "Apps;Config;Themes" | rofi -sep ";" -dmenu -p "Rofi" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$roficonfig" = "Apps" ]; then
-                app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/scripts/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+                app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -l "$(ls -1 ${HOME}/.config/rofi/scripts/ | wc -l)" -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ $app ]; then
                     $editor "${HOME}/.config/rofi/scripts/${app}"
                 fi
             elif [ "$roficonfig" = "Themes" ]; then
-                tema=$( ls "${HOME}/.config/rofi/themes" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+                tema=$( ls "${HOME}/.config/rofi/themes" | rofi -dmenu -p "Rofi Themes" -bw 0 -l "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 [ ! -z $tema ] && $editor "${HOME}/.config/rofi/themes/${tema}"
             elif [ $roficonfig ]; then
                 $editor ~/.config/rofi/config.rasi
             fi
         ;;
         'Terminais')
-            terminais=$(echo "Kitty;Alacritty;st" | rofi -sep ";" -dmenu -p "Terminais" -bw 0 -lines 3 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+            terminais=$(echo "Kitty;Alacritty;st" | rofi -sep ";" -dmenu -p "Terminais" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$terminais" = "Kitty" ]; then
                 $editor ~/.config/kitty/kitty.conf
             elif [ "$terminais" = "Alacritty" ]; then
                 $editor ~/.config/alacritty/alacritty.yml
             elif [ "$terminais" = "st" ]; then
-                stfiles=$(echo "Config;Re-Build" | rofi -sep ";" -dmenu -p "Simple Terminal" -bw 0 -lines 2 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+                stfiles=$(echo "Config;Re-Build" | rofi -sep ";" -dmenu -p "Simple Terminal" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ "$stfiles" = "Config" ]; then
                     $editor ${HOME}/aur/st-scrollback-git/config.h
                 elif [ "$stfiles" = "Re-Build" ]; then
@@ -90,9 +90,9 @@ if [ "$res" ]; then
             $editor "${HOME}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"
         ;;
         'i3lock')
-            i3lockconfig=$(echo "Config;Select;Reload;Test" | rofi -sep ";" -dmenu -p "i3lock" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+            i3lockconfig=$(echo "Config;Select;Reload;Test" | rofi -sep ";" -dmenu -p "i3lock" -bw 0 -l 4 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             if [ "$i3lockconfig" = "Select" ]; then
-                i3lockapps=$( ls "${HOME}/.local/lock/" | egrep -v "default|png" | rofi -dmenu -p "i3Lock Lockers" -bw 0 -lines "$(ls -1 ${HOME}/.local/lock/ | egrep -v "default|png" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
+                i3lockapps=$( ls "${HOME}/.local/lock/" | egrep -v "default|png" | rofi -dmenu -p "i3Lock Lockers" -bw 0 -l "$(ls -1 ${HOME}/.local/lock/ | egrep -v "default|png" | wc -l)" -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ $i3lockapps ]; then
                     ln -sf ${HOME}/.local/lock/${i3lockapps} ${HOME}/.local/lock/default
                 fi
@@ -108,7 +108,7 @@ if [ "$res" ]; then
         ;;
         'Conky') $editor ~/.config/conky/conky.conf ;;
         'Dunst')
-            dunstconfig=$(echo "Config;Reload;Teste" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+            dunstconfig=$(echo "Config;Reload;Teste" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             if [ "$dunstconfig" = "Reload" ]; then
                 killall dunst && dunst &
             elif [ "$dunstconfig" = "Teste" ]; then
@@ -118,7 +118,7 @@ if [ "$res" ]; then
             fi
         ;;
         'Picom')
-            picomconfig=$(echo "Config;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+            picomconfig=$(echo "Config;Reload" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             if [ "$picomconfig" = "Reload" ]; then
                 killall picom && picom -b --config $HOME/.config/picom/picom.conf &
             elif [ $picomconfig ]; then
@@ -126,7 +126,7 @@ if [ "$res" ]; then
             fi
         ;;
         'LightDM')
-            ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+            ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ $ldm ]; then
                 sudo $editor $sudoparams "/etc/lightdm/${ldm}.conf"
@@ -138,14 +138,14 @@ if [ "$res" ]; then
             $editor "${HOME}/.config/startpage/*.html"
         ;;
         'Home')
-            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -lines 12 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 12 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$homefiles" = ".Xresources" ]; then
-                resfiles=$( echo "Config;Cores;Reload" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -lines 3 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)
+                resfiles=$( echo "Config;Cores;Reload" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ "$resfiles" == "Config" ]; then
                     $editor ~/.Xresources
                 elif [ "$resfiles" == "Cores" ]; then
-                    colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -lines 10 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+                    colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -l 10 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                     if [ $colorfiles ]; then
                         $editor ~/.colors/${colorfiles}
                     fi
@@ -153,19 +153,19 @@ if [ "$res" ]; then
                     xrdb ~/.Xresources
                 fi
             elif [ "$homefiles" = "bin" ]; then
-                binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)
+                binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -l 10 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ $binfiles ]; then
                     $editor ~/bin/${binfiles}
                 fi
             elif [ "$homefiles" = ".bin" ]; then
-                dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+                dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -l 11 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ $dotbinfiles ]; then
                     $editor ~/.local/bin/${dotbinfiles}
                 fi
             elif [ "$homefiles" = "mimeapps" ]; then
                 $editor ~/.config/mimeapps.list
             elif [ "$homefiles" = "lock" ]; then
-                dotlockfiles=$(ls "${HOME}/.local/lock/" | rofi -dmenu -p "~/.local/lock" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+                dotlockfiles=$(ls "${HOME}/.local/lock/" | rofi -dmenu -p "~/.local/lock" -bw 0 -l 11 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ $dotlockfiles ]; then
                     $editor ~/.local/lock/${dotlockfiles}
                 fi

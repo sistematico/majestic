@@ -1,12 +1,11 @@
 configuration {
-    theme: "gruvbox";
+    theme: "gruvbox-dark";
     modi: "window,drun,run,ssh";
-    font: "Open Sans 11";
+    font: "Ubuntu 11";
     show-icons: true;
     cycle: true;
     icon-theme: "Papirus";
-    hide-scrollbar: true;
     click-to-exit: true;
-	  me-select-entry: "";
-	  me-accept-entry: "MousePrimary";
+	me-select-entry: "";
+	me-accept-entry: "MousePrimary";
 }

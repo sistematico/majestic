@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "One Dark Pro Flat",
+    "workbench.colorTheme": "Gruvbox Dark Soft",
     "workbench.startupEditor": "none",
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "security.workspace.trust.untrustedFiles": "open",
@@ -13,8 +13,7 @@
     "explorer.confirmDragAndDrop": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "editor.minimap.enabled": false,
-    "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": true,
+    "workbench.statusBar.visible": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.NoBrowser": true,
     "files.exclude": {
@@ -37,5 +36,6 @@
         "shell": true
     },
     "vetur.validation.template": false,
-    "intelephense.diagnostics.undefinedMethods": false
+    "intelephense.diagnostics.undefinedMethods": false,
+    "window.menuBarVisibility": "toggle"
 }

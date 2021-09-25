@@ -1,69 +1,72 @@
 #!/usr/bin/env bash
 #
-# Mais um programa feito com amor e carinho por: Lucas Saliés Brum a.k.a. sistematico <lucas AT archlinux DOT com DOT br>
-# =]
+# Arquivo: inertia.sh
 #
+# Mais um script feito com ❤️ por: 
+# - "Lucas Saliés Brum" <lucas@archlinux.com.br>
+# 
+# Criado em: 23/09/2021 01:33:12
+# Atualizado: 24/09/2021 12:50:58
+#
+# Referência:
 # FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
 # BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
 
-DIALOG="whiptail" # whiptail, dialog
+TEMA="red" # default, red, green, yellow, magenta
+DIALOG="dialog" # whiptail, dialog
 TITLE="Inertia.js Bootstrap Installer"
 BACKTITLE="Laravel 8, Inertia.js, Vue.js 3 & Twitter Bootstrap 5 Scaffolding"
 TMUX_SESSION="Inertia"
-SECS=3
+SECS="3s"
 UPDATE=0
-TEMA="red" # default, red, green, yellow
-[ "$DIALOG" == "dialog" ] && OPTS="--keep-tite --stdout" || OPTS=""
+OPTS="--keep-tite --stdout --colors" 
+INFOOPTS="--keep-tite"
 REGEX="^[a-zA-Z0-9.-]+$"
-APPS="$DIALOG curl composer"
+APPS="curl composer tmux npm"
 TIPO="JetStream"
 
-running() { 
-    ps $1 | grep $1 >/dev/null
-}
+running() { ps $1 | grep $1 >/dev/null; }
+
+if ! command -v dialog &> /dev/null; then
+    echo -e "O programa \e[1;31mdialog\e[0m não está instalado, instale-o primeiro."
+    exit
+fi
+
+[ ! -d $HOME/.config/dialog/ ] && mkdir -p $HOME/.config/dialog/
+case $TEMA in
+    amarelo|yellow)
+        TEMA="yellow"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://git.io/JzKBf -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    vermelho|red)
+        TEMA="red"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://git.io/JzK4p -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    verde|green)
+        TEMA="green"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://git.io/JzK4b -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    rosa|magenta)
+        TEMA="magenta"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://git.io/JzKRZ -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+    *)
+        TEMA="default"
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://git.io/JzK42 -o $HOME/.config/dialog/$TEMA.cfg
+    ;;
+esac
+export DIALOGRC=$HOME/.config/dialog/$TEMA.cfg
 
 for app in $APPS
 do
     if ! command -v $app &> /dev/null
     then
-        if [ "$app" == "$DIALOG" ]; then
-            echo -e "O programa \e[1;31m${app}\e[0m não está instalado, instale-o primeiro."
-        else
-            $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O programa \e[1;31m${app}\e[0m não está instalado, instale-o primeiro." 10 30 ; sleep $SECS
-        fi
+        timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O programa ${app} não está instalado, instale-o primeiro." 10 30
         exit
     fi
 done
 
-[ ! -d $HOME/.config/dialog/ ] && mkdir -p $HOME/.config/dialog/
-
-case $TEMA in
-    amarelo|yellow)
-        TEMA="yellow"
-        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/f73c6e7a15f19fba697660762efe0b3d0d9d5982/yellow.cfg -o $HOME/.config/dialog/$TEMA.cfg
-    ;;
-    vermelho|red)
-        TEMA="red"
-        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/f73c6e7a15f19fba697660762efe0b3d0d9d5982/red.cfg -o $HOME/.config/dialog/$TEMA.cfg
-    ;;
-    verde|green)
-        TEMA="green"
-        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/f73c6e7a15f19fba697660762efe0b3d0d9d5982/green.cfg -o $HOME/.config/dialog/$TEMA.cfg
-    ;;
-    *)
-        TEMA="default"
-        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://gist.githubusercontent.com/sistematico/b50d750c0073ca6d818cf926704d2894/raw/580d67450c44e6b75e7d389a584bd9b82646ae92/default.cfg -o $HOME/.config/dialog/$TEMA.cfg
-    ;;
-esac
-
-export DIALOGRC=$HOME/.config/dialog/$TEMA.cfg
-
-#$DIALOG --title "$TITLE" --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 3>&1 1>&2 2>&3
-
-#$DIALOG --keep-tite --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 ; sleep $SECS
-#timeout 5 $DIALOG --title "$TITLE" --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 3>&1 1>&2 2>&3
-
-timeout $SECS $DIALOG --infobox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 30 3>&1 1>&2 2>&3
+timeout --foreground $SECS $DIALOG $OPTS --msgbox "Bem-vindo ao instalador gráfico do Laravel JetStream/Breeze!" 10 40
 
 $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "Deseja continuar a instalação?" 0 0 2>&1
 [ $? = 1 ] && exit 1
@@ -111,47 +114,46 @@ if [ ! -d app ]; then
     if [ -d "$DIR" ]; then
         $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "O diretório $DIR jś existe, deseja sobre-escrever?" 0 0 2>&1
         [ $? = 1 ] && exit 1
+        
+        $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "Tem certeza?" 0 0 2>&1
+        [ $? = 0 ] && mv $DIR /tmp/$DIR-$(date +%s) || timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "Abortando a instalação" 10 40
     fi
 
     if [[ ! "$DIR" =~ $REGEX ]]; then
-      #$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 0 0 2>&1
-      $DIALOG --keep-tite --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 10 30 ; sleep $SECS
-      $DIALOG --keep-tite --backtitle "$BACKTITLE" --title "$TITLE" --infobox "O caminho \e[1;31m${DIR}\e[0m é inválido." 10 30 ; sleep $SECS
+      timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O caminho \e[1;31m${DIR}\e[0m é inválido." 10 30
       exit 1
     fi
 
-    composer create-project laravel/laravel $DIR > /dev/null 2> /dev/null &
-    LARAVEL_PID=$!
+    timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "Instalando o pacote laravel/laravel em ${DIR}..." 10 40
+    composer create-project laravel/laravel $DIR
+    # LARAVEL_PID=$!
 
-    (
-        echo 10
-        while running $LARAVEL_PID; do
-            echo 50
-        done    
-        echo 100            
-    ) | $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --gauge "Instalando o pacote laravel/laravel em ${DIR}..." 8 40 0 2>&1
+    # (
+    #     echo 10
+    #     while running $LARAVEL_PID; do
+    #         echo 50
+    #     done    
+    #     echo 100            
+    # ) | $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --gauge "Instalando o pacote laravel/laravel em ${DIR}..." 8 40 0 2>&1
 fi
 
 cd $DIR
-test -f database/database.sqlite || touch database/database.sqlite
-curl -s -L https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/d1b372a96fb172b3d335ce6deac0103b1eac7d6e/.env -o .env
-curl -s -L https://gist.githubusercontent.com/sistematico/ba46826a62ede9de2f153fe8bf678583/raw/6ee2b7e989d232494fd466010164756e38ad622d/.env.example -o .env.example
+(test -d database && test -f database/database.sqlite) || touch database/database.sqlite
+curl -s -L https://git.io/JzKBq -o .env
+curl -s -L https://git.io/JzKBO -o .env.example
 
 case "$TIPO" in
     "Breeze")
-        #$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel Breeze" 15 50 2>&1
-        $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --infobox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel Breeze" 10 30 ; sleep $SECS
-
+        timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel Breeze" 10 45
         composer require sistematico/bootstrap-breeze --dev
-        php artisan breeze:install vue-bootstrap
+        php artisan breeze:install vue-bootstrap 
     ;;
     *)
-        #$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel JetStream" 15 50 2>&1
-        $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --infobox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel JetStream" 10 30 ; sleep $SECS
+        timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel JetStream" 10 45
         composer require laravel/jetstream
         php artisan jetstream:install inertia --teams
         
-        FRONTEND=$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --radiolist "Escolha o Framework do Front-End" 10 35 5 \
+        FRONTEND=$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --radiolist "Escolha o Framework do Front-End" 10 45 5 \
                 "1" "TailwindCSS (Padrão do Laravel)" ON \
                 "2" "Twitter Bootstrap 5" OFF 2>&1)
 
@@ -171,14 +173,11 @@ php artisan migrate
 php artisan key:generate
 
 mkdir -p .vscode .github/workflows
-curl -s -L https://gist.githubusercontent.com/sistematico/40218f43ffd9d185d4591ba6987971d3/raw/b0d67111384be03e877f54c3e4177928bb6bb02d/tasks.json -o .vscode/tasks.json
-curl -s -L https://gist.githubusercontent.com/sistematico/337acaa2f7efc84c62a525236a81ed7d/raw/7d21cf0f6fe7a9550e9e5a382fa479d43e49ce9b/laravel.yml -o .github/workflows/laravel.yml
-
-
-#$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox '' 6 40 2>&1
-$DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --infobox "Instalação finalizada com sucesso." 10 30 ; sleep $SECS
+curl -s -L https://git.io/JzKBl -o .vscode/tasks.json
+curl -s -L https://git.io/JzKB0 -o .github/workflows/laravel.yml
 
 $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "Deseja executar os comandos: \nphp artisan serve\nnpm run watch" 0 0 2>&1
+
 if [ $? = 0 ]; then
     \tmux has-session -t $TMUX_SESSION 2>/dev/null
 
@@ -202,5 +201,50 @@ else
         \tmux kill-session -t $TMUX_SESSION
     fi
 fi
+
+GITOPTS=$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --radiolist "Opções de versionamento" 10 65 5 \
+        "1" "Inicializar um projeto existente no Github" ON \
+        "2" "Inicializar um projeto existente e habilitar mensagens de commit & push automáticos" OFF \
+        "3" "Não inicializar o GIT" ON 2>&1)
+
+if [ $? = 0 ] && [ -z "$GITOPTS" ] && ([ "$GITOPTS" == "1" ] || [ "$GITOPTS" == "2" ]); then
+    echo "# $(basename $(pwd))" >> README.md
+    curl -s -L https://unlicense.org/UNLICENSE -o LICENSE
+    git init
+    git add .
+    git commit -m "Commit inicial, Inertia.sh Scaffolding"
+    git branch -M main
+    REPO=$($DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --inputbox "Digite o nome do repositorio no formato usuario/repositorio(Sem o .git):" 0 0 "$(whoami)/$(basename $(pwd))" 2>&1)
+    if [ ! -z "$REPO" ]; then
+        git remote add origin git@github.com:${REPO}.git
+        git push -u origin main
+    fi
+fi
+
+#git remote add origin git@github.com:sistematico/packetloss.com.br.git
+#git branch -M main
+#git push -u origin main
+
+if [ -d .git ]; then
+    if [ "$GITOPTS" == "2" ]; then
+        curl -s -L https://git.io/JzKB2 -o .git/hooks/post-commit
+        chmod +x .git/hooks/post-commit
+        git config --local commit.template .commit
+
+        if [ ! -f .commit ] || [ ! -s .commit ]; then
+            echo "Update automático" > .commit
+        fi
+
+        if [ ! -f .gitignore ] || [ ! -s .gitignore ]; then
+            echo ".commit" > .gitignore
+        else
+            if ! grep -Fxq ".commit" .gitignore 2> /dev/null; then
+                echo ".commit" >> .gitignore        
+            fi
+        fi
+    fi
+fi
+
+timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "Instalação finalizada com sucesso." 10 30
 
 exit

@@ -1,4 +1,5 @@
 # Core
+alias c='clear'
 alias ls='ls --color=always --group-directories-first'
 #alias ls='exa -g --group-directories-first'
 alias rm='rm -Iv'
