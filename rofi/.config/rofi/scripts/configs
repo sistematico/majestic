@@ -22,6 +22,7 @@ configs=(
     'Polybar'
     'Rofi'
     'Terminais'
+    'Bash'
     'GTK'
     'i3lock'
     'Dunst'
@@ -86,6 +87,12 @@ if [ "$res" ]; then
                 fi
             fi
         ;;
+        'Bash')
+            bashfiles=$(echo ".bashrc;.bash_aliases;.bash_functions;.bash_profile" | rofi -sep ";" -dmenu -p "Bash Files" -bw 0 -l 4 -separator-style none -location 0 -theme-str 'window {width: 160px;}' -hide-scrollbar -padding 5)
+            if [ $bashfiles ]; then
+                $editor ~/${bashfiles}
+            fi
+        ;;
         'GTK')
             $editor "${HOME}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"
         ;;
@@ -138,7 +145,7 @@ if [ "$res" ]; then
             $editor "${HOME}/.config/startpage/*.html"
         ;;
         'Home')
-            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 12 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 12 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$homefiles" = ".Xresources" ]; then
                 resfiles=$( echo "Config;Cores;Reload" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)

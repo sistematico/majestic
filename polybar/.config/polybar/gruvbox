@@ -421,10 +421,10 @@ content-font = 3
 [module/code]
 type = custom/text
 content = 
-;click-left = pgrep -x code >/dev/null || /usr/bin/code --disable-gpu > /dev/null 2> /dev/null &
-click-left = pgrep -x code >/dev/null || /usr/bin/code > /dev/null 2> /dev/null &
-click-middle = pgrep -x atom >/dev/null || /usr/bin/atom > /dev/null 2> /dev/null &
-click-right = pgrep -x pstorm >/dev/null || /usr/bin/pstorm > /dev/null 2> /dev/null &
+;click-left = pgrep -x code >/dev/null || code > /dev/null 2> /dev/null &
+click-left = pgrep -x code >/dev/null || code > /dev/null 2> /dev/null &
+click-middle = pgrep -x atom >/dev/null || atom > /dev/null 2> /dev/null &
+click-right = pgrep -x pstorm >/dev/null || pstorm > /dev/null 2> /dev/null &
 content-font = 3
 
 [module/telegram]

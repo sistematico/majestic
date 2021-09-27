@@ -1,0 +1,66 @@
+{
+    "HTML Redirect": {
+        "prefix": "htmlredirect",
+        "body": [
+            "<meta http-equiv=\"refresh\" content=\"${1:0}; URL='http://${2:site.com}'\" />"
+        ],
+        "description": "Redireciona a página"
+    },
+    "HTML": {
+        "prefix": "html5",
+        "body": [
+            "<!doctype html>",
+            "<html lang=\"pt-br\">",
+            "<head>",
+            "    <meta charset=\"utf-8\">",
+            "    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">",
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            "    <meta name=\"description\" content=\"Descrição\">",
+            "    <meta name=\"author\" content=\"Autor do site\">",
+            "    <title>${1:titulo}</title>",
+            "    <meta property=\"og:title\" content=\"${2:titulo}\" />",
+            "    <meta property=\"og:description\" content=\"${3:descrição}\" />",
+            "    <meta property=\"og:type\" content=\"${4:website}\" />",
+            "    <meta property=\"og:url\" content=\"${5:https://site.com}\" />",
+            "    <meta property=\"og:image\" content=\"${6:https://site.com/img/logo.png}\" />",
+            "    <link rel=\"stylesheet\" href=\"css/main.css\">",
+            "    <link rel=\"shortcut icon\" href=\"img/favicon.ico\">",
+            "</head>",
+            "<body>",
+            "    ${7:corpo}",
+            "    <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script>",
+            "    <script src=\"js/scripts.js\"></script>",
+            "</body>",
+            "</html>"
+        ],
+        "description": "Basic HTML Skel"
+    },
+    "Tags META": {
+        "prefix": "metaname",
+        "body": [
+            "<meta name=\"description\" content=\"Free Web tutorials\">",
+            "<meta name=\"keywords\" content=\"HTML, CSS, JavaScript\">",
+            "<meta name=\"author\" content=\"John Doe\">"
+        ],
+        "description": "Tags Meta mais comuns"
+    },
+    "Twitter Bootstrap 5": {
+        "prefix": "twbs5",
+        "body": [
+            "<!doctype html>",
+            "<html lang=\"en\">",
+            "<head>",
+            "     <meta charset=\"utf-8\">",
+            "     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            "    <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">",
+            "    <title>Hello, world!</title>",
+            "</head>",
+            "<body>",
+            "    <h1>Hello, world!</h1>",
+            "    <script src=\"js/bootstrap.mundle.min.js\"></script>",
+            "</body>",
+            "</html>"
+        ],
+        "description": "Basic Twitter Bootstrap v5 Skel"
+    }
+}

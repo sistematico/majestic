@@ -1,0 +1,17 @@
+{
+	"Shell Script Header": {
+		"prefix": "shellheader",
+		"body": [
+			"#!/usr/bin/env bash",
+			"#",
+			"# Arquivo: ${1:shell.sh}",
+			"# Descrição: ${2:Um script em shell.}",
+			"#",
+			"# Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>",
+			"#",
+			"# Criado em:        ${3:criado}",
+			"# Última alteração: ${4:modificado}"
+		],
+		"description": "Add common header to shell scripts"
+	}
+}

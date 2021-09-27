@@ -1,0 +1,192 @@
+{
+    "JavaScript Fetch API": {
+        "prefix": "jsfetch",
+        "body": [
+            "fetch('https://radiochat.com.br:8443/status-json.xsl').then(response => {",
+            "    return response.json();",
+            "}).then(data => {",
+            "    let estilo = estiloSel.options[estiloSel.selectedIndex].value;",
+            "    let json = data.icestats.source;",
+            "",
+            "    for (const stream of json) {",
+            "        if (stream.server_name === estilo) {",
+            "            titulo.innerHTML = stream.title;",
+            "            break;",
+            "        }",
+            "    }",
+            "}).catch(err => {",
+            "    // Do something for an error here",
+            "});"
+        ],
+        "description": "Simple fetch returning json"
+    },
+    "JavaScript On Ready": {
+        "prefix": "jsonready",
+        "body": [
+            "(function() {",
+            "    ${1:// Código...}",
+            "})();"
+        ],
+        "description": "JavaScript On Ready Event"
+    },
+    "JavaScript Location": {
+        "prefix": "jsredirect",
+        "body": [
+            "window.location = \"http://${1:site.com}\";"
+        ],
+        "description": "Redireciona usando JavaScript"
+    },
+    "JavaScript Window Location": {
+        "prefix": "jshref",
+        "body": [
+            "window.location.href = '${1:https://www.google.com.br}';"
+        ],
+        "description": "JavaScript Redirect to Another Page"
+    },
+    "JavaScript Timer": {
+        "prefix": "jstimer",
+        "body": [
+            "function startTimer(duration, display) {",
+            "    var timer = duration, seconds;",
+            "    let interval = setInterval(function () {",
+            "    seconds = parseInt(timer % 60, 10);",
+            "    display.textContent = seconds;",
+            "        if (--timer < 0) {",
+            "            clearInterval(interval);",
+            "            window.location.href = \"<?php echo (isset($_SESSION['last']) ? $_SESSION['last'] : URL); ?>\";",
+            "        }",
+            "    }, 1000);",
+            "}",
+            "",
+            "window.onload = function () {",
+            "    startTimer(5, document.querySelector('#time'))",
+            "}"
+        ],
+        "description": "Show regressive count on element"
+    },
+    "JavaScript Undefined": {
+        "prefix": "jsundefined",
+        "body": [
+            "if (typeof variable === 'undefined') {",
+           "    // Code...",
+           "}"
+        ],
+        "description": "If variable is undefined."
+    },
+    "JavaScript setTimeout": {
+        "prefix": "jssettimeout",
+        "body": [
+            "setTimeout(_ => {",
+            "    ${1:funcao}",
+            "},${2:1000});"
+        ],
+        "description": "Set a timeout"
+    },
+    "JavaScript setInterval #1": {
+        "prefix": "jssetinterval",
+        "body": [
+            "let interval = setInterval(${1:funcao},${2:1000});"
+        ],
+        "description": "Set a interval"
+    },
+    "JavaScript setInterval #2": {
+        "prefix": "jssetinterval2",
+        "body": [
+            "let intervalID = window.setInterval(myCallback, 500, 'Parameter 1', 'Parameter 2');",
+            "",
+            "const myCallback = (a, b) => {",
+            "\tconsole.log(a);",
+            "\tconsole.log(b);",
+            "}"
+        ],
+        "description": "Set a interval (advanced version)"
+    },
+    "JavaScript setInterval #3": {
+        "prefix": "jssetinterval3",
+        "body": [
+            "setInterval(_ => {",
+            "    ${1:funcao}",
+            "},${2:1000});"
+        ],
+        "description": "Set a interval (3)"
+    },
+    "JavaScript XMLHttpRequest": {
+        "prefix": "jsxhr",
+        "body": [
+            "let xhr = (url) => {",
+            "    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari",
+            "        xmlhttp = new XMLHttpRequest();",
+            "    } else { // code for IE6, IE5",
+            "        xmlhttp = new ActiveXObject(\"Microsoft.XMLHTTP\");",
+            "    }",
+            "",
+            "    xmlhttp.onreadystatechange = function () {",
+            "        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
+            "            return xmlhttp.responseText;",
+            "        }",
+            "    }",
+            "    xmlhttp.open(\"GET\", url, false);",
+            "    xmlhttp.send();",
+            "};"
+        ],
+        "description": "Retrieve data from URL using JavaScript"
+    },
+    "JavaScript XMLHttpRequest POST": {
+        "prefix": "jsxhrpost",
+        "body": [
+            "let xhr = (url) => {",
+            "    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari",
+            "        xmlhttp = new XMLHttpRequest();",
+            "    } else { // code for IE6, IE5",
+            "        xmlhttp = new ActiveXObject(\"Microsoft.XMLHTTP\");",
+            "    }",
+            "",
+            "    xmlhttp.onreadystatechange = function () {",
+            "        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
+            "            return xmlhttp.responseText;",
+            "        }",
+            "    }",
+            "    xmlhttp.open(\"GET\", url, false);",
+            "    xmlhttp.send();",
+            "};"
+        ],
+        "description": "Retrieve data from URL using JavaScript and POST method"
+    },
+    "jQuery On Ready": {
+        "prefix": "jqueryonready",
+        "body": [
+            "$(document).ready(function() {",
+            "    ${1:// Código...}",
+            "});"
+        ],
+        "description": "jQuery On Ready Event"
+    },
+    "jQuery On Ready Shortcut": {
+        "prefix": "jqueryonreadyshort",
+        "body": [
+            "$(function() {",
+            "    ${1:// Código...}",
+            "});"
+        ],
+        "description": "jQuery On Ready Event Short Version"
+    },
+    "jQuery AJAX": {
+        "prefix": "jqueryajax",
+        "body": [
+            "$.ajax({",
+            "    url: 'page.php',",
+            "    method: 'POST',",
+            "    context: document.body,",
+            "    data: { id : menuId },",
+            "    dataType: 'json'",
+            "}).done(function() {",
+            "    $( this ).addClass('done');",
+            "}).fail(function() {",
+            "    alert('error');",
+            "}).always(function() {",
+            "    alert('complete');",
+            "});"
+        ],
+        "description": "jQuery AJAX Example"
+    }
+}

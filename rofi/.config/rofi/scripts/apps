@@ -47,7 +47,7 @@ if [ ! -z $res ]; then
             
             case $editores in
                 "VS Codium") codium ;;
-                "VS Code") code --disable-gpu ;;
+                "VS Code") code ;;
                 "Atom") atom ;;
                 "PHPStorm") phpstorm ;;
                 "WebStorm") webstorm ;;

@@ -1,0 +1,39 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "nebulaOni.update.restoreConfiguration": {
+        "themeSettings": {
+            "background": "Grey",
+            "main": "Bumblebee",
+            "highlight": "Ultra Violet",
+            "focusBorder": "ON",
+            "fontStyle": "Italic",
+            "comments": "Dark Violet",
+            "favorite": "OFF"
+        },
+        "favoriteSettings": {
+            "background": "Glacial Blue",
+            "main": "Sakura",
+            "highlight": "Ultra Violet",
+            "focusBorder": "ON",
+            "fontStyle": "Italic",
+            "comments": "Dark Magenta",
+            "favorite": "Nebula Oni (Pegasus)"
+        }
+    },
+    "git.enableSmartCommit": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "window.menuBarVisibility": "toggle",
+    "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "none",
+    "explorer.confirmDelete": false,
+    "vetur.ignoreProjectWarning": true,
+    "vetur.experimental.templateInterpolationService": true,
+    "vetur.completion.scaffoldSnippetSources": {
+
+        "workspace": "💼",
+        "user": "🗒️",
+        "vetur": "✌"
+    },
+    "npm.packageManager": "pnpm"
+}

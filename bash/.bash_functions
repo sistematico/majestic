@@ -1,6 +1,39 @@
 # Vars used in functions.
 STORAGE="/home/lucas"
 
+# pnpm
+npm() {
+    local subcommand
+
+    if (( "$#" == 0 )); then 
+        command pnpm
+        return
+    fi
+
+    subcommand=$1; shift
+    
+    case $subcommand in
+        i|install) 
+            if [ $1 ]; then
+                command pnpm add "$@"
+            else
+                command pnpm install
+            fi
+        ;;
+        run)
+            command pnpm "$@"
+        ;;
+        *)
+            command pnpm "$subcommand" "$@"
+            #command pnpm exec "$@"
+        ;;
+    esac
+}
+
+npx() {
+    command pnpm dlx "$@"
+}
+
 list_fonts() {
     fc-list | awk -F':' '{print $2}' | grep -i $1 | awk '{$1=$1};1' | uniq
 }
