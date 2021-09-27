@@ -13,7 +13,6 @@
     "explorer.confirmDragAndDrop": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "editor.minimap.enabled": false,
-    "workbench.statusBar.visible": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.NoBrowser": true,
     "files.exclude": {
@@ -37,5 +36,6 @@
     },
     "vetur.validation.template": false,
     "intelephense.diagnostics.undefinedMethods": false,
-    "window.menuBarVisibility": "toggle"
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 1
 }

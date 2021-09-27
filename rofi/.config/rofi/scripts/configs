@@ -63,7 +63,7 @@ if [ "$res" ]; then
                     $editor "${HOME}/.config/rofi/scripts/${app}"
                 fi
             elif [ "$roficonfig" = "Themes" ]; then
-                tema=$( ls "${HOME}/.config/rofi/themes" | rofi -dmenu -p "Rofi Themes" -bw 0 -l "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+                tema=$( ls "${HOME}/.config/rofi/themes" | rofi -dmenu -p "Rofi Themes" -bw 0 -l "$(ls -1 ${HOME}/.config/rofi/themes/ | wc -l)" -separator-style none -location 0 -theme-str 'window {width: 180px;}' -hide-scrollbar -padding 5)
                 [ ! -z $tema ] && $editor "${HOME}/.config/rofi/themes/${tema}"
             elif [ $roficonfig ]; then
                 $editor ~/.config/rofi/config.rasi
@@ -132,8 +132,8 @@ if [ "$res" ]; then
                 sudo $editor $sudoparams "/etc/lightdm/${ldm}.conf"
             fi
         ;;
-        'ncmpcpp') $editor "${HOME}/.config/ncmpcpp/config" ;;
         'qutebrowser') $editor ~/.config/qutebrowser/config.py ;;
+        'ncmpcpp') $editor "${HOME}/.config/ncmpcpp/config" ;;
         'StartPage')
             $editor "${HOME}/.config/startpage/*.html"
         ;;

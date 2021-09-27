@@ -5,7 +5,9 @@ visualizer_type = "spectrum"
 visualizer_look = ●┃
 visualizer_color = white
 
-song_list_format = "{{%a  %t}|{%f}}{$R%l}"
+song_window_title_format = ncmpcpp {%a - }{%t}|{%f}
+
+song_list_format = "{{%a - %t}|{%f}}{$R%l}"
 current_item_prefix = $(cyan)$r
 
 current_item_inactive_column_prefix = $(white)$r

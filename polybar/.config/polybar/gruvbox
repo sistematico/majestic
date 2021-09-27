@@ -29,7 +29,7 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
-font-1 = icomoon:fontformat=truetype:size=8;2
+font-1 = icomoon:fontformat=truetype:size=10;2
 font-2 = entypo:fontformat=truetype:size=11;3
 
 border-bottom-size = 4
@@ -53,15 +53,15 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-ws-icon-0 = 1;
+ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
 ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
 ws-icon-9 = 10;
 ws-icon-default = 
 
@@ -123,7 +123,8 @@ interval = 2
 ;   <icon-seekb>
 ;   <icon-seekf>
 ;format-online = <label-song> <icon-prev> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress> <label-time>
-format-online = <label-song> <icon-prev> <toggle> <icon-next> <icon-repeat> <icon-random> <label-time>
+;format-online = <label-song> <icon-prev> <toggle> <icon-next> <icon-repeat> <icon-random> <label-time>
+format-online = <label-song>
 ;format-playing = ${self.format-online}
 ;format-paused = ${self.format-online}
 ;format-stopped = ${self.format-online}
@@ -400,27 +401,31 @@ exec = ~/.config/polybar/scripts/downloads.sh
 
 [module/browser]
 type = custom/text
-content = 
-click-left = pgrep -x chrome > /dev/null || /usr/bin/google-chrome-stable &
-click-right = pgrep -x firefox > /dev/null || /usr/bin/firefox &
+content = 
+click-left = pgrep -x firefox > /dev/null || /usr/bin/firefox &
+click-right = pgrep -x chrome > /dev/null || /usr/bin/google-chrome-stable &
+content-font = 3
 
 [module/thunar]
 type = custom/text
-content = 
-;click-left = /usr/bin/thunar &
+content = 
 click-left = pgrep -x thunar | egrep -v "grep|daemon" >/dev/null || /usr/bin/thunar &
+content-font = 3
 
 [module/terminal]
 type = custom/text
 content = 
 click-left = $TERMINAL &
+content-font = 3
 
 [module/code]
 type = custom/text
-content = 
-click-left = pgrep -x atom >/dev/null || /usr/bin/atom > /dev/null 2> /dev/null &
-click-middle = pgrep -x code >/dev/null || /usr/bin/code > /dev/null 2> /dev/null &
-click-right = pgrep -x code >/dev/null || /usr/bin/code > /dev/null 2> /dev/null &
+content = 
+;click-left = pgrep -x code >/dev/null || /usr/bin/code --disable-gpu > /dev/null 2> /dev/null &
+click-left = pgrep -x code >/dev/null || /usr/bin/code > /dev/null 2> /dev/null &
+click-middle = pgrep -x atom >/dev/null || /usr/bin/atom > /dev/null 2> /dev/null &
+click-right = pgrep -x pstorm >/dev/null || /usr/bin/pstorm > /dev/null 2> /dev/null &
+content-font = 3
 
 [module/telegram]
 type = custom/text
@@ -501,7 +506,8 @@ click-left = pgrep -x conky >/dev/null && killall conky || conky > /dev/null 2> 
 
 [module/sep]
 type = custom/text
-content = " "
+content = ""
+content-font = 3
 
 [module/sep2]
 type = custom/text

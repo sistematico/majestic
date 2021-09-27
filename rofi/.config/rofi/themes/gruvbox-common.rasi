@@ -20,7 +20,7 @@ mainbox {
 
 message {
     border:       2px 0 0;
-    /* border-color: @separatorcolor; */
+    border-color: @separatorcolor;
     padding:      1px;
 }
 
@@ -40,7 +40,7 @@ listview {
 element {
     text-color:       @separatorcolor;
     border:  0;
-    padding: 2px;
+    padding: 3px;
 }
 
 element.normal.urgent {
@@ -87,7 +87,7 @@ button.selected {
 
 textbox-prompt-sep {
     expand:     false;
-    str:        ":";
+    str:        "";
     text-color: @normal-foreground;
     margin:     0 0.3em 0 0;
 }
