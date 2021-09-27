@@ -2,7 +2,7 @@
 
 host="${1:-hera}"
 
-editor="mousepad"
+editor="${VISUAL:-codium}"
 filemanager="thunar"
 
 nginx_tmp="/tmp/nginx-sites"

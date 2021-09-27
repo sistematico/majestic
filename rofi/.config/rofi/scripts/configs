@@ -14,7 +14,7 @@
 #                                                                              #
 ################################################################################
 
-editor="${VISUAL:-code}"
+editor="${VISUAL:-codium}"
 [ "$editor" == "code" ] && sudoparams="--user-data-dir=$HOME/.vscode-root --no-sandbox"
 
 configs=(

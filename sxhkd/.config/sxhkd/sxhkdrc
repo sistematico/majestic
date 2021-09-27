@@ -2,7 +2,7 @@
 # wm independent hotkeys
 #
 
-editor='mousepad'
+editor='codium'
 
 # terminal emulator
 super + Return

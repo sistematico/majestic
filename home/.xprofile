@@ -32,7 +32,7 @@ export DOT=${HOME}/.dotfiles
 export TERMINAL=st
 export BROWSER=google-chrome-stable
 export EDITOR=nano
-export VISUAL=code
+export VISUAL=codium
 export RANGER_LOAD_DEFAULT_RC=false
 
 #export MOZ_DISABLE_CONTENT_SANDBOX=1

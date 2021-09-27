@@ -15,7 +15,7 @@
 ################################################################################
 
 apps=("Thunar" "Browsers" "Terminais" "Editores" "Database" "Telegram" "LXTask")
-browser=("Google Chrome" "Mozilla Firefox")
+browser=("Mozilla Firefox" "Google Chrome")
 term=("st" "Alacritty" "Kitty" "urxvt")
 edit=("VS Code" "Atom" "PHPStorm" "WebStorm")
 data=("DataGrip" "SQLiteBrowser" "TablePlus")
@@ -29,8 +29,8 @@ if [ ! -z $res ]; then
             browsers=$(printf "%s\n" "${browser[@]}" | rofi -dmenu -p "Browsers" -bw 0 -l "${#browser[@]}" -separator-style none -location 0 -theme-str 'window {width: 150px;}' -hide-scrollbar -padding 1)
             
             case $browsers in
-                "Google Chrome") google-chrome-stable ;;
                 "Mozilla Firefox") firefox ;;
+                "Google Chrome") google-chrome-stable ;;
             esac
         ;;
         "Terminais") 

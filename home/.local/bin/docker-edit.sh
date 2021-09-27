@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-editor="code"
+editor="${VISUAL:-codium}"
 filemanager="thunar"
 confs="$HOME/docker/confs/nginx"
 
