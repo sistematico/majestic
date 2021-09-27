@@ -1,9 +1,14 @@
 # Vars used in functions.
 STORAGE="/home/lucas"
 
+list_fonts() {
+    fc-list | awk -F':' '{print $2}' | grep -i $1 | awk '{$1=$1};1' | uniq
+}
+
 function cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 } 
+
 function mvr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
 }

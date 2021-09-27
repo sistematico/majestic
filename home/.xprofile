@@ -35,6 +35,13 @@ export EDITOR=nano
 export VISUAL=codium
 export RANGER_LOAD_DEFAULT_RC=false
 
+# VSCodium
+export VSCODE_GALLERY_SERVICE_URL='https://marketplace.visualstudio.com/_apis/public/gallery'
+export VSCODE_GALLERY_CACHE_URL='https://vscode.blob.core.windows.net/gallery/index'
+export VSCODE_GALLERY_ITEM_URL='https://marketplace.visualstudio.com/items'
+export VSCODE_GALLERY_CONTROL_URL=''
+export VSCODE_GALLERY_RECOMMENDATIONS_URL=''
+
 #export MOZ_DISABLE_CONTENT_SANDBOX=1
 #export MOZ_DISABLE_GMP_SANDBOX=1
 

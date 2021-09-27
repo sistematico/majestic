@@ -17,7 +17,7 @@
 apps=("Thunar" "Browsers" "Terminais" "Editores" "Database" "Telegram" "LXTask")
 browser=("Mozilla Firefox" "Google Chrome")
 term=("st" "Alacritty" "Kitty" "urxvt")
-edit=("VS Code" "Atom" "PHPStorm" "WebStorm")
+edit=("VS Codium" "VS Code" "Atom" "PHPStorm" "WebStorm")
 data=("DataGrip" "SQLiteBrowser" "TablePlus")
 
 res=$(printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -l "${#apps[@]}" -separator-style none -location 0 -theme-str 'window {width: 120px;}' -hide-scrollbar -padding 1)
@@ -46,6 +46,7 @@ if [ ! -z $res ]; then
             editores=$(printf "%s\n" "${edit[@]}" | rofi -dmenu -p "Editores" -bw 0 -l "${#edit[@]}" -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 1)
             
             case $editores in
+                "VS Codium") codium ;;
                 "VS Code") code --disable-gpu ;;
                 "Atom") atom ;;
                 "PHPStorm") phpstorm ;;
