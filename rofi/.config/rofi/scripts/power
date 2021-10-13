@@ -24,50 +24,50 @@ function programado() {
     fi
 }
 
-res=$(echo "Cancelar;Desligar;Reiniciar;Suspender;Travar;Sair" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+res=$(echo "Cancelar;Desligar;Reiniciar;Suspender;Travar;Sair" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -l 6 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
 if [ ! -z $res ]; then
     case $res in
         "Desligar")
-            quando=$(echo -e "Agora\nDepois" | rofi -dmenu -p "Quando?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            quando=$(echo -e "Agora\nDepois" | rofi -dmenu -p "Quando?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$quando" == "Agora" ]; then
-                confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+                confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 
                 [ "$confirma" == "Sim" ] && systemctl poweroff
             elif [ "$quando" == "Depois" ]; then
-                tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+                tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -l 9 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 
-                confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+                confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 
                 [ "$confirma" == "Sim" ] && programado "Desligamento" "$tempo"
             fi
         ;;
         "Reiniciar")
-            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             
             [ "$confirma" == "Sim" ] && systemctl reboot
         ;;
         "Suspender")
-            quando=$(echo -e "Agora\nDepois" | rofi -dmenu -p "Quando?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            quando=$(echo -e "Agora\nDepois" | rofi -dmenu -p "Quando?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$quando" == "Agora" ]; then
-                suspende=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+                suspende=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 
                 [ "$suspende" = "Sim" ] && systemctl suspend
             elif [ "$quando" == "Depois" ]; then
-                tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+                tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -l 9 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 
-                confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+                confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 
                 [ "$confirma" == "Sim" ] && programado "Suspensao" "$tempo"
             fi
         ;;
         "Programado")
-            tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
-            acao=$(echo "Suspensao;Desligamento" | rofi -sep ";" -dmenu -p "Ação" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -l 9 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+            acao=$(echo "Suspensao;Desligamento" | rofi -sep ";" -dmenu -p "Ação" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             
-            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             
             [ "$confirma" == "Sim" ] && programado "$acao" "$tempo"
         ;;
@@ -75,12 +75,12 @@ if [ ! -z $res ]; then
             i3-msg -q 'exec i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z'
         ;;
         "Sair")
-            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             
             [ "$confirma" == "Sim" ] && i3-msg exit
         ;;
         "Cancelar")
-            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+            confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             if [ "$confirma" == "Sim" ]; then
                 shutdown -c
 

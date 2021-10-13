@@ -14,6 +14,8 @@ elif [ "$1" == "a" ]; then
 	bash -c "$HOME/bin/mp3down.sh"
 elif [ "$1" == "i" ]; then
 	bash -c "$HOME/bin/imgdown.sh"
+elif [ "$1" == "d" ]; then
+	bash -c "cat /dev/null > /var/tmp/videodown.hist"
 else 
 	videos=$(ps -A | grep youtube-dl | wc -l)
 	imagens=$(ps -ef | grep imgdown.sh | grep -v grep | wc -l)

@@ -35,7 +35,7 @@ font-2 = entypo:fontformat=truetype:size=11;3
 border-bottom-size = 4
 border-bottom-color = ${colors.background-alt}
 
-modules-left = i3 conky launcher downloads desl
+modules-left = i3 launcher downloads desl
 modules-center = xwindow
 modules-right = cpu memory temperature pulseaudio date wireless lock clip powermenu
 
@@ -395,7 +395,7 @@ click-left = ~/.config/polybar/scripts/g533.sh t > /dev/null 2> /dev/null &
 type = custom/script
 interval = 5
 click-left = ~/.config/polybar/scripts/downloads.sh x > /dev/null 2> /dev/null &
-click-middle = ~/.config/polybar/scripts/downloads.sh c > /dev/null 2> /dev/null &
+click-middle = ~/.config/polybar/scripts/downloads.sh d > /dev/null 2> /dev/null &
 click-right = ~/.config/polybar/scripts/downloads.sh i > /dev/null 2> /dev/null &
 exec = ~/.config/polybar/scripts/downloads.sh
 

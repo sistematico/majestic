@@ -1,11 +1,8 @@
-!#include ".colors/dracula"
 #include ".colors/gruvbox"
 
 ! URxvt Vars
-! #define FONT Fantasque Sans Mono
-! #define FONT JetBrainsMono Nerd Font Mono
-#define FONT FantasqueSansMono Nerd Font Mono
-#define FONT_SIZE 10
+#define FONT JetBrains Mono
+#define FONT_SIZE 11
 
 ! Fonts
 URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE
@@ -18,7 +15,7 @@ URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 !URxvt.geometry: 92x24
 URxvt.geometry: 75x20
-URxvt.internalBorder: 30
+URxvt.internalBorder: 20
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 2048

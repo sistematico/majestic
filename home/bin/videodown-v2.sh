@@ -21,6 +21,7 @@ NOME_CURTO="VideoDown"
 SECONDS=0
 COMECO=$SECONDS
 LOG=0 # 0 = Sem log, 1 = Log no arquivo
+ARIA=1
 TS=$(date +"%s")
 DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
 ICONE="/usr/share/icons/Newaita/devices/64/video-display.svg"
@@ -60,33 +61,79 @@ checkUrl() {
 [ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
 
+xclip -out -selection primary | xclip -in -selection clipboard
+selurl="$(xclip -o)"
+
 cd $DIR
 
-if [ -z "$url" ]; then
-    $NOTIFY "O link é inválido!"
-    exit 1
-fi
-
-if ! checkUrl ${url}
+if [ -z "$url" ] && [ -z "$selurl" ]
 then
     $NOTIFY "O link é inválido!"
     exit 1
 fi
 
+if checkUrl ${selurl}
+then
+    if ! grep -Fxq "$selurl" $HISTORY
+    then
+        url="$selurl"
+    fi
+elif ! checkUrl ${url}
+then
+    $NOTIFY "O link é inválido!"
+    exit 1
+fi
+
+if grep -Fxq "$url" $HISTORY
+then
+    $NOTIFY "O vídeo já foi baixado!"
+    exit 1
+fi
+
+titulo="$(curl -A "$HEADER" "$url" -Lso - | grep -iPo '(?<=<title>)(.*)(?=</title>)' | sed 's/[^[:alnum:]]\+/ /g' | head -n1)"
+
+if [ -z "$titulo" ]; then
+    $NOTIFY "Link inválido."
+    exit 1
+fi
+
+if [ ${#titulo} -gt 250 ]; then
+	diff=$((${#titulo}-250))
+	trim=$((${#titulo}-$diff))
+	titulo=${titulo::-$trim}
+fi
+
 if [[ $LOG -ne 0 ]]; then
     echo "---------------------------------------------------------------" >> "$LOGS"
     echo "Status:       INICIO" >> "$LOGS"
+    echo "Título:       $titulo" >> "$LOGS"
     echo "URL:          $url" >>"$LOGS"
+    echo "Path:         $DIR" >> "$LOGS"
+    echo "Temp:         $TMP" >> "$LOGS"
+    echo "Processos:    $PROC" >> "$LOGS"
 fi
 
-$YOUTUBE "${url}"
+$NOTIFY "Início: <b>$titulo</b>"
+
+if [ $ARIA == 1 ]; then
+    $YOUTUBE -o "${titulo}.mp4" --external-downloader aria2c "${url}" # "%(title).%(ext)s"
+else
+    $YOUTUBE -o "${titulo}.mp4" "${url}"
+fi
+
+status=$?
 
 if [[ $status -ne 0 ]]; then
     echo "---------------------------------------------------------------" >> "$LOGS"
     echo "Status:       ERRO" >> "$LOGS"
+    echo "Título:       $titulo" >> "$LOGS"
     echo "URL:          $url" >>"$LOGS"
-	$NOTIFY "Erro"
-    exit 1
+    echo "Path:         $DIR" >> "$LOGS"
+	$NOTIFY "Erro: <b>$titulo</b>"
+    exit
+else
+    echo $status >> $HISTORY
+    echo $url >> $HISTORY
 fi
 
 final=$SECONDS
@@ -111,12 +158,17 @@ fi
 if [[ $LOG -ne 0 ]]; then
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> "$LOGS"
     echo "Status:       SUCESSO" >> "$LOGS"
+    echo "Título:       $titulo" >> "$LOGS"
     echo "URL:          $url" >>"$LOGS"
+    echo "Path:         $DIR" >> "$LOGS"
+    echo "Temp:         $TMP" >> "$LOGS"
+    echo "Processos:    $PROC" >> "$LOGS"
     echo >> "$LOGS"
     echo "Tempo decorrido: ${hora}:${minuto}:${segundo}" >> "$LOGS"
     echo "Tamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" >> "$LOGS"
     echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
 fi
 
-$NOTIFY "Tempo decorrido: ${hora}:${minuto}:${segundo}\nVelocidade média: ${tempo}KBps\n\nSucesso"
-exit 0
+$NOTIFY "Tempo decorrido: ${hora}:${minuto}:${segundo}\nTamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps\n\nSucesso: <b>$titulo</b>"
+exit
+

@@ -2,7 +2,7 @@
 STORAGE="/home/lucas"
 
 # pnpm
-npm() {
+npm2() {
     local subcommand
 
     if (( "$#" == 0 )); then 
@@ -30,7 +30,7 @@ npm() {
     esac
 }
 
-npx() {
+npx2() {
     command pnpm dlx "$@"
 }
 

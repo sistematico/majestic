@@ -19,6 +19,7 @@ alias fd='fd -uu'
 alias cat='bat'
 alias journalctl='sudo journalctl'
 alias script='script -a'
+alias host='getent hosts'
 
 # Main
 alias rehash='source ~/.bashrc && source ~/.bash_aliases && source ~/.bash_functions && source ~/.bash_profile'
@@ -84,3 +85,7 @@ alias laravel-stop='docker stop laravel-nginx laravel-php laravel-memcached lara
 
 # Python
 alias pip-update='pip3 list --outdated --format=freeze | grep -v "^\-e" | cut -d = -f 1 | xargs -n1 pip3 install -U'
+
+# Audio
+#alias loopback='pactl load-module module-loopback latency_msec=1 source=1 sink=0'
+alias loopback='pactl load-module module-loopback latency_msec=1'

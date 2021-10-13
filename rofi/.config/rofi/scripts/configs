@@ -145,14 +145,14 @@ if [ "$res" ]; then
             $editor "${HOME}/.config/startpage/*.html"
         ;;
         'Home')
-            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 12 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 9 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
 
             if [ "$homefiles" = ".Xresources" ]; then
                 resfiles=$( echo "Config;Cores;Reload" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ "$resfiles" == "Config" ]; then
                     $editor ~/.Xresources
                 elif [ "$resfiles" == "Cores" ]; then
-                    colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -l 10 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+                    colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                     if [ $colorfiles ]; then
                         $editor ~/.colors/${colorfiles}
                     fi
@@ -160,7 +160,7 @@ if [ "$res" ]; then
                     xrdb ~/.Xresources
                 fi
             elif [ "$homefiles" = "bin" ]; then
-                binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -l 10 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+                binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -l 10 -separator-style none -location 0 -theme-str 'window {width: 150px;}' -hide-scrollbar -padding 5)
                 if [ $binfiles ]; then
                     $editor ~/bin/${binfiles}
                 fi
@@ -187,3 +187,5 @@ if [ "$res" ]; then
         ;;
     esac
 fi
+
+exit

@@ -15,6 +15,9 @@ titulo="Video Resize"
 #    16:9 aspect ratio resolutions: 1024×576, 1152×648, 1280×720, 1366×768, 1600×900, 1920×1080, 2560×1440 and 3840×2160.
 resolucoes=("2560" "1920" "1680" "1440" "1280" "1080" "720" "640" "480" "320")
 
+OIFS="$IFS"
+IFS=$'\n'
+
 command -v yad 1> /dev/null 2> /dev/null
 if [ $? = 1 ]; then
 	echo "yad não instalado."
@@ -22,7 +25,8 @@ if [ $? = 1 ]; then
 fi
 
 nome() {
-	fl=$(basename -- "$1")
+	v=$(echo "$1" | tr -cd '[:alnum:]._-')
+	fl=$(basename -- "$v")
 	ext="${fl##*.}"
 	echo "${fl%.*}.$2.$$.${ext}"
 }
@@ -33,14 +37,16 @@ caminho() {
 
 #echo "$(echo "${res}" | awk '{$1=$1};1')"
 
-if [ ! $1 ]; then
-	video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" "$1" | awk '{$1=$1};1')
-	[[ -z $video ]] && exit 1
+if [ "$1" ]; then
+	video="${1}"
 else
-	video="$1"
+	video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" "$1" | awk '{$1=$1};1')
+	[[ -z "$video" ]] && exit 1
 fi
 
 [[ -z $video ]] && exit 1
+
+#video="$(echo $video | tr -cd '[:alnum:]._-')"
 
 novo=$(dirname "${video}")/$(nome "$video" "resize")
 largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width' | cut -d "=" -f 2)
@@ -58,10 +64,15 @@ resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gno
 saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
 resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
+echo $saida
+echo $resolucao
+echo $video
+
 # -vf "scale=iw/2:ih/2"
 #(ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo...")
 #ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" | yad --title "$titulo" --auto-close --progress --progress-text "Convertendo..."
-ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}"
+#ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}"
+ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}.mp4"
 
 
 if [ $? = 0 ]; then
@@ -70,4 +81,4 @@ else
 	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
 fi
 
-
+IFS="$OIFS"
