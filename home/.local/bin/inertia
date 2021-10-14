@@ -145,7 +145,8 @@ curl -s -L https://git.io/JzKBO -o .env.example
 case "$TIPO" in
     "Breeze")
         timeout --foreground $SECS $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --msgbox "O instalador prosseguirá para a instalação da stack:\n\n- Laravel Breeze" 10 45
-        composer require sistematico/bootstrap-breeze --dev
+        #composer require sistematico/bootstrap-breeze --dev
+        composer require mralston/bootstrap-breeze --dev
         php artisan breeze:install vue-bootstrap 
     ;;
     *)
@@ -159,7 +160,7 @@ case "$TIPO" in
 
         [ -z "$FRONTEND" ] && exit 1
 
-        if [ "$FRONTEND" == "2" ]; then
+        if [ "$FRONTEND" == "2" ] && [ "$TIPO" != "Breeze" ]; then
             composer require nascent-africa/jetstrap --dev
             php artisan jetstrap:swap inertia
         fi

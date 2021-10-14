@@ -39,7 +39,7 @@ alias crlf='find . -type d \( -name node_modules -o -name vendor -o -name zz-old
 alias str='cd ~/aur/st && vim config.h && makepkg --nobuild && makepkg -eicf --noconfirm'
 
 # Code
-alias code='codium --disable-gpu'
+#alias code='codium --disable-gpu'
 alias codium='codium --disable-gpu'
 
 alias vim="vim -c 'startinsert'"
