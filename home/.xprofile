@@ -55,6 +55,9 @@ export GPG_AGENT_INFO
 export GNOME_KEYRING_CONTROL
 export GNOME_KEYRING_PID
 
+# IntelliJ Accents
+export XMODIFIERS=""
+
 case $DESKTOP_SESSION in
     i3|i3wm|bspwm|openbox|herbsluftwm)
 
