@@ -60,6 +60,7 @@ export XMODIFIERS=""
 
 case $DESKTOP_SESSION in
     i3|i3wm|bspwm|openbox|herbsluftwm)
+		xrandr --output HDMI-0 --primary --mode "2560x1440"
 
 		export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 		export GTK_THEME=Adwaita:dark

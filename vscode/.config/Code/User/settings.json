@@ -8,7 +8,6 @@
     "git.confirmSync": false,
     "git.autofetch": true,
     "editor.linkedEditing": true,
-    "workbench.productIconTheme": "icons-carbon",
     "vetur.ignoreProjectWarning": true,
     "explorer.confirmDragAndDrop": false,
     "intelephense.diagnostics.undefinedTypes": false,
@@ -36,6 +35,5 @@
     },
     "vetur.validation.template": false,
     "intelephense.diagnostics.undefinedMethods": false,
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1
+    "window.menuBarVisibility": "toggle"
 }

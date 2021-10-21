@@ -1,9 +1,8 @@
 {
-    "workbench.colorTheme": "GNOME dark",
+    "workbench.colorTheme": "Gruvbox Dark Soft",
     "git.enableSmartCommit": true,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "window.zoomLevel": 0.5,
     "workbench.startupEditor": "none",
     "explorer.confirmDelete": false,
     "vetur.ignoreProjectWarning": true,
@@ -17,5 +16,7 @@
     "editor.tabSize": 2,
     "task.problemMatchers.neverPrompt": {
         "shell": true
-    }
+    },
+    "workbench.statusBar.visible": false,
+    "window.menuBarVisibility": "toggle"
 }

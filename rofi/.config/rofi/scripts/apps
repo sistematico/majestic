@@ -14,7 +14,7 @@
 #                                                                              #
 ################################################################################
 
-apps=("Mozilla Firefox" "Thunar" "urxvt" "VS Codium" "Discord" "Steam" "Telegram" "LXTask")
+apps=("Mozilla Firefox" "Thunar" "urxvt" "VS Code" "Steam" "Telegram" "LXTask")
 res=$(printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -l "${#apps[@]}" -separator-style none -location 0 -theme-str 'window {width: 155px;}' -hide-scrollbar -padding 1)
 
 if [ "$res" ]; then
@@ -22,8 +22,7 @@ if [ "$res" ]; then
         "Mozilla Firefox") firefox ;;
         "Thunar") thunar ;;
         "urxvt") urxvt ;;
-        "VS Codium") codium ;;
-        "Discord") discord ;;
+        "VS Code") code ;;
         "Steam") steam ;;
         "Telegram") telegram-desktop ;;
         "LXTask") lxtask ;;
