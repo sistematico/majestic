@@ -32,8 +32,9 @@ font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 font-1 = icomoon:fontformat=truetype:size=10;2
 font-2 = entypo:fontformat=truetype:size=11;3
 
-border-bottom-size = 4
-border-bottom-color = ${colors.background-alt}
+border-bottom-size = 3
+;border-bottom-color = ${colors.background-alt}
+border-bottom-color = ${colors.alert}
 
 modules-left = i3 launcher downloads desl
 modules-center = xwindow

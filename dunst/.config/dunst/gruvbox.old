@@ -5,26 +5,6 @@
 
 [global]
     ### Display ###
-    # dynamic width from 0 to 300
-    # width = (0, 300)
-    # constant width of 300
-    width = 300
-
-    # The maximum height of a single notification, excluding the frame.
-    height = 300
-
-    # Position the notification
-    origin = bottom-right
-
-    # Offset from the origin
-    offset = 10x10
-
-    # Scale factor. It is auto-detected if value is 0.
-    scale = 0
-
-    # Maximum number of notification (0 means no limit)
-    notification_limit = 0
-
     follow = mouse
 
     geometry = "440x10-10-10"
@@ -78,8 +58,7 @@
     max_icon_size = 48
     #icon_path = .icons/flattrcolor/status/24:.icons/flattrcolor/devices/48:.icons/flattrcolor/apps/scalable:.icons/flattrcolor/actions/scalable
     #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
-    #icon_path = /usr/share/icons/Newaita/status/48/:/usr/share/icons/Newaita/devices/48/:/usr/share/icons/Newaita/apps/48/
-    icon_path = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/:/usr/share/icons/Newaita/status/48/:/usr/share/icons/Newaita/devices/48/:/usr/share/icons/Newaita/apps/48/
+    icon_path = /usr/share/icons/Newaita/status/48/:/usr/share/icons/Newaita/devices/48/:/usr/share/icons/Newaita/apps/48/
 
     ### History ###
     sticky_history = yes

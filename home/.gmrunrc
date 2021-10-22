@@ -3,7 +3,8 @@
 # GPL v2.0 applies
 
 # Set Vars
-Terminal    = xfce4-terminal
+#Terminal    = xfce4-terminal
+Terminal    = eval urxvt
 TermExec    = ${Terminal} -e
 Browser     = google-chrome-stable
 Editor      = mousepad

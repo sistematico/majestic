@@ -1,20 +1,20 @@
 #include ".colors/gruvbox"
 
 ! URxvt Vars
-#define FONT JetBrains Mono
-!#define FONT JetBrainsMono Nerd Font Mono
-#define FONT_CALLBACK DejaVu Sans Mono
-#define FONT_SIZE 11
+#define FONT DejaVu Sans Mono
+#define FONT_CALLBACK JetBrains Mono
+#define FONT_SIZE 12
 
 ! Fonts
-URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE,xft:FONT_CALLBACK:autohint=true:style=Regular:size=FONT_SIZE
-URxvt.boldFont: xft:FONT:style=Bold:size=FONT_SIZE,xft:FONT_CALLBACK:autohint=true:style=Bold:size=FONT_SIZE
-URxvt.italicFont: xft:FONT:style=Italic:size=FONT_SIZE,xft:FONT_CALLBACK:autohint=true:style=Italic:size=FONT_SIZE
-URxvt.boldItalicFont: xft:FONT:style=Bold Italic:size=FONT_SIZE,xft:FONT_CALLBACK:autohint=true:style=Bold Italic:size=FONT_SIZE
+URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE:autohint=true,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE
+!URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE
+URxvt.boldFont: xft:FONT:style=Bold:size=FONT_SIZE,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE
+URxvt.italicFont: xft:FONT:style=Italic:size=FONT_SIZE,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE
+URxvt.boldItalicFont: xft:FONT:style=Bold Italic:size=FONT_SIZE,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE
 
 ! URxvt
-URxvt.letterSpace: 0
-URxvt.lineSpace: 0
+URxvt.letterSpace: -1
+URxvt.lineSpace: -3
 !URxvt.geometry: 92x24
 URxvt.geometry: 75x20
 URxvt.internalBorder: 20
@@ -26,6 +26,7 @@ URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
 URxvt.depth: 32
 URxvt.iso14755: false
+URxvt*skipBuiltinGlyphs: true
 
 URxvt.transparent: false
 !URxvt.shading:       20
@@ -62,6 +63,7 @@ URxvt.font-size.step: 2
 Xft.antialias: 1
 Xft.dpi: 96
 Xft.hinting: 0
-Xft.hintstyle: hintnone
+!Xft.hintstyle: hintnone
+Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
