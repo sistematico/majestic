@@ -1,12 +1,11 @@
 [colors]
-background = #282a36
-;background = ${xrdb:background:#6272a4}
-background-alt = #444
-foreground = ${xrdb:foreground:#fff}
+background = ${xrdb:background:#282a36}
+background-alt = ${xrdb:background-alt:#444444}
+foreground = ${xrdb:foreground:#ffffff}
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
-alert = #bd2c40
+alert = ${xrdb:active:#bd2c40}
 
 [bar/dracula]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -38,9 +37,10 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
-font-1 = icomoon:fontformat=truetype:size=8;2
+font-1 = icomoon:fontformat=truetype:size=10;2
+font-2 = entypo:fontformat=truetype:size=11;3
 
-modules-left = i3 firefox thunar terminal code telegram downloads colorpicker headset
+modules-left = i3 launcher downloads desl
 modules-center = xwindow
 modules-right = cpu memory filesystem network temperature pulseaudio date lock clip powermenu
 
@@ -56,7 +56,9 @@ cursor-scroll = ns-resize
 ;   center
 ;   right
 ;   none
-tray-position = right
+;tray-position = right
+
+locale = pt_BR.UTF-8
 
 [module/i3]
 type = internal/i3
@@ -64,24 +66,40 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-ws-icon-default = 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
+;ws-icon-default = 
 
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
-label-focused = 
+label-focused = %icon%
+label-focused-foreground = ${colors.alert}
 label-focused-padding = 2
+label-focused-font = 3
 
 label-unfocused = %icon%
 label-unfocused-padding = 2
+label-unfocused-font = 3
 
 label-visible = %icon%
 label-visible-padding = ${self.label-focused-padding}
+label-visible-font = 3
 
 label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
+label-urgent-font = 3
 
 [module/xwindow]
 type = internal/xwindow
@@ -286,6 +304,18 @@ click-middle = $HOME/.config/polybar/scripts/trash.sh -o &
 click-right = $HOME/.config/polybar/scripts/trash.sh -x &
 exec = $HOME/.config/polybar/scripts/trash.sh
 
+[module/desl]
+type = custom/script
+
+format-prefix = " "
+format = <label>
+label = "desligando em %{F#c78f23}%output%%{F-}"
+
+exec = cat /tmp/desligamento.log
+exec-if = test -f /tmp/desligamento.log
+
+interval = 90
+
 [module/colorpicker]
 type = custom/script
 exec = "$HOME/.config/polybar/scripts/colorpicker.sh"
@@ -295,7 +325,7 @@ double-click-right = "kill -USR2 $(pgrep --oldest --parent %pid%) && ~/.config/p
 scroll-up = "echo "previous_color" > /tmp/i3colorpicker && kill -USR1 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
 scroll-down = "echo "next_color" > /tmp/i3colorpicker && kill -USR1 $(pgrep --oldest --parent %pid%) && ~/.config/polybar/scripts/colorpicker.sh --update"
 tail = true
-format-prefix = " Color"
+format-prefix = "Cor "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %output%
 

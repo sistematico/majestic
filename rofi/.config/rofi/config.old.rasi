@@ -1,0 +1,13 @@
+configuration {
+    theme: "dracula";
+    modi: "window,drun,run,ssh";
+    font: "Ubuntu 11";
+    show-icons: true;
+    cycle: true;
+    icon-theme: "Papirus";
+    click-to-exit: true;
+	me-select-entry: "";
+	me-accept-entry: "MousePrimary";
+}
+
+@theme "/home/lucas/.config/rofi/themes/dracula.rasi"

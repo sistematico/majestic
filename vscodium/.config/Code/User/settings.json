@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "workbench.colorTheme": "Dracula",
     "git.enableSmartCommit": true,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -17,6 +17,8 @@
     "task.problemMatchers.neverPrompt": {
         "shell": true
     },
+    "window.menuBarVisibility": "toggle",
+    "editor.minimap.enabled": false,
     "workbench.statusBar.visible": false,
-    "window.menuBarVisibility": "toggle"
+    "workbench.activityBar.visible": false
 }

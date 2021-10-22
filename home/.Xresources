@@ -1,4 +1,4 @@
-#include ".colors/gruvbox"
+#include ".colors/dracula"
 
 ! URxvt Vars
 #define FONT DejaVu Sans Mono

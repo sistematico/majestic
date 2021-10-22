@@ -14,12 +14,12 @@
 #                                                                              #
 ################################################################################
 
-apps=("Mozilla Firefox" "Thunar" "urxvt" "VS Code" "Steam" "Telegram" "LXTask")
+apps=("Firefox" "Thunar" "urxvt" "VS Code" "Steam" "Telegram" "LXTask")
 res=$(printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -l "${#apps[@]}" -separator-style none -location 0 -theme-str 'window {width: 155px;}' -hide-scrollbar -padding 1)
 
 if [ "$res" ]; then
     case "$res" in
-        "Mozilla Firefox") firefox ;;
+        "Firefox") firefox ;;
         "Thunar") thunar ;;
         "urxvt") urxvt ;;
         "VS Code") code ;;

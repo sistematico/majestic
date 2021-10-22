@@ -37,7 +37,7 @@ configs=(
     'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -theme-str 'window {width: 130px;}' -bw 0 -l "${#configs[@]}" -separator-style none -location 0 -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -theme-str 'window {width: 150px;}' -bw 0 -l "${#configs[@]}" -separator-style none -location 0 -padding 5)
 
 if [ "$res" ]; then
     case $res in

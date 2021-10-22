@@ -63,7 +63,8 @@ case $DESKTOP_SESSION in
 		xrandr --output HDMI-0 --primary --mode "2560x1440"
 
 		export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-		export GTK_THEME=Adwaita:dark
+		#export GTK_THEME=Adwaita:dark
+		export GTK_THEME=Dracula
 		export XCURSOR_THEME=Qogir-ubuntu-dark
 
         ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"

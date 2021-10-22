@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "workbench.colorTheme": "Dracula",
     "workbench.startupEditor": "none",
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "security.workspace.trust.untrustedFiles": "open",
@@ -35,5 +35,7 @@
     },
     "vetur.validation.template": false,
     "intelephense.diagnostics.undefinedMethods": false,
-    "window.menuBarVisibility": "toggle"
+    "window.menuBarVisibility": "toggle",
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false
 }
