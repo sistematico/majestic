@@ -118,8 +118,9 @@ if [ "$res" ]; then
             dunstconfig=$(echo "Config;Reload;Teste" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
             if [ "$dunstconfig" = "Reload" ]; then
                 killall dunst && dunst &
+                notify-send -i ${HOME}/.local/share/icons/brands/github.svg "Dunst" "Dunst recarregado."
             elif [ "$dunstconfig" = "Teste" ]; then
-                notify-send "Teste" "Teste"
+                notify-send -i ${HOME}/.local/share/icons/brands/github.svg "Dunst" "Lorem ipsum dolor sit amet consectetur adipisicing elit."
             elif [ $dunstconfig ]; then
                 $editor ~/.config/dunst/dunstrc
             fi

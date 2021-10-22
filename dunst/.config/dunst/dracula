@@ -11,7 +11,7 @@
     width = 300
 
     # The maximum height of a single notification, excluding the frame.
-    height = 300
+    height = 250
 
     # Position the notification
     origin = bottom-right
@@ -65,7 +65,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "%s\n%b"
+    format = "<b>%s</b>\n%b"
     alignment = right
     show_age_threshold = 60
     word_wrap = yes
