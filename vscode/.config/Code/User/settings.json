@@ -36,6 +36,5 @@
     "vetur.validation.template": false,
     "intelephense.diagnostics.undefinedMethods": false,
     "window.menuBarVisibility": "toggle",
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": false
+    "task.autoDetect": "off"
 }

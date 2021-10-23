@@ -1,0 +1,6 @@
+[IPv4]
+Address=10.0.0.1
+Netmask=255.0.0.0
+Gateway=10.0.0.254
+Broadcast=10.255.255.255
+DNS=10.0.0.254

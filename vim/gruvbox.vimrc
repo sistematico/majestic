@@ -7,9 +7,15 @@ call plug#end()
 
 let NERDTreeShowHidden=1
 
-let g:gruvbox_transparent_bg = 'medium' " soft, medium and hard
-colorscheme gruvbox
-set background=dark " dark/light
+" Gruvbox
+"let g:gruvbox_transparent_bg = 'medium' " soft, medium and hard
+"colorscheme gruvbox
+"set background=dark " dark/light
+
+" Dracula
+packadd! dracula
+syntax enable
+colorscheme dracula
 
 let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1

@@ -42,6 +42,7 @@ alias str='cd ~/aur/st && vim config.h && makepkg --nobuild && makepkg -eicf --n
 #alias code='codium --disable-gpu'
 alias codium='codium --disable-gpu'
 
+# Misc
 alias vim="vim -c 'startinsert'"
 #alias showip='curl icanhazip.com'
 alias showip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -89,3 +90,6 @@ alias pip-update='pip3 list --outdated --format=freeze | grep -v "^\-e" | cut -d
 # Audio
 #alias loopback='pactl load-module module-loopback latency_msec=1 source=1 sink=0'
 alias loopback='pactl load-module module-loopback latency_msec=1'
+
+# ffmpeg
+alias ffmpeg='nice 5 ffmpeg'
