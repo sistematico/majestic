@@ -34,9 +34,11 @@ alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-for
 # Devel
 #alias crlf='find . -not -type d -exec file "{}" ";" | grep CRLF | egrep -v "vendor|node_modules" 2> /dev/null'
 alias crlf='find . -type d \( -name node_modules -o -name vendor -o -name zz-old \) -prune -false -o -type f -exec file "{}" ";" | grep CRLF 2> /dev/null'
+alias a='php artisan'
 
 # Simple Terminal
-alias str='cd ~/aur/st && vim config.h && makepkg --nobuild && makepkg -eicf --noconfirm'
+#alias str='cd ~/aur/st && vim config.h && makepkg --nobuild && makepkg -eicf --noconfirm'
+alias str='cd ~/aur/st && makepkg --nobuild && makepkg -eicf --noconfirm'
 
 # Code
 #alias code='codium --disable-gpu'

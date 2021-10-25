@@ -1,5 +1,5 @@
 ! dracula  gruvbox  rougarou
-#include ".colors/rougarou"
+#include ".colors/dracula"
 
 ! URxvt Vars
 #define FONT DejaVu Sans Mono

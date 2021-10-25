@@ -36,5 +36,8 @@
     "vetur.validation.template": false,
     "intelephense.diagnostics.undefinedMethods": false,
     "window.menuBarVisibility": "toggle",
-    "task.autoDetect": "off"
+    "task.autoDetect": "off",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false
 }

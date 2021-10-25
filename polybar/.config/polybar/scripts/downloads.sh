@@ -37,6 +37,7 @@ else
 	elif [ $videos -eq 0 ] && [ $imagens -gt 0 ]; then
 		echo "%{T3}${icon}%{T-} %{F${cor}}${imagens}%{F-}"
 	else
-		echo "%{T3}${icon}%{T-}"
+		#echo "%{T3}${icon}%{T-}"
+		echo ""
 	fi
 fi

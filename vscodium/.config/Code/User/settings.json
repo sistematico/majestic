@@ -19,6 +19,6 @@
     },
     "window.menuBarVisibility": "toggle",
     "editor.minimap.enabled": false,
-    "workbench.statusBar.visible": false,
-    "workbench.activityBar.visible": false
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false
 }

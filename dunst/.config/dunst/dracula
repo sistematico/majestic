@@ -5,10 +5,8 @@
 
 [global]
     ### Display ###
-    # dynamic width from 0 to 300
     # width = (0, 300)
-    # constant width of 300
-    width = 300
+    width = 0
 
     # The maximum height of a single notification, excluding the frame.
     height = 250
@@ -23,7 +21,7 @@
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 0
+    notification_limit = 3
 
     follow = mouse
 
@@ -36,21 +34,15 @@
     horizontal_padding = 12
     frame_width = 3
 
-    #corner_radius = 10
+    corner_radius = 10
 
-    #frame_color = "#689d6a"
-    #frame_color = "#D08770"
-    #frame_color = "#00000000"
-    frame_color = "#282A36"
-    #separator_color = none
-    #separator_color = "#689d6a"
-    separator_color = "#282A36"
+    frame_color = "#1e2029"
+    separator_color = "#1e2029"
     sort = yes
     idle_threshold = 120
 
     ### Text ###
-    #font = Fantasque Sans 9
-    font = Noto Sans 11
+    font = Fantasque Sans 10
     line_height = 0
 
     markup = full
@@ -78,8 +70,6 @@
     ### Icons ###
     icon_position = left
     max_icon_size = 48
-    #icon_path = .icons/flattrcolor/status/24:.icons/flattrcolor/devices/48:.icons/flattrcolor/apps/scalable:.icons/flattrcolor/actions/scalable
-    #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
     icon_path = /usr/share/icons/Newaita/status/48/:/usr/share/icons/Newaita/devices/48/:/usr/share/icons/Newaita/apps/48/
 
     ### History ###

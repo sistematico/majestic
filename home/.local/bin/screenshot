@@ -5,7 +5,7 @@
 # Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 #
 # Criado em: 16/03/2018 16:35:20
-# Última alteração: 25/01/2019 11:35:16
+# Última alteração: 24/10/2021 14:23:13
 
 if [ -f ~/.config/user-dirs.dirs ]; then
 	source ~/.config/user-dirs.dirs
@@ -15,13 +15,11 @@ else
 fi
 
 app="maim"
-#params="-u"
-params=""
 data=$(date +%Y-%m-%d_%H-%M-%S)
-nome="ss-${data}"
-extensao=".png"
+nome="screenshot-${data}"
+extensao="png"
 atraso=10
-icone="/usr/share/icons/Newaita/devices/48/video-display.svg"
+icone="/usr/share/icons/Newaita/devices/48/camera-photo.svg"
 tipo="image/png"
 lixeira="${HOME}/.local/share/Trash"
 borda="10"
@@ -47,30 +45,25 @@ if [ "$1" == "-c" ]; then
 	exit 0
 elif [ "$1" == "-w" ]; then
 	[ "$app" == "maim" ] && params="$params -i $(xdotool getactivewindow) -p $borda" || params="$params -w"
-	arquivo="${nome}-window${extensao}"
+	arquivo="${nome}-window.${extensao}"
 	$app $params ${dir}${arquivo}
 elif [ "$1" == "-s" ]; then
-	params="$params -s"
-	arquivo="${nome}-sel${extensao}"
-	$app -d 2 $params ${dir}${arquivo}
+	arquivo="${nome}-sel.${extensao}"
+	$app -d 2 -s ${dir}${arquivo}
 elif [ "$1" == "-d" ]; then
-	params="$params -d $atraso"
-	arquivo="${nome}-delay${extensao}"
-	$app $params ${dir}${arquivo}
+	arquivo="${nome}-delay.${extensao}"
+	$app -d $atraso ${dir}${arquivo}
 elif [ "$1" == "-e" ]; then
-	arquivo="${nome}-edit${extensao}"
-	$app $params ${dir}${arquivo}
+	arquivo="${nome}-edit.${extensao}"
+	$app ${dir}${arquivo}
 	viewnior ${dir}${arquivo}
 else
-	arquivo="${nome}${extensao}"
-	$app $params ${dir}${arquivo}
+	arquivo="${nome}.${extensao}"
+	$app ${dir}${arquivo}
 fi
 
-if [ ! -z $arquivo ]; then
-	xclip -selection c -t $tipo -i $dir$arquivo
-fi
+[ ! -z "$arquivo" ] && xclip -selection c -t $tipo -i $dir$arquivo
 
 canberra-gtk-play -i camera-shutter 2>&1
-msg="A screenshot <b>$arquivo</b> salva em <b>$dir</b>..."
-$notifycommand "$msg"
+$notifycommand "A imagem foi salva"
 exit 0

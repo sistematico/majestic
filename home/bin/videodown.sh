@@ -20,13 +20,10 @@ NOME="Video Down"
 NOME_CURTO="VideoDown"
 SECONDS=0
 COMECO=$SECONDS
-LOG=0 # 0 = Sem log, 1 = Log no arquivo
 TS=$(date +"%s")
 DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
 ICONE="/usr/share/icons/Newaita/devices/64/video-display.svg"
-TMP="/tmp/videodown/$$"
 LOGS="${DIR}/status.log"
-PROC=$(pgrep -fc "bash $0")
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int:transient:1 -i $ICONE
 YOUTUBE="youtube-dl" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
@@ -57,7 +54,6 @@ checkUrl() {
 }
 
 [ ! -d "$DIR" ] && mkdir -p $DIR
-[ ! -d $TMP ] && mkdir -p $TMP
 [ $1 ] && url="$1" || url="$(xclip -o)"
 
 cd $DIR
@@ -71,12 +67,6 @@ if ! checkUrl ${url}
 then
     $NOTIFY "O link é inválido!"
     exit 1
-fi
-
-if [[ $LOG -ne 0 ]]; then
-    echo "---------------------------------------------------------------" >> "$LOGS"
-    echo "Status:       INICIO" >> "$LOGS"
-    echo "URL:          $url" >>"$LOGS"
 fi
 
 $YOUTUBE "${url}"
@@ -108,15 +98,5 @@ else
     tamanho="${tamanho} KB"
 fi
 
-if [[ $LOG -ne 0 ]]; then
-    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> "$LOGS"
-    echo "Status:       SUCESSO" >> "$LOGS"
-    echo "URL:          $url" >>"$LOGS"
-    echo >> "$LOGS"
-    echo "Tempo decorrido: ${hora}:${minuto}:${segundo}" >> "$LOGS"
-    echo "Tamanho do arquivo: ${tamanho}\nVelocidade média: ${tempo}KBps" >> "$LOGS"
-    echo "Velocidade média: ${tempo}KBps" >> "$LOGS"
-fi
-
-$NOTIFY "Tempo decorrido: ${hora}:${minuto}:${segundo}\nVelocidade média: ${tempo}KBps\n\nSucesso"
+$NOTIFY "Sucesso!\n\nTempo decorrido: ${hora}:${minuto}:${segundo}"
 exit 0

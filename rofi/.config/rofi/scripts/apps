@@ -14,20 +14,19 @@
 #                                                                              #
 ################################################################################
 
-apps=("Firefox" "Thunar" "urxvt" "VS Code" "TablePlus" "Steam" "Telegram" "LXTask" "Spotify")
+apps=("Firefox" "Thunar" "Terminal" "VS Code" "TablePlus" "Steam" "Discord" "Telegram")
 res=$(printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -l "${#apps[@]}" -separator-style none -location 0 -theme-str 'window {width: 155px;}' -hide-scrollbar -padding 1)
 
 if [ "$res" ]; then
     case "$res" in
         "Firefox") firefox ;;
         "Thunar") thunar ;;
-        "urxvt") urxvt ;;
+        "Terminal") st ;;
         "VS Code") code ;;
         "TablePlus") tableplus ;;
         "Steam") steam ;;
+        "Discord") discord ;;
         "Telegram") telegram-desktop ;;
-        "LXTask") lxtask ;;
-        "Spotify") spotify ;;
         *) $res ;;
     esac
 fi

@@ -80,10 +80,11 @@ if [ "$res" ]; then
             elif [ "$terminais" = "st" ]; then
                 stfiles=$(echo "Config;Re-Build" | rofi -sep ";" -dmenu -p "Simple Terminal" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ "$stfiles" = "Config" ]; then
-                    $editor ${HOME}/aur/st-scrollback-git/config.h
+                    $editor ${HOME}/aur/st/config.h ${HOME}/aur/st/PKGBUILD
                 elif [ "$stfiles" = "Re-Build" ]; then
                     rm -f ${HOME}/aur/st-scrollback-git/st*.pkg.tar.xz
-                    $TERMINAL -e "cd ${HOME}/aur/st-scrollback-git/ && makepkg -i && exit" && dbus-launch notify-send "Completo" "Compilação completa!"
+                    $TERMINAL -e "cd ${HOME}/aur/st/ && makepkg --nobuild && makepkg -eicf --noconfirm && exit" && 
+                    dbus-launch notify-send "Completo" "Compilação completa!"
                 fi
             fi
         ;;
@@ -146,14 +147,14 @@ if [ "$res" ]; then
             $editor "${HOME}/.config/startpage/*.html"
         ;;
         'Home')
-            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 9 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+            homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.vimrc;mimeapps;bin;.bin;lock" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -l 9 -separator-style none -location 0 -theme-str 'window {width: 160px;}' -hide-scrollbar -padding 5)
 
             if [ "$homefiles" = ".Xresources" ]; then
                 resfiles=$( echo "Config;Cores;Reload" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                 if [ "$resfiles" == "Config" ]; then
                     $editor ~/.Xresources
                 elif [ "$resfiles" == "Cores" ]; then
-                    colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -l 2 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+                    colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -l 3 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
                     if [ $colorfiles ]; then
                         $editor ~/.colors/${colorfiles}
                     fi
@@ -161,19 +162,19 @@ if [ "$res" ]; then
                     xrdb ~/.Xresources
                 fi
             elif [ "$homefiles" = "bin" ]; then
-                binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -l 10 -separator-style none -location 0 -theme-str 'window {width: 150px;}' -hide-scrollbar -padding 5)
+                binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -l 15 -separator-style none -location 0 -theme-str 'window {width: 180px;}' -hide-scrollbar -padding 5)
                 if [ $binfiles ]; then
                     $editor ~/bin/${binfiles}
                 fi
             elif [ "$homefiles" = ".bin" ]; then
-                dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -l 11 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+                dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -l 20 -separator-style none -location 0 -theme-str 'window {width: 160px;}' -hide-scrollbar -padding 5)
                 if [ $dotbinfiles ]; then
                     $editor ~/.local/bin/${dotbinfiles}
                 fi
             elif [ "$homefiles" = "mimeapps" ]; then
                 $editor ~/.config/mimeapps.list
             elif [ "$homefiles" = "lock" ]; then
-                dotlockfiles=$(ls "${HOME}/.local/lock/" | rofi -dmenu -p "~/.local/lock" -bw 0 -l 11 -separator-style none -location 0 -theme-str 'window {width: 130px;}' -hide-scrollbar -padding 5)
+                dotlockfiles=$(ls "${HOME}/.local/lock/" | rofi -dmenu -p "~/.local/lock" -bw 0 -l 11 -separator-style none -location 0 -theme-str 'window {width: 140px;}' -hide-scrollbar -padding 5)
                 if [ $dotlockfiles ]; then
                     $editor ~/.local/lock/${dotlockfiles}
                 fi
