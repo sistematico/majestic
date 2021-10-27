@@ -25,3 +25,5 @@
 	smudge = git-lfs smudge -- %f
 [init]
 	defaultBranch = main
+[core]
+	editor = code --wait

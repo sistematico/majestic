@@ -2,11 +2,22 @@
 
 OIFS="$IFS"
 IFS=$'\n'
-if [ $1 ]; then
-    type="$(file -ib "$1" | awk -F'/' '{print $1}' 2> /dev/null)"
-    if [ "$type" == "image" ]; then
-        feh --bg-fill "$1"
-		sed -i "s|exec_always --no-startup-id feh.*|exec_always --no-startup-id feh --bg-fill $1|" ~/.config/i3/config
+
+DIR="$HOME/img/wallpapers/"
+WALLPAPER="$(find $DIR -type f | shuf -n1)"
+
+setWall() {
+    if [ $1 ]; then
+        type="$(file -ib "$1" | awk -F'/' '{print $1}' 2> /dev/null)"
+        
+        if [ "$type" == "image" ]; then
+		    echo "$1" > /tmp/wallpaper.log
+            feh --bg-fill "$1"
+		    sed -i "s|exec_always --no-startup-id feh.*|exec_always --no-startup-id feh --bg-fill $1|" ~/.config/i3/config
+        fi
     fi
-fi
+}
+
+setWall "$WALLPAPER"
+
 IFS="$OIFS"

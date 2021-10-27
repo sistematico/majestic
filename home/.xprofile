@@ -29,11 +29,16 @@ export GL=${HOME}/gitlab
 export DOT=${HOME}/.dotfiles
 
 # Vars
-export TERMINAL=st
+export TERMINAL=xfce4-terminal
 export BROWSER=firefox
 export EDITOR=nano
 export VISUAL=codium
 export RANGER_LOAD_DEFAULT_RC=false
+
+# Theme
+export GTK2_RC_FILES=$HOME/.local/themes/Nordic-darker-v40/gtk-2.0/gtkrc
+#export GTK_THEME=Adwaita:dark
+export XCURSOR_THEME=Nordzy-cursors
 
 # VSCodium
 export VSCODE_GALLERY_SERVICE_URL='https://marketplace.visualstudio.com/_apis/public/gallery'
@@ -62,10 +67,9 @@ case $DESKTOP_SESSION in
     i3|i3wm|bspwm|openbox|herbsluftwm)
 		xrandr --output HDMI-0 --primary --mode "2560x1440"
 
+		export TERMINAL=st
 		export GTK2_RC_FILES=$HOME/.local/themes/Nordic-darker-v40/gtk-2.0/gtkrc
-		#export GTK_THEME=Adwaita:dark
 		export GTK_THEME=Nordic-darker-v40
-		#export XCURSOR_THEME=Qogir-ubuntu-dark
 		export XCURSOR_THEME=Nordzy-cursors
 
         ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"

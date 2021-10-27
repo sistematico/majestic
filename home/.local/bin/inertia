@@ -139,8 +139,8 @@ fi
 
 cd $DIR
 (test -d database && test -f database/database.sqlite) || touch database/database.sqlite
-curl -s -L https://git.io/JzKBq -o .env
-curl -s -L https://git.io/JzKBO -o .env.example
+curl -s -L https://git.io/Jilxo -o .env
+curl -s -L https://git.io/Jilxi -o .env.example
 
 case "$TIPO" in
     "Breeze")
@@ -175,7 +175,7 @@ php artisan key:generate
 
 mkdir -p .vscode .github/workflows
 curl -s -L https://git.io/JzKBl -o .vscode/tasks.json
-curl -s -L https://git.io/JzKB0 -o .github/workflows/laravel.yml
+curl -s -L https://git.io/Ji8nf -o .github/workflows/laravel.yml
 
 $DIALOG $OPTS --backtitle "$BACKTITLE" --title "$TITLE" --yesno "Deseja executar os comandos: \nphp artisan serve\nnpm run watch" 0 0 2>&1
 

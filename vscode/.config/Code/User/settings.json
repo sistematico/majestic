@@ -7,7 +7,6 @@
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
     "git.autofetch": true,
-    "editor.linkedEditing": true,
     "vetur.ignoreProjectWarning": true,
     "explorer.confirmDragAndDrop": false,
     "intelephense.diagnostics.undefinedTypes": false,
@@ -35,9 +34,10 @@
     },
     "vetur.validation.template": false,
     "intelephense.diagnostics.undefinedMethods": false,
-    "window.menuBarVisibility": "toggle",
     "task.autoDetect": "off",
     "diffEditor.ignoreTrimWhitespace": false,
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": false
+    "editor.linkedEditing": true,
+    "search.exclude": {
+        "**/js/app.js": true
+    }
 }

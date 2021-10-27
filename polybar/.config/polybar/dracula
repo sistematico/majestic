@@ -38,7 +38,7 @@ font-0 = Fantasque Sans Mono:style=Regular:pixelsize=10;2
 font-1 = icomoon:fontformat=truetype:size=10;2
 font-2 = entypo:fontformat=truetype:size=11;3
 
-modules-left = i3 launcher downloads desl
+modules-left = i3 launcher downloads wall desl
 modules-center = xwindow
 modules-right = cpu memory filesystem network temperature pulseaudio date lock clip powermenu
 
@@ -311,8 +311,9 @@ label = %output%
 [module/wall]
 type = custom/text
 content = 
-scroll-up = feh --bg-fill "$(find $HOME/img/wallpapers/dracula -type f | shuf -n1)"
-scroll-down = feh --bg-fill "$(find $HOME/img/wallpapers/dracula -type f | shuf -n1)"
+click-left = feh --bg-fill "$(find $HOME/img/wallpapers/ -type f | shuf -n1)" 
+scroll-up = feh --bg-fill "$(find $HOME/img/wallpapers/ -type f | shuf -n1)"
+scroll-down = feh --bg-fill "$(find $HOME/img/wallpapers/ -type f | shuf -n1)"
 
 [module/sep]
 type = custom/text
