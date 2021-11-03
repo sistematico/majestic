@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=TablePlus
+Type=Application
+Exec=bash -c "LD_PRELOAD=/opt/tableplus/libgio-2.0.so.0.6800.4 /usr/local/bin/tableplus"
+Icon=/opt/tableplus/resource/image/logo.png
+Terminal=false
+Categories=Utility;Development;
+Comment=Modern, native, and friendly GUI tool for relational databases (Alpha)

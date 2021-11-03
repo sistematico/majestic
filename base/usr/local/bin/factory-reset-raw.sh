@@ -33,9 +33,14 @@ PKGS="${PKGS} fortune-mod-chucknorris rtl8192eu-git"
 # Gnome
 #PKGS="${PKGS} ${GNOME}"
 
+[ ! -f /etc/systemd/network/20-wired.network ] && curl -L -s -o /etc/systemd/network/20-wired.network http://ix.io/3DDk
+[ ! -f /etc/systemd/network/loopback-alias.network ] && curl -L -s -o /etc/systemd/network/loopback-alias.network http://ix.io/3DDl
+
+[ ! -L /etc/resolv.conf ] && mv /etc/resolv.conf /var/tmp/resolv-$(date +%s).conf && ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
 systemctl --now disable docker
-systemctl disable gdm lightdm
-systemctl enable systemd-networkd
+systemctl disable gdm lightdm NetworkManager iwd
+systemctl enable systemd-networkd systemd-resolved
 
 echo "Packages: $(pacman -Q | wc -l)" > /var/tmp/packages-before.log
 echo "---" >> /var/tmp/packages-before.log

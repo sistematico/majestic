@@ -17,8 +17,5 @@
     "task.problemMatchers.neverPrompt": {
         "shell": true
     },
-    "window.menuBarVisibility": "toggle",
-    "editor.minimap.enabled": false,
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": false
+    "editor.minimap.enabled": false
 }

@@ -94,4 +94,4 @@ alias pip-update='pip3 list --outdated --format=freeze | grep -v "^\-e" | cut -d
 alias loopback='pactl load-module module-loopback latency_msec=1'
 
 # ffmpeg
-alias ffmpeg='nice 5 ffmpeg'
+alias ffmpeg='nice -n 5 ffmpeg'

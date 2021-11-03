@@ -1,7 +1,6 @@
 {
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "Snazzy Plus",
     "workbench.startupEditor": "none",
-    "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "security.workspace.trust.untrustedFiles": "open",
     "explorer.confirmDelete": false,
     "git.enableSmartCommit": true,
@@ -14,7 +13,14 @@
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.NoBrowser": true,
     "files.exclude": {
-        "**/.commit*": true
+        "**/.commit*": true,
+        "**/.editorconfig": true,
+        "**/.prettierrc.json": true,
+        "**/.styleci.yml": true,
+        "**/artisan": true,
+        "**/phpunit.xml": true,
+        "**/server.php": true,
+        "**/tests": true
     },
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -38,6 +44,22 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.linkedEditing": true,
     "search.exclude": {
+        "**/.phpstorm.meta.php": true,
         "**/js/app.js": true
-    }
+    },
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "quokka.compactMessageOutput": true,
+    "quokka.automaticRestart": true,
+    "quokka.automaticStartRegex": "\\.(ts|js)$",
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "quokka.showCodeLensInOutputChannel": false,
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
+    "intelephense.environment.shortOpenTag": false,
+    "intelephense.phpdoc.returnVoid": false
 }
