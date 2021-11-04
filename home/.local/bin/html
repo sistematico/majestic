@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# HTML5 Scaffolding
+#
+# Criado em 04/11/2021 00:11:34
+# Atualizado em 04/11/2021 00:30:51
+#
+# Credits: https://www.taniarascia.com/basic-html5-file/
+
+test -d assets/css || \mkdir -p assets/css
+test -f index.html || curl -s -L https://git.io/JP5mq -o index.html
+test -f assets/css/main.css || curl -s -L https://git.io/JP5mj -o assets/css/main.css

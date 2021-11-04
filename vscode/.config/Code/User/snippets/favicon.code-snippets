@@ -2,7 +2,8 @@
     "Insert Favicon": {
         "prefix": "favicon",
         "body": [
-            "\t<link rel=\"shortcut icon\" href=\"img/favicon.ico\">"
+            "\t<link rel=\"shortcut icon\" href=\"img/favicon.ico\">",
+            "\t<!-- <link rel=\"icon\" type=\"image/svg+xml\" href=\"assets/img/favicon.svg\"> -->"
         ],
         "description": "Insert favicon HTML tag"
     },

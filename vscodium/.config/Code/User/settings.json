@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "Snazzy Plus",
     "git.enableSmartCommit": true,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -17,5 +17,6 @@
     "task.problemMatchers.neverPrompt": {
         "shell": true
     },
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "liveServer.settings.donotShowInfoMsg": true
 }

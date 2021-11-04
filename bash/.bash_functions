@@ -61,10 +61,10 @@ dru () {
 
 # mpv
 function mm() {
-	params=\"$@\"
-	killall mpv 1> /dev/null 2> /dev/null
-	sleep 1
-	(mpv --really-quiet --profile=youtube-cache ytdl://ytsearch:"$params") > /dev/null 2> /dev/null &
+    params=\"$@\"
+    killall mpv 1> /dev/null 2> /dev/null
+    sleep 1
+    (mpv --really-quiet --profile=youtube-cache ytdl://ytsearch:"$params") > /dev/null 2> /dev/null &
 }
 
 function mma() {
@@ -73,8 +73,8 @@ function mma() {
 
 # rsync
 function fullsync() {
-	[ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
-	
+    [ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
+    
     rsync -aAXvzz \
     --exclude-from "$HOME/.config/rsync-excludes.list" \
     root@${1}:/ $STORAGE/vps/${1}/
@@ -82,7 +82,7 @@ function fullsync() {
 
 function fullsite() {
     [ ! -d $STORAGE/sites/${1} ] && mkdir -p $STORAGE/sites/${1}
-	rsync -aAXvzz \
+    rsync -aAXvzz \
         --exclude="node_modules/" \
         --exclude="*.mp4" \
         --exclude="*.mp3" \
@@ -109,19 +109,19 @@ function songdown() {
 
     rsync -aAXvzz \
     nginx@${1}:/opt/liquidsoap/music/ \
-	$STORAGE/audio/${1}/ $2
+    $STORAGE/audio/${1}/ $2
 
     find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
-	find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
+    find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
 }
 
 function songup() {
     [ ! -d $STORAGE/audio/${1} ] && mkdir -p $HOME/audio/${1}   
 
     if [ -d $STORAGE/audio/${1} ]; then 
-		find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
-		find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
-	fi
+        find $STORAGE/audio/${1} -type d -exec chmod 755 '{}' \; 
+        find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
+    fi
 
     rsync -aAXvzz \
     $STORAGE/audio/${1}/ \
@@ -131,15 +131,15 @@ function songup() {
 }
 
 function checkiso() {
-	if [ -f SHA512SUMS ]; then
+    if [ -f SHA512SUMS ]; then
         sha512sum --ignore-missing -c SHA512SUMS
         return
-	fi
-	
-	if [ -f SHA256SUMS ]; then
+    fi
+    
+    if [ -f SHA256SUMS ]; then
         sha256sum --ignore-missing -c SHA256SUMS
         return
-	fi
+    fi
 }
 
 # mp3
@@ -168,17 +168,17 @@ twitch() {
 
 # mpc
 mpcr () {
-	if [ $1 ]; then
-		mpc rm $1
-		mpc save $1
-		mpc clear
-		mpc load $1
-		mpc play
-	fi
+    if [ $1 ]; then
+        mpc rm $1
+        mpc save $1
+        mpc clear
+        mpc load $1
+        mpc play
+    fi
 }
 
 mpcl () {
-	$HOME/bin/mpc.sh
+    $HOME/bin/mpc.sh
 }
 
 sudo() {
@@ -283,6 +283,10 @@ chicon() {
     gsettings set org.gnome.desktop.interface icon-theme "$1"
 }
 
+rsticon() {
+    gsettings reset org.gnome.desktop.interface icon-theme
+}
+
 rstshell() {
     gsettings reset org.gnome.shell.extensions.user-theme name
 }
@@ -291,8 +295,8 @@ rstgtk() {
     gsettings reset org.gnome.desktop.interface gtk-theme
 }
 
-rsticon() {
-    gsettings reset org.gnome.desktop.interface icon-theme
+rstcursor() {
+    gsettings reset org.gnome.desktop.interface cursor-theme
 }
 
 dos2unix() {
