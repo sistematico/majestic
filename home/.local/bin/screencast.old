@@ -15,18 +15,31 @@ PRESET="ultrafast"
 EXT="mp4"
 DATA=$(date +%H-%M-%S)
 ICONE="/usr/share/icons/Newaita/devices/48/camera-video.svg"
+DISTRO="arch"
 TRIMCOMECO=3
 TRIMFINAL=5
 TRIMMIN=$((TRIMCOMECO + TRIMFINAL))
 THREADS="2"
 NICE="-n 10"
 TMUX_SESSION="ScreenCast"
-NOTIFY="$HOME/bin/notify.sh ScreenCast ${ICONE} $NOME"
+[ -z "$DESKTOP_SESSION" ] && NOTIFYCOMMAND="notify-send -h int:transient:1 -i $ICONE $NOME" || NOTIFYCOMMAND="$HOME/bin/notify.sh ScreenCast ${ICONE} $NOME"
 CAMINHO="${HOME}/video/screencast"
 PIDFILE="/tmp/screencast.pid"
+LOCKFILE="/tmp/screencast.lock"
 STEP1_FILE="/tmp/screencast.step1.${EXT}"
 STEP2_FILE="/tmp/screencast.step2.${EXT}"
 STEP3_FILE="/tmp/screencast.step3.${EXT}"
+[ -z "$DISPLAY" ] && DISPLAY=:0
+
+#trap "rm -f -- $PIDFILE $LOCKFILE" EXIT # EXIT INT KILL TERM
+trap "rm -f -- $PIDFILE $LOCKFILE" EXIT
+
+APPS=("ffmpeg" "xrandr" "pacmd" "tmux")
+for APP in ${APPS[@]}
+do
+    command -v $APP > /dev/null 2> /dev/null || { echo >&2 "O aplicativo $APP não está instalado. Abortando."; exit 1; }
+done
+
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 NOOUTPUT="-hide_banner -loglevel error -nostats"
 FFMPEG_STEP1_PARAMS="-f x11grab -probesize 42M -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart $NOOUTPUT -threads $THREADS -async 1"
@@ -42,17 +55,6 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
-list_descendants() {
-    local children=$(ps -o pid= --ppid "$1")
-
-    for pid in $children
-    do
-        list_descendants "$pid"
-    done
-
-    echo "$children "
-}
-
 kill_descendants() {
     local children=$(ps -o pid= --ppid "$1")
 
@@ -67,25 +69,31 @@ kill_descendants() {
     done
 }
 
-gravar() {
-    rm -f $PIDFILE
-    echo "$$" > $PIDFILE
+list_descendants() {
+    local children=$(ps -o pid= --ppid "$1")
 
+    for pid in $children
+    do
+        list_descendants "$pid"
+    done
+
+    echo "$children "
+}
+
+gravar() {
+    echo "$$" > $PIDFILE
     [ -f $STEP1_FILE ] && rm -f $STEP1_FILE
-    $NOTIFY "Gravação iniciada" 1> /dev/null
-    
-    # nice $NICE ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE > /dev/null & 
-    nice $NICE ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE
+    touch $LOCKFILE
+    $NOTIFYCOMMAND "Gravação iniciada" 1> /dev/null
+    nice $NICE ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE > /dev/null & 
 }
 
 converter() {
-    $NOTIFY "Conversão iniciada" 1> /dev/null
+    $NOTIFYCOMMAND "Conversão iniciada" 1> /dev/null
 
-    $NOTIFY "Matando descendentes: $(list_descendants $(/bin/cat $PIDFILE))" 1> /dev/null
+    $NOTIFYCOMMAND "Matando descendentes: $(list_descendants $(/bin/cat $PIDFILE))" 1> /dev/null
     
     kill_descendants $(/bin/cat $PIDFILE)
-
-    rm -f $PIDFILE
 
     while read i; do 
         kill -SIGTERM $i
@@ -94,7 +102,7 @@ converter() {
     [ -f $STEP2_FILE ] && rm -f $STEP2_FILE
     [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
 
-    $NOTIFY "Conversão para o WhatsApp" 1> /dev/null
+    $NOTIFYCOMMAND "Conversão para o WhatsApp" 1> /dev/null
     nice $NICE ffmpeg -i $STEP1_FILE $FFMPEG_STEP2_PARAMS $STEP2_FILE
     
     duration=$(ffprobe -i $STEP2_FILE -show_entries format=duration -v quiet -of csv='p=0')
@@ -102,7 +110,7 @@ converter() {
     trim=$((int - 3))
 
     if [[ $trim -gt $TRIMMIN ]]; then
-        $NOTIFY "Corte de 5 segundos no começo e 3 no final" 1> /dev/null
+        $NOTIFYCOMMAND "Corte de 5 segundos no começo e 3 no final" 1> /dev/null
         nice $NICE ffmpeg -i $STEP2_FILE -ss 2 -t $trim $NOOUTPUT -threads $THREADS $STEP3_FILE
         [ -f $STEP3_FILE ] && mv $STEP3_FILE "${CAMINHO}/${ARQUIVO}"
     else
@@ -111,18 +119,23 @@ converter() {
     fi
 
     if [ -f ${CAMINHO}/${ARQUIVO} ]; then
-        $NOTIFY "ScreenCast salvo ${ARQUIVO}" 1> /dev/null
+        $NOTIFYCOMMAND "ScreenCast salvo ${ARQUIVO}" 1> /dev/null
     else
-        $NOTIFY "Erro ao salvar o arquivo ${ARQUIVO}" 1> /dev/null
+        $NOTIFYCOMMAND "Erro ao salvar o arquivo ${ARQUIVO}" 1> /dev/null
     fi
 }
 
-if [ -f $PIDFILE ]; then
+if [ -f $LOCKFILE ]; then
     converter
 else
     if ! pgrep -x ffmpeg >/dev/null; then
         gravar
     else
-        kill_descendants $(/bin/cat $PIDFILE)
+        while read i; do 
+            kill -SIGTERM $i
+        done< <(pgrep ffmpeg)
+        #kill_descendants $(/bin/cat $PIDFILE)
     fi
 fi
+
+exit
