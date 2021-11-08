@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# Twitter Bootstrap 5 Scaffolding
+#
+# Criado em 08/11/2021 19:11:04
+# Atualizado em 08/11/2021 19:11:12
+#
+# Credits: https://getbootstrap.com
+
+test -d assets/css || \mkdir -p assets/css
+test -f index.html || curl -s -L https://git.io/JP5mq -o index.html
+test -f assets/css/main.css || curl -s -L https://git.io/JP5mj -o assets/css/main.css

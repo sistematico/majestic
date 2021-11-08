@@ -18,5 +18,6 @@
         "shell": true
     },
     "editor.minimap.enabled": false,
-    "liveServer.settings.donotShowInfoMsg": true
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.multiCursorModifier": "ctrlCmd"
 }

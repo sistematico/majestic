@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Snazzy Plus",
+    "workbench.colorTheme": "Dracula",
     "workbench.startupEditor": "none",
     "security.workspace.trust.untrustedFiles": "open",
     "explorer.confirmDelete": false,
@@ -9,7 +9,6 @@
     "vetur.ignoreProjectWarning": true,
     "explorer.confirmDragAndDrop": false,
     "intelephense.diagnostics.undefinedTypes": false,
-    "editor.minimap.enabled": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.NoBrowser": true,
     "files.exclude": {
@@ -61,5 +60,7 @@
     "php.suggest.basic": false,
     "php.validate.enable": false,
     "intelephense.environment.shortOpenTag": false,
-    "intelephense.phpdoc.returnVoid": false
+    "intelephense.phpdoc.returnVoid": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.minimap.enabled": false
 }
