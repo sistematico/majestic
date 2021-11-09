@@ -7,6 +7,122 @@
 #
 # Credits: https://getbootstrap.com
 
-test -d assets/css || \mkdir -p assets/css
-test -f index.html || curl -s -L https://git.io/JP5mq -o index.html
-test -f assets/css/main.css || curl -s -L https://git.io/JP5mj -o assets/css/main.css
+EDITOR="codium"
+BROWSER="firefox"
+VERSION="5.1.3"
+
+if ! command -v dialog &> /dev/null; then
+  echo -e "O programa \e[1;31mdialog\e[0m não está instalado, instale-o primeiro."
+  exit
+fi
+
+template=$(dialog --stdout --keep-tite \
+  --backtitle "Twitter Bootstrap 5" \
+  --title "Twitter Bootstrap Template" \
+  --radiolist "Escolha template" 10 45 50 \
+    "Cover" "" ON \
+    "Carousel" "" OFF \
+    "Blog" "" OFF \
+    "Dashboard" "" OFF \
+    "Signin" "" OFF \
+    "Sticky Footer" "" OFF \
+    "Sticky Footer Navbar" "" OFF \
+    "Jumbotron" "" OFF \
+    "Starter" "" OFF \
+    "Navbar Bottom" "" OFF 2>&1)
+
+[ $? -ne 0 ] && exit
+
+case $template in
+  "Cover") 
+    html="https://getbootstrap.com/docs/5.1/examples/cover/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/cover/cover.css"
+  ;;
+  "Carousel") 
+    html="https://getbootstrap.com/docs/5.1/examples/carousel/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/carousel/carousel.css"
+  ;;
+  "Blog") 
+    html="https://getbootstrap.com/docs/5.1/examples/blog/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/blog/blog.css"
+  ;;
+  "Dashboard") 
+    html="https://getbootstrap.com/docs/5.1/examples/dashboard/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/dashboard/dashboard.css"
+    js="https://getbootstrap.com/docs/5.1/examples/dashboard/dashboard.js"
+  ;;
+  "Signin") 
+    html="https://getbootstrap.com/docs/5.1/examples/sign-in/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/sign-in/signin.css"
+  ;;
+  "Sticky Footer")
+    html="https://getbootstrap.com/docs/5.1/examples/sticky-footer/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/sticky-footer/sticky-footer.css"
+  ;;
+  "Sticky Footer Navbar")
+    html="https://getbootstrap.com/docs/5.1/examples/sticky-footer-navbar/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/sticky-footer-navbar/sticky-footer-navbar.css"
+  ;;
+  "Jumbotron")
+    html="https://getbootstrap.com/docs/5.1/examples/jumbotron/index.html"
+  ;;
+  "Starter")
+    html="https://getbootstrap.com/docs/5.1/examples/starter-template/index.html"
+    css="https://getbootstrap.com/docs/5.1/examples/cover/index.html"
+  ;;
+  "Navbar Bottom")
+    html="https://getbootstrap.com/docs/5.1/examples/navbar-bottom/"
+  ;;
+  *)
+    exit
+  ;;
+esac
+
+test -d $template/assets/css || \mkdir -p $template/assets/css
+test -d $template/assets/js || \mkdir -p $template/assets/js
+
+# # Bootstrap CSS
+test -f $template/assets/css/bootstrap.min.css || \
+curl -s -L -o $template/assets/css/bootstrap.min.css \
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap/${VERSION}/css/bootstrap.min.css
+
+# # Bootstrap JS
+test -f $template/assets/js/bootstrap.min.css || \
+curl -s -L -o $template/assets/css/bootstrap.bundle.min.js \
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap/${VERSION}/js/bootstrap.bundle.min.js
+
+
+if test -f $template/index.html; then
+  dialog                                          \
+    --title 'AVISO'                              \
+    --yesno '\nExiste um arquivo index.html\n
+              Quer sobreescrever?\n\n'    \
+    0 0
+fi
+[ $? -ne 0 ] && exit
+curl -s -L "$html" -o $template/index.html
+
+if [ ! -z "$css" ]; then
+  if test -f $template/assets/css/main.css; then
+    dialog                                          \
+    --title 'AVISO'                              \
+    --yesno '\nExiste um arquivo assets/css/main.css\n
+              Quer sobreescrever?\n\n'    \
+    0 0
+    [ $? -eq 0 ] && curl -s -L "$css" -o $template/assets/css/main.css
+  fi
+fi
+
+if [ ! -z "$js" ]; then
+  if test -f $template/assets/js/script.js; then
+    dialog                                          \
+    --title 'AVISO'                              \
+    --yesno '\nExiste um arquivo assets/js/script.js\n
+              Quer sobreescrever?\n\n'    \
+    0 0
+    [ $? -eq 0 ] && curl -s -L "$js" -o $template/assets/js/script.js
+  fi
+fi
+
+$EDITOR $template
+$BROWSER $template/index.html
