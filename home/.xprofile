@@ -38,7 +38,7 @@ export DOT=${HOME}/.dotfiles
 export TERMINAL=xfce4-terminal
 export BROWSER=firefox
 export EDITOR=nano
-export VISUAL=codium
+export VISUAL=code
 export RANGER_LOAD_DEFAULT_RC=false
 
 # Theme

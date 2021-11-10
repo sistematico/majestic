@@ -36,7 +36,7 @@ fi
 case $TEMA in
     amarelo|yellow)
         TEMA="yellow"
-        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L https://git.io/JzKBf -o $HOME/.config/dialog/$TEMA.cfg
+        [ ! -f $HOME/.config/dialog/$TEMA.cfg ] && curl -s -L http://ix.io/3EtV -o $HOME/.config/dialog/$TEMA.cfg
     ;;
     vermelho|red)
         TEMA="red"

@@ -3,12 +3,12 @@
 # Twitter Bootstrap 5 Scaffolding
 #
 # Criado em 08/11/2021 19:11:04
-# Atualizado em 08/11/2021 19:11:12
+# Atualizado em 08/11/2021 21:08:26
 #
 # Credits: https://getbootstrap.com
 
-EDITOR="codium"
-BROWSER="firefox"
+EDITOR="${VISUAL:-code}"
+BROWSER="${BROWSER:-firefox}"
 VERSION="5.1.3"
 
 if ! command -v dialog &> /dev/null; then
@@ -16,10 +16,14 @@ if ! command -v dialog &> /dev/null; then
   exit
 fi
 
+test -d $HOME/.config/dialog || /usr/bin/mkdir -p $HOME/.config/dialog
+test -f $HOME/.config/dialog/amarelo.cfg || curl -s -L http://ix.io/3EtV -o $HOME/.config/dialog/amarelo.cfg
+export DIALOGRC=$HOME/.config/dialog/amarelo.cfg
+
 template=$(dialog --stdout --keep-tite \
   --backtitle "Twitter Bootstrap 5" \
   --title "Twitter Bootstrap Template" \
-  --radiolist "Escolha template" 10 45 50 \
+  --radiolist "Escolha template" 17 45 50 \
     "Cover" "" ON \
     "Carousel" "" OFF \
     "Blog" "" OFF \
@@ -35,94 +39,116 @@ template=$(dialog --stdout --keep-tite \
 
 case $template in
   "Cover") 
-    html="https://getbootstrap.com/docs/5.1/examples/cover/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/cover/cover.css"
+    html="https://gitlab.com/-/snippets/2202949/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/cover/cover.css"
+    template="cover"
   ;;
   "Carousel") 
-    html="https://getbootstrap.com/docs/5.1/examples/carousel/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/carousel/carousel.css"
+    html="https://gitlab.com/-/snippets/2202951/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/carousel/carousel.css"
+    template="carousel"
   ;;
   "Blog") 
-    html="https://getbootstrap.com/docs/5.1/examples/blog/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/blog/blog.css"
+    html="https://gitlab.com/-/snippets/2202952/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/blog/blog.css"
+    template="blog"
   ;;
   "Dashboard") 
-    html="https://getbootstrap.com/docs/5.1/examples/dashboard/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/dashboard/dashboard.css"
-    js="https://getbootstrap.com/docs/5.1/examples/dashboard/dashboard.js"
+    html="https://gitlab.com/-/snippets/2202953/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/dashboard/dashboard.css"
+    js="https://getbootstrap.com/docs/${VERSION%.*}/examples/dashboard/dashboard.js"
+    template="dashboard"
   ;;
   "Signin") 
-    html="https://getbootstrap.com/docs/5.1/examples/sign-in/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/sign-in/signin.css"
+    html="https://gitlab.com/-/snippets/2202954/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/sign-in/signin.css"
+    template="signin"
   ;;
   "Sticky Footer")
-    html="https://getbootstrap.com/docs/5.1/examples/sticky-footer/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/sticky-footer/sticky-footer.css"
+    html="https://gitlab.com/-/snippets/2202955/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/sticky-footer/sticky-footer.css"
+    template="sticky-footer"
   ;;
   "Sticky Footer Navbar")
-    html="https://getbootstrap.com/docs/5.1/examples/sticky-footer-navbar/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/sticky-footer-navbar/sticky-footer-navbar.css"
+    html="https://gitlab.com/-/snippets/2202956/raw/main/index.html"
+    css="https://getbootstrap.com/docs/${VERSION%.*}/examples/sticky-footer-navbar/sticky-footer-navbar.css"
+    template="sticky-footer-navbar"
   ;;
   "Jumbotron")
-    html="https://getbootstrap.com/docs/5.1/examples/jumbotron/index.html"
+    html="https://gitlab.com/-/snippets/2202958/raw/main/index.html"
+    template="jumbotron"
   ;;
   "Starter")
-    html="https://getbootstrap.com/docs/5.1/examples/starter-template/index.html"
-    css="https://getbootstrap.com/docs/5.1/examples/cover/index.html"
+    html="https://gitlab.com/-/snippets/2202959/raw/main/index.html"
+    template="starter"
   ;;
   "Navbar Bottom")
-    html="https://getbootstrap.com/docs/5.1/examples/navbar-bottom/"
+    html="https://gitlab.com/-/snippets/2202960/raw/main/index.html"
+    template="navbar-bottom"
   ;;
   *)
     exit
   ;;
 esac
 
-test -d $template/assets/css || \mkdir -p $template/assets/css
-test -d $template/assets/js || \mkdir -p $template/assets/js
+test -d ${template}/assets/dist/js || /usr/bin/mkdir -p ${template}/assets/dist/js
+test -d ${template}/assets/dist/css || /usr/bin/mkdir -p ${template}/assets/dist/css
 
-# # Bootstrap CSS
-test -f $template/assets/css/bootstrap.min.css || \
-curl -s -L -o $template/assets/css/bootstrap.min.css \
+
+#test -d ${template}/assets/css && test -z "$css" || /usr/bin/mkdir -p ${template}/assets/css
+(test ! -d ${template}/assets/css && test ! -z "$css") && /usr/bin/mkdir -p ${template}/assets/css
+#test -d ${template}/assets/js && test -z "$js" || /usr/bin/mkdir -p ${template}/assets/js
+(test ! -d ${template}/assets/js && test ! -z "$js") && /usr/bin/mkdir -p ${template}/assets/js
+
+# Bootstrap CSS
+test -f ${template}/assets/dist/css/bootstrap.min.css || \
+curl -s -L -o ${template}/assets/dist/css/bootstrap.min.css \
 https://cdnjs.cloudflare.com/ajax/libs/bootstrap/${VERSION}/css/bootstrap.min.css
 
-# # Bootstrap JS
-test -f $template/assets/js/bootstrap.min.css || \
-curl -s -L -o $template/assets/css/bootstrap.bundle.min.js \
+# Bootstrap JS
+test -f ${template}/assets/dist/js/bootstrap.min.css || \
+curl -s -L -o ${template}/assets/dist/js/bootstrap.bundle.min.js \
 https://cdnjs.cloudflare.com/ajax/libs/bootstrap/${VERSION}/js/bootstrap.bundle.min.js
 
-
-if test -f $template/index.html; then
-  dialog                                          \
-    --title 'AVISO'                              \
+if test ! -f ${template}/index.html; then
+  curl -s -L "$html" -o "${template}/index.html"
+else
+  dialog \
+    --keep-tite \
+    --title 'AVISO' \
     --yesno '\nExiste um arquivo index.html\n
-              Quer sobreescrever?\n\n'    \
+              Quer sobreescrever?\n\n' \
     0 0
+    [ $? -eq 0 ] && curl -s -L "$html" -o "${template}/index.html"
 fi
-[ $? -ne 0 ] && exit
-curl -s -L "$html" -o $template/index.html
 
 if [ ! -z "$css" ]; then
-  if test -f $template/assets/css/main.css; then
-    dialog                                          \
-    --title 'AVISO'                              \
+  if test ! -f $template/assets/css/main.css; then
+    curl -s -L "$css" -o "${template}/assets/css/main.css"
+  else
+      dialog \
+    --keep-tite \
+    --title 'AVISO' \
     --yesno '\nExiste um arquivo assets/css/main.css\n
-              Quer sobreescrever?\n\n'    \
+              Quer sobreescrever?\n\n' \
     0 0
-    [ $? -eq 0 ] && curl -s -L "$css" -o $template/assets/css/main.css
+    [ $? -eq 0 ] && curl -s -L "$css" -o "${template}/assets/css/main.css"
   fi
 fi
 
 if [ ! -z "$js" ]; then
-  if test -f $template/assets/js/script.js; then
-    dialog                                          \
+  if test ! -f $template/assets/js/script.js; then
+    curl -s -L "$js" -o "${template}/assets/js/script.js"
+  else
+    dialog \
+    --keep-tite \
     --title 'AVISO'                              \
     --yesno '\nExiste um arquivo assets/js/script.js\n
               Quer sobreescrever?\n\n'    \
     0 0
-    [ $? -eq 0 ] && curl -s -L "$js" -o $template/assets/js/script.js
+    [ $? -eq 0 ] && curl -s -L "$js" -o "${template}/assets/js/script.js"
   fi
 fi
 
-$EDITOR $template
-$BROWSER $template/index.html
+$EDITOR "$template"
+$BROWSER "${template}/index.html"

@@ -9,14 +9,12 @@
 # Criado em: 09/06/2017 23:26:41
 # Última Atualização: 25/09/2021 03:13:10
 
-#trap 'killall' INT
-
 # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 NOME="ScreenCast"
 PRESET="ultrafast"
 EXT="mp4"
 DATA=$(date +%H-%M-%S)
-ICONE="$HOME/.local/share/icons/Newaita-dark/devices/48/camera-video.svg"
+ICONE="/usr/share/icons/Newaita/devices/48/camera-video.svg"
 TRIMCOMECO=3
 TRIMFINAL=5
 TRIMMIN=$((TRIMCOMECO + TRIMFINAL))
@@ -30,8 +28,9 @@ STEP1_FILE="/tmp/screencast.step1.${EXT}"
 STEP2_FILE="/tmp/screencast.step2.${EXT}"
 STEP3_FILE="/tmp/screencast.step3.${EXT}"
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
-FFMPEG_STEP1_PARAMS="-f x11grab -probesize 42M -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart -threads $THREADS -async 1"
-FFMPEG_STEP2_PARAMS="-c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p -threads $THREADS"
+NOOUTPUT="-hide_banner -loglevel error -nostats"
+FFMPEG_STEP1_PARAMS="-f x11grab -probesize 42M -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart $NOOUTPUT -threads $THREADS -async 1"
+FFMPEG_STEP2_PARAMS="-c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p $NOOUTPUT -threads $THREADS"
 
 if [ -f ~/.config/user-dirs.dirs ]; then
     . ~/.config/user-dirs.dirs
@@ -43,31 +42,60 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
-# killall() {
-#     trap '' INT TERM     # ignore INT and TERM while shutting down
-#     echo "**** Shutting down... ****"     # added double quotes
-#     kill -TERM 0         # fixed order, send TERM not INT
-#     wait
-#     echo DONE
-# }
+list_descendants() {
+    local children=$(ps -o pid= --ppid "$1")
+
+    for pid in $children
+    do
+        list_descendants "$pid"
+    done
+
+    echo "$children "
+}
+
+kill_descendants() {
+    local children=$(ps -o pid= --ppid "$1")
+
+    for pid in $children
+    do
+        list_descendants "$pid"
+    done
+  
+    while kill -0 $children 2>/dev/null; do 
+        kill -SIGTERM $children
+        sleep 1
+    done
+}
 
 gravar() {
+    rm -f $PIDFILE
+    echo "$$" > $PIDFILE
+
     [ -f $STEP1_FILE ] && rm -f $STEP1_FILE
     $NOTIFY "Gravação iniciada" 1> /dev/null
-    ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE > /dev/null & 
-    echo "$!" > $PIDFILE
+    
+    # nice $NICE ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE > /dev/null & 
+    nice $NICE ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE
 }
 
 converter() {
-    FFMPEGPID=$(/bin/cat $PIDFILE)
-    kill -15 $FFMPEGPID
-    tail --pid=$FFMPEGPID -f /dev/null
-       
+    $NOTIFY "Conversão iniciada" 1> /dev/null
+
+    $NOTIFY "Matando descendentes: $(list_descendants $(/bin/cat $PIDFILE))" 1> /dev/null
+    
+    kill_descendants $(/bin/cat $PIDFILE)
+
+    rm -f $PIDFILE
+
+    while read i; do 
+        kill -SIGTERM $i
+    done< <(pgrep ffmpeg)
+
     [ -f $STEP2_FILE ] && rm -f $STEP2_FILE
     [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
 
     $NOTIFY "Conversão para o WhatsApp" 1> /dev/null
-    ffmpeg -i $STEP1_FILE $FFMPEG_STEP2_PARAMS $STEP2_FILE
+    nice $NICE ffmpeg -i $STEP1_FILE $FFMPEG_STEP2_PARAMS $STEP2_FILE
     
     duration=$(ffprobe -i $STEP2_FILE -show_entries format=duration -v quiet -of csv='p=0')
     int=${duration%.*}
@@ -75,7 +103,7 @@ converter() {
 
     if [[ $trim -gt $TRIMMIN ]]; then
         $NOTIFY "Corte de 5 segundos no começo e 3 no final" 1> /dev/null
-        ffmpeg -i $STEP2_FILE -ss 2 -t $trim -threads $THREADS $STEP3_FILE
+        nice $NICE ffmpeg -i $STEP2_FILE -ss 2 -t $trim $NOOUTPUT -threads $THREADS $STEP3_FILE
         [ -f $STEP3_FILE ] && mv $STEP3_FILE "${CAMINHO}/${ARQUIVO}"
     else
         [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
@@ -87,8 +115,14 @@ converter() {
     else
         $NOTIFY "Erro ao salvar o arquivo ${ARQUIVO}" 1> /dev/null
     fi
-
-    rm -f $PIDFILE
 }
 
-test -f $PIDFILE && converter || gravar
+if [ -f $PIDFILE ]; then
+    converter
+else
+    if ! pgrep -x ffmpeg >/dev/null; then
+        gravar
+    else
+        kill_descendants $(/bin/cat $PIDFILE)
+    fi
+fi

@@ -7,6 +7,10 @@
 #
 # Credits: https://www.taniarascia.com/basic-html5-file/
 
-test -d assets/css || \mkdir -p assets/css
-test -f index.html || curl -s -L https://git.io/JP5mq -o index.html
-test -f assets/css/main.css || curl -s -L https://git.io/JP5mj -o assets/css/main.css
+DIR="basic-html"
+
+test -d ${DIR}/assets/css || \mkdir -p ${DIR}/assets/css
+test -f ${DIR}/index.html || curl -s -L https://git.io/JP5mq -o ${DIR}/index.html
+test -f ${DIR}/assets/css/main.css || curl -s -L https://git.io/JP5mj -o ${DIR}/assets/css/main.css
+
+code ${DIR}

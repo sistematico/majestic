@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/videodown.pid"; then
+if pgrep -x "ffmpeg" > /dev/null && test -f "/tmp/screencast.pid"; then
 	echo "📹️ ("Gravando")️"
 else
 	echo "📹️"
