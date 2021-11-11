@@ -1,16 +1,99 @@
 #!/usr/bin/env bash
 #
+# Arquivo: sf-html
 # HTML5 Scaffolding
 #
 # Criado em 04/11/2021 00:11:34
-# Atualizado em 04/11/2021 00:30:51
+# Atualizado em 11/11/2021 06:26:47
 #
 # Credits: https://www.taniarascia.com/basic-html5-file/
 
-DIR="basic-html"
+PREVIEW="y"
+# EDITOR="${VISUAL:-code}"
+EDITOR="codium"
+BORWSER="${BROWSER:-firefox}"
 
-test -d ${DIR}/assets/css || \mkdir -p ${DIR}/assets/css
-test -f ${DIR}/index.html || curl -s -L https://git.io/JP5mq -o ${DIR}/index.html
-test -f ${DIR}/assets/css/main.css || curl -s -L https://git.io/JP5mj -o ${DIR}/assets/css/main.css
+if ! command -v dialog &> /dev/null; then
+  echo -e "O programa \e[1;31mdialog\e[0m não está instalado, instale-o primeiro."
+  exit
+fi
 
-code ${DIR}
+test -d $HOME/.config/dialog || /usr/bin/mkdir -p $HOME/.config/dialog
+test -f $HOME/.config/dialog/amarelo.cfg || curl -s -L http://ix.io/3EtV -o $HOME/.config/dialog/amarelo.cfg
+export DIALOGRC=$HOME/.config/dialog/amarelo.cfg
+
+template=$(dialog --stdout --keep-tite \
+  --backtitle "HTML Scaffolding" \
+  --title "HTML Template" \
+  --radiolist "Escolha template" 10 34 50 \
+    "Grid Starter" "" ON \
+    "Grid Center" "" OFF \
+    "Flex Full Div Overflow" "" OFF 2>&1)
+
+[ $? -ne 0 ] && exit
+
+case $template in
+  "Grid Starter") 
+    html="https://gitlab.com/-/snippets/2204824/raw/main/starter.html"
+    css="https://gitlab.com/-/snippets/2204824/raw/main/starter.css"
+    js="https://gitlab.com/-/snippets/2204824/raw/main/starter.js"
+    template="grid-starter"
+  ;;
+  "Grid Center") 
+    html="https://gitlab.com/-/snippets/2204829/raw/main/grid-center.html"
+    css="https://gitlab.com/-/snippets/2204829/raw/main/grid-center.css"
+    template="grid-center"
+  ;;
+  "Flex Full Div Overflow") 
+    html="https://gitlab.com/-/snippets/2204832/raw/main/flex-full-overflow.html"
+    css="https://gitlab.com/-/snippets/2204832/raw/main/flex-full-overflow.css"
+    template="flex-overflow"
+  ;;
+  *)
+    exit
+  ;;
+esac
+
+if test -d ${template}; then
+  dialog \
+    --keep-tite \
+    --title 'AVISO' \
+    --yesno "\nExiste um diretório ${template}\n
+              Quer sobreescrever?\n\n" \
+    0 0
+    [ $? -ne 0 ] && exit
+fi
+
+test -d ${template}/assets/css || \mkdir -p ${template}/assets/css
+test -d ${template}/assets/img || \mkdir -p ${template}/assets/img
+(test ! -d ${template}/assets/js && test ! -z "$js") && \mkdir -p ${template}/assets/js
+
+# BG
+test -f ${template}/assets/img/bg.jpg || \
+  curl -s -L \
+  'https://drive.google.com/uc?id=1FgPbfVmhnKXCDrCUiVd3O5665o9zNjs1&export=download' \
+  -o ${template}/assets/img/bg.jpg
+
+# Favicon
+test -d ${template}/assets/img/favicon || \
+  (curl -s -L \
+  'https://drive.google.com/uc?id=17YJYeWo6ISlNVxefdL9xOggihPzJETl0&export=download' \
+  -o ${template}/assets/img/favicon.zip && \
+
+  unzip ${template}/assets/img/favicon.zip -d ${template}/assets/img && \
+  
+  mv ${template}/assets/img/favicon/site.webmanifest ${template}/ && \
+  
+  rm -f ${template}/assets/img/favicon.zip)
+
+test -f ${template}/index.html || curl -s -L "$html" -o ${template}/index.html
+test -f ${template}/assets/css/main.css || curl -s -L "$css" -o ${template}/assets/css/main.css
+(test ! -f ${template}/assets/js/script.js && test ! -z "$js") && curl -s -L "$js" -o ${template}/assets/js/script.js
+
+test -f ${template}/.prettierrc.json || curl -sL -o ${template}/.prettierrc.json https://gitlab.com/-/snippets/2204824/raw/main/.prettierrc.json
+
+$EDITOR ${template}
+
+if [ "$PREVIEW" == "y" ]; then
+  $BROWSER ${template}/index.html &
+fi

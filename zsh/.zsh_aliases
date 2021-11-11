@@ -1,6 +1,5 @@
 alias e='exit'
 alias s='sudo su'
-alias ls='ls --color=auto --group-directories-first'
 alias pikaur='pikaur --noconfirm'
 alias pacman='sudo pacman'
 alias rehash="source $HOME/.zshrc"
