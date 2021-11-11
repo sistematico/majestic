@@ -60,7 +60,8 @@ TIPO=$(dialog --stdout --keep-tite \
     "Lit" "" OFF \
     "Lit TS" "" OFF \
     "Svelte" "" OFF \
-    "Svelte TS" "" OFF 2>&1)
+    "Svelte TS" "" \
+    "Editar a si mesmo" "" OFF 2>&1)
 
 case $TIPO in
   "Vue Bootstrap") tipo="vue" subtipo="bootstrap" ;;
@@ -76,6 +77,7 @@ case $TIPO in
   "Lit TS") tipo="lit-ts" ;;
   "Svelte") tipo="svelte" ;;
   "Svelte TS") tipo="svelte-ts" ;;
+  "Editar a si mesmo") $EDITOR $HOME/.local/bin/sf-vide && exit ;;
   *) exit ;;
 esac
 

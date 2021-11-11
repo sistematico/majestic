@@ -7,7 +7,8 @@
 #
 # Credits: https://getbootstrap.com
 
-EDITOR="${VISUAL:-code}"
+# EDITOR="${VISUAL:-code}"
+EDITOR="codium"
 BROWSER="${BROWSER:-firefox}"
 VERSION="5.1.3"
 
@@ -33,7 +34,9 @@ template=$(dialog --stdout --keep-tite \
     "Sticky Footer Navbar" "" OFF \
     "Jumbotron" "" OFF \
     "Starter" "" OFF \
-    "Navbar Bottom" "" OFF 2>&1)
+    "Navbar Bottom" "" OFF \
+    "Bootstrap Chatbox" "" \
+    "Editar a si mesmo" "" OFF 2>&1)
 
 [ $? -ne 0 ] && exit
 
@@ -86,6 +89,14 @@ case $template in
     html="https://gitlab.com/-/snippets/2202960/raw/main/index.html"
     template="navbar-bottom"
   ;;
+  "Bootstrap Chatbox")
+    html="https://gitlab.com/-/snippets/2202960/raw/main/index.html"
+    template="bootstrap-chatbox"
+  ;;
+  "Editar a si mesmo") 
+    $EDITOR $HOME/.local/bin/sf-bootstrap
+    exit
+  ;;
   *)
     exit
   ;;
@@ -94,10 +105,7 @@ esac
 test -d ${template}/assets/dist/js || /usr/bin/mkdir -p ${template}/assets/dist/js
 test -d ${template}/assets/dist/css || /usr/bin/mkdir -p ${template}/assets/dist/css
 
-
-#test -d ${template}/assets/css && test -z "$css" || /usr/bin/mkdir -p ${template}/assets/css
 (test ! -d ${template}/assets/css && test ! -z "$css") && /usr/bin/mkdir -p ${template}/assets/css
-#test -d ${template}/assets/js && test -z "$js" || /usr/bin/mkdir -p ${template}/assets/js
 (test ! -d ${template}/assets/js && test ! -z "$js") && /usr/bin/mkdir -p ${template}/assets/js
 
 # Bootstrap CSS

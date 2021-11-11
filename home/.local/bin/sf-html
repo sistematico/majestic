@@ -30,7 +30,8 @@ templ=$(dialog --stdout --keep-tite \
   --radiolist "Escolha template" 10 34 50 \
     "Grid Starter" "" ON \
     "Grid Center" "" OFF \
-    "Flex Full Div Overflow" "" OFF 2>&1)
+    "Flex Full Div Overflow" "" OFF \
+    "Editar a si mesmo" "" OFF 2>&1)
 
 [ $? -ne 0 ] && exit
 
@@ -50,6 +51,10 @@ case $templ in
     html="https://gitlab.com/-/snippets/2204832/raw/main/flex-full-overflow.html"
     css="https://gitlab.com/-/snippets/2204832/raw/main/flex-full-overflow.css"
     template="flex-overflow"
+  ;;
+  "Editar a si mesmo") 
+    $EDITOR $HOME/.local/bin/sf-html
+    exit
   ;;
   *)
     exit
@@ -82,7 +87,7 @@ test -d ${template}/assets/img/favicon || \
   'https://drive.google.com/uc?id=17YJYeWo6ISlNVxefdL9xOggihPzJETl0&export=download' \
   -o ${template}/assets/img/favicon.zip && \
 
-  unzip ${template}/assets/img/favicon.zip -d ${template}/assets/img && \
+  unzip -q ${template}/assets/img/favicon.zip -d ${template}/assets/img && \
   
   mv ${template}/assets/img/favicon/site.webmanifest ${template}/ && \
   
