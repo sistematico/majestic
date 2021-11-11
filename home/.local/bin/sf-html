@@ -11,7 +11,9 @@
 PREVIEW="y"
 # EDITOR="${VISUAL:-code}"
 EDITOR="codium"
-BORWSER="${BROWSER:-firefox}"
+BROWSER="${BROWSER:-firefox}"
+ICONE="$HOME/.local/share/icons/twemoji/party-popper.svg"
+
 
 if ! command -v dialog &> /dev/null; then
   echo -e "O programa \e[1;31mdialog\e[0m não está instalado, instale-o primeiro."
@@ -22,7 +24,7 @@ test -d $HOME/.config/dialog || /usr/bin/mkdir -p $HOME/.config/dialog
 test -f $HOME/.config/dialog/amarelo.cfg || curl -s -L http://ix.io/3EtV -o $HOME/.config/dialog/amarelo.cfg
 export DIALOGRC=$HOME/.config/dialog/amarelo.cfg
 
-template=$(dialog --stdout --keep-tite \
+templ=$(dialog --stdout --keep-tite \
   --backtitle "HTML Scaffolding" \
   --title "HTML Template" \
   --radiolist "Escolha template" 10 34 50 \
@@ -32,7 +34,7 @@ template=$(dialog --stdout --keep-tite \
 
 [ $? -ne 0 ] && exit
 
-case $template in
+case $templ in
   "Grid Starter") 
     html="https://gitlab.com/-/snippets/2204824/raw/main/starter.html"
     css="https://gitlab.com/-/snippets/2204824/raw/main/starter.css"
@@ -97,3 +99,5 @@ $EDITOR ${template}
 if [ "$PREVIEW" == "y" ]; then
   $BROWSER ${template}/index.html &
 fi
+
+$HOME/bin/notify.sh "sf-html" $ICONE "HTML Scaffolding" "Scaffolding do template $templ pronto!"

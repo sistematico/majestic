@@ -37,7 +37,7 @@ select-word-style bash
 ###############
 # Core Aliases
 alias ls='ls --color=auto --group-directories-first'
-alias rm='rm -vi'
+alias rm='rm -vI'
 alias cp='cp -vi'
 alias mv='mv -vi'
 
