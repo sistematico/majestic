@@ -40,6 +40,7 @@ alias ls='ls --color=auto --group-directories-first'
 alias rm='rm -vI'
 alias cp='cp -vi'
 alias mv='mv -vi'
+alias mkdir='mkdir -pv'
 
 # Main Aliases
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases

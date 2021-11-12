@@ -2,11 +2,12 @@ alias e='exit'
 alias s='sudo su'
 alias pikaur='pikaur --noconfirm'
 alias pacman='sudo pacman'
-alias rehash="source $HOME/.zshrc"
+alias rehash='source $HOME/.zshrc'
+alias fd='fd -uu'
 alias rg='rg -uuu'
 alias lostfiles='sudo lostfiles strict | egrep -vi "/etc/systemd/user/sockets.target.wants|/etc/systemd/user/default.target.wants|/usr/local/bin|/usr/share/(themes|icons|hplip|fonts|cinnamon|backgrounds|docky|mime|pixmaps|\.mono|nginx|agave)|/var/(default|cache)|/usr/lib/python3\.8|-disabled"'
 alias pip-update='pip3 list --outdated --format=freeze | grep -v "^\-e" | cut -d = -f 1 | xargs -n1 pip3 install -U'
-alias fd='fd -uu'
-alias pacman-clean='sudo pacman -Qdtq | pacman -Rs -'
+alias pacman-clean='sudo pacman -Qdtq | pacman -Rs - 2> /dev/null'
+alias lostfiles='sudo lostfiles strict | egrep -vi "/usr/src/nvidia-|/etc/X11/xorg.conf.d|/etc/pacman.d/hooks|/opt/containerd|/etc/fonts|/etc/systemd/user/sockets.target.wants|/etc/systemd/user/default.target.wants|/usr/local/bin|/usr/share/(themes|icons|hplip|fonts|cinnamon|backgrounds|docky|mime|pixmaps|\.mono|nginx|agave)|/var/(default|cache)|/usr/lib/python3\.8|-disabled"'
 
 alias -s {cs,ts,html}=code

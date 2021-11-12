@@ -7,14 +7,13 @@
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Criado em: 09/06/2017 23:26:41
-# Última Atualização: 25/09/2021 03:13:10
+# Última Atualização: 12/11/2021 05:37:58
 
-#trap 'killall' INT
-
-# ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 NOME="ScreenCast"
-PRESET="ultrafast"
+PRESET="ultrafast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
+FRAMERATE=25
 EXT="mp4"
+WHATSAPP="n" # WhatsApp re-encode
 DATA=$(date +%H-%M-%S)
 ICONE="$HOME/.local/share/icons/Newaita-dark/devices/48/camera-video.svg"
 TRIMCOMECO=5
@@ -26,23 +25,9 @@ TMUX_SESSION="ScreenCast"
 NOTIFY="$HOME/bin/notify.sh ScreenCast ${ICONE} $NOME"
 CAMINHO="${HOME}/video/screencast"
 PIDFILE="/tmp/screencast.pid"
-STEP1_FILE="/tmp/screencast.step1.${EXT}"
-STEP2_FILE="/tmp/screencast.step2.${EXT}"
-STEP3_FILE="/tmp/screencast.step3.${EXT}"
+TEMPFILE="/tmp/screencast-temp.${EXT}"
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
-#FFMPEG_STEP1_PARAMS="-f x11grab -probesize 42M -s $RESOLUCAO -i $DISPLAY -f pulse -ac 2 -i default -c:v libx264 -crf 23 -c:a aac -ac 2 -b:a 128k -movflags faststart -threads $THREADS -async 1"
-# FFMPEG_STEP1_PARAMS="-video_size $RESOLUCAO -framerate 25 -f x11grab -i :0.0+0,30 -f pulse -i default -ac 2 -threads $THREADS"
-FFMPEG_STEP1_PARAMS="
-  -video_size $RESOLUCAO
-  -framerate 25 
-  -f x11grab 
-  -probesize 42M
-  -i :0.0
-  -f pulse 
-  -i default 
-  -ac 2 
-  -threads $THREADS 
-"
+FFMPEG_STEP1_PARAMS="-f x11grab -video_size $RESOLUCAO -framerate $FRAMERATE -i $DISPLAY -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac"
 FFMPEG_STEP2_PARAMS="-c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p -threads $THREADS"
 
 if [ -f ~/.config/user-dirs.dirs ]; then
@@ -56,43 +41,33 @@ ARQUIVO="screencast-${DATA}.${EXT}"
 [ ! -d $CAMINHO ] && mkdir -p $CAMINHO
 
 gravar() {
-    [ -f $STEP1_FILE ] && rm -f $STEP1_FILE
+    [ -f $TEMPFILE ] && rm -f $TEMPFILE
     $NOTIFY "Gravação iniciada" 1> /dev/null
-    ffmpeg $FFMPEG_STEP1_PARAMS $STEP1_FILE > /dev/null & 
+    ffmpeg $FFMPEG_STEP1_PARAMS $TEMPFILE > /dev/null & 
     echo "$!" > $PIDFILE
 }
 
 converter() {
-    [ -f $STEP2_FILE ] && rm -f $STEP2_FILE
-    [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
-    
     FFMPEGPID=$(/bin/cat $PIDFILE)
     kill -15 $FFMPEGPID
     tail --pid=$FFMPEGPID -f /dev/null
 
-    $NOTIFY "Conversão para o WhatsApp" 1> /dev/null
-    ffmpeg -i $STEP1_FILE $FFMPEG_STEP2_PARAMS $STEP2_FILE
-    
-    duration=$(ffprobe -i $STEP2_FILE -show_entries format=duration -v quiet -of csv='p=0')
-    int=${duration%.*}
-    trim=$((int - 3))
+    if [ "$WHATSAPP" == "y" ]; then
+        $NOTIFY "Conversão para o WhatsApp" 1> /dev/null
+        ffmpeg -i $TEMPFILE $FFMPEG_STEP2_PARAMS ${CAMINHO}/${ARQUIVO}
 
-    if [[ $trim -gt $TRIMMIN ]]; then
-        $NOTIFY "Corte de 5 segundos no começo e 3 no final" 1> /dev/null
-        ffmpeg -i $STEP2_FILE -ss 2 -t $trim -threads $THREADS $STEP3_FILE
-        [ -f $STEP3_FILE ] && mv $STEP3_FILE "${CAMINHO}/${ARQUIVO}"
+        if [ $? -eq 0 && -f ${CAMINHO}/${ARQUIVO} ]; then
+            $NOTIFY "ScreenCast salvo ${ARQUIVO}" 1> /dev/null
+        else
+            $NOTIFY "Erro ao salvar o arquivo ${ARQUIVO}" 1> /dev/null
+        fi
     else
-        [ -f $STEP3_FILE ] && rm -f $STEP3_FILE
-        [ -f $STEP2_FILE ] && mv $STEP2_FILE "${CAMINHO}/${ARQUIVO}"
+        $NOTIFY "ScreenCast salvo: ${ARQUIVO}" 1> /dev/null
+        mv $TEMPFILE ${CAMINHO}/${ARQUIVO}
     fi
 
-    if [ -f ${CAMINHO}/${ARQUIVO} ]; then
-        $NOTIFY "ScreenCast salvo ${ARQUIVO}" 1> /dev/null
-    else
-        $NOTIFY "Erro ao salvar o arquivo ${ARQUIVO}" 1> /dev/null
-    fi
-
-    rm -f $PIDFILE
+    [ -f $TEMPFILE ] && rm -f $TEMPFILE
+    [ -f $PIDFILE ] && rm -f $PIDFILE
 }
 
 test -f $PIDFILE && converter || gravar
