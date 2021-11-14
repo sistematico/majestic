@@ -12,6 +12,7 @@ EDITOR="codium"
 BROWSER="${BROWSER:-firefox}"
 VERSION="5.1.3"
 
+
 if ! command -v dialog &> /dev/null; then
   echo -e "O programa \e[1;31mdialog\e[0m não está instalado, instale-o primeiro."
   exit
@@ -35,7 +36,7 @@ template=$(dialog --stdout --keep-tite \
     "Jumbotron" "" OFF \
     "Starter" "" OFF \
     "Navbar Bottom" "" OFF \
-    "Bootstrap Chatbox" "" \
+    "Bootstrap Chatbox" "" OFF \
     "Editar a si mesmo" "" OFF 2>&1)
 
 [ $? -ne 0 ] && exit
