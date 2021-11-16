@@ -42,7 +42,8 @@ export VISUAL=code
 export RANGER_LOAD_DEFAULT_RC=false
 
 # Theme
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+#export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+export GTK2_RC_FILES=/usr/share/themes/Adwaita/gtk-2.0/gtkrc
 #export GTK_THEME=Adwaita:dark
 export XCURSOR_THEME=Nordzy-cursors
 
