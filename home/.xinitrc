@@ -79,8 +79,11 @@ numlockx on &
 # IntelliJ Accents
 export XMODIFIERS=""
 
-session=${1:-i3}
+session=${1:-dwm}
 case $session in
+    dwm)
+        #startdwm
+    ;;
     i3|i3wm)
         xrandr --output HDMI-0 --primary --mode "2560x1440"
 

@@ -14,28 +14,26 @@
 # i3-gaps-rounded-git polybar-git feh dunst picom-ibhagwan-git 
 # rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris gnome-themes-extra dracula-gtk-theme ttf-dejavu rtl8192eu-git"
 
-XORG="xorg-server"
-NVIDIA="nvidia"
+XORG="xorg-server lib32-libxft-bgra libxft-bgra-git"
+NVIDIA="nvidia-vulkan nvidia-vulkan-utils"
 GNOME="gnome gdm gnome-extra"
 
 PKGS="base base-devel linux linux-headers linux-firmware efibootmgr unzip"
-PKGS="${PKGS} dkms intel-ucode grub os-prober ntfs-3g dhcpcd iwd links"
+PKGS="${PKGS} dkms intel-ucode grub os-prober ntfs-3g dhcpcd iwd links curl"
 PKGS="${PKGS} sudo nano openssh git cronie terminus-font gpm"
-PKGS="${PKGS} headsetcontrol-git fortune-mod"
-PKGS="${PKGS} fortune-mod-chucknorris rtl8192eu-git"
+PKGS="${PKGS} fortune-mod fortune-mod-chucknorris rtl8192eu-git"
 
 # Xorg
-#PKGS="${PKGS} ${XORG}
+PKGS="${PKGS} ${XORG}"
 
 # Nvidia
-#PKGS="${PKGS} ${NVIDIA}"
+PKGS="${PKGS} ${NVIDIA}"
 
 # Gnome
 #PKGS="${PKGS} ${GNOME}"
 
 [ ! -f /etc/systemd/network/20-wired.network ] && curl -L -s -o /etc/systemd/network/20-wired.network http://ix.io/3DDk
 [ ! -f /etc/systemd/network/loopback-alias.network ] && curl -L -s -o /etc/systemd/network/loopback-alias.network http://ix.io/3DDl
-
 [ ! -L /etc/resolv.conf ] && mv /etc/resolv.conf /var/tmp/resolv-$(date +%s).conf && ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 systemctl --now disable docker

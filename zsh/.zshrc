@@ -15,14 +15,24 @@ SAVEHIST=10000
 setopt autocd extendedglob notify
 
 autoload -Uz compinit && compinit
-autoload -Uz select-word-style && select-word-style bash
+#autoload -Uz select-word-style && select-word-style bash
 
 # Binds
-bindkey -e
+#bindkey -e
 
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
+#bindkey  "^[[H"   beginning-of-line
+#bindkey  "^[[F"   end-of-line
+
 bindkey  "^[[3~"  delete-char
+
+bindkey '\e[A'  up-line-or-history
+bindkey '\e[B'  down-line-or-history
+bindkey '\e[C'  forward-char
+bindkey '\e[D'  backward-char
+bindkey '\eOA'  up-line-or-history
+bindkey '\eOB'  down-line-or-history
+bindkey '\eOC'  forward-char
+bindkey '\eOD'  backward-char
 
 # Ctrl+Arrows
 bindkey "^[[1;5C" forward-word
@@ -31,6 +41,12 @@ bindkey "^[[1;5D" backward-word
 # Alt+Backspace
 autoload -Uz select-word-style
 select-word-style bash
+
+# st
+#function zle-line-init () { echoti smkx }
+#function zle-line-finish () { echoti rmkx }
+#zle -N zle-line-init
+#zle -N zle-line-finish
 
 ###############
 ## Aliases   ##
