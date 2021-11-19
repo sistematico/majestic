@@ -260,3 +260,30 @@ dos2unix() {
     sed -i $'s/\r$//' "$1"    # DOS to Unix
     #sed $'s/$/\r/'           # Unix to DOS
 }
+
+# Git
+rename-branch() {
+  git checkout $1
+  git branch -m $2
+  git push origin -u $2
+  git push origin --delete $1
+}
+
+delete-branch() {
+  git branch -D $1
+  git push origin --delete $1
+  #git fetch -p
+}
+
+new-branch() {
+  git checkout -b $1
+}
+
+create-diff() {
+  git diff $1 > ../patch.diff
+}  
+
+apply-patch() {
+  git checkout $1
+  git apply $2
+}

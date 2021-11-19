@@ -62,5 +62,6 @@
     "intelephense.environment.shortOpenTag": false,
     "intelephense.phpdoc.returnVoid": false,
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "cmake.configureOnOpen": false
 }

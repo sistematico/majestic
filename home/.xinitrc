@@ -42,7 +42,7 @@ export COMPOSER_HOME=${HOME}/.composer
 # D-BUS
 #dbus-update-activation-environment --systemd DISPLAY
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 # Vars
@@ -60,10 +60,10 @@ export VSCODE_GALLERY_CONTROL_URL=''
 export VSCODE_GALLERY_RECOMMENDATIONS_URL=''
 
 # iBus
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-ibus-daemon -drx &
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+fcitx5 -d &
 
 # Lang
 #unset LC_ALL
@@ -82,7 +82,13 @@ export XMODIFIERS=""
 session=${1:-dwm}
 case $session in
     dwm)
-        #startdwm
+        SERVICE=org.knopwob.dunst
+        ln -sfT \
+            "/usr/share/dbus-1/services/${SERVICE:-org.freedesktop.Notifications}.service" \
+            "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+
+        $HOME/.dwm/autostart
+		exec dwm
     ;;
     i3|i3wm)
         xrandr --output HDMI-0 --primary --mode "2560x1440"

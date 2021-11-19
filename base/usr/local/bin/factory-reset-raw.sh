@@ -15,7 +15,7 @@
 # rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris gnome-themes-extra dracula-gtk-theme ttf-dejavu rtl8192eu-git"
 
 XORG="xorg-server lib32-libxft-bgra libxft-bgra-git"
-NVIDIA="nvidia-vulkan nvidia-vulkan-utils"
+NVIDIA="nvidia-470xx-dkms"
 GNOME="gnome gdm gnome-extra"
 
 PKGS="base base-devel linux linux-headers linux-firmware efibootmgr unzip"
