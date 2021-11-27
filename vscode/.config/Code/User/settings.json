@@ -63,5 +63,6 @@
     "intelephense.phpdoc.returnVoid": false,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.minimap.enabled": false,
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "extensions.ignoreRecommendations": true
 }
