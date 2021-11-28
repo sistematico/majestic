@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+[ ! $1 ] &&
+	echo "Uso: $(basename $0) -p1 https://site.com/patch.diff" &&
+	exit 1
+
+regex='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
+
+for arg in "$@"
+do
+  shift
+
+  if [[ $arg =~ $regex ]] && [ "${arg: -5}" == ".diff" ]
+  then
+	url="$arg"
+	continue
+  fi
+  set -- "$@" "$arg"
+done
+
+if [ -z "$url" ]
+then
+	echo "URL inválida."
+	exit
+fi
+
+patch $@ < <(curl -sL $url)

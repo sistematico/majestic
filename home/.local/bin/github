@@ -49,6 +49,7 @@ atualiza() {
     status=$(git add . -n)
 
     if [ ! -z "${status}" ]; then
+        echo "Atualizando $1"
         c=$(echo $(git add . -n | tr '\r\n' ' '))
         m="Autocommit por ${nome}: alterações: $c"
         git add .

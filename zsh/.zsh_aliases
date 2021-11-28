@@ -16,3 +16,4 @@ alias -s {cs,ts,html}=code
 alias gch='git checkout'
 alias gph='git push'
 alias grv='git log --abbrev-commit --pretty=oneline'
+alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
