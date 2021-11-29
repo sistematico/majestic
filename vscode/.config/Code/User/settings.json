@@ -64,5 +64,6 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.minimap.enabled": false,
     "cmake.configureOnOpen": false,
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback', 'Material Icons', 'Font Awesome 5 Free', 'Font Awesome 5 Free Solid', 'Font Awesome 5 Brands', 'JoyPixels'"
 }
