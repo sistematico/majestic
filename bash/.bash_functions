@@ -305,3 +305,10 @@ dos2unix() {
     sed -i $'s/\r$//' "$1"    # DOS to Unix
     #sed $'s/$/\r/'           # Unix to DOS
 }
+
+remove-commit() {
+    FILTER_BRANCH_SQUELCH_WARNING=1 ; \
+    git filter-branch --force --index-filter \                                                                                                                                                                                                                                 [1]
+        "git rm --cached --ignore-unmatch $1" \
+        --prune-empty --tag-name-filter cat -- --all
+}

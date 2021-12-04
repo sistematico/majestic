@@ -92,13 +92,21 @@ bindkey "^[[1;5D" backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
 # Alt+Backspace
-backward-kill-dir () {
-    local WORDCHARS=${WORDCHARS/\/}
-    zle backward-kill-word
-    zle -f kill
+#backward-kill-dir () {
+#    local WORDCHARS=${WORDCHARS/\/}
+#    zle backward-kill-word
+#    zle -f kill
+#}
+#zle -N backward-kill-dir
+#bindkey '^[^?' backward-kill-dir
+
+my-backward-delete-word () {
+  local WORDCHARS='~!#$%^&*(){}[]<>?+;'
+  zle backward-delete-word
 }
-zle -N backward-kill-dir
-bindkey '^[^?' backward-kill-dir
+zle -N my-backward-delete-word
+#bindkey    '\e^?' my-backward-delete-word
+bindkey '^[^?' my-backward-delete-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -118,3 +126,5 @@ prompt_themes+=( stmco )
 prompt stmco
 
 eval `dircolors $HOME/.dircolors`
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -287,3 +287,10 @@ apply-patch() {
   git checkout $1
   git apply $2
 }
+
+remove-commit() {
+    FILTER_BRANCH_SQUELCH_WARNING=1 ; \
+    git filter-branch --force --index-filter \                                                                                                                                                                                                                                 [1]
+        "git rm --cached --ignore-unmatch $1" \
+        --prune-empty --tag-name-filter cat -- --all
+}
