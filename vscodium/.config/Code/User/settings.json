@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Dracula",
     "git.enableSmartCommit": true,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -19,5 +19,6 @@
     },
     "editor.minimap.enabled": false,
     "liveServer.settings.donotShowInfoMsg": true,
-    "editor.multiCursorModifier": "ctrlCmd"
+    "editor.multiCursorModifier": "ctrlCmd",
+    "bracket-pair-colorizer-2.depreciation-notice": false
 }
