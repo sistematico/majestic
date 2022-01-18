@@ -20,5 +20,6 @@
     "editor.minimap.enabled": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "editor.multiCursorModifier": "ctrlCmd",
-    "bracket-pair-colorizer-2.depreciation-notice": false
+    "bracket-pair-colorizer-2.depreciation-notice": false,
+    "iconify.inplace": false
 }
