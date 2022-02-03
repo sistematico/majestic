@@ -35,10 +35,10 @@ export GL=${HOME}/gitlab
 export DOT=${HOME}/.dotfiles
 
 # Vars
-export TERMINAL=xfce4-terminal
-export BROWSER=firefox
+export TERMINAL=st
+export BROWSER=chromium
 export EDITOR=nano
-export VISUAL=code
+export VISUAL=codium
 export RANGER_LOAD_DEFAULT_RC=false
 
 # Theme
@@ -78,9 +78,15 @@ export GNOME_KEYRING_PID
 export XMODIFIERS=""
 
 case $DESKTOP_SESSION in
+    dwm)
+        $HOME/.dwm/autostart &
+        $HOME/.dwm/dwmbar &
+        #exec dwm
+    ;;
     i3|i3wm|bspwm|openbox|herbsluftwm)
 		xrandr --output HDMI-0 --primary --mode "2560x1440"
 
+		export BROWSER=chromium
 		export TERMINAL=st
 		export GTK2_RC_FILES=$HOME/.local/themes/Nordic-darker-v40/gtk-2.0/gtkrc
 		export GTK_THEME=Nordic-darker-v40

@@ -128,3 +128,8 @@ prompt stmco
 eval `dircolors $HOME/.dircolors`
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)

@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.colorTheme": "Dracula",
     "workbench.startupEditor": "none",
     "security.workspace.trust.untrustedFiles": "open",
     "explorer.confirmDelete": false,

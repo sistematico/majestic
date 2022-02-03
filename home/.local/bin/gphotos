@@ -6,10 +6,16 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        16/06/2021 08:28:30
-# Última alteração: 16/06/2021 08:28:33
+# Última alteração: 03/02/2022 05:27:42
+
+if ! command -v rclone &> /dev/null
+then
+    echo "rclone could not be found"
+    exit
+fi
 
 dir="$HOME/google/photos"
-bw="--bwlimit 900k" # b|k|M|G
+bw="--bwlimit 2M" # b|k|M|G
 
 if [ $1 ]; then
 	/usr/bin/find $dir -type f | /usr/bin/wc -l
@@ -18,4 +24,3 @@ else
     	/usr/bin/rclone copy gphotos: $dir $bw 2>&1
 	fi
 fi
-

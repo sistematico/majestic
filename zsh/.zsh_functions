@@ -294,3 +294,23 @@ remove-commit() {
         "git rm --cached --ignore-unmatch $1" \
         --prune-empty --tag-name-filter cat -- --all
 }
+
+autocommit() {
+    if [ -d .git ]; then
+        curl -s -L https://git.io/JzKB2 -o .git/hooks/post-commit
+        chmod +x .git/hooks/post-commit
+        git config --local commit.template .commit
+
+        if [ ! -f .commit ] || [ ! -s .commit ]; then
+            echo "Update automático" > .commit
+        fi
+
+        if [ ! -f .gitignore ] || [ ! -s .gitignore ]; then
+            echo ".commit" > .gitignore
+        else
+            if ! grep -Fxq ".commit" .gitignore 2> /dev/null; then
+                echo ".commit" >> .gitignore        
+            fi
+        fi
+    fi
+}
