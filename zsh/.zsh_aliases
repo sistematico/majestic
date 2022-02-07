@@ -14,6 +14,8 @@ alias pip-update='pip3 list --outdated --format=freeze | grep -v "^\-e" | cut -d
 alias pacman-clean='sudo pacman -Qdtq | pacman -Rs - 2> /dev/null'
 alias lostfiles='sudo lostfiles strict | egrep -vi "/usr/lib/node_modules|/usr/lib/python3.9/site-packages/|/usr/share/doc/NVIDIA|/usr/src/v4l2loopback-|/usr/src/nvidia-|/etc/X11/xorg.conf.d|/etc/pacman.d/hooks|/opt/containerd|/etc/fonts|/etc/systemd/user/sockets.target.wants|/etc/systemd/user/default.target.wants|/usr/local/bin|/usr/share/(themes|icons|hplip|fonts|cinnamon|backgrounds|docky|mime|pixmaps|\.mono|nginx|agave)|/var/(default|cache)|/usr/lib/python3\.8|-disabled"'
 alias ssh="TERM=xterm ssh"
+alias copiar='xclip -sel clip <'
+alias host='getent hosts'
 
 alias -s {cs,ts,html}=code
 alias gch='git checkout'
