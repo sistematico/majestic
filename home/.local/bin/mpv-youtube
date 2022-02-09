@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#mpv --ytdl-format=bestvideo+bestaudio/best --fs --speed=2.5 --af=rubberband=pitch-scale=0.981818181818181 "$(xclip -o)"
+mpv --ytdl-format=bestvideo+bestaudio/best --profile=youtube-cache "$(xclip -o)"
