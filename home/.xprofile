@@ -42,10 +42,7 @@ export VISUAL=codium
 export RANGER_LOAD_DEFAULT_RC=false
 
 # Theme
-#export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export GTK2_RC_FILES=/usr/share/themes/Adwaita/gtk-2.0/gtkrc
-#export GTK_THEME=Adwaita:dark
-export XCURSOR_THEME=Nordzy-cursors
+export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 
 # VSCodium
 export VSCODE_GALLERY_SERVICE_URL='https://marketplace.visualstudio.com/_apis/public/gallery'
@@ -79,11 +76,18 @@ export XMODIFIERS=""
 
 case $DESKTOP_SESSION in
     dwm)
+        # Theme
+        export GTK_THEME=Adwaita:dark
+        export XCURSOR_THEME=Nordzy-cursors
+
         $HOME/.dwm/autostart &
         $HOME/.dwm/dwmbar &
-        #exec dwm
     ;;
     i3|i3wm|bspwm|openbox|herbsluftwm)
+        # Theme
+        export GTK_THEME=Adwaita:dark
+        export XCURSOR_THEME=Nordzy-cursors
+
 		xrandr --output HDMI-0 --primary --mode "2560x1440"
 
 		export BROWSER=chromium

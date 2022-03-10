@@ -6,6 +6,10 @@
 #define FONT_CALLBACK JetBrains Mono
 #define FONT_SIZE 12
 
+! Cursor 
+!Xcursor.theme: cursor-theme
+Xcursor.size: 16
+
 ! Fonts
 URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE:autohint=true,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE
 !URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE,xft:FONT_CALLBACK:style=Medium:size=FONT_SIZE

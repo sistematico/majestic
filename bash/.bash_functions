@@ -143,11 +143,11 @@ function checkiso() {
 }
 
 # mp3
-bitrate () {
+function bitrate () {
     echo `basename "$1"`: `file "$1" | sed 's/.*, \(.*\)kbps.*/\1/' | tr -d " " ` kbps
 }
 
-twitch() {
+function twitch() {
      INRES="1920x1080" # input resolution
      OUTRES="1920x1080" # output resolution
      FPS="15" # target FPS
@@ -167,7 +167,7 @@ twitch() {
  }
 
 # mpc
-mpcr () {
+function mpcr () {
     if [ $1 ]; then
         mpc rm $1
         mpc save $1
@@ -177,19 +177,20 @@ mpcr () {
     fi
 }
 
-mpcl () {
+function mpcl () {
     $HOME/bin/mpc.sh
 }
 
-sudo() {
+function sudo() {
   local subcommand
 
   if (( "$#" == 0 )); then command sudo; return; fi    
 
   subcommand=$1; shift
   case $subcommand in
-    mousepad) command sudo dbus-launch mousepad "$@" ;;
-    *)        command sudo "$subcommand" "$@" ;;
+    mousepad)   command sudo dbus-launch mousepad "$@" ;;
+    code)       command sudo dbus-launch code --user-data-dir="~/.vscode-root" "$@" ;;
+    *)          command sudo "$subcommand" "$@" ;;
   esac
 }
 

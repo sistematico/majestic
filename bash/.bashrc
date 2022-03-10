@@ -92,9 +92,9 @@ test -r $d && eval "$(dircolors $d)"
 [ ! -s /home/lucas/.travis/travis.sh ] || source /home/lucas/.travis/travis.sh
 
 # StarShip.rs
-if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
-    eval "$(starship init bash)"
-fi
+#if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
+#    eval "$(starship init bash)"
+#fi
 
 # Long command notification
 #trap '_start=$SECONDS' DEBUG
@@ -102,11 +102,11 @@ fi
 
 # tabtab source for packages
 # uninstall by removing these lines
-[ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
-. "$HOME/.cargo/env"
+#[ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
+#. "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # >>>> Vagrant command completion (start)
-. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
+#. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
