@@ -1,9 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-export VERSION=v16.13.0
-export DISTRO=linux-x64
+export NODE_VERSION=v16.14.0
 
-curl -L -s -o /tmp/node-$VERSION-$DISTRO.tar.xz https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz
-
-sudo mkdir -p /usr/local/lib/nodejs
-sudo tar -xJvf /tmp/node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs 
+if [ ! -z ${NODE_VERSION+x} ] && [ ! -d /usr/local/lib/nodejs/node-$NODE_VERSION-linux-x64 ]; then
+    curl -L -s -o /tmp/node-$NODE_VERSION-linux-x64.tar.xz https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.xz
+    sudo mkdir -p /usr/local/lib/nodejs
+    sudo tar -xJvf /tmp/node-$NODE_VERSION-linux-x64.tar.xz -C /usr/local/lib/nodejs 
+    [[ $PATH != *usr/local/lib/nodejs* ]] && export PATH=/usr/local/lib/nodejs/node-$NODE_VERSION-linux-x64/bin:$PATH
+else
+    echo -e "A variável \$NODE_VERSION não está setada.\nOu o nodejs já está instalado!"
+fi

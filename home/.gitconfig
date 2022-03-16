@@ -1,29 +1,37 @@
 [user]
-	name = Lucas Saliés Brum
-	email = lucas@archlinux.com.br
-#[url "https://git.archlinux.org/svntogit/packages.git --single-branch -b "]
+    name = Lucas Saliés Brum
+    email = lucas@archlinux.com.br
+
 [url "git://git.archlinux.org/svntogit/packages.git --single-branch --branch packages/"]
     insteadOf = "pkg:"
+
 [url "ssh://aur@aur.archlinux.org/"]
     insteadOf = "aur:"
+
 [url "git@github.com:sistematico/"]
     insteadOf = "gh:"
+
 [url "git@gitlab.com:sistematico/"]
     insteadOf = "gl:"
+
 [alias]
     cl = clone
     co = checkout
     br = branch
     ci = commit
     st = status
+
 [pull]
-	rebase = false
+    rebase = false
+
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
 [core]
-	editor = code --wait
+    editor = code --wait

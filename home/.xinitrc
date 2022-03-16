@@ -30,6 +30,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# Node.js
+export NODE_VERSION=v16.14.0
+
+# Composer
 export COMPOSER_HOME=${HOME}/.composer
 
 # PATH
@@ -38,6 +42,7 @@ export COMPOSER_HOME=${HOME}/.composer
 [ -d ${HOME}/apps ] && export PATH=${PATH}:${HOME}/apps
 [ -d ${HOME}/.npm/bin ] && export PATH=${PATH}:${HOME}/.npm/bin
 [ -d ${COMPOSER_HOME}/vendor/bin ] && export PATH=${PATH}:${COMPOSER_HOME}/vendor/bin
+[ -d /usr/local/lib/nodejs/node-$NODE_VERSION-linux-x64/bin ] && export PATH=/usr/local/lib/nodejs/node-$NODE_VERSION-linux-x64/bin:$PATH
 
 # D-BUS
 #dbus-update-activation-environment --systemd DISPLAY

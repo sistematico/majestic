@@ -1,0 +1,13 @@
+[Unit]
+Description=Mopidy music server
+After=network-online.target pulseaudio.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=lucas
+Group=mopidy
+ExecStart=/usr/bin/mopidy --config %h/.config/mopidy/mopidy.conf
+
+[Install]
+WantedBy=multi-user.target

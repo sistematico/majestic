@@ -78,6 +78,8 @@ fi
 ##################
 # Sem cor
 #PS1='[\u@\h \W]:\$ '
+# Com cor
+PS1="\[${CYN}\][\[${DEF}\]\u@\h \W\[${CYN}\]]\[${DEF}\]:\$ "
 
 # Vim
 bind -r '\C-s'
