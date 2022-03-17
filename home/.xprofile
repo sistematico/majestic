@@ -74,7 +74,7 @@ export GNOME_KEYRING_PID
 # IntelliJ Accents
 export XMODIFIERS=""
 
-[ ! -d ${XDG_DATA_HOME:-~/.local/share}/dbus-1/services] && mkdir -p "${XDG_DATA_HOME:-~/.local/share}/dbus-1/services"
+[ ! -d ${XDG_DATA_HOME:-~/.local/share}/dbus-1/services ] && mkdir -p "${XDG_DATA_HOME:-~/.local/share}/dbus-1/services"
 
 case $DESKTOP_SESSION in
     dwm)
