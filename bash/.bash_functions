@@ -307,14 +307,16 @@ dos2unix() {
     #sed $'s/$/\r/'           # Unix to DOS
 }
 
+# Git
 remove-commit() {
     FILTER_BRANCH_SQUELCH_WARNING=1 ; \
     git filter-branch --force --index-filter \                                                                                                                                                                                                                                 [1]
         "git rm --cached --ignore-unmatch $1" \
         --prune-empty --tag-name-filter cat -- --all
 }
+#FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --index-filter 'rm -f db/database.sqlite' -- --all
 
-autocommit() {
+auto-commit() {
     if [ -d .git ]; then
         curl -s -L https://git.io/JzKB2 -o .git/hooks/post-commit
         chmod +x .git/hooks/post-commit
@@ -332,4 +334,13 @@ autocommit() {
             fi
         fi
     fi
+}
+
+first-commit() {
+    git init
+    git add .
+    git commit -m "Primeiro commit"
+    git branch -M main
+    git remote add origin git@github.com:sistematico/$(basename $(pwd)).git
+    git push -u origin main
 }
