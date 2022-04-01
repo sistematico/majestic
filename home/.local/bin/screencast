@@ -26,6 +26,7 @@ NOTIFY="$HOME/bin/notify.sh ScreenCast ${ICONE} $NOME"
 CAMINHO="${HOME}/video/screencast"
 PIDFILE="/tmp/screencast.pid"
 TEMPFILE="/tmp/screencast-temp.${EXT}"
+WHATSAPP="/tmp/screencast-whatsapp.${EXT}"
 RESOLUCAO=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 FFMPEG_STEP1_PARAMS="-f x11grab -video_size $RESOLUCAO -framerate $FRAMERATE -i $DISPLAY -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac"
 FFMPEG_STEP2_PARAMS="-c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p -threads $THREADS"
@@ -54,7 +55,8 @@ converter() {
 
     if [ "$WHATSAPP" == "y" ]; then
         $NOTIFY "Conversão para o WhatsApp" 1> /dev/null
-        ffmpeg -i $TEMPFILE $FFMPEG_STEP2_PARAMS ${CAMINHO}/${ARQUIVO}
+        ffmpeg -i $TEMPFILE $FFMPEG_STEP2_PARAMS ${WHATSAPP}
+        ffmpeg -i $WHATSAPP -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p ${CAMINHO}/${ARQUIVO}
 
         if [ $? -eq 0 && -f ${CAMINHO}/${ARQUIVO} ]; then
             $NOTIFY "ScreenCast salvo ${ARQUIVO}" 1> /dev/null
@@ -67,6 +69,7 @@ converter() {
     fi
 
     [ -f $TEMPFILE ] && rm -f $TEMPFILE
+    [ -f $WHATSAPP ] && rm -f $WHATSAPP
     [ -f $PIDFILE ] && rm -f $PIDFILE
 }
 
