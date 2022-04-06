@@ -17,6 +17,7 @@ var/cache/apt/
 *.m4a
 .local/share/Trash/
 .local/share/Steam/
+.pnpm-store*
 .cache/
 var/spoll/anacron/
 var/log/btmp

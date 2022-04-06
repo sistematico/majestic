@@ -73,11 +73,15 @@ function mma() {
 
 # rsync
 function fullsync() {
-    [ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
+	if [ ! $1 ]; then
+        echo "Pelo menos um parâmetro é esperado."
+    else
+        [ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
     
-    rsync -aAXvzz \
-    --exclude-from "$HOME/.config/rsync-excludes.list" \
-    root@${1}:/ $STORAGE/vps/${1}/
+        rsync -aAXvzz \
+        --exclude-from "$HOME/.config/rsync-excludes.list" \
+        root@${1}:/ $STORAGE/vps/${1}/
+    fi
 }
 
 function fullsite() {

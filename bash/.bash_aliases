@@ -43,6 +43,7 @@ alias str='cd ~/aur/st && makepkg --nobuild && makepkg -eicf --noconfirm'
 # Code
 #alias code='codium --disable-gpu'
 alias codium='codium --disable-gpu'
+alias c='code .'
 
 # Misc
 alias vim="vim -c 'startinsert'"
