@@ -304,6 +304,13 @@ rstcursor() {
     gsettings reset org.gnome.desktop.interface cursor-theme
 }
 
+gnome-default() {
+    rsticon
+    rstshell
+    rstgtk
+    rstcursor
+}
+
 dos2unix() {
     sed -i 's/^M$//' "$1"     # DOS to Unix
     #sed 's/$/^M/'            # Unix to DOS
