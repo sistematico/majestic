@@ -67,7 +67,7 @@ alias noid3='find . -type f -exec id3v2 -l {} + | grep "No ID3 tag"'
 alias artemis='ssh root@artemis'
 alias hera='ssh root@hera'
 alias atlas='ssh root@atlas'
-alias music-sync='rsync -avzz /home/lucas/audio/ liquidsoap@ananke:/opt/liquidsoap/music/ --delete'
+alias music-sync='rsync -avzz /home/lucas/audio/ liquidsoap@nix:/opt/liquidsoap/music/ --delete'
 
 # Docker
 alias dip='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
