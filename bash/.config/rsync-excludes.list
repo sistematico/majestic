@@ -1,6 +1,10 @@
+*.so
 boot/
+.esmtp_queue
+usr/libexec/
 usr/lib/firmware/
 node_modules/
+.ansible/
 .git/
 .npm/_cacache/
 usr/lib/x86_64-linux-gnu/

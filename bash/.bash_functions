@@ -80,7 +80,9 @@ function fullsync() {
     
         rsync -aAXvzz \
         --exclude-from "$HOME/.config/rsync-excludes.list" \
-        root@${1}:/ $STORAGE/vps/${1}/
+        root@${1}:/ \
+        $STORAGE/vps/${1}/ \
+        "$2"
     fi
 }
 
@@ -348,10 +350,18 @@ auto-commit() {
 }
 
 first-commit() {
+    [ $1 ] && msg="$@" || msg="Primeiro commit"
     git init
     git add .
-    git commit -m "Primeiro commit"
+    git commit -m "$msg"
     git branch -M main
     git remote add origin git@github.com:sistematico/$(basename $(pwd)).git
     git push -u origin main
+}
+
+commit() {
+    [ $1 ] && msg="$@" || msg="Commit automático"
+    git add .
+    git commit -m "$msg"
+    git push 
 }
