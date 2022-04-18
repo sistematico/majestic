@@ -30,7 +30,7 @@ test -f .vscode/settings.json || \
 
 test -f .vscode/tasks.json || \
     curl -sL -o .vscode/tasks.json \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/92f6659bf3320369ae82c30198297d8cfcf2138e/tasks.json
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/bce190869f67527f40e11844b5c60a1d1db1cc72/tasks.json
 
 test -f .github/workflows/vite.yml || \
     curl -sL -o .github/workflows/vite.yml \
