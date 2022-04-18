@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+#
+# Arquivo: sf-vite
+# Descrição: Scaffolding de um projeto usando o Vite.js
+#
+# Mais um script feito com 💙 por "Lucas Saliés Brum" <lucas@archlinux.com.br>
+# Demo: https://www.gettr.com/post/pgjgwb394b
+# 
+# Criado em: 23/09/2021 01:33:12
+# Atualizado: 09/11/2021 19:33:12
+#
+# Referência de cores:
+# FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
+# BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
+
+command -v pnpm &> /dev/null || (echo -e "O programa \e[1;31mpnpm\e[0m não está instalado, instale-o primeiro." && exit)
+
+LAUNCH="true"
+TMUX_SESSION="Vite"
+EDITOR="code"
+BROWSER="firefox"
+
+test -f database/database.sqlite || touch database/database.sqlite
+test -d .vscode || /usr/bin/mkdir .vscode
+test -d .github/workflows || /usr/bin/mkdir -p .github/workflows
+
+test -f .vscode/settings.json || \
+    curl -sL -o .vscode/settings.json \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/031177e18ec082c765354b5deec679f0791b6519/settings.json
+
+test -f .vscode/tasks.json || \
+    curl -sL -o .vscode/tasks.json \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/92f6659bf3320369ae82c30198297d8cfcf2138e/tasks.json
+
+test -f .github/workflows/vite.yml || \
+    curl -sL -o .github/workflows/vite.yml \
+    https://gist.githubusercontent.com/sistematico/96c9dda44e7bcea42210e9477ebffeaf/raw/0c9ebd51b30060a623eddab6573dabff9f62fb16/vite.yml    
+
+test -f .prettierrc.json || \
+    curl -sL -o .prettierrc.json \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/92f6659bf3320369ae82c30198297d8cfcf2138e/.prettierrc.json
+
+test -f .env || \
+    curl -sL -o .env \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/.env
+
+test -f .env.example || \
+    curl -sL -o .env.example \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/.env.example
+
+test -f ansible.sh || \
+    curl -sL -o ansible.sh \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/ansible.sh
+
+test -f ansible.yml || \
+    curl -sL -o ansible.yml \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/ansible.yml
+
+test -f build.sh || \
+    curl -sL -o build.sh \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/build.sh
+
+pnpm install    
+
+if [ "$1" == "--launch" ]; then
+    \tmux has-session -t $TMUX_SESSION 2>/dev/null
+    if [ $? != 0 ]; then
+        \tmux kill-session -t $TMUX_SESSION
+    fi
+
+    \tmux new-session -d -s $TMUX_SESSION 2>/dev/null
+    
+    \tmux new-window -t $TMUX_SESSION -n artisan 
+    \tmux new-window -t $TMUX_SESSION -n npm 
+
+    \tmux send-keys -t $TMUX_SESSION:artisan "php artisan serve" ENTER
+    \tmux send-keys -t $TMUX_SESSION:npm "pnpm dev" ENTER
+
+    \tmux detach -s $TMUX_SESSION
+
+    $BROWSER http://localhost:8000
+fi
