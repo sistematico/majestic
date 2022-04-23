@@ -365,7 +365,8 @@ first-commit() {
 }
 
 commit() {
-    [ $1 ] && msg="$@" || msg="Commit automático"
+    [ -f .commit ] && msg="$(cat .commit)" || msg="Commit automático"
+    [ $1 ] && msg="$@"
     git add .
     git commit -m "$msg"
     git push 

@@ -26,7 +26,7 @@ test -d .github/workflows || /usr/bin/mkdir -p .github/workflows
 
 test -f .vscode/settings.json || \
     curl -sL -o .vscode/settings.json \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/settings.json
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/a403f4555025628a12df969083ad739550a46273/settings.json
 
 test -f .vscode/tasks.json || \
     curl -sL -o .vscode/tasks.json \
@@ -63,6 +63,8 @@ test -f build.sh || \
 test -f .gitignore || \
     curl -sL -o .gitignore \
     https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/6a0bc6706263167d413d119c36180423c5660bd3/.gitignore
+
+chmod +x ansible.sh build.sh
 
 pnpm install 1> /dev/null 2> /dev/null 
 
