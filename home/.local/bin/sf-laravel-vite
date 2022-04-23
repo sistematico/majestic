@@ -7,7 +7,7 @@
 # Demo: https://www.gettr.com/post/pgjgwb394b
 # 
 # Criado em: 23/09/2021 01:33:12
-# Atualizado: 09/11/2021 19:33:12
+# Atualizado: 10/11/2021 19:33:12
 #
 # Referência de cores:
 # FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
@@ -26,11 +26,11 @@ test -d .github/workflows || /usr/bin/mkdir -p .github/workflows
 
 test -f .vscode/settings.json || \
     curl -sL -o .vscode/settings.json \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/031177e18ec082c765354b5deec679f0791b6519/settings.json
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/settings.json
 
 test -f .vscode/tasks.json || \
     curl -sL -o .vscode/tasks.json \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/bce190869f67527f40e11844b5c60a1d1db1cc72/tasks.json
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/1b6fd2029313c1f5a71ac14a2aabd230af06e34c/tasks.json
 
 test -f .github/workflows/vite.yml || \
     curl -sL -o .github/workflows/vite.yml \
@@ -38,29 +38,33 @@ test -f .github/workflows/vite.yml || \
 
 test -f .prettierrc.json || \
     curl -sL -o .prettierrc.json \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/92f6659bf3320369ae82c30198297d8cfcf2138e/.prettierrc.json
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/.prettierrc.json
 
 test -f .env || \
     curl -sL -o .env \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/.env
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/.env
 
 test -f .env.example || \
     curl -sL -o .env.example \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/.env.example
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/.env.example
 
 test -f ansible.sh || \
     curl -sL -o ansible.sh \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/ansible.sh
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/ansible.sh
 
 test -f ansible.yml || \
     curl -sL -o ansible.yml \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/ansible.yml
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/ansible.yml
 
 test -f build.sh || \
     curl -sL -o build.sh \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/e7382bd3302e36b6f774417552f7184ca9f1e1e6/build.sh
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/4c2c427d1ac8b3da2334382d8177212dedd971e0/build.sh
 
-pnpm install    
+test -f .gitignore || \
+    curl -sL -o .gitignore \
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/6a0bc6706263167d413d119c36180423c5660bd3/.gitignore
+
+pnpm install 1> /dev/null 2> /dev/null 
 
 if [ "$1" == "--launch" ]; then
     \tmux has-session -t $TMUX_SESSION 2>/dev/null

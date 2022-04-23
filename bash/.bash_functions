@@ -172,6 +172,11 @@ function twitch() {
        -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
  }
 
+# ffmpeg
+function fix-whatsapp() {
+	ffmpeg -i "$1" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$(basename $1)-fix.mp4"
+}
+
 # mpc
 function mpcr () {
     if [ $1 ]; then
@@ -323,7 +328,7 @@ dos2unix() {
 # Git
 remove-commit() {
     FILTER_BRANCH_SQUELCH_WARNING=1 ; \
-    git filter-branch --force --index-filter \                                                                                                                                                                                                                                 [1]
+    git filter-branch --force --index-filter \ 
         "git rm --cached --ignore-unmatch $1" \
         --prune-empty --tag-name-filter cat -- --all
 }
