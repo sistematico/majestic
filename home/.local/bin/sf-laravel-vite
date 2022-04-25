@@ -26,7 +26,7 @@ test -d .github/workflows || /usr/bin/mkdir -p .github/workflows
 
 test -f .vscode/settings.json || \
     curl -sL -o .vscode/settings.json \
-    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/a403f4555025628a12df969083ad739550a46273/settings.json
+    https://gist.githubusercontent.com/sistematico/ef54c9a520428c7ad1160803aa0eadb1/raw/cb0b5445076fa0ed93bda40a169a14b6294baa36/settings.json
 
 test -f .vscode/tasks.json || \
     curl -sL -o .vscode/tasks.json \
