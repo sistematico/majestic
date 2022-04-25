@@ -44,8 +44,6 @@ atualiza() {
 
     cd ${1}
 
-    [ "$1" == "sistematico.github.io" ] && git checkout main
-
     status=$(git add . -n)
 
     if [ ! -z "${status}" ]; then
