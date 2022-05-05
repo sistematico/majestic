@@ -110,83 +110,18 @@
         ],
         "description": "Set a interval (3)"
     },
-    "JavaScript XMLHttpRequest": {
-        "prefix": "jsxhr",
+    "JavaScript Last Element": {
+        "prefix": "jslast",
         "body": [
-            "let xhr = (url) => {",
-            "    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari",
-            "        xmlhttp = new XMLHttpRequest();",
-            "    } else { // code for IE6, IE5",
-            "        xmlhttp = new ActiveXObject(\"Microsoft.XMLHTTP\");",
-            "    }",
-            "",
-            "    xmlhttp.onreadystatechange = function () {",
-            "        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
-            "            return xmlhttp.responseText;",
-            "        }",
-            "    }",
-            "    xmlhttp.open(\"GET\", url, false);",
-            "    xmlhttp.send();",
-            "};"
+            "let last = fruitObject[Object.keys(fruitObject)[Object.keys(fruitObject).length-1]]"
         ],
-        "description": "Retrieve data from URL using JavaScript"
+        "description": "Get last element of object"
     },
-    "JavaScript XMLHttpRequest POST": {
-        "prefix": "jsxhrpost",
+    "JavaScript First Element": {
+        "prefix": "jsfirst",
         "body": [
-            "let xhr = (url) => {",
-            "    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari",
-            "        xmlhttp = new XMLHttpRequest();",
-            "    } else { // code for IE6, IE5",
-            "        xmlhttp = new ActiveXObject(\"Microsoft.XMLHTTP\");",
-            "    }",
-            "",
-            "    xmlhttp.onreadystatechange = function () {",
-            "        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {",
-            "            return xmlhttp.responseText;",
-            "        }",
-            "    }",
-            "    xmlhttp.open(\"GET\", url, false);",
-            "    xmlhttp.send();",
-            "};"
+            "let first = fruitObject[Object.keys(fruitObject)[0]];"
         ],
-        "description": "Retrieve data from URL using JavaScript and POST method"
-    },
-    "jQuery On Ready": {
-        "prefix": "jqueryonready",
-        "body": [
-            "$(document).ready(function() {",
-            "    ${1:// Código...}",
-            "});"
-        ],
-        "description": "jQuery On Ready Event"
-    },
-    "jQuery On Ready Shortcut": {
-        "prefix": "jqueryonreadyshort",
-        "body": [
-            "$(function() {",
-            "    ${1:// Código...}",
-            "});"
-        ],
-        "description": "jQuery On Ready Event Short Version"
-    },
-    "jQuery AJAX": {
-        "prefix": "jqueryajax",
-        "body": [
-            "$.ajax({",
-            "    url: 'page.php',",
-            "    method: 'POST',",
-            "    context: document.body,",
-            "    data: { id : menuId },",
-            "    dataType: 'json'",
-            "}).done(function() {",
-            "    $( this ).addClass('done');",
-            "}).fail(function() {",
-            "    alert('error');",
-            "}).always(function() {",
-            "    alert('complete');",
-            "});"
-        ],
-        "description": "jQuery AJAX Example"
+        "description": "Get first element of object"
     }
 }

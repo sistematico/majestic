@@ -371,3 +371,7 @@ commit() {
     git commit -m "$msg"
     git push 
 }
+
+set-upstream() {
+    git remote set-url origin git@github.com:sistematico/$(basename $(pwd)).git
+}

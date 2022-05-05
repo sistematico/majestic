@@ -112,3 +112,12 @@ test -r $d && eval "$(dircolors $d)"
 # >>>> Vagrant command completion (start)
 #. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
+
+##################
+##### Paths ######
+##################
+# PNPM Global
+[ -d /usr/share/pnpm ] && export PATH=${PATH}:/usr/share/pnpm
+
+# PNPM Local
+[ -d $HOME/.local/share/pnpm ] && export PATH=${PATH}:$HOME/.local/share/pnpm

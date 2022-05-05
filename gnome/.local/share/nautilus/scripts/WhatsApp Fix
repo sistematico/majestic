@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+#file="$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
+file="$NAUTILUS_SCRIPT_SELECTED_URIS"
+#file="$NAUTILUS_SCRIPT_CURRENT_URI"
+
+ffmpeg -i "$file" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$(basename $file)-fix.mp4"
+

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#playlist.sh "$NAUTILUS_SCRIPT_SELECTED_URIS"
+playlist.sh $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS

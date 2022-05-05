@@ -1,25 +1,71 @@
 {
-	"Media Queries": {
-		"prefix": "mediaqueries",
-		"body": [
-			"/* X-Small devices (portrait phones, less than 576px)",
-			"No media query for `xs` since this is the default in Bootstrap */",
-			"",
-			"/* Small devices (landscape phones, 576px and up) */",
-			"@media (min-width: 576px) { }",
-			"",
-			"/* Medium devices (tablets, 768px and up) */",
-			"@media (min-width: 768px) { }",
-			"",
-			"/* Large devices (desktops, 992px and up) */",
-			"@media (min-width: 992px) { }",
-			"",
-			"/* X-Large devices (large desktops, 1200px and up) */",
-			"@media (min-width: 1200px) { }",
-			"",
-			"/* XX-Large devices (larger desktops, 1400px and up) */",
-			"@media (min-width: 1400px) { }"
-		],
-		"description": "Common media queries"
-	}
+  "Media Queries": {
+    "prefix": "mediaqueries",
+    "body": [
+      "/* X-Small devices (portrait phones, less than 576px)",
+      "No media query for `xs` since this is the default in Bootstrap */",
+      "",
+      "/* Small devices (landscape phones, 576px and up) */",
+      "@media (min-width: 576px) { }",
+      "",
+      "/* Medium devices (tablets, 768px and up) */",
+      "@media (min-width: 768px) { }",
+      "",
+      "/* Large devices (desktops, 992px and up) */",
+      "@media (min-width: 992px) { }",
+      "",
+      "/* X-Large devices (large desktops, 1200px and up) */",
+      "@media (min-width: 1200px) { }",
+      "",
+      "/* XX-Large devices (larger desktops, 1400px and up) */",
+      "@media (min-width: 1400px) { }"
+    ],
+    "description": "Common media queries"
+  },
+  "Dracula": {
+    "prefix": "dracula",
+    "body": [
+      "#282a36 /* Background */",
+      "#44475a /* Current */",
+      "#44475a /* Selection */",
+      "#f8f8f2 /* Foreground */",
+      "#6272a4 /* Comment */",
+      "#8be9fd /* Cyan */",
+      "#50fa7b /* Green */",
+      "#ffb86c /* Orange */",
+      "#ff79c6 /* Pink */",
+      "#bd93f9 /* Purple */",
+      "#ff5555 /* Red */",
+      "#f1fa8c /* Yellow */"
+    ],
+    "description": "Dracula Theme Color Theme"
+  },
+  "Tomorrow Night": {
+    "prefix": "tomorrow",
+    "body": [
+      "#1d1f21 /* Background */",
+      "#282a2e /* Current Line */",
+      "#373b41 /* Selection */",
+      "#c5c8c6 /* Foreground */",
+      "#969896 /* Comment */",
+      "#cc6666 /* Red */",
+      "#de935f /* Orange */",
+      "#f0c674 /* Yellow */",
+      "#b5bd68 /* Green */",
+      "#8abeb7 /* Aqua */",
+      "#81a2be /* Blue */",
+      "#b294bb /* Purple */"
+    ],
+    "description": "Tomorrow Night Color Theme"
+  },
+  "Nord Theme": {
+    "prefix": "nord",
+    "body": [
+      "/*Polar Night:  #2E3440 #3B4252 #434C5E #4C566A*/",
+      "/*Snow Storm:   #D8DEE9 #E5E9F0 #ECEFF4 #FFFFFF*/",
+      "/*Frost:        #8FBCBB #88C0D0 #FFFFFF #5E81AC*/",
+      "/*Aurora:       #BF616A #D08770 #EBCB8B #A3BE8C #B48EAD*/"
+    ],
+    "description": "Nord Color Theme"
+  }
 }
