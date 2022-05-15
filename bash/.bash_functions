@@ -38,11 +38,11 @@ list_fonts() {
     fc-list | awk -F':' '{print $2}' | grep -i $1 | awk '{$1=$1};1' | uniq
 }
 
-function cpr() {
+cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 } 
 
-function mvr() {
+mvr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
 }
 
@@ -60,14 +60,14 @@ dru () {
 }
 
 # mpv
-function mm() {
+mm() {
     params=\"$@\"
     killall mpv 1> /dev/null 2> /dev/null
     sleep 1
     (mpv --really-quiet --profile=youtube-cache ytdl://ytsearch:"$params") > /dev/null 2> /dev/null &
 }
 
-function mma() {
+mma() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$@" # ytdl://ytsearch10:"$@"
 }
 
@@ -81,8 +81,7 @@ function fullsync() {
         rsync -aAXvzz \
         --exclude-from "$HOME/.config/rsync-excludes.list" \
         root@${1}:/ \
-        $STORAGE/vps/${1}/ \
-        "$2"
+        $STORAGE/vps/${1}/ 
     fi
 }
 
