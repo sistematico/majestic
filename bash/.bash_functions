@@ -1,3 +1,15 @@
+# Arquivo: ~/.bash_functions
+# Descrição: Algumas funções customizadas para o Bash
+#
+# Criado com 💙 por "Lucas Saliés Brum" <lucas@archlinux.com.br>
+# 
+# Criado em: 23/09/2021 01:33:12
+# Atualizado: 16/05/2022 01:25:24
+#
+# Referência de cores:
+# FG: reset = 0, black = 30, red = 31, green = 32, yellow = 33, blue = 34, magenta = 35, cyan = 36, white = 37
+# BG: reset = 0, black = 40, red = 41, green = 42, yellow = 43, blue = 44, magenta = 45, cyan = 46, white=47
+
 # Vars used in functions.
 STORAGE="/home/lucas"
 
@@ -72,7 +84,7 @@ mma() {
 }
 
 # rsync
-function fullsync() {
+fullsync() {
 	if [ ! $1 ]; then
         echo "Pelo menos um parâmetro é esperado."
     else
@@ -85,7 +97,7 @@ function fullsync() {
     fi
 }
 
-function fullsite() {
+fullsite() {
     [ ! -d $STORAGE/sites/${1} ] && mkdir -p $STORAGE/sites/${1}
     rsync -aAXvzz \
         --exclude="node_modules/" \
@@ -96,7 +108,7 @@ function fullsite() {
         nginx@${1}:/var/www/ $STORAGE/sites/${1}/
 }
 
-function fullsitereverse() {
+fullsitereverse() {
     if [ -d $STORAGE/sites/${1} ]; then
         rsync -aAXvzz \
             --exclude="vendor/" \
@@ -109,7 +121,7 @@ function fullsitereverse() {
     fi
 }
 
-function songdown() {
+songdown() {
     [ ! -d $STORAGE/audio/${1} ] && mkdir -p $STORAGE/audio/${1}
 
     rsync -aAXvzz \
@@ -120,7 +132,7 @@ function songdown() {
     find $STORAGE/audio/${1} -type f -exec chmod 644 '{}' \;
 }
 
-function songup() {
+songup() {
     [ ! -d $STORAGE/audio/${1} ] && mkdir -p $HOME/audio/${1}   
 
     if [ -d $STORAGE/audio/${1} ]; then 
@@ -135,7 +147,7 @@ function songup() {
     ssh root@${1} "chown -R liquidsoap /opt/liquidsoap/music/"
 }
 
-function checkiso() {
+checkiso() {
     if [ -f SHA512SUMS ]; then
         sha512sum --ignore-missing -c SHA512SUMS
         return
@@ -148,11 +160,11 @@ function checkiso() {
 }
 
 # mp3
-function bitrate () {
+bitrate () {
     echo `basename "$1"`: `file "$1" | sed 's/.*, \(.*\)kbps.*/\1/' | tr -d " " ` kbps
 }
 
-function twitch() {
+twitch() {
      INRES="1920x1080" # input resolution
      OUTRES="1920x1080" # output resolution
      FPS="15" # target FPS
@@ -172,12 +184,12 @@ function twitch() {
  }
 
 # ffmpeg
-function fix-whatsapp() {
+fix-whatsapp() {
 	ffmpeg -i "$1" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$(basename $1)-fix.mp4"
 }
 
 # mpc
-function mpcr () {
+mpcr () {
     if [ $1 ]; then
         mpc rm $1
         mpc save $1
@@ -187,11 +199,11 @@ function mpcr () {
     fi
 }
 
-function mpcl () {
+mpcl () {
     $HOME/bin/mpc.sh
 }
 
-function sudo() {
+sudo() {
   local subcommand
 
   if (( "$#" == 0 )); then command sudo; return; fi    
@@ -373,4 +385,25 @@ commit() {
 
 set-upstream() {
     git remote set-url origin git@github.com:sistematico/$(basename $(pwd)).git
+}
+
+# Upgrade
+upgrade-composer() {
+    echo -e "[\e[1;35m*\e[0m] Upgrading Composer..."
+    sudo composer self-update --no-interaction --quiet 2> /dev/null
+}
+
+upgrade-npm() {
+    echo -e "[\e[1;35m*\e[0m] Upgrading npm..."
+    sudo npm install npm -g 2> /dev/null
+}
+
+upgrade-pnpm() {
+    echo -e "[\e[1;35m*\e[0m] Upgrading pnpm..."
+    sudo pnpm add -g pnpm 1> /dev/null 2> /dev/null
+}
+
+upgrade-laravel() {
+    echo -e "[\e[1;35m*\e[0m] Upgrading Laravel Installer..."
+    sudo composer global require laravel/installer --no-interaction --quiet 2> /dev/null
 }

@@ -4,9 +4,12 @@ boot/
 usr/libexec/
 usr/lib/firmware/
 node_modules/
+.pnpm-store*
+pnpm/store/
 .ansible/
 .git/
 .npm/_cacache/
+.npm/_logs/
 usr/lib/x86_64-linux-gnu/
 usr/lib/gcc/x86_64-linux-gnu/
 var/lib/snapd/void/
@@ -21,7 +24,6 @@ var/cache/apt/
 *.m4a
 .local/share/Trash/
 .local/share/Steam/
-.pnpm-store*
 .cache/
 var/spoll/anacron/
 var/log/btmp
@@ -47,3 +49,5 @@ var/cache/yum
 /etc/gshadow
 /etc/gshadow-
 /usr/lib/modules/
+var/lib/nginx/tmp/
+var/log/fail2ban.log-*
