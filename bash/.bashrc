@@ -120,4 +120,5 @@ test -r $d && eval "$(dircolors $d)"
 [ -d /usr/share/pnpm ] && export PATH=${PATH}:/usr/share/pnpm
 
 # PNPM Local
-[ -d $HOME/.local/share/pnpm ] && export PATH=${PATH}:$HOME/.local/share/pnpm
+export PNPM_HOME=$HOME/.local/share/pnpm
+[ -d $PNPM_HOME ] && export PATH=${PATH}:$PNPM_HOME

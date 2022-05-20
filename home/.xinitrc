@@ -44,6 +44,13 @@ export COMPOSER_HOME=${HOME}/.composer
 [ -d ${COMPOSER_HOME}/vendor/bin ] && export PATH=${PATH}:${COMPOSER_HOME}/vendor/bin
 [ -d /usr/local/lib/nodejs/node-$NODE_VERSION-linux-x64/bin ] && export PATH=/usr/local/lib/nodejs/node-$NODE_VERSION-linux-x64/bin:$PATH
 
+# PNPM Global
+[ -d /usr/share/pnpm ] && export PATH=${PATH}:/usr/share/pnpm
+
+# PNPM Local
+export PNPM_HOME=$HOME/.local/share/pnpm
+[ -d $PNPM_HOME ] && export PATH=${PATH}:$PNPM_HOME
+
 # D-BUS
 #dbus-update-activation-environment --systemd DISPLAY
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
