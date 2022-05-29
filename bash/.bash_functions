@@ -288,7 +288,7 @@ chicon() {
                 echo $tema
             fi            
         done
-        for tema in $(/usr/bin/ls $HOME/.local/share/icons); do
+        for tema in $(/usr/bin/ls $HOME/.local/share/icons 2>/dev/null); do
             if [ -d "$HOME/.local/share/icons/${tema}" ]; then
                 echo $tema
             fi
