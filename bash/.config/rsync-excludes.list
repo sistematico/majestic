@@ -1,3 +1,4 @@
+.swapfile
 *.so
 boot/
 .esmtp_queue
@@ -51,3 +52,5 @@ var/cache/yum
 /usr/lib/modules/
 var/lib/nginx/tmp/
 var/log/fail2ban.log-*
+/usr/share/perl5
+/usr/share/microcode_ctl

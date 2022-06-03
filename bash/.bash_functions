@@ -228,7 +228,7 @@ chshell() {
                 fi
             fi
         done
-        for tema in $(/usr/bin/ls $HOME/.local/share/themes); do
+        for tema in $(/usr/bin/ls $HOME/.local/share/themes 2> /dev/null); do
             if [ -d $HOME/.local/share/themes/${tema} ]; then
                 if [ -d $HOME/.local/share/themes/${tema}/gnome-shell ]; then
                     echo $tema

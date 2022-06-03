@@ -126,6 +126,11 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 # Sort directories first
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 
+######################
+# Gnome Screencast   #
+######################
+# Default: 30
+gsettings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length 
 
 ######################
 # RESET GNOME FONTS  #

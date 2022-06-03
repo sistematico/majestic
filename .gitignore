@@ -14,6 +14,7 @@
 *.pem
 ph.*
 phub.*
+*.env.conf
 
 pkg/
 src/
