@@ -30,3 +30,6 @@ GtkLabel.title {
 VteTerminal, vte-terminal {
     padding: 10px;
 }
+
+/* XFCE Panel Bug */
+.xfce4-panel.background { border: 0px; }
