@@ -338,7 +338,9 @@ dos2unix() {
 
 # Git
 remove-commit() {
-    FILTER_BRANCH_SQUELCH_WARNING=1 ; \
+    [ ! $1 ] && exit
+    
+    FILTER_BRANCH_SQUELCH_WARNING=1 \
     git filter-branch --force --index-filter \ 
         "git rm --cached --ignore-unmatch $1" \
         --prune-empty --tag-name-filter cat -- --all

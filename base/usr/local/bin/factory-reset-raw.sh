@@ -5,7 +5,7 @@
 # Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 #
 # Criado em: 16/03/2018 16:35:20
-# Última alteração: 01/09/2020 00:20:39
+# Última alteração: 05/06/2022 00:20:39
 
 # base base-devel linux linux-firmware efibootmgr 
 # dmks lvm2 intel-ucode btrfs-progs grub dhcpcd 
@@ -15,22 +15,9 @@
 # rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris gnome-themes-extra dracula-gtk-theme ttf-dejavu rtl8192eu-git"
 
 XORG="xorg-server lib32-libxft-bgra libxft-bgra-git"
-NVIDIA="nvidia-470xx-dkms"
-GNOME="gnome gdm gnome-extra"
 
-PKGS="base base-devel linux linux-headers linux-firmware efibootmgr unzip"
-PKGS="${PKGS} dkms intel-ucode grub os-prober ntfs-3g dhcpcd iwd links curl"
-PKGS="${PKGS} sudo nano openssh git cronie terminus-font gpm"
-PKGS="${PKGS} fortune-mod fortune-mod-chucknorris rtl8192eu-git"
-
-# Xorg
-PKGS="${PKGS} ${XORG}"
-
-# Nvidia
-PKGS="${PKGS} ${NVIDIA}"
-
-# Gnome
-#PKGS="${PKGS} ${GNOME}"
+PKGS="base base-devel linux linux-headers linux-firmware efibootmgr"
+PKGS="${PKGS} ${AMD} grub os-prober ntfs-3g dhcpcd iwd links curl sudo nano git"
 
 [ ! -f /etc/systemd/network/20-wired.network ] && curl -L -s -o /etc/systemd/network/20-wired.network http://ix.io/3DDk
 [ ! -f /etc/systemd/network/loopback-alias.network ] && curl -L -s -o /etc/systemd/network/loopback-alias.network http://ix.io/3DDl
@@ -57,3 +44,7 @@ pacman -Rns $(pacman -Qttdq)
 
 # Update all packages
 pacman -Syyu
+
+curl ix.io/client | sudo tee -a /usr/local/bin/ix
+
+chmod +x /usr/local/bin/ix

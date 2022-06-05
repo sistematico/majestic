@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=0.1.0
+Name=DevDocs
+GenericName=Documentation Browser
+Comment=Multiple API documentations in a fast, organized, and searchable interface.
+Exec=devdocs-desktop %u
+TryExec=devdocs-desktop
+Icon=$HOME/.local/share/icons/apps/devdocs.png
+StartupWMClass=devdocs-desktop
+Terminal=false
+Type=Application
+Categories=Development;Documentation;
