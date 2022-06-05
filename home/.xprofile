@@ -83,7 +83,7 @@ export GNOME_KEYRING_PID
 # IntelliJ Accents
 export XMODIFIERS=""
 
-[ ! -d ${XDG_DATA_HOME:-~/.local/share}/dbus-1/services ] && mkdir -p "${XDG_DATA_HOME:-~/.local/share}/dbus-1/services"
+[ ! -d ${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services ] && mkdir -p "${XDG_DATA_HOME:-${HOME}/.local/share}/dbus-1/services"
 
 case $DESKTOP_SESSION in
     dwm)
@@ -94,7 +94,7 @@ case $DESKTOP_SESSION in
         SERVICE=org.knobwob.dunst
         ln -sT \
             "/usr/share/dbus-1/services/${SERVICE:-org.Freedesktop.Notifications}.service" \
-            "${XDG_DATA_HOME:~/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+            "${XDG_DATA_HOME:${HOME}/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 
         $HOME/.dwm/autostart &
         $HOME/.dwm/dwmbar &
@@ -115,27 +115,27 @@ case $DESKTOP_SESSION in
         SERVICE=org.knobwob.dunst
         ln -sT \
             "/usr/share/dbus-1/services/${SERVICE:-org.Freedesktop.Notifications}.service" \
-            "${XDG_DATA_HOME:~/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+            "${XDG_DATA_HOME:${HOME}/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     cinnamon|cinnamon-session)        
         SERVICE=
         ln -sT \
             "/usr/share/dbus-1/services/${SERVICE:-org.Freedesktop.Notifications}.service" \
-            "${XDG_DATA_HOME:~/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+            "${XDG_DATA_HOME:${HOME}/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     mate)
         SERVICE=
         ln -sT \
             "/usr/share/dbus-1/services/${SERVICE:-org.Freedesktop.Notifications}.service" \
-            "${XDG_DATA_HOME:~/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+            "${XDG_DATA_HOME:${HOME}/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     xfce|xfce4|xfce4-session)
         SERVICE=
         ln -sT \
             "/usr/share/dbus-1/services/${SERVICE:-org.Freedesktop.Notifications}.service" \
-            "${XDG_DATA_HOME:~/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+            "${XDG_DATA_HOME:${HOME}/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 
-        #rm "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+        #rm "${XDG_DATA_HOME:-${HOME}/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     xfwm|xfwm4)
         export XDG_CURRENT_DESKTOP=XFCE
