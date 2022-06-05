@@ -22,12 +22,11 @@ SECONDS=0
 COMECO=$SECONDS
 TS=$(date +"%s")
 DIR="${XDG_DESKTOP_DIR:-${HOME}/desk}"
-#ICONE="/usr/share/icons/Newaita/devices/64/video-display.svg"
-ICONE="$HOME/.local/share/icons/Newaita-dark/.places-yellow/64/folder-download.svg"
+ICONE="/usr/share/icons/Newaita-dark/.places-red/64/folder-download.svg"
 LOGS="${DIR}/status.log"
 HEADER="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0"
 NOTIFY="$HOME/bin/notify.sh $NOME_CURTO $ICONE $NOME_CURTO" # notify-send -h int:transient:1 -i $ICONE
-YOUTUBE="youtube-dl" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
+YOUTUBE="yt-dlp" # "youtube-dl -i -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 HISTORY="/var/tmp/videodown.hist"
 REQUIRED_APPS=("curl" "xclip" "youtube-dl")
 

@@ -15,7 +15,7 @@
 ################################################################################
 
 inst="$(ps -ef | grep yt-dlp | grep -v grep | wc -l)"
-[ $inst -gt 0 ] && echo "<txt>$inst</txt> "
-echo "<click>bash -c $HOME/.dwm/scripts/vdown</click>"
-echo "<img>$HOME/.local/share/icons/Newaita-dark/actions/24/go-down.svg</img>"
+[ $inst -gt 0 ] && echo "<txt> $inst </txt> "
+echo "<click>bash -c $HOME/bin/videodown.sh</click>"
+echo "<img>/usr/share/icons/Newaita-dark/actions/24/go-down.svg</img>"
 echo "<tool>Video Down</tool>"
