@@ -15,7 +15,6 @@
 # rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris gnome-themes-extra dracula-gtk-theme ttf-dejavu rtl8192eu-git"
 
 XORG="xorg-server lib32-libxft-bgra libxft-bgra-git"
-
 PKGS="base base-devel linux linux-headers linux-firmware efibootmgr"
 PKGS="${PKGS} ${AMD} grub os-prober ntfs-3g dhcpcd iwd links curl sudo nano git"
 
@@ -45,6 +44,6 @@ pacman -Rns $(pacman -Qttdq)
 # Update all packages
 pacman -Syyu
 
-curl ix.io/client | sudo tee -a /usr/local/bin/ix
+#curl ix.io/client | sudo tee -a /usr/local/bin/ix
 
-chmod +x /usr/local/bin/ix
+#chmod +x /usr/local/bin/ix

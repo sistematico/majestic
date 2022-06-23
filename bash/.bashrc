@@ -105,7 +105,6 @@ test -r $d && eval "$(dircolors $d)"
 # tabtab source for packages
 # uninstall by removing these lines
 #[ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
-#. "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -113,12 +112,8 @@ test -r $d && eval "$(dircolors $d)"
 #. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
 
-##################
-##### Paths ######
-##################
-# PNPM Global
-[ -d /usr/share/pnpm ] && export PATH=${PATH}:/usr/share/pnpm
 
-# PNPM Local
-export PNPM_HOME=$HOME/.local/share/pnpm
-[ -d $PNPM_HOME ] && export PATH=${PATH}:$PNPM_HOME
+# pnpm
+export PNPM_HOME="/home/lucas/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

@@ -21,6 +21,12 @@ alias journalctl='sudo journalctl'
 alias script='script -a'
 alias host='getent hosts'
 
+# Suckless
+alias edwm='cd ~/tmp/suckless/dwm && code .'
+alias rdwm='cd ~/tmp/suckless/dwm && make && sudo make install clean'
+alias est='cd ~/tmp/suckless/st && code .'
+alias rst='cd ~/tmp/suckless/st && make && sudo make install clean'
+
 # Main
 alias rehash='source ~/.bashrc && source ~/.bash_aliases && source ~/.bash_functions && source ~/.bash_profile'
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
@@ -62,6 +68,7 @@ alias ranger='VISUAL=vim ranger'
 alias heic='mogrify -format jpg *.heic'
 alias id3='id3v2'
 alias noid3='find . -type f -exec id3v2 -l {} + | grep "No ID3 tag"'
+alias tb="$HOME/.telebit/bin/telebit"
 
 # VPS
 alias artemis='ssh root@artemis'

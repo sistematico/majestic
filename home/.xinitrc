@@ -100,10 +100,10 @@ case $session in
             "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 
         $HOME/.dwm/autostart
-		exec dwm
+	exec dwm
     ;;
     i3|i3wm)
-        xrandr --output HDMI-0 --primary --mode "2560x1440"
+        xrandr --output HDMI-1 --primary --mode "2560x1440"
 
         # Temas
         export GTK2_RC_FILES=$HOME/.local/themes/Nordic-darker-v40/gtk-2.0/gtkrc

@@ -6,7 +6,7 @@
 # Autor: Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>         #
 #                                                                              #
 # Criado em: 30/04/2019 13:55:09                                               #
-# Modificado em: 09/08/2021 23:34:37                                           #
+# Modificado em: 06/06/2022 09:30:59                                           #
 #                                                                              #
 # Este trabalho está licenciado com uma Licença Creative Commons               #
 # Atribuição 4.0 Internacional                                                 #
@@ -69,6 +69,7 @@ then
     exit 1
 fi
 
+$NOTIFY "Iniciando o download de:\n\n<b>${url}</b>"
 $YOUTUBE "${url}"
 
 if [[ $status -ne 0 ]]; then
@@ -98,5 +99,6 @@ else
     tamanho="${tamanho} KB"
 fi
 
-$NOTIFY "Sucesso!\n\nTempo decorrido: ${hora}:${minuto}:${segundo}"
+#$NOTIFY "Sucesso!\n\nTempo decorrido: ${hora}:${minuto}:${segundo}"
+$NOTIFY "Sucesso!\n\nTempo decorrido: ${hora}:${minuto}:${segundo}\nDownloads restantes: $(ps aux | grep yt-dlp | egrep -v grep | wc -l)"
 exit 0
