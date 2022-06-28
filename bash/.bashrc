@@ -94,9 +94,9 @@ test -r $d && eval "$(dircolors $d)"
 [ ! -s /home/lucas/.travis/travis.sh ] || source /home/lucas/.travis/travis.sh
 
 # StarShip.rs
-#if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
-#    eval "$(starship init bash)"
-#fi
+if [[ $DISPLAY ]] || [[ $XDG_VTNR -ne 1 ]]; then
+    eval "$(starship init bash)"
+fi
 
 # Long command notification
 #trap '_start=$SECONDS' DEBUG

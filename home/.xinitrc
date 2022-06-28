@@ -72,10 +72,10 @@ export VSCODE_GALLERY_CONTROL_URL=''
 export VSCODE_GALLERY_RECOMMENDATIONS_URL=''
 
 # iBus
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-fcitx5 -d &
+#export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
+#export XMODIFIERS=@im=fcitx
+#fcitx5 -d &
 
 # Lang
 #unset LC_ALL
@@ -94,12 +94,18 @@ export XMODIFIERS=""
 session=${1:-dwm}
 case $session in
     dwm)
+        systemctl --user import-environment DISPLAY
+
         SERVICE=org.knopwob.dunst
         ln -sfT \
             "/usr/share/dbus-1/services/${SERVICE:-org.freedesktop.Notifications}.service" \
             "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 
+        export GTK_THEME=Adwaita:dark
+        export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+
         $HOME/.dwm/autostart
+
 	exec dwm
     ;;
     i3|i3wm)
@@ -107,9 +113,9 @@ case $session in
 
         # Temas
         export GTK2_RC_FILES=$HOME/.local/themes/Nordic-darker-v40/gtk-2.0/gtkrc
-        #export GTK_THEME=Adwaita:dark
+        export GTK_THEME=Adwaita:dark
         export GTK_THEME=Nordic-darker-v40
-		export XCURSOR_THEME=Nordzy-cursors
+        export XCURSOR_THEME=Nordzy-cursors
         export XDG_DATA_DIRS=${HOME}/.jail/:$XDG_DATA_DIRS
 
         SERVICE=org.knopwob.dunst
