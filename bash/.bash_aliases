@@ -1,5 +1,4 @@
 # Core
-alias c='clear'
 alias ls='ls --color=always --group-directories-first'
 #alias ls='exa -g --group-directories-first'
 alias rm='rm -Iv'
@@ -83,7 +82,7 @@ alias dsp='docker stop'
 alias drs='docker restart'
 alias dps='docker ps -a'
 
-# pastebin
+# PasteBin
 alias tb="nc termbin.com 9999"
 
 # Grub
