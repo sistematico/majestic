@@ -42,11 +42,11 @@ shell () {
 }
 
 terminal () {
-	if [[ "$TERMINAL" != "" ]]; then
-		cor-echo 'TR' $TERMINAL
-	else
-		cor-echo 'TR' urxvt
-	fi
+  if [[ "$TERMINAL" != "" ]]; then
+    cor-echo 'TR' $TERMINAL
+  else
+    cor-echo 'TR' urxvt
+  fi
 }
 
 cpu () {
@@ -56,7 +56,7 @@ cpu () {
   else
     #cpu=$(grep -m1 -i 'model name' /proc/cpuinfo | awk '{print $6}')
     #cpu=$(grep -m1 -i 'model name' /proc/cpuinfo | awk -F: '{print $2}' | sed -e 's/^[[:space:]]*//')
-    cpu=$(cat /proc/cpuinfo | cat /proc/cpuinfo | awk '/model name/{print $4 " " $6; exit}')
+    cpu=$(cat /proc/cpuinfo | awk '/model name/{print $4 " " $5 " " $6 " " $7; exit}')
   fi
   #cor-echo 'CP' "${cpu#*: }" # everything after colon is processor name
   cor-echo 'CP' "$cpu"
@@ -73,12 +73,13 @@ pacotes () {
 }
 
 wm () {
-	if [ -z $DESKTOP_SESSION ]; then
-		WM="bspwm"
-	else
-		WM=$DESKTOP_SESSION
-	fi
-	cor-echo 'WM' $WM
+  if [ -z $DESKTOP_SESSION ]; then
+    wm=$(xprop -id $(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5; exit}') | awk '/_NET_WM_NAME/{gsub(/"/, "", $3);print $3;exit}')
+    WM="$wm"
+  else
+    WM=$DESKTOP_SESSION
+  fi
+  cor-echo 'WM' $WM
 }
 
 distro () {
@@ -95,11 +96,11 @@ res () {
 }
 
 cores () {
-	for BG in 40m 41m 42m 43m 44m 45m 46m 47m; do
-		cor=$(echo -en "\033[$BG  \033[0m")
-		cores=$cores$cor
-	done
-	echo -ne " ${vermelho}CR: $cores"
+  for BG in 40m 41m 42m 43m 44m 45m 46m 47m; do
+    cor=$(echo -en "\033[$BG  \033[0m")
+    cores=$cores$cor
+  done
+  echo -ne " ${vermelho}CR: $cores"
 }
 
 echo
@@ -115,4 +116,3 @@ echo -en "                  |  " && pacotes
 echo -en "                  |  " && cores
 echo
 echo
-#sleep 10
