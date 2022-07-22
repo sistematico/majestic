@@ -17,7 +17,7 @@ current_item_prefix = $(cyan)$r
 current_item_inactive_column_prefix = $(white)$r
 now_playing_prefix = "$7"
 now_playing_suffix = "$9"
-execute_on_song_change = notify-send -i ~/.local/share/icons/devices/audio-speakers.png "Tocando Agora" "$(mpc current)"
+execute_on_song_change = notify-send -i ~/.local/share/icons/dwm/audio-speakers.png "Playing" "$(mpc current)"
 
 playlist_display_mode = "classic"
 user_interface = classic
