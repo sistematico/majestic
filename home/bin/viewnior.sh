@@ -7,20 +7,15 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 29-11-2019 14:50:28
 
-#oldpwd="$(pwd)"
+[ ! $1 ] && exit
 
-if [ $1 ]; then
-    dirs="$@"
-    for dir in "${dirs[@]}"
-    do
-        if [ -d "$dir" ]; then
-            cd "$dir"
-	        DISPLAY=:0 viewnior $(find . -type f \( -iname "*.png" -o -iname "*.svg" -o -iname "*.jpg" \))
-        fi
-    done 
-else
-    #DISPLAY=:0 viewnior $(find "$(pwd)" -type f \( -iname "*.png" -o -iname "*.svg" -o -iname "*.jpg" \))
-    DISPLAY=:0 viewnior $(find "$(pwd)" -type f -iname "*.jpg")
-fi
+dirs="$@"
+for dir in "${dirs[@]}"
+do
+    if [ -d "$dir" ]; then
+        cd "$dir"
+        DISPLAY=:0 viewnior $(find . -type f \( -iname "*.png" -o -iname "*.svg" -o -iname "*.jpg" \))
+    fi
+done
 
 exit

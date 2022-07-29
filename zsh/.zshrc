@@ -1,135 +1,88 @@
-zstyle ':completion:*' completer _complete _ignored _approximate
-zstyle ':completion:*' max-errors 2
+export PATH=$PATH:/home/lucas/.spicetify
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+setopt autocd extendedglob notify
+bindkey -e
+
+bindkey "^[[H"    beginning-of-line
+bindkey "^[[1~"   beginning-of-line
+bindkey "^[[4~"   end-of-line
+bindkey "^[[P"    delete-char
+bindkey "^[[3~"   delete-char
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
+bindkey "^H"      kill-word
+
 zstyle :compinstall filename '/home/lucas/.zshrc'
 
-#################
-## History     ##
-#################
-HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=10000
-
-#################
-## Opt         ##
-#################
-setopt autocd extendedglob notify
-
-#################
-## Autoload    ##
-#################
-autoload -Uz compinit && compinit
-autoload -Uz promptinit && promptinit
-
-#################
-## Aliases     ##
-#################
-# Core Aliases
-alias ls='ls --color=auto --group-directories-first'
-alias rm='rm -vI'
-alias cp='cp -vi'
-alias mv='mv -vi'
-alias mkdir='mkdir -pv'
-
-# Main Aliases
-[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
-
-#################
-## Functions   ##
-#################
-if [[ -f ~/.zsh_functions ]]; then
-    source ~/.zsh_functions
-fi
-
-#################
-## Sources     ##
-#################
-if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
-    source /usr/share/doc/pkgfile/command-not-found.zsh
-fi
-
-#################
-## Keybindings ##
-#################
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
-typeset -g -A key
-
-key[Home]="${terminfo[khome]}"
-key[End]="${terminfo[kend]}"
-key[Insert]="${terminfo[kich1]}"
-key[Backspace]="${terminfo[kbs]}"
-key[Delete]="${terminfo[kdch1]}"
-key[Up]="${terminfo[kcuu1]}"
-key[Down]="${terminfo[kcud1]}"
-key[Left]="${terminfo[kcub1]}"
-key[Right]="${terminfo[kcuf1]}"
-key[PageUp]="${terminfo[kpp]}"
-key[PageDown]="${terminfo[knp]}"
-key[Shift-Tab]="${terminfo[kcbt]}"
-
-# Ctrl+Arrows
-#key[Control-Left]="${terminfo[kLFT5]}"
-#key[Control-Right]="${terminfo[kRIT5]}"
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
-# setup key accordingly
-[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
-[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
-[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
-[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}"  backward-delete-char
-[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
-[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"         up-line-or-history
-[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"       down-line-or-history
-[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"       backward-char
-[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"      forward-char
-[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"     beginning-of-buffer-or-history
-[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"   end-of-buffer-or-history
-[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
-
-# Ctrl+Arrows
-[[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
-[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
-
-# Alt+Backspace
-#backward-kill-dir () {
-#    local WORDCHARS=${WORDCHARS/\/}
-#    zle backward-kill-word
-#    zle -f kill
-#}
-#zle -N backward-kill-dir
-#bindkey '^[^?' backward-kill-dir
-
-my-backward-delete-word () {
-  local WORDCHARS='~!#$%^&*(){}[]<>?+;'
-  zle backward-delete-word
-}
-zle -N my-backward-delete-word
-#bindkey    '\e^?' my-backward-delete-word
-bindkey '^[^?' my-backward-delete-word
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-	autoload -Uz add-zle-hook-widget
-	function zle_application_mode_start { echoti smkx }
-	function zle_application_mode_stop { echoti rmkx }
-	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
-fi
-
-prompt_stmco_setup() {
-  PROMPT='%F{yellow}[%B%F{green}%n%f@%F{magenta}%m%f %F{blue}%~%b%F{yellow}]%f:%# '
-  RPROMPT='[%F{yellow}%?%f]'
-}
-prompt_themes+=( stmco )
-prompt stmco
-
-eval `dircolors $HOME/.dircolors`
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# >>>> Vagrant command completion (start)
-fpath=(/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh $fpath)
+autoload -Uz compinit
 compinit
-# <<<<  Vagrant command completion (end)
+
+alias ls='ls --color=always --group-directories-first'
+alias e='exit'
+alias s='sudo su'
+alias mv='mv -iv'
+alias cp='cp -iv'
+alias rm='rm -Iv'
+alias mkdir='mkdir -pv'
+alias code='code-insiders'
+alias pacman='sudo pacman'
+alias pikaur='pikaur --noconfirm'
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias host='getent hosts'
+alias loopback='pactl load-module module-loopback latency_msec=1'
+alias tb='nc termbin.com 9999'
+alias reload="source $HOME/.zshrc"
+alias rdwm='cd ~/bitbucket/dwm/ && rm -f config.h && make && sudo make install clean'
+alias rdwmblocks='cd ~/bitbucket/dwmblocks/ && rm -f blocks.h && make && sudo make install clean'
+alias rdmenu='cd ~/bitbucket/dmenu/ && rm -f config.h && make && sudo make install clean'
+alias rst='cd ~/bitbucket/st/ && rm -f config.h && make && sudo make install clean'
+alias copiar='xclip -sel clip <'
+
+commit() {
+    [ -f .commit ] && msg="$(cat .commit)" || msg="Commit automático"
+    [ $1 ] && msg="$@"
+    git add .
+    git commit -m "$msg"
+    git push
+}
+
+git-revert() {
+    git clean -fd
+    git checkout -f
+    git reset --hard
+}
+
+fix-whatsapp() {
+    ffmpeg -i "$1" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$(basename $1)-fix.mp4"
+}
+
+mpcr() {
+    [ ! $1 ] && exit
+    mpc rm $1
+    mpc save $1
+    mpc clear
+    mpc load $1
+    mpc play
+}
+
+[ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && source /usr/share/doc/pkgfile/command-not-found.zsh
+[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="/home/lucas/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
