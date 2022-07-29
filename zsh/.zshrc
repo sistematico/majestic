@@ -36,7 +36,7 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
-alias code='code-insiders'
+#alias code='code-insiders'
 alias pacman='sudo pacman'
 alias pikaur='pikaur --noconfirm'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -69,7 +69,7 @@ fix-whatsapp() {
 }
 
 mpcr() {
-    [ ! $1 ] && exit
+    [ ! $1 ] && return
     mpc rm $1
     mpc save $1
     mpc clear
