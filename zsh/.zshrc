@@ -36,9 +36,11 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
-#alias code='code-insiders'
 alias pacman='sudo pacman'
+alias pacman-clean='sudo pacman -Qdtq | pacman -Rs - 2>/dev/null'
 alias pikaur='pikaur --noconfirm'
+alias paru='paru --noconfirm'
+alias trizen='trizen --noconfirm'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias host='getent hosts'
 alias loopback='pactl load-module module-loopback latency_msec=1'
@@ -60,7 +62,7 @@ commit() {
 
 git-revert() {
     git clean -fd
-    git checkout -f
+    git checkout -fxd
     git reset --hard
 }
 
