@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+#
+# Arquivo: qemu.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <sistematico@gmail.com>
+#
+# Criado em: 10/08/2022 17:12:29
+# Última alteração: 10/08/2022 17:12:33
+
+TITLE='QEMU_Helper'
+DIALOG="dialog --keep-tite --backtitle ${TITLE}"
+TIMEOUT=2
 
 for app in dialog qemu-img qemu-system-x86_64 vinagre
 do
@@ -9,122 +20,161 @@ do
     fi
 done
 
-NOME="QEMU Helper"
+# [ ! -f $HOME/.dialogrc ] && curl -sLo $HOME/.dialogrc https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/green.cfg
+# export DIALOGRC=$HOME/.dialogrc
 
-dialog                                                                                 \
-        --title 'QEMU Helper'                                                          \
-        --msgbox 'Bem vindo QEMU Helper!\n\npor Lucas Saliés Brum a.k.a. sistematico'  \
-        0 0
+$DIALOG \
+    --timeout $TIMEOUT \
+    --title 'QEMU Helper' \
+    --msgbox 'Bem vindo QEMU Helper!\n\npor Lucas Saliés Brum a.k.a. sistematico' \
+    0 0
+
+debug() {
+    echo "Chegou aqui"
+    exit
+}
 
 parabens() {
-    dialog                                            \
-        --title 'Parabéns'                             \
-        --msgbox 'Instalação finalizada com sucesso.'  \
+    $DIALOG \
+        --timeout $TIMEOUT \
+        --title 'Parabéns' \
+        --msgbox 'Instalação finalizada com sucesso.' \
         0 0
     clear
     break
 }
 
 falhou() {
-    dialog                                            \
-        --title 'Erro'                             \
-        --msgbox 'Instalação falhou.'  \
+    $DIALOG \
+        --timeout $TIMEOUT \
+        --title 'Erro' \
+        --msgbox 'Instalação falhou.' \
         0 0
     clear
     break
 }
 
 clean() {
-    rm -f /tmp/tipo.txt /tmp/kvm.txt /tmp/nome.txt /tmp/iso.txt /tmp/mem.txt /tmp/tamanho.txt
+    rm -f /tmp/tipo.txt /tmp/kvm.txt /tmp/iso.txt /tmp/mem.txt /tmp/disco.txt
 }
 
 cancel() {
-    #clean && break
-    clean && exit
+    clean
+    exit
 }
 
 abortar() {
-    dialog --title 'Erro' --msgbox "$1" 0 0
-}
-
-tipo() {
-    tipo=$(dialog  --stdout --title "$NOME" --menu 'Qual o tipo de sistema de arquivos?' 0 0 0 1 'qcow2' 2 'raw')
-    
-    [ $? -ne 0 ] && cancel
-
-    case "$tipo" in
-        1) echo 'qcow2' > /tmp/tipo.txt ;;
-        2) echo 'raw' > /tmp/tipo.txt ;;
-    esac
-}
-
-kvm() {
-    kvm=$(dialog  --stdout --title "$NOME" --menu 'Usar o KVM?' 0 0 0 1 'Sim' 2 'Não')
-    
-    [ $? -ne 0 ] && echo '-enable-kvm' > /tmp/kvm.txt ; exit 0
-
-    case "$kvm" in
-        1) echo '-enable-kvm' > /tmp/kvm.txt ;;
-        2) echo '' > /tmp/kvm.txt ;;
-    esac
+    $DIALOG --timeout 5 --title 'Erro' --msgbox "$1" 0 0
 }
 
 imagem() {
     while : ; do
-        nome=$(dialog --stdout --title "$NOME" --inputbox 'Digite o nome da imagem(Ex.: arch):' 0 0)
-        if [ -z $nome ]; then 
-            abortar "Insira um nome válido" 
-        else 
-            echo $nome >/tmp/nome.txt
-            break
-        fi
+        nome=$($DIALOG --stdout --title "Nome da imagem" --inputbox 'Digite o nome da imagem(Ex.: arch):' 0 0 'rocky')
         [ $? -ne 0 ] && cancel
+        [ -z "$nome" ] && abortar "Insira um nome válido" || break
     done
 }
 
-tamanho() {
-    dialog --title "$NOME" --inputbox 'Digite o tamanho da imagem(Ex.: 20G):' 0 0 2>/tmp/tamanho.txt
+tipo() {
+    tipo=$($DIALOG  --stdout --title "Tipo de imagem" --menu 'Qual o tipo de sistema de arquivos?' 0 0 0 1 'qcow2' 2 'raw')
+
     [ $? -ne 0 ] && cancel
+    
+    if [ "$tipo" != "qcow2" ] && [ "$tipo" != "raw" ]; then
+        echo 'qcow2' > /tmp/tipo.txt
+    else
+        echo "$tipo" > /tmp/tipo.txt
+    fi
+}
+
+kvm() {
+    enablekvm=$($DIALOG  --stdout --title "KVM" --menu 'Usar o KVM?' 0 0 0 1 'Sim' 2 'Não')
+    
+    [ $? -ne 0 ] && exit
+
+    case $enablekvm in
+        1) 
+            echo '-enable-kvm' > /tmp/kvm.txt
+        ;;
+        2) 
+            echo '' > /tmp/kvm.txt
+        ;;
+        *)
+            echo '-enable-kvm' > /tmp/kvm.txt
+        ;;
+    esac
+}
+
+disco() {
+    while : ; do
+        disco=$($DIALOG --stdout --title 'Tamanho do disco' --inputbox 'Tamanho do disco(Ex.: 20G):' 0 0 '20G')
+        
+        [ $? -ne 0 ] && cancel
+        
+        [ -z "$disco" ] && abortar "Erro" || break
+        
+        #tamanho=$(echo "$disco" | sed 's/[^0-9]*//g')
+        #sufixo=$(echo "$disco" | sed 's/[^A-Z]//g' | sed 's/^\(.\{1\}\).*/\1/')
+
+        #[ -z "$tamanho" ] && abortar "Tamanho inválido." || break
+        
+        
+        # if [ "$sufixo" != "M" ] && [ "$sufixo" != "G" ]; then
+        #     abortar "Sufixo inválido, use 'M' ou 'G'."
+        # else
+        #     break
+        # fi
+    done
 }
 
 mem() {
-    dialog --title "$NOME" --inputbox 'Digite a quantidade de RAM(Ex.: 2G):' 0 0 2>/tmp/mem.txt
-    [ $? -ne 0 ] && cancel    
+    while : ; do
+        memoria=$($DIALOG --stdout --title 'Capacidade de memória' --inputbox 'Ex.: 2G' 0 0 '2G')
+        memoria=$(echo "$memoria" | sed 's/[^0-9]*//g')
+        [ $? -ne 0 ] && cancel    
+        [ ! -z "$memoria" ] && break    
+    done
 }
 
 iso() {
-    while : ; do
-        dialog --title "$NOME" --fselect "$HOME" 0 0 2>/tmp/iso.txt 
-        
-        [ $? -ne 0 ] && cancel
+    [ -d $HOME/iso ] && iso=$HOME/iso || iso=$HOME
 
-        if [ $(file -b --mime-type $(cat /tmp/iso.txt)) == 'application/x-iso9660-image' ]; then
+    while : ; do       
+        iso=$($DIALOG --stdout --title 'Selecione a imagem ISO' --fselect "$iso" 0 80)
+
+        [ -z "$iso" ] && abortar "Selecione uma imagem iso."
+
+        if [ $(file -b --mime-type $iso) == 'application/x-iso9660-image' ]; then
             break
         else
-            abortar "O arquivo $(cat /tmp/iso.txt) não parece ser uma ISO válida!"
+            abortar "O arquivo $iso não parece ser uma ISO válida!"
         fi
     done
 }
 
 executar() {
-    if [ -f /tmp/kvm.txt ] && [ -f /tmp/tipo.txt ] && [ -f /tmp/nome.txt ] && [ -f /tmp/iso.txt ] && [ -f /tmp/mem.txt ] && [ -f /tmp/tamanho.txt ]; then
-        [ ! -d $HOME/.qemu/images/ ] && mkdir -p $HOME/.qemu/images/
-        qemu-img create -f $(cat /tmp/tipo.txt) $HOME/.qemu/images/$(cat /tmp/nome.txt) $(cat /tmp/tamanho.txt) 2> /dev/null
-        qemu-system-x86_64 -vnc :0 $(cat /tmp/kvm.txt) -m $(cat /tmp/mem.txt) -cdrom $(cat /tmp/iso.txt) -boot order=d -drive file=$HOME/.qemu/images/$(cat /tmp/nome.txt),format=raw && vinagre 127.0.0.1:5900
-        clean
+    if [ -f /tmp/kvm.txt ] && \
+        [ -f /tmp/tipo.txt ] && \
+        [ ! -z "$nome" ] && \
+        [ ! -z "$iso" ] && \
+        [ ! -z "$memoria" ] && \
+        [ ! -z "$disco" ]; then
+            [ ! -d $HOME/.qemu/images/ ] && mkdir -p $HOME/.qemu/images/
+            qemu-img create -f $(cat /tmp/tipo.txt) "$HOME/.qemu/images/$nome" "$disco" 2> /dev/null
+            qemu-system-x86_64 -vnc :0 $(cat /tmp/kvm.txt) -m $memoria -cdrom "$iso" -boot order=d -drive file=$HOME/.qemu/images/$nome,format=$(cat /tmp/tipo.txt) && vinagre 127.0.0.1:5900
+    else
+        falhou
     fi
-
-    [ $? -ne 0 ] && falhou
 }
 
-main() {
+principal() {
     imagem
     tipo
 	kvm
-    tamanho
+    disco
     mem
     iso
     executar
 }
 
-main
+principal

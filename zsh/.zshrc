@@ -51,6 +51,14 @@ alias rdwmblocks='cd ~/bitbucket/dwmblocks/ && rm -f blocks.h && make && sudo ma
 alias rdmenu='cd ~/bitbucket/dmenu/ && rm -f config.h && make && sudo make install clean'
 alias rst='cd ~/bitbucket/st/ && rm -f config.h && make && sudo make install clean'
 alias copiar='xclip -sel clip <'
+alias code='code --disable-gpu'
+alias codium='codium --disable-gpu'
+alias fd='fd -uuu'
+
+paste() {
+    [ ! -f $1 ] && exit
+    curl -F"file=@${1}" https://0x0.st
+}
 
 commit() {
     [ -f .commit ] && msg="$(cat .commit)" || msg="Commit automático"
