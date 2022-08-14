@@ -71,7 +71,16 @@ imagem() {
     while : ; do
         nome=$($DIALOG --stdout --title "Nome da imagem" --inputbox 'Digite o nome da imagem(Ex.: arch):' 0 0 'rocky')
         [ $? -ne 0 ] && cancel
-        [ -z "$nome" ] && abortar "Insira um nome válido" || break
+
+        if [ -z "$nome" ]; then
+            abortar "Insira um nome válido."
+        else
+            if [ -e "$nome" ]; then
+                abortar "$nome já existe, insira um novo nome."
+            else
+                break
+            fi
+        fi
     done
 }
 
@@ -160,8 +169,11 @@ executar() {
         [ ! -z "$memoria" ] && \
         [ ! -z "$disco" ]; then
             [ ! -d $HOME/.qemu/images/ ] && mkdir -p $HOME/.qemu/images/
-            qemu-img create -f $(cat /tmp/tipo.txt) "$HOME/.qemu/images/$nome" "$disco" 2> /dev/null
-            qemu-system-x86_64 -vnc :0 $(cat /tmp/kvm.txt) -m $memoria -cdrom "$iso" -boot order=d -drive file=$HOME/.qemu/images/$nome,format=$(cat /tmp/tipo.txt) && vinagre 127.0.0.1:5900
+            qemu-img create -f $(cat /tmp/tipo.txt) "$HOME/.qemu/images/$nome" "$disco"
+            qemu-system-x86_64 -vnc :0 $(cat /tmp/kvm.txt) -m $memoria -cdrom "$iso" -boot order=d -drive file=$HOME/.qemu/images/$nome,format=$(cat /tmp/tipo.txt)
+            vinagre 127.0.0.1:5900 &
+            
+            return
     else
         falhou
     fi

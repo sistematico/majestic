@@ -85,7 +85,7 @@ mma() {
 
 # rsync
 fullsync() {
-	if [ ! $1 ]; then
+    if [ ! $1 ]; then
         echo "Pelo menos um parâmetro é esperado."
     else
         [ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}

@@ -1,3 +1,5 @@
+STORAGE=$HOME
+
 export PATH=$PATH:/home/lucas/.spicetify
 
 HISTFILE=~/.zsh_history
@@ -54,6 +56,19 @@ alias copiar='xclip -sel clip <'
 alias code='code --disable-gpu'
 alias codium='codium --disable-gpu'
 alias fd='fd -uuu'
+
+fullsync() {
+    if [ ! $1 ]; then
+        echo "Pelo menos um parâmetro é esperado."
+    else
+        [ ! -d $STORAGE/vps/$1 ] && mkdir -p $STORAGE/vps/${1}
+
+        rsync -aAXvzz \
+        --exclude-from "$HOME/.config/rsync-excludes.list" \
+        root@${1}:/ \
+        $STORAGE/vps/${1}/
+    fi
+}
 
 paste() {
     [ ! -f $1 ] && exit
