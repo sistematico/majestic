@@ -83,6 +83,26 @@ commit() {
     git push
 }
 
+auto-commit() {
+    if [ -d .git ]; then
+        curl -sLo .git/hooks/post-commit 'https://git.io/JzKB2'
+        chmod +x .git/hooks/post-commit
+        git config --local commit.template .commit
+
+        if [ ! -f .commit ] || [ ! -s .commit ]; then
+            echo "Update automático" > .commit
+        fi
+
+        if [ ! -f .gitignore ] || [ ! -s .gitignore ]; then
+            echo ".commit" > .gitignore
+        else
+            if ! grep -Fxq ".commit" .gitignore 2> /dev/null; then
+                echo ".commit" >> .gitignore        
+            fi
+        fi
+    fi
+}
+
 git-revert() {
     git clean -fd
     git checkout -fxd
@@ -93,12 +113,24 @@ fix-whatsapp() {
     ffmpeg -i "$1" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$(basename $1)-fix.mp4"
 }
 
+mpcl() {
+    local CURRENT="$(mpc -f "%file%" playlist | sha512sum )"
+    mpc lsplaylist | while read line
+    do
+         i="$(mpc -f "%file%" playlist $line | sha512sum )"
+         if [ "$i" = "$CURRENT" ]; then
+              echo "$line"
+         fi
+    done
+}
+
 mpcr() {
-    [ ! $1 ] && return
-    mpc rm $1
-    mpc save $1
+    local lista
+    [ $1 ] && lista="$1" || lista="$(mpcl)"
+    mpc rm $lista
+    mpc save $lista
     mpc clear
-    mpc load $1
+    mpc load $lista
     mpc play
 }
 

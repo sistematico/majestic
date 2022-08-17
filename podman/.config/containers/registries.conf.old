@@ -1,0 +1,3 @@
+# /etc/containers/registries.conf
+[[registry]]
+location = "docker.io"

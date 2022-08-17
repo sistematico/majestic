@@ -1,0 +1,22 @@
+#!/bin/sh
+
+#previewdir="$XDG_CONFIG_HOME/ncmpcpp/previews"
+previewdir="$HOME/.config/ncmpcpp/previews"
+filename="$(mpc --format ~/audio/Dance/%file% current)"
+previewname="$previewdir/$(mpc --format %album% current | base64).png"
+icon="$HOME/.local/share/icons/dwm/audio-speakers.png"
+
+if [ ! -e "$previewname" ]; then
+    ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" > /dev/null 2>&1
+
+    if [ ! -e "$previewname" ]; then
+        #glyrc cover --artist "$(mpc --format %artist% current)" --album "$(mpc --format %album% current)" --write "$previewname" --callback 'viewnior ":path:"' > /dev/null
+        glyrc cover -a "$(mpc --format %artist% current)" -b "$(mpc --format %album% current)" --write "$previewname" >/dev/null 2>&1
+    fi
+fi
+
+[ -e "$previewname" ] && icon="$previewname"
+
+notify-send "Now Playing" "$(mpc current)" -i "$icon"
+#notify-send -r 27072 -i "$icon" "Now Playing" "$(mpc current)"
+#notify-send -r 27072 "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)" -i "$previewname"

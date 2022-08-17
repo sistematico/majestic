@@ -1,0 +1,57 @@
+[header]
+header_visibility = "no"
+header_window_color = "default"
+volume_color = "green"
+state_line_color = "black"
+
+[playlist]
+#playlist_display_mode = "classic"
+playlist_display_mode = "columns"
+
+#song_columns_list_format = "(25)[6]{a} (35)[4]{t} (5)[2]{l}"
+
+song_list_format = "$6{%a $R»$4 %t$/r}|{%f}"
+#song_list_format = "$6{%a »$4 %t $R$/l}|{%f}"
+
+#song_list_format = "$6{%a »$4 %t$/r$R}|{%f}"
+#song_list_format = "$5%t $R$6%a"
+
+
+now_playing_prefix = "$b"
+now_playing_suffix = "$/b"
+browser_playlist_prefix = "$1»$1 "
+
+[statusbar]
+progressbar_look = "━━━"
+progressbar_color = "black"
+statusbar_visibility = "yes"
+progressbar_elapsed_color = "cyan"
+statusbar_color = "3"
+song_status_format = "{%t - %a}"
+#display_bitrate = yes
+
+[library]
+song_library_format = "{{%a - %t}|{%f}}{$R%l}"
+empty_tag_color = "black"
+
+[global]
+main_window_color = "default"
+centered_cursor = "yes"
+enable_window_title = "yes"
+external_editor = "vim"
+#execute_on_song_change = ~/.config/ncmpcpp/art.sh
+#execute_on_song_change = songinfo
+execute_on_song_change="~/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
+
+#visualizer_look = "  "           
+startup_screen = visualizer      
+# Next we make the left pane open on the empty visualizer
+startup_slave_screen = playlist  
+# The right pane is the usual playlist view
+startup_slave_screen_focus = yes 
+# We focus the right pane on ncmpcpp startup
+locked_screen_width_part = 30 
+# We make the empty pane occupy 30% width, just like the cover art
+
+#reserved_playlist_cols=75
+#reserved_cols_in_percent="true"
