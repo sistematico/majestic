@@ -7,7 +7,7 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 29-11-2019 14:50:28
 
-[ ! $1 ] && exit
+[ ! $1 ] && echo "Uso: $(basename $0) /caminho" && exit
 
 dirs="$@"
 for dir in "${dirs[@]}"

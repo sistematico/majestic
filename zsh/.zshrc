@@ -12,9 +12,10 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 setopt autocd extendedglob notify
 bindkey -e
 
+bindkey "^[[F"    end-of-line
+bindkey "^[[4~"   end-of-line
 bindkey "^[[H"    beginning-of-line
 bindkey "^[[1~"   beginning-of-line
-bindkey "^[[4~"   end-of-line
 bindkey "^[[P"    delete-char
 bindkey "^[[3~"   delete-char
 
@@ -38,6 +39,7 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
+alias rg='rg -luu --ignore-file "$HOME/.config/ripgrep-excludes.lst"'
 alias pacman='sudo pacman'
 alias pacman-clean='sudo pacman -Qdtq | pacman -Rs - 2>/dev/null'
 alias pikaur='pikaur --noconfirm'
@@ -48,14 +50,17 @@ alias host='getent hosts'
 alias loopback='pactl load-module module-loopback latency_msec=1'
 alias tb='nc termbin.com 9999'
 alias reload="source $HOME/.zshrc"
-alias rdwm='cd ~/bitbucket/dwm/ && rm -f config.h && make && sudo make install clean'
-alias rdwmblocks='cd ~/bitbucket/dwmblocks/ && rm -f blocks.h && make && sudo make install clean'
-alias rdmenu='cd ~/bitbucket/dmenu/ && rm -f config.h && make && sudo make install clean'
-alias rst='cd ~/bitbucket/st/ && rm -f config.h && make && sudo make install clean'
+alias rdwm='cd ~/bitbucket/dwm/ && rm -f config.h && make && sudo make install clean && rm -f config.h'
+alias rst='cd ~/bitbucket/st/ && rm -f config.h && make && sudo make install clean && rm -f config.h'
+alias rdmenu='cd ~/bitbucket/dmenu/ && rm -f config.h && make && sudo make install clean && rm -f config.h'
+alias rsurf='cd ~/bitbucket/surf/ && rm -f config.h && make && sudo make install clean && rm -f config.h'
+alias rtabbed='cd ~/bitbucket/tabbed/ && rm -f config.h && make && sudo make install clean && rm -f config.h'
+alias rdwmblocks='cd ~/bitbucket/dwmblocks/ && rm -f blocks.h && make && sudo make install clean && rm -f blocks.h'
 alias copiar='xclip -sel clip <'
 alias code='code --disable-gpu'
 alias codium='codium --disable-gpu'
 alias fd='fd -uuu'
+#alias surf='surf-open.sh'
 
 fullsync() {
     if [ ! $1 ]; then
@@ -97,7 +102,7 @@ auto-commit() {
             echo ".commit" > .gitignore
         else
             if ! grep -Fxq ".commit" .gitignore 2> /dev/null; then
-                echo ".commit" >> .gitignore        
+                echo ".commit" >> .gitignore
             fi
         fi
     fi
@@ -125,8 +130,8 @@ mpcl() {
 }
 
 mpcr() {
-    local lista
-    [ $1 ] && lista="$1" || lista="$(mpcl)"
+    local lista="$(mpcl)"
+    [ ! -z "$lista" ] && lista="Dance"
     mpc rm $lista
     mpc save $lista
     mpc clear

@@ -20,7 +20,7 @@
 
 # [gedit] core dump : 'org.gnome.nautilus.preferences' does not contain a key named 'confirm-trash'
 # https://bugs.archlinux.org/task/70153
-dconf write /org/gnome/gedit/plugins/active-plugins "['spell', 'sort', 'modelines', 'docinfo']"
+# dconf write /org/gnome/gedit/plugins/active-plugins "['spell', 'sort', 'modelines', 'docinfo']"
 
 ######################
 # GNOME              #
@@ -45,7 +45,7 @@ gsettings set org.gnome.SessionManager logout-prompt false
 
 # Auto-Raise
 # Default: false
-gsettings set org.gnome.desktop.wm.preferences auto-raise true
+# gsettings set org.gnome.desktop.wm.preferences auto-raise true
 
 # Default: 'click' //  'mouse' or 'sloppy' 
 gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
@@ -64,7 +64,7 @@ gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 gsettings set org.gtk.Settings.FileChooser startup-mode cwd
 
 # GTK 2
-echo 'StartupMode=cwd' >> $HOME/.config/gtk-2.0/gtkfilechooser.ini
+#echo 'StartupMode=cwd' >> $HOME/.config/gtk-2.0/gtkfilechooser.ini
 
 ######################
 # Evolution          #
@@ -90,7 +90,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # Icon
 # Default: 'Gnome'
-# gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
+gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 
 # Shell
 # Default: 'Adwaita'
@@ -130,15 +130,14 @@ gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 # Gnome Screencast   #
 ######################
 # Default: 30
-gsettings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length 
+#gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 600
 
 ######################
 # RESET GNOME FONTS  #
 ######################
-gsettings reset org.gnome.desktop.interface font-name
-gsettings reset org.gnome.desktop.interface document-font-name
-gsettings reset org.gnome.desktop.interface monospace-font-name
-gsettings reset org.gnome.desktop.wm.preferences titlebar-font
-gsettings reset org.gnome.desktop.interface text-scaling-factor
-
-gsettings reset org.gnome.nautilus.desktop font
+#gsettings reset org.gnome.desktop.interface font-name
+#gsettings reset org.gnome.desktop.interface document-font-name
+#gsettings reset org.gnome.desktop.interface monospace-font-name
+#gsettings reset org.gnome.desktop.wm.preferences titlebar-font
+#gsettings reset org.gnome.desktop.interface text-scaling-factor
+#gsettings reset org.gnome.nautilus.desktop font
