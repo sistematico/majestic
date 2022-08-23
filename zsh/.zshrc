@@ -1,6 +1,7 @@
 STORAGE=$HOME
 
-export PATH=$PATH:/home/lucas/.spicetify
+#export PNPM_HOME="$HOME/.local/share/pnpm"
+#export PATH=$PATH:$PNPM_HOME:/home/lucas/.spicetify
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -61,6 +62,13 @@ alias code='code --disable-gpu'
 alias codium='codium --disable-gpu'
 alias fd='fd -uuu'
 #alias surf='surf-open.sh'
+
+default() {
+    local TYPE=$(xdg-mime query filetype "$1")
+    ANTIGO=$(xdg-mime query default $TYPE)
+    echo "xdg-mime default $2.desktop $TYPE"
+    echo "$ANTIGO -> ${2}.desktop"
+}
 
 fullsync() {
     if [ ! $1 ]; then
