@@ -62,6 +62,7 @@ alias code='code --disable-gpu'
 alias codium='codium --disable-gpu'
 alias fd='fd -uuu'
 #alias surf='surf-open.sh'
+alias a='php artisan'
 
 default() {
     local TYPE=$(xdg-mime query filetype "$1")
