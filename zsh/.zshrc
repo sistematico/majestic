@@ -1,14 +1,14 @@
 STORAGE=$HOME
 
-#export PNPM_HOME="$HOME/.local/share/pnpm"
-#export PATH=$PATH:$PNPM_HOME:/home/lucas/.spicetify
-
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+export PNPM_HOME="/home/lucas/.local/share/pnpm"
+export FLYCTL_INSTALL="/home/lucas/.fly"
+export PATH="$PATH:$FLYCTL_INSTALL/bin:$PNPM_HOME"
 
 setopt autocd extendedglob notify
 bindkey -e
@@ -63,6 +63,9 @@ alias codium='codium --disable-gpu'
 alias fd='fd -uuu'
 #alias surf='surf-open.sh'
 alias a='php artisan'
+alias ncp='~/.config/ncmpcpp/ueberzug'
+alias ncmpcpp='~/.config/ncmpcpp/ueberzug'
+alias logs='lnav ~/.dwm/logs/'
 
 default() {
     local TYPE=$(xdg-mime query filetype "$1")
@@ -87,6 +90,26 @@ fullsync() {
 paste() {
     [ ! -f $1 ] && exit
     curl -F"file=@${1}" https://0x0.st
+}
+
+bfc() {
+    [ $1 ] && msg="$@" || msg="Primeiro commit"
+    git init
+    git add .
+    git commit -m "$msg"
+    git branch -M main
+    git remote add origin git@bitbucket.org:sistematico/$(basename $(pwd)).git
+    git push -u origin main
+}
+
+ghfc() {
+    [ $1 ] && msg="$@" || msg="Primeiro commit"
+    git init
+    git add .
+    git commit -m "$msg"
+    git branch -M main
+    git remote add origin git@github.com:sistematico/$(basename $(pwd)).git
+    git push -u origin main
 }
 
 commit() {
@@ -117,6 +140,15 @@ auto-commit() {
     fi
 }
 
+remove-commit() {
+    [ ! $1 ] && exit
+
+    FILTER_BRANCH_SQUELCH_WARNING=1 \
+    git filter-branch --force --index-filter \
+        "git rm --cached --ignore-unmatch $1" \
+        --prune-empty --tag-name-filter cat -- --all
+}
+
 git-revert() {
     git clean -fd
     git checkout -fxd
@@ -131,16 +163,16 @@ mpcl() {
     local CURRENT="$(mpc -f "%file%" playlist | sha512sum )"
     mpc lsplaylist | while read line
     do
-         i="$(mpc -f "%file%" playlist $line | sha512sum )"
-         if [ "$i" = "$CURRENT" ]; then
-              echo "$line"
-         fi
+        i="$(mpc -f "%file%" playlist $line | sha512sum )"
+        if [ "$i" = "$CURRENT" ]; then
+            echo "$line"
+        fi
     done
 }
 
 mpcr() {
     local lista="$(mpcl)"
-    [ ! -z "$lista" ] && lista="Dance"
+    [ -z "$lista" ] && echo "sem lista" && lista="Dance"
     mpc rm $lista
     mpc save $lista
     mpc clear
@@ -153,7 +185,6 @@ mpcr() {
 
 eval "$(starship init zsh)"
 
-# pnpm
-export PNPM_HOME="/home/lucas/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+export PATH=$PATH:/home/lucas/.spicetify

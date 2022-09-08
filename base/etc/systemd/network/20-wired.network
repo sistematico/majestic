@@ -1,7 +1,10 @@
 [Match]
-Name=eno1
+#Name=eno1
+Name=enp42s0
 
 [Network]
 Address=10.0.0.1/8
 Gateway=10.0.0.254
+#DNS=10.0.0.254
 DNS=1.1.1.1 1.0.0.1
+LinkLocalAddressing=ipv4
