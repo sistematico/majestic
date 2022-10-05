@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+export GTK_THEME=Arc-Dark
+
+if ! pgrep -x Hyprland > /dev/null; then
+    exec Hyprland
+fi

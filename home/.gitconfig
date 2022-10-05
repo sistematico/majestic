@@ -14,6 +14,9 @@
 [url "git@gitlab.com:sistematico/"]
     insteadOf = "gl:"
 
+[url "git@bitbucket.org:sistematico/"]
+    insteadOf = "bb:"
+
 [alias]
     cl = clone
     co = checkout

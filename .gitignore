@@ -36,4 +36,6 @@ ngrok.yml
 localtunnel.service
 st/aur/st-scrollback-git
 
+ranger-trash
+
 .commit

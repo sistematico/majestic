@@ -1,0 +1,41 @@
+"call plug#begin('~/.vim/plugged')
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+"Plug 'preservim/nerdtree'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+"call plug#end()
+
+"let NERDTreeShowHidden=1
+
+syntax on
+
+"let g:airline_theme='deus'
+"let g:airline_powerline_fonts = 1
+"let g:airline_skip_empty_sections = 1
+
+filetype plugin indent on
+
+set termguicolors
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+set encoding=UTF-8
+set whichwrap=b,s,<,>,[,]
+set mouse=a
+set noshowmode    " to get rid of thing like --INSERT--
+set noshowcmd     " to get rid of display of last command
+set shortmess+=F  " to get rid of the file name displayed in the command line bar
+"set cmdheight=1
+set tabstop=4 shiftwidth=4 expandtab
+
+"autocmd VimEnter * hi Normal ctermbg=none
+"autocmd VimEnter * NERDTree | wincmd p
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Start NERDTree when Vim is started without file arguments.
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | endif
+
+colorscheme catppuccin_latte
+
