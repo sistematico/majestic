@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Antares SQL
+Comment=Open source SQL client, made to be simple.
+StartupWMClass=Antares
+Exec=antares-sql
+Icon=/home/lucas/.local/share/icons/apps/antares.png
+Terminal=false
+Categories=Development;Utility;Database;
