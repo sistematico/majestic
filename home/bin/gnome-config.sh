@@ -1,54 +1,59 @@
 #!/usr/bin/env bash
+#
+# Arquivo: gnome-config.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <sistematico@gmail.com>
+#
+# Criado em: 03/11/2022 11:44:45
+# Última alteração: 03/11/2022 11:44:51
 
-[[ $EUID -eq 0 ]] && exit
+TITLE='GnomeConfig'
+DIALOG="dialog --keep-tite --backtitle ${TITLE}"
+TIMEOUT=5
 
-######################
-# BACKUP             #
-######################
-#dconf dump /org/gnome/ > backup.txt
+for app in dialog gsettings
+do
+    if ! command -v $app >/dev/null;
+    then 
+        echo "$app não instalado. Instale primeiro."
+        exit
+    fi
+done
 
-######################
-# RESET              #
-######################
-# dconf reset -f /org/gnome/
-
-######################
-# BUGS               #
-######################
-# gkr-pam: unable to locate daemon control file
-# dbus-launch gsettings reset org.gnome.clocks world-clocks
-
-# [gedit] core dump : 'org.gnome.nautilus.preferences' does not contain a key named 'confirm-trash'
-# https://bugs.archlinux.org/task/70153
-# dconf write /org/gnome/gedit/plugins/active-plugins "['spell', 'sort', 'modelines', 'docinfo']"
+$DIALOG \
+    --timeout $TIMEOUT \
+    --title $TITLE \
+    --backtitle 'Apresentação' \
+    --msgbox 'Bem vindo Gnome Configurator!\n\npor Lucas Saliés Brum a.k.a. sistematico' \
+    0 0
 
 ######################
 # GNOME              #
 ######################
 # Center new windows
-gsettings set org.gnome.mutter center-new-windows true
+#gsettings set org.gnome.mutter center-new-windows true
 
 # Don't open folder on drag-n-drop
-gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false
+#gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false
 
 # Numlock ON
 #gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
 # Numlock Last State
-gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
+#gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
 # Three Buttons
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+#gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
 # Logout delay
-gsettings set org.gnome.SessionManager logout-prompt false
+#gsettings set org.gnome.SessionManager logout-prompt false
 
 # Auto-Raise
 # Default: false
 # gsettings set org.gnome.desktop.wm.preferences auto-raise true
 
 # Default: 'click' //  'mouse' or 'sloppy' 
-gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
+#gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 
 ######################
 # GNOME Software     #
@@ -61,7 +66,7 @@ gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 ######################
 # Remember last opened folder
 # GTK 3
-gsettings set org.gtk.Settings.FileChooser startup-mode cwd
+#gsettings set org.gtk.Settings.FileChooser startup-mode cwd
 
 # GTK 2
 #echo 'StartupMode=cwd' >> $HOME/.config/gtk-2.0/gtkfilechooser.ini
@@ -70,27 +75,27 @@ gsettings set org.gtk.Settings.FileChooser startup-mode cwd
 # Evolution          #
 ######################
 # Default: false
-gsettings set org.gnome.evolution.mail composer-no-signature-delim true
+#gsettings set org.gnome.evolution.mail composer-no-signature-delim true
 
 ######################
 # Terminal           #
 ######################
 # Disable confirmation on terminal close
-gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
+#gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
 
 ######################
 # Theme              #
 ######################
 
 # GTK 3-4
-gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+#gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # GTK 2
 #mkdir ~/.themes && ln -s /usr/share/themes/Adwaita-dark ~/.themes/Adwaita
 
 # Icon
 # Default: 'Gnome'
-gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
+#gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 
 # Shell
 # Default: 'Adwaita'
@@ -118,13 +123,13 @@ gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 ######################
 # Always show text-entry location
 # Default: false
-gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+#gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 ######################
 # GTK                #
 ######################
 # Sort directories first
-gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+#gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 
 ######################
 # Gnome Screencast   #

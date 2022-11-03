@@ -23,11 +23,6 @@ done
 # [ ! -f $HOME/.dialogrc ] && curl -sLo $HOME/.dialogrc https://raw.githubusercontent.com/sistematico/majestic/master/dialog/.local/share/dialog/themes/green.cfg
 # export DIALOGRC=$HOME/.dialogrc
 
-$DIALOG \
-    --timeout $TIMEOUT \
-    --title 'QEMU Helper' \
-    --msgbox 'Bem vindo QEMU Helper!\n\npor Lucas Saliés Brum a.k.a. sistematico' \
-    0 0
 
 debug() {
     echo "Chegou aqui"

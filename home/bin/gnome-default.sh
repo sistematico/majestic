@@ -1,26 +1,11 @@
 #!/usr/bin/env bash
-
-[[ $EUID -eq 0 ]] && exit
-
-######################
-# BACKUP             #
-######################
-#dconf dump /org/gnome/ > backup.txt
-
-######################
-# RESET              #
-######################
-# dconf reset -f /org/gnome/
-
-######################
-# BUGS               #
-######################
-# gkr-pam: unable to locate daemon control file
-# dbus-launch gsettings reset org.gnome.clocks world-clocks
-
-# [gedit] core dump : 'org.gnome.nautilus.preferences' does not contain a key named 'confirm-trash'
-# https://bugs.archlinux.org/task/70153
-# dconf write /org/gnome/gedit/plugins/active-plugins "['spell', 'sort', 'modelines', 'docinfo']"
+#
+# Arquivo: gnome-config.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <sistematico@gmail.com>
+#
+# Criado em: 03/11/2022 11:44:45
+# Última alteração: 03/11/2022 11:44:51
 
 ######################
 # GNOME              #
@@ -53,15 +38,15 @@ gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 ######################
 # GNOME Software     #
 ######################
-#Prevent GNOME Software from downloading updates
-#gsettings set org.gnome.software download-updates false
+# Prevent GNOME Software from downloading updates
+gsettings set org.gnome.software download-updates false
 
 ######################
 # GEDIT              #
 ######################
 # Remember last opened folder
 # GTK 3
-gsettings set org.gtk.Settings.FileChooser startup-mode cwd
+#gsettings set org.gtk.Settings.FileChooser startup-mode cwd
 
 # GTK 2
 #echo 'StartupMode=cwd' >> $HOME/.config/gtk-2.0/gtkfilechooser.ini
@@ -83,7 +68,7 @@ gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
 ######################
 
 # GTK 3-4
-gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+#gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
 # GTK 2
 #mkdir ~/.themes && ln -s /usr/share/themes/Adwaita-dark ~/.themes/Adwaita
@@ -94,7 +79,6 @@ gsettings set org.gnome.desktop.interface icon-theme 'Newaita'
 
 # Shell
 # Default: 'Adwaita'
-# WRONG: gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
 # gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix"
 
 ######################
@@ -125,12 +109,6 @@ gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 ######################
 # Sort directories first
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true
-
-######################
-# Gnome Screencast   #
-######################
-# Default: 30
-#gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 600
 
 ######################
 # RESET GNOME FONTS  #
