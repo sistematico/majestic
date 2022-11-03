@@ -1,4 +1,8 @@
 {
+    "editor.renderWhitespace": "all",
+    "code-eol.newlineCharacter": "¬",
+    "code-eol.returnCharacter" : "¤",
+    "code-eol.crlfCharacter"   : "¤¬",
     "workbench.colorTheme": "Dracula",
     "workbench.startupEditor": "none",
     "security.workspace.trust.untrustedFiles": "open",

@@ -35,7 +35,7 @@ hints="{}"
 #hints="{'int:transient:1'}"
 #"{'Ifname': <'wlan0'>, 'Ifname': <'wlan1'>}"
 #int:transient:1
-timeout="${5:-10000}" # in milliseconds
+timeout="${5:-25000}" # in milliseconds
 
 exec gdbus call --session   \
    --dest org.freedesktop.Notifications \

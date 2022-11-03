@@ -19,10 +19,12 @@
 
 [alias]
     cl = clone
+    ch = checkout
     co = checkout
     br = branch
     ci = commit
     st = status
+    lg = log --oneline
 
 [pull]
     rebase = false
@@ -38,5 +40,7 @@
 
 [core]
     editor = code --wait
+	autocrlf = false
+	#autocrlf = true
 [push]
 	autoSetupRemote = true
