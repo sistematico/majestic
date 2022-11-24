@@ -118,5 +118,17 @@
                     "}"
 		],
 		"description": "composer.json skeleton"
-	}
+	},
+    "PHP Constructor": {
+        "prefix": "phpconstructor",
+        "body": [
+            "private $${1:attr}",
+            "",
+            "public function __construct($${1:attr})",
+            "{",
+            "\t$this->${1:attr} = $${1:attr};",
+            "}"
+        ],
+        "description": "Create Constructor Class"
+    },
 }

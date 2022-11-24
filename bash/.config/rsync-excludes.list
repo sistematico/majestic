@@ -1,3 +1,4 @@
+storage/framework/sessions/
 .swapfile
 *.so
 boot/
