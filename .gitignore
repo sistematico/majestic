@@ -39,3 +39,4 @@ st/aur/st-scrollback-git
 ranger-trash
 
 .commit
+vscode/.config/code_profiles/*
