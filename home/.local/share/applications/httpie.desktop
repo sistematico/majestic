@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=HTTPie
+Comment=API testing client that flows with you
+StartupWMClass=HTTPie
+Exec=/opt/appimage/HTTPie-2023.1.0.AppImage
+Icon=httpie
+Terminal=false
+Categories=Network;Development;
+
