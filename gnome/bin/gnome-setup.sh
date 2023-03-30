@@ -51,6 +51,12 @@ gsettings set org.gnome.SessionManager logout-prompt false
 gsettings set org.gnome.desktop.wm.preferences focus-mode 'mouse'
 
 ######################
+# GNOME Console      #
+######################
+# gsettings list-recursively "org.gnome.Console"
+gsettings set org.gnome.Console font-scale 1.2
+
+######################
 # GNOME Software     #
 ######################
 #Prevent GNOME Software from downloading updates
