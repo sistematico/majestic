@@ -7,14 +7,14 @@
 # Criado em: 16/03/2018 16:35:20
 # Última alteração: 05/06/2022 00:20:39
 
-# rofi rofi-greenclip ttf-fantasque-sans-mono headsetcontrol-git imagemagick maim fortune-mod fortune-mod-chucknorris gnome-themes-extra dracula-gtk-theme ttf-dejavu rtl8192eu-git"
-
 AMD="amd-ucode xf86-video-amdgpu"
-XORG="xorg-server xorg-xinit xclip lib32-libxft-bgra libxft-bgra-git"
-BASE="base base-devel linux linux-headers linux-firmware efibootmgr zsh grub os-prober ntfs-3g dhcpcd links curl sudo nano git rsync openssh"
-OPT="feh dunst picom-ibhagwan-git ttf-fantasque-sans-mono maim gnome-themes-extra newaita-icons-git dracula-gtk-theme startship ttf-ubuntu-font-family"
+XORG="xorg-server xorg-xinit xclip"
+XFCE="xfce4 networkmanager network-manager-applet lightdm lightdm-gtk-greeter"
+BASE="base base-devel linux linux-headers linux-firmware efibootmgr lvm2 grub os-prober ntfs-3g dhcpcd zsh links curl sudo nano git rsync openssh"
+TOPT="feh dunst picom-ibhagwan-git maim dracula-gtk-theme"
+OPT="gnome-themes-extra newaita-icons-git starship ttf-ubuntu-font-family ttf-fantasque-sans-mono fortune-mod fortune-mod-chucknorris"
 
-PKGS="${BASE} ${XORG} ${AMD} ${OPT}"
+PKGS="${BASE} ${AMD} ${OPT}"
 
 [ ! -f /etc/systemd/network/20-wired.network ] && curl -L -s -o /etc/systemd/network/20-wired.network http://ix.io/3DDk
 [ ! -f /etc/systemd/network/loopback-alias.network ] && curl -L -s -o /etc/systemd/network/loopback-alias.network http://ix.io/3DDl
